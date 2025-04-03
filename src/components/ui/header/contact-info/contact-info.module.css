@@ -1,0 +1,37 @@
+.contactInfo{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 42px;
+
+    .contactInfoBox {
+        display:flex;
+        align-items:center;
+        gap: 16px;
+
+        .contactInfoItem{
+            display: flex;
+            gap: 4px;
+            align-items:center;
+            padding-right: 16px;
+            border-right: 1px solid #DBDBDB;
+            
+
+            .contactInfoText{
+                font-family: 'SF Pro Display', sans-serif;
+                color:#363636;
+                font-weight: 274;
+                line-height: 20px;
+                font-size: 14px;
+                
+            }
+        }
+
+        .contactInfoSocials{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+    }
+}
+
