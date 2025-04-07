@@ -18,8 +18,9 @@ const ContactInfo = () => {
               height={14}
               alt={item.key}
               className={styles.contactInfoIcon}
+              priority
             />
-            <span className={styles.contactInfoText}>{item.text}</span>
+            <div className={styles.contactInfoText}>{item.text}</div>
           </div>
         ))}
         <div className={styles.contactInfoSocials}>
