@@ -1,0 +1,12 @@
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    border-top: 1px solid #EAEAEA;
+    border-bottom: 1px solid #EAEAEA;
+    .navbarRightContainer{
+        display: flex;
+        align-items:center;
+        gap: 10px;
+    }
+}
