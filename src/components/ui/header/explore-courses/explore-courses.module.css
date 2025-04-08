@@ -1,0 +1,16 @@
+.exploreCoursesContainer{
+    position: absolute;
+    top:65px;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+    height: calc(100vh - 108px);
+    z-index: 100;
+    background:rgba(38, 38, 38, 0.5);
+    .exploreCoursesBox{
+        background: rgba(255, 255, 255, 1);
+        border-radius: 6px;
+        margin: 20px 40px;
+        height: calc(100% - 40px);
+    }
+}

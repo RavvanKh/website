@@ -1,50 +1,74 @@
-'use client'
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
 
-import styles from './navbar-logo.module.css'
+import Logo from "@/components/shared/logo/Logo";
+import ExploreCourses from "../../explore-courses/ExploreCourses";
+
+import styles from "./navbar-logo.module.css";
+
+
 
 const NavbarLogo = () => {
-    const t = useI18n()
-  return (
-    <div className={styles.navbarLeft}>
-      <div className={styles.navbarLogo}>
-        <Image
-          src="/icons/logo.svg"
-          height={50}
-          width={50}
-          alt="Ingress Academy Logo"
-          priority
+  const t = useI18n();
 
-        />
-        <div className={styles.navbarLogoText}>
-          <div className={styles.navbarLogoTextContainer}>
-            <span className={styles.navbarLogoTextLeft}>Ingress</span>
-            <span className={styles.navbarLogoTextRight}>Academy</span>
-          </div>
-          <div className={styles.navbarLogoTextBottom}>
-            empowered by innovation
+  const [isCourseMenuOpen, setIsCourseMenuOpen] = useState(false);
+
+  const handleOpenExploreCoursesMenu = () => {
+    setIsCourseMenuOpen(!isCourseMenuOpen);
+  };
+
+  return (
+    <>
+      <Link href="/" rel="Home" className={styles.navbarLeft}>
+        <div className={styles.navbarLogo}>
+          <Logo/>
+          <div className={styles.navbarLogoText}>
+            <div className={styles.navbarLogoTextContainer}>
+              <span className={styles.navbarLogoTextLeft}>Ingress</span>
+              <span className={styles.navbarLogoTextRight}>Academy</span>
+            </div>
+            <div className={styles.navbarLogoTextBottom}>
+              empowered by innovation
+            </div>
           </div>
         </div>
-      </div>
-      <div className={styles.navbarLeftButton}>
-        <button className={styles.navbarLeftButtonContainer}>
-          <Image src="/icons/grid.svg" loading="lazy" height={14} width={14} alt="Grid" />
-          <div className={styles.navbarLeftButtonText}>
-            {t("exploreCourses")}
-          </div>
-          <Image
-            src="/icons/arrow-down.svg"
-            height={14}
-            width={8}
-            alt="Arrow down"
-            loading="lazy"
-          />
-        </button>
-      </div>
-    </div>
+        <div className={styles.navbarLeftButton}>
+          <button
+            className={`${styles.navbarLeftButtonContainer} ${
+              isCourseMenuOpen ? styles.navbarLeftButtonContainerOpen : ""
+            }`}
+            onClick={handleOpenExploreCoursesMenu}
+          >
+            <Image
+              src="/icons/grid.svg"
+              loading="lazy"
+              height={14}
+              width={14}
+              alt="Grid"
+            />
+            <div className={styles.navbarLeftButtonText}>
+              {t("exploreCourses")}
+            </div>
+            <Image
+              src={
+                isCourseMenuOpen
+                  ? "/icons/arrow-up.svg"
+                  : "/icons/arrow-down.svg"
+              }
+              height={14}
+              width={8}
+              alt="Arrow down"
+              loading="lazy"
+            />
+          </button>
+        </div>
+      </Link>
+      {isCourseMenuOpen && <ExploreCourses/>}
+    </>
   );
 };
 

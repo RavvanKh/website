@@ -23,7 +23,7 @@
                     color:#233131;
                 }
                 .navbarLogoTextRight{
-                    color: #0043E6;
+                    color: var(--primary-color);
                 }
             }
             .navbarLogoTextBottom{
@@ -48,6 +48,10 @@
             color:#333333;
             font-family:Arial, Helvetica, sans-serif;
             font-weight: 700;
+        }
+        .navbarLeftButtonContainerOpen{
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
         }
     }
 }

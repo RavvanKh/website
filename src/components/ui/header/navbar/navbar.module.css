@@ -1,9 +1,11 @@
 .navbar{
+    position: relative;
     display:flex;
     align-items:center;
     justify-content: space-between;
     border-top: 1px solid #EAEAEA;
     border-bottom: 1px solid #EAEAEA;
+    padding: 0 40px;
     .navbarRightContainer{
         display: flex;
         align-items:center;
