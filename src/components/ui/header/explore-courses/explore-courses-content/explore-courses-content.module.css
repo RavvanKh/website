@@ -1,0 +1,40 @@
+.exploreCoursesContent {
+    display: flex;
+    align-items:flex-start;
+    .exploreCoursesCategories {
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        width: 300px;
+        min-height: 500px;
+        position: relative;
+    }
+    .exploreCoursesAllCoursesContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 500px;
+        overflow-y: auto;
+        position: relative;
+    }
+    .loaderContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+    }
+
+    .errorMessage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 300px;
+        color: #e74c3c;
+        text-align: center;
+        padding: 20px;
+    }
+}

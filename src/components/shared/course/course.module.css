@@ -1,0 +1,78 @@
+.course {
+    display: flex;
+    border: 1px solid rgba(227, 227, 227, 1);
+    border-radius: 4px;
+    
+    .courseIcon {
+        width: 290px;
+        min-width: 290px;
+        height: 180px;
+
+        .courseImg {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            border-radius: 4px 0 0 4px;
+        }
+    }
+
+    .courseInfo {
+        padding: 16px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 12px;
+
+        .courseHeader {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(33, 37, 41, 1);
+            font-size: 14px;
+            font-family: "Nunito", sans-serif;
+            font-weight: 200;
+            line-height: 21px;
+            .courseHeaderIcon{
+                display: flex;
+                align-items:center;
+                gap: 8px;
+            }
+            .courseDivider{
+                background: rgba(206, 206, 206, 1);
+                width: 1px;
+                height:16px;
+            }
+        }
+
+        .courseBody {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+
+            .courseName {
+                color: rgba(33, 37, 41, 1);
+                font-size: 18px;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 700;
+                line-height: 22px;
+            }
+
+            .courseTitle {
+                width: 100%;
+                color: rgba(33, 37, 41, 1);
+                font-size: 15px;
+                font-family: 'Nunito', sans-serif;
+                line-height: 22px;
+                font-weight: 400;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+}
