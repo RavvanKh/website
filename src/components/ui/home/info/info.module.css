@@ -1,0 +1,65 @@
+.info {
+    display: flex;
+    padding: 94px 112px 0 112px;
+    gap: 16px;
+
+    .infoLeft {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 90%;
+
+        .infoTitle {
+            font-size: 44px;
+            font-family: 'Nunito', sans-serif;
+            line-height: 52px;
+            font-weight: 800;
+
+            .infoTitleItem {
+                &:first-child {
+                    color: rgba(2, 63, 203, 1);
+                }
+            }
+        }
+
+        .infoLeftTitle {
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 600;
+            color: rgba(33, 37, 41, 1);
+        }
+
+        .infoLeftDescription {
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            color: rgba(73, 80, 87, 1)
+        }
+
+        .infoLeftButton {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(2, 63, 203, 1);
+            color: rgba(255, 255, 255, 1);
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            padding: 16px 24px;
+            width: max-content;
+        }
+    }
+
+    .infoRight {
+        position: relative;
+        width: 100%;
+
+        .infoRightImg {
+            border-radius: 8px;
+        }
+    }
+}

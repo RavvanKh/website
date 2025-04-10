@@ -1,0 +1,6 @@
+.infoRightTeachers{
+    position: absolute;
+    z-index: 1;
+    top:23px;
+    left: -100px;
+}
