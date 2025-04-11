@@ -15,5 +15,7 @@ export default{
     "qualifiedTeachers":"Qualified Teachers",
     "certifiedStudents":"Certified Students",
     "studentsRates":"Students Rates",
+    "subjectAreas":"Subject Areas",
+    'exploreFullCatalog':"Explore Full Catalog",
 
 } as const
