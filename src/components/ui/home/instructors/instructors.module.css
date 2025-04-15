@@ -1,0 +1,92 @@
+.instructors {
+    background: rgba(251, 253, 255, 1);
+    height: 433px;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+
+.instructorsContainer{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    .instructorsLeft {
+        width:40%;
+        max-width: 383px;
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+
+        .instructorsLeftTitle {
+            color: rgba(33, 37, 41, 1);
+            font-weight: 700;
+            line-height: 36px;
+            font-size: 28px;
+
+            .instructorsLeftTitleColored {
+                color: rgba(254, 87, 32, 1);
+            }
+        }
+
+        .instructorsLeftParagraph {
+            color: rgba(126, 129, 133, 1);
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        .instructorsLeftBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: max-content;
+            color: rgba(0, 84, 192, 1);
+            gap: 6px;
+        }
+    }
+
+    .instructorsRight {
+        width: 65%;
+        margin: 0 auto;
+        overflow: hidden;
+        min-height: 200px;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        .instructorContainer{
+            height: 100%;
+            width: 100%;
+            display: flex;
+        }
+
+        .swiper {
+            padding: 20px 0;
+            padding-bottom: 80px;
+            height: auto;
+
+        }
+
+          .swiper .swiper-pagination {
+            bottom: -40px !important;
+          }
+
+        .bullet {
+            cursor: pointer;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            background: rgba(222, 226, 230, 1);
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+
+        .active {
+            background-color:  rgba(0, 84, 192, 1);;
+            width: 28px;
+            border-radius: 10px;
+        }
+
+    }
+}
+}
