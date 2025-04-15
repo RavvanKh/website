@@ -17,5 +17,6 @@ export default{
     "studentsRates":"Students Rates",
     "subjectAreas":"Subject Areas",
     'exploreFullCatalog':"Explore Full Catalog",
+    'whyChooseUs':'Why Choose us',
 
 } as const

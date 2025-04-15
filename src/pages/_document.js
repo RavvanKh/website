@@ -12,6 +12,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="preload" as="image" href="../../public/images/home-bg.svg"/>
+          <link rel="preload" as="image" href="../../public/images/why-choose-us.png"/>
         </Head>
         <body>
           <Main />
