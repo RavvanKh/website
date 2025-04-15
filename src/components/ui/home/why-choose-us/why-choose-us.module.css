@@ -14,7 +14,7 @@
     .whyChooseUsDetails{
         display: flex;
         align-items: flex-end;
-        justify-content: space-betweenn;
+        justify-content: space-between;
         gap: 24px;
         .whyChooseUsDetailsLeft{
             width: 50%;

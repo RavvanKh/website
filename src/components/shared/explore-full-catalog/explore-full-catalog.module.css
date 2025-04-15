@@ -1,0 +1,19 @@
+.subjectAreasExploreFullCatalog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1.5px solid rgba(2, 63, 203, 1);
+    border-radius:4px;
+    padding:12px 24px;
+    width: max-content;
+    margin: 0 auto;
+    height:49px;
+    .subjectAreasExploreFullCatalogContent{
+        font-size: 15px;
+        line-height: 38px;
+        font-weight: 700;
+        font-family: "Nunito", sans-serif;
+        color:rgba(51, 51, 51, 1);
+    }
+}

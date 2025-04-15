@@ -18,5 +18,8 @@ export default{
     "subjectAreas":"Subject Areas",
     'exploreFullCatalog':"Explore Full Catalog",
     'whyChooseUs':'Why Choose us',
+    'popularCourses':"Popular Courses",
+    'months':'months',
+    'hours':'hours',
 
 } as const

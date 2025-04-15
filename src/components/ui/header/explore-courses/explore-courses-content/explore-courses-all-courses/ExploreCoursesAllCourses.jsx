@@ -4,9 +4,7 @@ import Course from "@/components/shared/course/Course";
 
 import styles from "./explore-courses-all-courses.module.css";
 
-
 const ExploreCoursesAllCourses = ({ category, courses }) => {
-  
   return (
     <section className={styles.exploreAllCourses}>
       <div className={styles.exploreAllCoursesTitle}>
@@ -20,10 +18,21 @@ const ExploreCoursesAllCourses = ({ category, courses }) => {
       <div className={styles.exploreAllCoursesList}>
         {courses?.length > 0 ? (
           courses.map((course) => (
-            <Course course={course} key={course?.key}/>
+            <Course
+              duration={false}
+              lines={2}
+              direction="row"
+              course={course}
+              key={course?.key}
+              levelPosition="right"
+              imgHeight="180px"
+              imgWidth="290px"
+            />
           ))
         ) : (
-          <div className={styles.exploreAllCoursesNoCourse}>No courses available in this category.</div>
+          <div className={styles.exploreAllCoursesNoCourse}>
+            No courses available in this category.
+          </div>
         )}
       </div>
     </section>

@@ -9,9 +9,10 @@ import { getRandomItems } from "@/lib/utils/helpers";
 
 import Loader from "@/components/shared/loader/Loader";
 import Categories from "../categories/Categories";
+import ExploreFullCatalog from "@/components/shared/explore-full-catalog/ExploreFullCatalog";
 
 import styles from "./subject-areas.module.css";
-import Link from "next/link";
+
 
 const SubjectAreas = () => {
   const [categories, setCategories] = useState([]);
@@ -55,20 +56,7 @@ const SubjectAreas = () => {
           <Categories categories={randomCategories} />
         )}
       </div>
-      <Link
-        href="/categories"
-        className={styles.subjectAreasExploreFullCatalog}
-      >
-        <div className={styles.subjectAreasExploreFullCatalogContent}>
-          {t("exploreFullCatalog")}
-        </div>
-        <Image
-          src="/icons/arrow-top-right.svg"
-          height={20}
-          width={20}
-          alt="Arrow"
-        />
-      </Link>
+      <ExploreFullCatalog url="/categories" t={t} />
     </section>
   );
 };

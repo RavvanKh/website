@@ -1,0 +1,27 @@
+.popularCourses{
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    .popularCoursesTitle{
+        color:rgba(33, 37, 41, 1);
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+        text-align: center;
+    }
+    .popularCoursesLoaderContainer{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        min-height: 200px;
+    }
+    .popularCoursesList{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        place-items: center;
+        align-items:stretch;
+        gap: 32px;
+    }
+}
