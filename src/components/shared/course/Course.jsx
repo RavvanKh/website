@@ -1,13 +1,31 @@
+'use client";';
 import React from "react";
 import Image from "next/image";
 
+import { useI18n } from "@/locales/client";
+
 import styles from "./course.module.css";
 
+const Course = ({
+  course,
+  levelPosition = "right",
+  direction = "row",
+  duration = false,
+  lines = 2,
+  imgHeight = "180px",
+  imgWidth = "290px",
+}) => {
+  const t = useI18n();
 
-const Course = ({ course }) => {
   return (
-    <div className={styles.course}>
-      <div className={styles.courseIcon}>
+    <div className={styles.course} style={{ flexDirection: direction }}>
+      <div
+        className={styles.courseIcon}
+        style={{ height: imgHeight, width: imgWidth }}
+      >
+        {levelPosition === "top" && (
+          <div className={styles.courseLevel}>{course?.level}</div>
+        )}
         <img
           className={styles.courseImg}
           src={course?.icon}
@@ -30,12 +48,38 @@ const Course = ({ course }) => {
             />
             <div className={styles.courseType}>{course?.courseType}</div>
           </div>
-          <div className={styles.courseDivider} />
-          <div className={styles.courseLevel}>{course?.level}</div>
+          {levelPosition === "right" && (
+            <>
+              <div className={styles.courseDivider} />
+              <div className={styles.courseLevel}>{course?.level}</div>
+            </>
+          )}
         </div>
         <div className={styles.courseBody}>
-          <h3 className={styles.courseName}>{course?.name}</h3>
-          <p className={styles.courseTitle}>{course?.title}</p>
+          <div>
+            <div className={styles.courseName}>{course?.name}</div>
+            <p
+              className={styles.courseTitle}
+              style={{ WebkitLineClamp: lines }}
+            >
+              {course?.title}
+            </p>
+          </div>
+          {duration && (
+            <div className={styles.courseDuration}>
+              <Image
+                src="/icons/duration.svg"
+                height={18}
+                width={18}
+                alt="Duration"
+                loading="lazy"
+              />
+              <div className={styles.courseDurationInfo}>
+                {course?.duration} {t("months")} / {course?.lessonHour}{" "}
+                {t("hours")}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

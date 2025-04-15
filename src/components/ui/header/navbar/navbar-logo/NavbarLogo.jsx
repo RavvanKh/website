@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -10,8 +10,6 @@ import ExploreCourses from "../../explore-courses/ExploreCourses";
 
 import styles from "./navbar-logo.module.css";
 
-
-
 const NavbarLogo = () => {
   const t = useI18n();
 
@@ -21,11 +19,23 @@ const NavbarLogo = () => {
     setIsCourseMenuOpen(!isCourseMenuOpen);
   };
 
+  useEffect(() => {
+    if (isCourseMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isCourseMenuOpen]);
+
   return (
     <>
       <Link href="/" rel="Home" className={styles.navbarLeft}>
         <div className={styles.navbarLogo}>
-          <Logo/>
+          <Logo />
           <div className={styles.navbarLogoText}>
             <div className={styles.navbarLogoTextContainer}>
               <span className={styles.navbarLogoTextLeft}>Ingress</span>
@@ -67,7 +77,7 @@ const NavbarLogo = () => {
           </button>
         </div>
       </Link>
-      {isCourseMenuOpen && <ExploreCourses/>}
+      {isCourseMenuOpen && <ExploreCourses />}
     </>
   );
 };
