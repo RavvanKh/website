@@ -27,5 +27,14 @@ export default {
   realWorldExperience: "Real-World Expertise",
   instructorsSectionParagraph:
     "Our instructors bring real-world expertise, equipping you with the skills that can help you land job offers faster",
-    seeMore:' See More',
+  seeMore: " See More",
+  yourPracticePortal: "Your Practice Portal",
+  yourPracticePortalSubTitle:
+    "Track your progress, access exercises, and boost your skills",
+  yourPracticePortalDescription1:
+    "The Practice Portal is your dedicated space for focused, daily skill-building. Designed to help you stay consistent, it offers a series of targeted exercises that guide your learning step by step.",
+  yourPracticePortalDescription2:
+    "Each visit brings a new set of challenges, helping you build confidence and reinforce key concepts over time. No clutter, no distractions—just a clean, motivating interface that keeps you on track.",
+  yourPracticePortalDescription3:
+    "Perfect for learners who want structure, variety, and a simple way to make meaningful progress every day.",
 } as const;
