@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavbarItem from "../navbar-item/NavbarItem";
+import NavbarItem from "./navbar-item/NavbarItem";
 
 import { navbarItems } from "@/data/navbar";
 

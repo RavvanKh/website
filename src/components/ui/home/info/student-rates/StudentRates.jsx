@@ -6,6 +6,7 @@ import { getI18n } from "@/locales/server";
 import { courseInfo } from "@/data/info";
 
 import styles from "./student-rates.module.css";
+import Rating from "@/components/shared/rating/Rating";
 
 
 const StudentRates = async () => {
@@ -23,18 +24,7 @@ const StudentRates = async () => {
         <div className={styles.infoRightStudentRatesStarsTitle}>
           {t("studentsRates")}
         </div>
-        <div className={styles.infoRightStudentRatesStarsImg}>
-          <Image
-            src="/icons/rate-stars.svg"
-            height={31}
-            width={132}
-            alt={t("studentsRates")}
-          />
-          <div className={styles.infoRightStudentRatesStarsCount}>
-            <div>{courseInfo.studentRates}</div>
-            <div className={styles.infoRightStudentRatesStarsRate}>/5</div>
-          </div>
-        </div>
+        <Rating rating={4.7} height={31} width={20}/>
       </div>
     </div>
   );

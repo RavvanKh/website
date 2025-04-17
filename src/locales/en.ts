@@ -37,4 +37,5 @@ export default {
     "Each visit brings a new set of challenges, helping you build confidence and reinforce key concepts over time. No clutter, no distractions—just a clean, motivating interface that keeps you on track.",
   yourPracticePortalDescription3:
     "Perfect for learners who want structure, variety, and a simple way to make meaningful progress every day.",
+    whatOurStudentsSay:'What our students say'
 } as const;
