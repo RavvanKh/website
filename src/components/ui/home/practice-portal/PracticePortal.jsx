@@ -1,12 +1,14 @@
+'use client'
 import React from "react";
 import Image from "next/image";
 
-import { getI18n } from "@/locales/server";
+import { useI18n }  from "@/locales/client";
 
 import styles from "./practice-portal.module.css";
 
-const PracticePortal = async () => {
-  const t = await getI18n();
+
+const PracticePortal =  () => {
+  const t =  useI18n();
 
   return (
     <section className={styles.practicePortal}>

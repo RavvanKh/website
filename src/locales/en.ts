@@ -37,7 +37,25 @@ export default {
     "Each visit brings a new set of challenges, helping you build confidence and reinforce key concepts over time. No clutter, no distractions—just a clean, motivating interface that keeps you on track.",
   yourPracticePortalDescription3:
     "Perfect for learners who want structure, variety, and a simple way to make meaningful progress every day.",
-    whatOurStudentsSay:'What our students say',
-    ourCustomers:'Our Customers',
-    viewAll:'View All',
+  whatOurStudentsSay: "What our students say",
+  ourCustomers: "Our Customers",
+  viewAll: "View All",
+  getInTouch: "Get in touch",
+  contactUsDirectlyForQuickInteraction:
+    "Contact us directly for quick interaction.",
+  email: "Email",
+  phone: "Phone",
+  location: "Location",
+  socialMedia: "Social Media",
+  courseApplication: "Course Application",
+  courseApplicationRightDescription:
+    "Please provide your details in the form below, and our team will reach out to you as soon as possible.",
+  course: "Course",
+  fullName: "Full Name",
+  enterFullName: "Enter Full Name",
+  phoneNumber: "Phone Number",
+  message: "Message",
+  writeYourMessage: "Write Your Message..",
+  submit: "Submit",
+  selectCourse: "Select Course",
 } as const;

@@ -2,16 +2,22 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Pagination } from "swiper/modules"
+
 import { useI18n } from "@/locales/client";
+
+import { getInstructors } from "@/lib/utils/api/instructors";
+
+import Loader from "@/components/shared/loader/Loader";
+import Instructor from "@/components/shared/instructor/Instructor";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./instructors.module.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import { getInstructors } from "@/lib/utils/api/instructors";
-import Loader from "@/components/shared/loader/Loader";
-import Instructor from "@/components/shared/instructor/Instructor";
+;
+;
+
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);

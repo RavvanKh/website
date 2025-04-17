@@ -23,3 +23,16 @@ quizAxios.interceptors.request.use(
   }
 );
 
+
+export const applicationAxios = createAxiosInstance(process.env.NEXT_PUBLIC_APPLICATION_MS_URL);
+
+applicationAxios.interceptors.request.use(
+  (config) => {
+    config.headers["Accept-Language"] = "en";
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
