@@ -13,6 +13,7 @@ class MyDocument extends Document {
           />
           <link rel="preload" as="image" href="../../public/images/home-bg.svg"/>
           <link rel="preload" as="image" href="../../public/images/why-choose-us.png"/>
+          <link rel="preload" as="image" href="../../public/images/comments-bg.png"/>
         </Head>
         <body>
           <Main />

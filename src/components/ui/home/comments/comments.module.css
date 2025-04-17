@@ -1,0 +1,91 @@
+.comments {
+    background-color: rgba(248, 249, 250, 1);
+
+    .commentsTitle {
+
+        background-image: url('/images/comments-bg.png');
+        width: 100%;
+        padding-top: 50px;
+        height: 200px;
+        color: rgba(33, 37, 41, 1);
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 32px;
+        line-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .commentsSlider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        position: relative;
+
+        .mySwiper {
+            padding-bottom: 150px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+
+        .swiperSlide {
+            height: auto;
+            width: 650px !important;
+            opacity: 0.7;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+
+        .customNav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            background: rgba(25, 33, 61, 0.4);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .customNav:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .customPrev {
+            top: 35%;
+            left: 25%;
+        }
+
+        .customNext {
+            top: 35%;
+            right: 25%;
+        }
+    }
+
+    .mySwiper :global(.swiper-wrapper) {
+        align-items: stretch;
+        transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+
+    }
+
+    .mySwiper :global(.swiper-slide-active) {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+    }
+
+    .mySwiper :global(.swiper-slide) {
+        height: auto !important;
+    }
+}

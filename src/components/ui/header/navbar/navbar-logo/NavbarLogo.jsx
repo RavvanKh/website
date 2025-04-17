@@ -54,7 +54,7 @@ const NavbarLogo = () => {
             onClick={handleOpenExploreCoursesMenu}
           >
             <Image
-              src="/icons/grid.svg"
+              src={isCourseMenuOpen ? "/icons/grid-blue.svg" : "/icons/grid.svg"}
               loading="lazy"
               height={14}
               width={14}
