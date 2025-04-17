@@ -1,16 +1,15 @@
 import React from "react";
 import Image from "next/image";
 
-import { getI18n } from "@/locales/server";
+import { useI18n } from "@/locales/client";
 
-import { courseInfo } from "@/data/info";
-
-import styles from "./student-rates.module.css";
 import Rating from "@/components/shared/rating/Rating";
 
+import styles from "./student-rates.module.css";
 
-const StudentRates = async () => {
-  const t = await getI18n();
+const StudentRates =  () => {
+  const t = useI18n();
+  
   return (
     <div className={styles.infoRightStudentRates}>
       <Image

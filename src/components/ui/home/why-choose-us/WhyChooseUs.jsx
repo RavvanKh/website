@@ -1,7 +1,6 @@
 import React from "react";
-import Image from "next/image";
 
-import { getI18n } from "@/locales/server";
+import { useI18n } from "@/locales/client";
 
 import { whyChooseUsDetails } from "@/data/whyChooseUs";
 
@@ -12,8 +11,10 @@ import styles from "./why-choose-us.module.css";
 
 
 
-const WhyChooseUs = async () => {
-  const t = await getI18n();
+
+const WhyChooseUs =  () => {
+  const t =  useI18n();
+  
   return (
     <section className={styles.whyChooseUs}>
       <div className={styles.whyChooseUsTitle}>{t("whyChooseUs")}</div>

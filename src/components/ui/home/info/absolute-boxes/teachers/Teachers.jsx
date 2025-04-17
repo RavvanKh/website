@@ -1,15 +1,12 @@
 import React from "react";
 
-import { getI18n } from "@/locales/server";
-
 import { courseInfo } from "@/data/info";
 
 import Box from "../Box";
 
-import styles from './teachers.module.css'
+import styles from "./teachers.module.css";
 
-const Teachers = async () => {
-  const t = await getI18n();
+const Teachers = () => {
   return (
     <div className={styles.infoRightTeachers}>
       <Box

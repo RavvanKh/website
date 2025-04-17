@@ -1,13 +1,15 @@
+'use client'
 import React from "react";
 import Link from "next/link";
 
-import { getI18n } from "@/locales/server";
+import { useI18n } from "@/locales/client";
 
 import styles from "./navbar-item.module.css";
 
 
-const NavbarItem = async ({ item }) => {
-  const t = await getI18n();
+
+const NavbarItem =  ({ item }) => {
+  const t = useI18n();
 
   return (
     <div className={styles.navbarItemContainer}>

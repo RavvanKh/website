@@ -2,18 +2,18 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { getI18n } from "@/locales/server";
+import { useI18n } from "@/locales/client";
 
 import Teachers from "./absolute-boxes/teachers/Teachers";
-
-import styles from "./info.module.css";
 import Courses from "./absolute-boxes/courses/Courses";
 import Students from "./absolute-boxes/students/Students";
 import StudentRates from "./student-rates/StudentRates";
 
+import styles from "./info.module.css";
 
-const Info = async () => {
-  const t = await getI18n();
+const Info =  () => {
+  const t =  useI18n();
+  
   return (
     <section className={styles.info}>
       <div className={styles.infoLeft}>

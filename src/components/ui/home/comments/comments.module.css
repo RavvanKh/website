@@ -23,6 +23,7 @@
         justify-content: center;
         min-height: 200px;
         position: relative;
+        overflow: hidden;
 
         .mySwiper {
             padding-bottom: 150px;
