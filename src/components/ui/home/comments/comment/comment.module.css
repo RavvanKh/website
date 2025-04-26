@@ -1,11 +1,11 @@
 .comment {
     background: rgba(255, 255, 255, 1);
-    border-radius: 30px;
-    padding: 56px 48px;
+    border-radius: 12px;
+    padding: 24px 24px 32px 24px;
     display: flex;
     flex-direction: column;
-    gap: 35px;
-    height: 350px;
+    gap: 20px;
+    height: 270px;
     box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.03);
 
     .commentText {

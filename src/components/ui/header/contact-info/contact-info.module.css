@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: flex-end;
     height: 42px;
-    padding: 0 40px;
+    width: 85%;
+    margin: 0 auto;
 
     .contactInfoBox {
         display:flex;

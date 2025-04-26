@@ -1,8 +1,10 @@
 import { I18nProviderClient } from "@/locales/client";
 
 import Header from "@/components/ui/header/Header";
+import Footer from "@/components/ui/footer/Footer";
 
 import "./globals.css";
+
 
 export const metadata = {
   title: "Ingress Academy",
@@ -23,6 +25,7 @@ export default async function SubLayout({ params, children }) {
         <I18nProviderClient locale={locale}>
           <Header />
           {children}
+          <Footer />
         </I18nProviderClient>
       </body>
     </html>

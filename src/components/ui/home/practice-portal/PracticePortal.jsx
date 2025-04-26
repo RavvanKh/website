@@ -1,14 +1,13 @@
-'use client'
+"use client";
 import React from "react";
 import Image from "next/image";
 
-import { useI18n }  from "@/locales/client";
+import { useI18n } from "@/locales/client";
 
 import styles from "./practice-portal.module.css";
 
-
-const PracticePortal =  () => {
-  const t =  useI18n();
+const PracticePortal = () => {
+  const t = useI18n();
 
   return (
     <section className={styles.practicePortal}>
@@ -17,16 +16,16 @@ const PracticePortal =  () => {
           <Image
             src="/images/practice-portal-1.svg"
             alt="Practice Portal"
-            width={380}
-            height={420}
+            width={302}
+            height={334}
             loading="lazy"
             className={styles.practicePortalImage}
           />
           <Image
             src="/images/practice-portal-2.svg"
             alt="Practice Portal"
-            width={380}
-            height={420}
+            width={302}
+            height={334}
             loading="lazy"
             className={styles.practicePortalImage}
           />
@@ -41,15 +40,24 @@ const PracticePortal =  () => {
               loading="lazy"
             />
             <div>
-              <div className={styles.practicePortalRightTitle}>{t("yourPracticePortal")}</div>
-              <div className={styles.practicePortalRightSubTitle}>{t("yourPracticePortalSubTitle")}</div>
+              <div className={styles.practicePortalRightTitle}>
+                {t("yourPracticePortal")}
+              </div>
+              <div className={styles.practicePortalRightSubTitle}>
+                {t("yourPracticePortalSubTitle")}
+              </div>
             </div>
           </div>
           <div className={styles.practicePortalRightContent}>
-            <p className={styles.practicePortalRightContentDescription}>{t("yourPracticePortalDescription1")}</p>
-            <p className={styles.practicePortalRightContentDescription}>{t("yourPracticePortalDescription2")}</p>
-            <p className={styles.practicePortalRightContentDescription}>{t("yourPracticePortalDescription3")}</p>
-
+            <p className={styles.practicePortalRightContentDescription}>
+              {t("yourPracticePortalDescription1")}
+            </p>
+            <p className={styles.practicePortalRightContentDescription}>
+              {t("yourPracticePortalDescription2")}
+            </p>
+            <p className={styles.practicePortalRightContentDescription}>
+              {t("yourPracticePortalDescription3")}
+            </p>
           </div>
         </div>
       </div>

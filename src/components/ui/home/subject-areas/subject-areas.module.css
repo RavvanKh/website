@@ -1,8 +1,8 @@
 .subjectAreas {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 170px;
+    gap: 24px;
+    margin-top: 140px;
 
     .subjectAreasTitle {
         font-family: 'Nunito', sans-serif;
@@ -13,8 +13,9 @@
         text-align: center;
     }
     .subjectAreasList{
-        padding: 0 40px;
-        min-height: 250px;
+        width: 85%;
+        margin: 0 auto;
+        min-height: 180px;
         display: flex;
         align-items: center;
         justify-content: center;

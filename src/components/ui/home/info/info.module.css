@@ -1,6 +1,8 @@
 .info {
     display: flex;
-    padding: 94px 112px 0 112px;
+    padding-top: 94px;
+    width: 85%;
+    margin: 0 auto;
     gap: 16px;
 
     .infoLeft {

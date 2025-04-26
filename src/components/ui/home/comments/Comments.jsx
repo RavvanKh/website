@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -40,7 +40,6 @@ const Comments = () => {
     fetchComments();
   }, []);
 
-
   return (
     <section className={styles.comments}>
       <div className={styles.commentsTitle}>{t("whatOurStudentsSay")}</div>
@@ -56,11 +55,16 @@ const Comments = () => {
         ) : (
           <div className={styles.swiperContainer}>
             <Swiper
-              modules={[Navigation]}
+              modules={[Navigation, Pagination]}
               slidesPerView="auto"
               centeredSlides={true}
               initialSlide={1}
               loop={true}
+              pagination={{
+                clickable: true,
+                bulletClass: `swiper-bullet ${styles.bullet}`,
+                bulletActiveClass: styles.active,
+              }}
               navigation={{
                 nextEl: ".custom-next",
                 prevEl: ".custom-prev",

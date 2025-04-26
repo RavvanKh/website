@@ -8,10 +8,6 @@ import Detail from "./detail/Detail";
 
 import styles from "./why-choose-us.module.css";
 
-
-
-
-
 const WhyChooseUs =  () => {
   const t =  useI18n();
   

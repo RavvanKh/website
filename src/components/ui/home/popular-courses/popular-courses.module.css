@@ -1,27 +1,32 @@
-.popularCourses{
-    padding: 60px 40px;
+.popularCourses {
+    padding: 24px 0 40px 0;
+    width: 85%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 45px;
-    .popularCoursesTitle{
-        color:rgba(33, 37, 41, 1);
+
+    .popularCoursesTitle {
+        color: rgba(33, 37, 41, 1);
         font-size: 32px;
         line-height: 48px;
         font-weight: 700;
         font-family: 'Nunito', sans-serif;
         text-align: center;
     }
-    .popularCoursesLoaderContainer{
+
+    .popularCoursesLoaderContainer {
         display: flex;
-        align-items:center;
+        align-items: center;
         justify-content: center;
         min-height: 200px;
     }
-    .popularCoursesList{
+
+    .popularCoursesList {
         display: grid;
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(3, 1fr);
         place-items: center;
-        align-items:stretch;
+        align-items: stretch;
         gap: 32px;
     }
 }
