@@ -1,9 +1,8 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client'
 import Image from "next/image";
 
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Pagination } from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 import { useI18n } from "@/locales/client";
 
@@ -15,31 +14,11 @@ import Instructor from "@/components/shared/instructor/Instructor";
 import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./instructors.module.css";
-;
-;
 
+const Instructors = ({instructors,loading,error}) => {
 
-const Instructors = () => {
-  const [instructors, setInstructors] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const t = useI18n();
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setLoading(true);
-        const data = await getInstructors(0, 8);
-        setInstructors(data?.content);
-      } catch (err) {
-        setError(err?.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCategories();
-  }, []);
 
   return (
     <section className={styles.instructors}>
@@ -72,25 +51,31 @@ const Instructors = () => {
               Failed to load instructors: {error}
             </div>
           ) : (
-            <Swiper
-              modules={[Pagination]}
-              slidesPerView={2}
-              spaceBetween={20}
-              pagination={{
-                clickable: true,
-                bulletClass: `swiper-bullet ${styles.bullet}`,
-                bulletActiveClass: styles.active,
-              }}
-              className={styles.swiper}
-            >
-              {instructors.map((instructor) => (
-                <SwiperSlide key={instructor?.id} style={{height: 'auto',marginBottom:'30px'}}>
-                  <div className={styles.instructorContainer}>
-                    <Instructor instructor={instructor} />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <div className={styles.swiperWrapper}>
+              <Swiper
+                modules={[Pagination]}
+                slidesPerView={2}
+                slidesPerGroup={2}
+                spaceBetween={20}
+                pagination={{
+                  clickable: true,
+                  bulletClass: `swiper-bullet ${styles.bullet}`,
+                  bulletActiveClass: styles.active,
+                }}
+                className={styles.swiper}
+              >
+                {instructors.map((instructor, index) => (
+                  <SwiperSlide
+                    key={instructor?.id}
+                    style={{ height: "auto", marginBottom: "30px" }}
+                  >
+                    <div className={styles.instructorContainer}>
+                      <Instructor instructor={instructor} />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           )}
         </div>
       </div>

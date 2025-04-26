@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 
 import { getCourses } from "@/lib/utils/api/courses";
@@ -13,39 +13,76 @@ import Comments from "@/components/ui/home/comments/Comments";
 import Customers from "@/components/ui/home/customers/Customers";
 import CourseApplication from "@/components/ui/home/course-application/CourseApplication";
 
+import styles from "./home.module.css";
+import { getInstructors } from "@/lib/utils/api/instructors";
 
 const Home = () => {
-
-  const [courses,setCourses] = useState([]);
-  const [loading,setLoading] = useState(false);
-  const [error,setError] = useState(null);
+  const [data, setData] = useState({ courses: [], instructors: [] });
+  const [loading, setLoading] = useState({
+    courses: false,
+    instructors: false,
+  });
+  const [error, setError] = useState({ courses: null, instructors: null });
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await getCourses(0, 100);
-        setCourses(data?.content);
-      } catch (err) {
-        setError(err?.message);
+        const [coursesRes, instructorsRes] = await Promise.allSettled([
+          getCourses(0, 100),
+          getInstructors(0, 16),
+        ]);
+        setData({
+          courses:
+            coursesRes.status === "fulfilled"
+              ? coursesRes.value?.content || []
+              : [],
+          instructors:
+            instructorsRes.status === "fulfilled"
+              ? instructorsRes.value?.content || []
+              : [],
+        });
+
+        setError({
+          courses:
+            coursesRes.status === "rejected"
+              ? coursesRes.reason?.message || "Failed to load customers"
+              : null,
+          instructors:
+            instructorsRes.status === "rejected"
+              ? instructorsRes.reason?.message || "Failed to load instructors"
+              : null,
+        });
       } finally {
-        setLoading(false);
+        setLoading((prev) => ({
+          ...prev,
+          courses: false,
+          instructors: false,
+        }));
       }
     };
-    fetchCourses();
+    fetchData();
   }, []);
 
   return (
-    <>
-      <Details />
+    <div className={styles.home}>
+      <Details totalCourses={data.courses} />
       <WhyChooseUs />
-      <PopularCourses courses = {getRandomItems(courses,4)} loading = {loading} error = {error}/>
-      <Instructors />
+      <PopularCourses
+        courses={getRandomItems(data.courses, 3)}
+        loading={loading.courses}
+        error={error.courses}
+      />
+      <Instructors
+        instructors={data.instructors}
+        loading={loading.instructors}
+        error={error.instructors}
+      />
       <PracticePortal />
-      <Comments/>
-      <Customers/>
-      <CourseApplication courses = {courses}/>
-    </>
+      {/* <Comments/> */}
+      <Customers />
+      <CourseApplication courses={data.courses} />
+    </div>
   );
 };
 

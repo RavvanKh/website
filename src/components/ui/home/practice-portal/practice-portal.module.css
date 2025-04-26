@@ -1,17 +1,16 @@
 .practicePortal {
     background:rgba(249, 249, 249, 1);
-    padding: 60px 24px;
+    padding: 32px 0;
     .practicePortalContainer {
         display: flex;
         align-items: center;
         gap: 70px;
-        width: 90%;
+        width: 85%;
         margin: 0 auto;
         .practicePortalLeft{
-            /* display: flex; */
             position:relative;
-            min-width: 567px;
-            height:510px;
+            min-width: 489px;
+            height:424px;
             .practicePortalImage{
                 object-fit: cover;
                 border-radius: 16px;

@@ -10,6 +10,7 @@ const Teachers = () => {
   return (
     <div className={styles.infoRightTeachers}>
       <Box
+        width="244px"
         title="qualifiedTeachers"
         detail={courseInfo.qualifiedTeachers}
         iconSrc="/icons/qualified-teachers.svg"
