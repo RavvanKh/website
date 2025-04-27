@@ -1,3 +1,4 @@
+import { contactSocials } from "@/data/contact";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 export const getRandomItems = (arr, count) => {
@@ -42,4 +43,8 @@ export const renderStars = (rating, className, width = 20, height = 31) => {
     }
   }
   return stars;
+};
+
+export const getContactInfo = (hidden = "") => {
+  return contactSocials.filter((item) => item.key !== hidden);
 };

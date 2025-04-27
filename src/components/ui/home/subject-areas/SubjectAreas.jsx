@@ -13,7 +13,6 @@ import ExploreFullCatalog from "@/components/shared/explore-full-catalog/Explore
 
 import styles from "./subject-areas.module.css";
 
-
 const SubjectAreas = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,6 +54,15 @@ const SubjectAreas = () => {
         ) : (
           <Categories categories={randomCategories} />
         )}
+      </div>
+      <div className={styles.subjectAreasImage}>
+        <Image
+          src="/icons/robot.svg"
+          height={72}
+          width={72}
+          alt="Subject Areas"
+          loading="lazy"
+        />
       </div>
       <ExploreFullCatalog url="/categories" t={t} />
     </section>
