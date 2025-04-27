@@ -2,39 +2,6 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    .navbarLogo{
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        width: 250px;
-        
-        .navbarLogoText{
-        
-            .navbarLogoTextContainer{
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 18px;
-                line-height: 27px;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                text-transform: uppercase;
-                font-weight: 700;
-                .navbarLogoTextLeft{
-                    color:#233131;
-                }
-                .navbarLogoTextRight{
-                    color: var(--primary-color);
-                }
-            }
-            .navbarLogoTextBottom{
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 10px;
-                line-height: 15px;
-                letter-spacing: 2px;
-                color:#586268;
-            }
-        }
-    }
     .navbarLeftButton{
         .navbarLeftButtonContainer{
             display: flex;

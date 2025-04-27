@@ -6,6 +6,7 @@
     width: 85%;
     margin: 0 auto;
     gap: 43px;
+    user-select: none;
 
     .customersTop {
         display: flex;
@@ -44,47 +45,52 @@
     }
 
 }
+
 .customersSliderContainer {
     width: 100%;
     overflow: hidden;
     position: relative;
-  }
-  
-  .customersSliderTrack {
+}
+
+.customersSliderTrack {
     display: flex;
     will-change: transform;
-  }
-  
-  .customerSlide {
+}
+
+.customerSlide {
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 10px;
     box-sizing: border-box;
-  }
-  
-  /* Add these to your existing .customers styles */
-  .customers {
-    /* ... your existing styles ... */
-    
-    .customersSliderContainer {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
-  
-    .customersSliderTrack {
-      display: flex;
-      gap: 20px;
-      will-change: transform;
-    }
-  
-    .customerSlide {
-      display: grid;
-      grid-template-columns: repeat(8,1fr);
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-  }
+}
 
+/* Add these to your existing .customers styles */
+.customers {
+    /* ... your existing styles ... */
+
+    .customersSliderContainer {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .customersSliderTrack {
+        display: flex;
+        gap: 20px;
+        will-change: transform;
+    }
+
+    .customerSlide {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+}
+
+
+.customers * {
+    user-select: none;
+}

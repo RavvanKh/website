@@ -1,4 +1,4 @@
-import { FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaLinkedin, FaYoutube } from "react-icons/fa";
 
 export const contact = [
   {
@@ -31,6 +31,12 @@ export const contactForCourseApplication = [
 ];
 
 export const contactSocials = [
+  {
+    key: "youtube",
+    icon: FaYoutube,
+    text: "YouTube",
+    link: "https://www.youtube.com/@ingressacademy",
+  },
   {
     key: "facebook",
     icon: FaFacebook,

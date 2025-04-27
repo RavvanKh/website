@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
@@ -33,19 +32,8 @@ const NavbarLogo = () => {
 
   return (
     <>
-      <Link href="/" rel="Home" className={styles.navbarLeft}>
-        <div className={styles.navbarLogo}>
-          <Logo />
-          <div className={styles.navbarLogoText}>
-            <div className={styles.navbarLogoTextContainer}>
-              <span className={styles.navbarLogoTextLeft}>Ingress</span>
-              <span className={styles.navbarLogoTextRight}>Academy</span>
-            </div>
-            <div className={styles.navbarLogoTextBottom}>
-              empowered by innovation
-            </div>
-          </div>
-        </div>
+      <div className={styles.navbarLeft}>
+        <Logo theme="light" isShownBottom={false} />
         <div className={styles.navbarLeftButton}>
           <button
             className={`${styles.navbarLeftButtonContainer} ${
@@ -54,7 +42,9 @@ const NavbarLogo = () => {
             onClick={handleOpenExploreCoursesMenu}
           >
             <Image
-              src={isCourseMenuOpen ? "/icons/grid-blue.svg" : "/icons/grid.svg"}
+              src={
+                isCourseMenuOpen ? "/icons/grid-blue.svg" : "/icons/grid.svg"
+              }
               loading="lazy"
               height={14}
               width={14}
@@ -76,7 +66,7 @@ const NavbarLogo = () => {
             />
           </button>
         </div>
-      </Link>
+      </div>
       {isCourseMenuOpen && <ExploreCourses />}
     </>
   );

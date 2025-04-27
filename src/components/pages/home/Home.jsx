@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { getCourses } from "@/lib/utils/api/courses";
 import { getRandomItems } from "@/lib/utils/helpers";
+import { getInstructors } from "@/lib/utils/api/instructors";
 
 import Details from "@/components/ui/home/details/Details";
 import WhyChooseUs from "@/components/ui/home/why-choose-us/WhyChooseUs";
@@ -14,7 +15,7 @@ import Customers from "@/components/ui/home/customers/Customers";
 import CourseApplication from "@/components/ui/home/course-application/CourseApplication";
 
 import styles from "./home.module.css";
-import { getInstructors } from "@/lib/utils/api/instructors";
+
 
 const Home = () => {
   const [data, setData] = useState({ courses: [], instructors: [] });
@@ -27,7 +28,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
+        setLoading({courses: true, instructors: true});
         const [coursesRes, instructorsRes] = await Promise.allSettled([
           getCourses(0, 100),
           getInstructors(0, 16),
@@ -79,7 +80,7 @@ const Home = () => {
         error={error.instructors}
       />
       <PracticePortal />
-      {/* <Comments/> */}
+      <Comments/>
       <Customers />
       <CourseApplication courses={data.courses} />
     </div>

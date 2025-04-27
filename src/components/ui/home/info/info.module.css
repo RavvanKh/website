@@ -54,6 +54,10 @@
             padding: 16px 24px;
             width: max-content;
             height: 49px;
+            transition: all 0.3s ease-in;
+            &:hover{
+                background:#2E6EFF;
+            }
         }
     }
 
