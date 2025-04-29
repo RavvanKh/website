@@ -16,9 +16,13 @@ import CourseApplication from "@/components/ui/home/course-application/CourseApp
 
 import styles from "./home.module.css";
 
-
 const Home = () => {
-  const [data, setData] = useState({ courses: [], instructors: [] });
+  const [data, setData] = useState({
+    courses: [],
+    instructors: [],
+    totalCourses: 0,
+    totalInstructors: 0,
+  });
   const [loading, setLoading] = useState({
     courses: false,
     instructors: false,
@@ -28,7 +32,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading({courses: true, instructors: true});
+        setLoading({ courses: true, instructors: true });
         const [coursesRes, instructorsRes] = await Promise.allSettled([
           getCourses(0, 100),
           getInstructors(0, 16),
@@ -42,6 +46,8 @@ const Home = () => {
             instructorsRes.status === "fulfilled"
               ? instructorsRes.value?.content || []
               : [],
+          totalCourses: coursesRes?.value?.totalElements || 0,
+          totalInstructors: instructorsRes?.value?.totalElements || 0,
         });
 
         setError({
@@ -67,7 +73,12 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <Details totalCourses={data.courses} />
+      <Details
+        totalCourses={data.totalCourses}
+        totalInstructors={data.totalInstructors}
+        instructorsLoading={loading.instructors}
+        coursesLoading={loading.courses}
+      />
       <WhyChooseUs />
       <PopularCourses
         courses={getRandomItems(data.courses, 3)}
@@ -80,7 +91,7 @@ const Home = () => {
         error={error.instructors}
       />
       <PracticePortal />
-      <Comments/>
+      <Comments />
       <Customers />
       <CourseApplication courses={data.courses} />
     </div>

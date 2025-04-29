@@ -3,11 +3,25 @@ import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
 
+import Loader from "@/components/shared/loader/Loader";
+
 import styles from "./box.module.css";
 
-const Box = ({ iconSrc, title, detail, width = "244px" }) => {
+
+const Box = ({ iconSrc, title, detail, width = "244px", loading = false }) => {
   const t = useI18n();
-  return ( 
+
+  const renderDetail = () => {
+    if (loading) {
+      return <Loader size="small" />;
+    }
+    if (detail === 0 && !loading) {
+      return null;
+    }
+    return detail;
+  };
+
+  return (
     <div className={styles.infoRightBoxes} style={{ width: width }}>
       <Image
         src={iconSrc}
@@ -18,7 +32,9 @@ const Box = ({ iconSrc, title, detail, width = "244px" }) => {
       />
       <div className={styles.infoRightBoxesDetails}>
         <div className={styles.infoRightBoxesDetailsTitle}>{t(title)}</div>
-        <p className={styles.infoRightBoxesDetailsDetail}>{detail}</p>
+        <div className={styles.infoRightBoxesDetailsDetail}>
+          {renderDetail()}
+        </div>
       </div>
     </div>
   );

@@ -11,9 +11,14 @@ import StudentRates from "./student-rates/StudentRates";
 
 import styles from "./info.module.css";
 
-const Info =  () => {
-  const t =  useI18n();
-  
+const Info = ({
+  totalCourses,
+  totalInstructors,
+  instructorsLoading,
+  coursesLoading,
+}) => {
+  const t = useI18n();
+
   return (
     <section className={styles.info}>
       <div className={styles.infoLeft}>
@@ -24,17 +29,31 @@ const Info =  () => {
         </h1>
         <div className={styles.infoLeftTitle}>{t("infoTitle")}</div>
         <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
-        <Link href='/' className={styles.infoLeftButton}>
+        <Link href="/" className={styles.infoLeftButton}>
           <div>{t("exploreOurCourses")}</div>
-          <Image src='/icons/arrow-right-2.svg' width={14} height={14} alt='Arrow' />
+          <Image
+            src="/icons/arrow-right-2.svg"
+            width={14}
+            height={14}
+            alt="Arrow"
+          />
         </Link>
       </div>
       <div className={styles.infoRight}>
-          <Image className={styles.infoRightImg} src='/images/info-right-img.svg' height={410} width={530} alt="Info img"/>
-          <Teachers/>
-          <Courses/>
-          <Students/>
-          <StudentRates/>
+        <Image
+          className={styles.infoRightImg}
+          src="/images/info-right-img.svg"
+          height={410}
+          width={530}
+          alt="Info img"
+        />
+        <Teachers
+          totalInstructors={totalInstructors}
+          loading={instructorsLoading}
+        />
+        <Courses totalCourses={totalCourses} loading={coursesLoading} />
+        <Students />
+        <StudentRates />
       </div>
     </section>
   );

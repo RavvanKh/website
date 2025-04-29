@@ -61,5 +61,6 @@ export default {
   submit: "Submit",
   selectCourse: "Select Course",
   company: "Company",
-  contactUs: "Contact Us", 
+  contactUs: "Contact Us",
+  seeMoreDescription: " Opens in a new page for more information",
 } as const;

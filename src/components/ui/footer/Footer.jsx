@@ -1,19 +1,15 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-
 import { useI18n } from "@/locales/client";
 import { navbarItems } from "@/data/navbar";
 import { contactForCourseApplication } from "@/data/contact";
 import { getContactInfo } from "@/lib/utils/helpers";
-
 import Logo from "@/components/shared/logo/Logo";
-
 import styles from "./footer.module.css";
 
 const Footer = () => {
   const t = useI18n();
-
   const currentYear = new Date().getFullYear();
   const footerText = `© ${currentYear} All rights reserved.`;
 
@@ -51,6 +47,7 @@ const Footer = () => {
                 href={item.link}
                 className={styles.footerTopRightSocials}
                 key={item.key}
+                data-social={item.key}
               >
                 <item.icon
                   alt={item.key}
@@ -58,6 +55,7 @@ const Footer = () => {
                   width={20}
                   color="black"
                   size={20}
+                  className={styles.footerTopRightSocialsIcon}
                 />
               </Link>
             ))}

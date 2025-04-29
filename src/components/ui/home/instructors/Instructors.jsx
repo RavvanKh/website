@@ -1,23 +1,20 @@
-'use client'
-import Image from "next/image";
+"use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
 import { useI18n } from "@/locales/client";
 
-import { getInstructors } from "@/lib/utils/api/instructors";
-
 import Loader from "@/components/shared/loader/Loader";
 import Instructor from "@/components/shared/instructor/Instructor";
+import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./instructors.module.css";
 
-const Instructors = ({instructors,loading,error}) => {
 
-
+const Instructors = ({ instructors, loading, error }) => {
   const t = useI18n();
 
   return (
@@ -33,15 +30,7 @@ const Instructors = ({instructors,loading,error}) => {
           <p className={styles.instructorsLeftParagraph}>
             {t("instructorsSectionParagraph")}
           </p>
-          <button className={styles.instructorsLeftBtn}>
-            <div>{t("seeMore")}</div>
-            <Image
-              src="/icons/arrow-line-right.svg"
-              alt="Arrow"
-              width={18}
-              height={18}
-            />
-          </button>
+          <SeeMore url="/" />
         </div>
         <div className={styles.instructorsRight}>
           {loading ? (

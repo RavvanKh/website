@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import Image from "next/image";
-import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
+
+import { getCustomers } from "@/lib/utils/api/customers";
+
 import Loader from "@/components/shared/loader/Loader";
 import Customer from "./customer/Customer";
-import { getCustomers } from "@/lib/utils/api/customers";
+import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import styles from "./customers.module.css";
 
@@ -95,15 +96,7 @@ const Customers = () => {
     <section className={styles.customers}>
       <div className={styles.customersTop}>
         <div className={styles.customersTopTitle}>{t("ourCustomers")}</div>
-        <Link href="/">
-          <div>{t("viewAll")}</div>
-          <Image
-            src="/icons/arrow-top-right.svg"
-            height={20}
-            width={20}
-            alt="Arrow"
-          />
-        </Link>
+        <SeeMore url="/" />
       </div>
       {loading ? (
         <div className={styles.customerLoaderContainer}>
