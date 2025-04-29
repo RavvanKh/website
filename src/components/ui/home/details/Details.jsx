@@ -10,6 +10,8 @@ const Details = ({
   totalInstructors,
   instructorsLoading,
   coursesLoading,
+  rating,
+  ratingLoading,
 }) => {
   return (
     <section className={styles.details}>
@@ -18,6 +20,8 @@ const Details = ({
         totalInstructors={totalInstructors}
         instructorsLoading={instructorsLoading}
         coursesLoading={coursesLoading}
+        rating={rating}
+        ratingLoading={ratingLoading}
       />
       <SubjectAreas />
     </section>

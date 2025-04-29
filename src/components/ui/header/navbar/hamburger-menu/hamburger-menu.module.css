@@ -1,0 +1,18 @@
+.hamburgerButton {
+    cursor: pointer;
+    color: #333;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .mobileMenu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        width: 100%;
+    }
+}

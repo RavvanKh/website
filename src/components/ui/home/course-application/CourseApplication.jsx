@@ -8,7 +8,8 @@ import * as yup from "yup";
 
 import { useI18n } from "@/locales/client";
 
-import { contactForCourseApplication } from "@/data/contact";
+import {contacts } from "@/data/contact";
+
 import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 
 import { createCourseApplication } from "@/lib/utils/api/courseApplication";
@@ -60,13 +61,13 @@ const CourseApplication = ({ courses }) => {
             <p className={styles.courseApplicationLeftDescription}>
               {t("contactUsDirectlyForQuickInteraction")}
             </p>
-            {contactForCourseApplication.map((contact) => (
+            {contacts.map((contact) => (
               <div
                 className={styles.courseApplicationContact}
                 key={contact.key}
               >
                 <div className={styles.courseApplicationContactIcon}>
-                  <Image src={contact.icon} height={18} width={24} alt="Icon" />
+                  <Image src={contact.icon2} height={18} width={24} alt="Icon" />
                 </div>
                 <div>
                   <div className={styles.contactForCourseApplicationContactKey}>

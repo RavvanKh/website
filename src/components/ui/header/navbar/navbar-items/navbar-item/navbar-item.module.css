@@ -1,11 +1,13 @@
-.navbarItemContainer{
+.navbarItemContainer {
     display: flex;
     align-items: center;
     gap: 5px;
-    .navbarItem{
+
+    .navbarItem {
         padding: 20px 8px;
-        .navbarItemText{
-            color:#333333;
+
+        .navbarItemText {
+            color: #333333;
             font-size: 14px;
             font-family: Arial, Helvetica, sans-serif;
             line-height: 21px;
@@ -14,9 +16,16 @@
 
         }
     }
-    .navbarDivider{
+
+    .navbarDivider {
         height: 32px;
         width: 1px;
         background: #E5E5E5;
     }
 }
+
+/* @media (max-width: 1024px) {
+    .navbarItemContainer:last-child .navbarDivider {
+        display: none;
+    }
+} */

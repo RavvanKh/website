@@ -1,16 +1,35 @@
 .navbar {
-    /* position: relative; */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid #EAEAEA;
-    border-bottom: 1px solid #EAEAEA;
     width: 85%;
     margin: 0 auto;
 
     .navbarRightContainer {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+        .navbarDesktop {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbarMobile {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 0 ;
+        width: 90%;
+        .navbarRightContainer {
+            .navbarDesktop {
+                display: none;
+            }
+            .navbarMobile {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
     }
 }

@@ -10,7 +10,9 @@ const Header = () => {
     <header className={styles.header}>
         <div className={styles.headerContainer}>
         <ContactInfo/>
+        <div className={styles.headerDivider}/>
         <Navbar/>
+        <div className={styles.headerDivider}/>
         </div>
     </header>
   )
