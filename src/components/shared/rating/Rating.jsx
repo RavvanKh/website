@@ -2,13 +2,23 @@ import React from "react";
 
 import { renderStars } from "@/lib/utils/helpers";
 
+import Loader from "../loader/Loader";
+
 import styles from "./rating.module.css";
 
-const Rating = ({ rating, height = 31, width = 20 }) => {
+const Rating = ({ rating, height = 31, width = 20, ratingLoading = false }) => {
+  if (ratingLoading || rating === null || rating === undefined) {
+    return (
+      <div className={styles.ratingLoader}>
+        <Loader size="small" />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.rating}>
-      <div className={styles.ratingStars} style={{height:`${height}px`}}>
-        {renderStars(rating, styles.star,width,height)}
+      <div className={styles.ratingStars} style={{ height: `${height}px` }}>
+        {renderStars(rating, styles.star, width, height)}
       </div>
       <div className={styles.ratingNumber}>
         <div className={styles.ratingCount}>{rating}</div>

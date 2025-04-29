@@ -1,11 +1,15 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+
 import { useI18n } from "@/locales/client";
+
 import { navbarItems } from "@/data/navbar";
-import { contactForCourseApplication } from "@/data/contact";
-import { getContactInfo } from "@/lib/utils/helpers";
+import {contacts, contactSocials } from "@/data/contact";
+import { filterArray } from "@/lib/utils/helpers";
+
 import Logo from "@/components/shared/logo/Logo";
+
 import styles from "./footer.module.css";
 
 const Footer = () => {
@@ -29,7 +33,7 @@ const Footer = () => {
             </div>
             <div className={styles.footerContact}>
               <div>{t("contactUs")}</div>
-              {contactForCourseApplication
+              {contacts
                 .slice()
                 .reverse()
                 .map((item) => (
@@ -40,11 +44,11 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.footerTopRight}>
-            {getContactInfo().map((item) => (
+            {filterArray(contactSocials).map((item) => (
               <Link
                 rel="noopener noreferrer"
                 title={item.key}
-                href={item.link}
+                href={item.url}
                 className={styles.footerTopRightSocials}
                 key={item.key}
                 data-social={item.key}

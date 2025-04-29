@@ -7,7 +7,7 @@ import Rating from "@/components/shared/rating/Rating";
 
 import styles from "./student-rates.module.css";
 
-const StudentRates =  () => {
+const StudentRates =  ({rating,ratingLoading}) => {
   const t = useI18n();
   
   return (
@@ -23,7 +23,7 @@ const StudentRates =  () => {
         <div className={styles.infoRightStudentRatesStarsTitle}>
           {t("studentsRates")}
         </div>
-        <Rating rating={4.7} height={31} width={20}/>
+        <Rating rating={rating} ratingLoading={ratingLoading} height={31} width={20}/>
       </div>
     </div>
   );

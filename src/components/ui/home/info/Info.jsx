@@ -16,6 +16,8 @@ const Info = ({
   totalInstructors,
   instructorsLoading,
   coursesLoading,
+  rating,
+  ratingLoading,
 }) => {
   const t = useI18n();
 
@@ -53,7 +55,7 @@ const Info = ({
         />
         <Courses totalCourses={totalCourses} loading={coursesLoading} />
         <Students />
-        <StudentRates />
+        <StudentRates rating={rating} ratingLoading={ratingLoading} />
       </div>
     </section>
   );

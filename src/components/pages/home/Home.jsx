@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { getCourses } from "@/lib/utils/api/courses";
 import { getRandomItems } from "@/lib/utils/helpers";
 import { getInstructors } from "@/lib/utils/api/instructors";
+import { getComments } from "@/lib/utils/api/comments";
 
 import Details from "@/components/ui/home/details/Details";
 import WhyChooseUs from "@/components/ui/home/why-choose-us/WhyChooseUs";
@@ -20,23 +21,31 @@ const Home = () => {
   const [data, setData] = useState({
     courses: [],
     instructors: [],
+    comments: {},
     totalCourses: 0,
     totalInstructors: 0,
   });
   const [loading, setLoading] = useState({
     courses: false,
     instructors: false,
+    comments: false,
   });
-  const [error, setError] = useState({ courses: null, instructors: null });
+  const [error, setError] = useState({
+    courses: null,
+    instructors: null,
+    comments: null,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading({ courses: true, instructors: true });
-        const [coursesRes, instructorsRes] = await Promise.allSettled([
-          getCourses(0, 100),
-          getInstructors(0, 16),
-        ]);
+        setLoading({ courses: true, instructors: true, comments: true });
+        const [coursesRes, instructorsRes, commentsRes] =
+          await Promise.allSettled([
+            getCourses(0, 100),
+            getInstructors(0, 16),
+            getComments(),
+          ]);
         setData({
           courses:
             coursesRes.status === "fulfilled"
@@ -46,6 +55,8 @@ const Home = () => {
             instructorsRes.status === "fulfilled"
               ? instructorsRes.value?.content || []
               : [],
+          comments:
+            commentsRes.status === "fulfilled" ? commentsRes.value || {} : {},
           totalCourses: coursesRes?.value?.totalElements || 0,
           totalInstructors: instructorsRes?.value?.totalElements || 0,
         });
@@ -59,12 +70,17 @@ const Home = () => {
             instructorsRes.status === "rejected"
               ? instructorsRes.reason?.message || "Failed to load instructors"
               : null,
+          comments:
+            commentsRes.status === "rejected"
+              ? commentsRes.reason?.message || "Failed to load comments"
+              : null,
         });
       } finally {
         setLoading((prev) => ({
           ...prev,
           courses: false,
           instructors: false,
+          comments: false,
         }));
       }
     };
@@ -78,6 +94,8 @@ const Home = () => {
         totalInstructors={data.totalInstructors}
         instructorsLoading={loading.instructors}
         coursesLoading={loading.courses}
+        ratingLoading={loading.comments}
+        rating={data.comments?.result?.rating}
       />
       <WhyChooseUs />
       <PopularCourses
@@ -91,7 +109,11 @@ const Home = () => {
         error={error.instructors}
       />
       <PracticePortal />
-      <Comments />
+      <Comments
+        loading={loading.comments}
+        error={error.comments}
+        comments={data.comments?.result?.reviews}
+      />
       <Customers />
       <CourseApplication courses={data.courses} />
     </div>

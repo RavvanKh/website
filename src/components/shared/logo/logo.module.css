@@ -45,3 +45,10 @@
         
     }
 }
+
+@media(max-width:768px){
+    .logo{
+        max-width: 220px;
+        width: max-content;
+    }
+}

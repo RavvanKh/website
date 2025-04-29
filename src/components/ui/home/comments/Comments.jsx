@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -8,8 +8,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { useI18n } from "@/locales/client";
 
-import { getComments } from "@/lib/utils/api/comments";
-
 import Loader from "@/components/shared/loader/Loader";
 import Comment from "./comment/Comment";
 
@@ -17,28 +15,9 @@ import styles from "./comments.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const Comments = () => {
-  const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const Comments = ({comments = [],loading,error}) => {
 
   const t = useI18n();
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        setLoading(true);
-        const res = await getComments();
-        setComments(res?.result?.reviews);
-      } catch (error) {
-        console.error("Error fetching comments:", error);
-        setError(error?.message || "Failed to load comments");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchComments();
-  }, []);
 
   return (
     <section className={styles.comments}>
