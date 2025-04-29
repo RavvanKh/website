@@ -17,7 +17,7 @@ const Rating = ({ rating, height = 31, width = 20, ratingLoading = false }) => {
 
   return (
     <div className={styles.rating}>
-      <div className={styles.ratingStars} style={{ height: `${height}px` }}>
+      <div className={styles.ratingStars}>
         {renderStars(rating, styles.star, width, height)}
       </div>
       <div className={styles.ratingNumber}>

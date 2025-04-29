@@ -8,7 +8,6 @@ const Courses = ({ totalCourses, loading }) => {
   return (
     <div className={styles.infoRightCourses}>
       <Box
-        width="172px"
         title="courses"
         detail={totalCourses}
         loading={loading}

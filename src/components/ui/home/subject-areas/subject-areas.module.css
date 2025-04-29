@@ -30,3 +30,20 @@
     }
 
 }
+
+
+@media (max-width:1024px){
+    .subjectAreas{
+        .subjectAreasImage{
+            top: 0;
+        }
+    }
+}
+
+@media (max-width:576px){
+    .subjectAreas{
+        .subjectAreasImage{
+            display: none;
+        }
+    }
+}
