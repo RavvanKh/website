@@ -37,3 +37,17 @@
         font-weight: 400;
     }
 }
+
+@media (max-width:1330px){
+    .whyChooseUsDetailItem{
+        margin-left: 20px !important;
+    }
+}
+
+@media (max-width:1024px){
+    .whyChooseUsDetailItem{
+        width: 100%;
+        max-width: 100%;
+        margin: 0 !important;
+    }
+}
