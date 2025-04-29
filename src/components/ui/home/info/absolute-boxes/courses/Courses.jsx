@@ -2,17 +2,16 @@ import React from "react";
 
 import Box from "../Box";
 
-import { courseInfo } from "@/data/info";
-
 import styles from "./courses.module.css";
 
-const Courses = () => {
+const Courses = ({ totalCourses, loading }) => {
   return (
     <div className={styles.infoRightCourses}>
       <Box
         width="172px"
         title="courses"
-        detail={courseInfo.courses}
+        detail={totalCourses}
+        loading={loading}
         iconSrc="/icons/courses.svg"
       />
     </div>

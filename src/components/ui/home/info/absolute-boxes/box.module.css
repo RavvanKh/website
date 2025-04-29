@@ -19,6 +19,7 @@
             color: rgba(91, 91, 91, 1);
         }
         .infoRightBoxesDetailsDetail{
+            min-height: 36px;
             font-family: 'Nunito', sans-serif;
             font-size: 24px;
             line-height: 36px;
