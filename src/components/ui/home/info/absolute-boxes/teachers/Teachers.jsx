@@ -8,7 +8,6 @@ const Teachers = ({ totalInstructors, loading }) => {
   return (
     <div className={styles.infoRightTeachers}>
       <Box
-        width="244px"
         title="qualifiedTeachers"
         detail={totalInstructors}
         loading={loading}

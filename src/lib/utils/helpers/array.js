@@ -11,39 +11,42 @@ export const renderStars = (rating, className, width = 20, height = 31) => {
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) {
       stars.push(
-        <FaStar
-          key={i}
-          className={className}
-          size={width}
-          height={height}
-          width={width}
-        />
+        <div key={i}>
+          <FaStar
+            className={className}
+            size={width}
+            height={height}
+            width={width}
+          />
+        </div>
       );
     } else if (rating >= i - 0.5) {
       stars.push(
-        <FaStarHalfAlt
-          key={i}
-          className={className}
-          height={height}
-          size={width}
-          width={width}
-        />
+        <div key={i}>
+          <FaStarHalfAlt
+            className={className}
+            height={height}
+            size={width}
+            width={width}
+          />
+        </div>
       );
     } else {
       stars.push(
-        <FaRegStar
-          key={i}
-          className={className}
-          height={height}
-          size={width}
-          width={width}
-        />
+        <div key={i}>
+          <FaRegStar
+            className={className}
+            height={height}
+            size={width}
+            width={width}
+          />
+        </div>
       );
     }
   }
   return stars;
 };
 
-export const filterArray = (array = [],hidden = "") => {
+export const filterArray = (array = [], hidden = "") => {
   return array.filter((item) => item.key !== hidden);
 };

@@ -9,6 +9,12 @@
         color: rgba(250, 219, 20, 1);
     }
 
+    .ratingStars div,
+    .ratingStars svg {
+        height: 20px;
+        width: 20px;
+    }
+
     .ratingNumber {
         display: flex;
         align-items: center;
@@ -27,10 +33,26 @@
     }
 }
 
-.ratingLoader{
+.ratingLoader {
     min-width: 176px;
     min-height: 32px;
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
+}
+
+
+@media (max-width:1024px) {
+    .rating {
+        .ratingNumber {
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .ratingStars div,
+        .ratingStars svg {
+            height: 15px;
+            width: 15px;
+        }
+    }
 }

@@ -25,3 +25,18 @@
         }
     }
 }
+
+@media(max-width:1024px){
+    .infoRightStudentRates{
+        left: 50%;
+        bottom:-160px;
+        transform:  translateX(-50%);
+        .infoRightStudentRatesStars{
+            margin: 0;
+            padding: 8px 16px;
+            .infoRightStudentRatesStarsTitle{
+                font-size: 14px;
+            }
+        }
+    }
+}

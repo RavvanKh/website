@@ -8,7 +8,7 @@ import Loader from "@/components/shared/loader/Loader";
 import styles from "./box.module.css";
 
 
-const Box = ({ iconSrc, title, detail, width = "244px", loading = false }) => {
+const Box = ({ iconSrc, title, detail, loading = false }) => {
   const t = useI18n();
 
   const renderDetail = () => {
@@ -22,8 +22,9 @@ const Box = ({ iconSrc, title, detail, width = "244px", loading = false }) => {
   };
 
   return (
-    <div className={styles.infoRightBoxes} style={{ width: width }}>
+    <div className={styles.infoRightBoxes}>
       <Image
+      className={styles.infoRightBoxesImg}
         src={iconSrc}
         height={48}
         width={48}
