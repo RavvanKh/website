@@ -26,7 +26,6 @@ const HamburgerMenu = () => {
         className={`${styles.mobileNavbar} ${
           isOpen ? styles.mobileNavbarOpen : ""
         }`}
-        aria-hidden={!isOpen}
       >
         <div className={styles.mobileNavbarContent}>
           <div className={styles.mobileNavbarTop}>
