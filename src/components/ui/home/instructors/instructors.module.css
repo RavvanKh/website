@@ -106,3 +106,34 @@
         }
     }
 }
+
+
+@media (max-width:768px) {
+    .instructors {
+        height: auto;
+        padding: 32px 0;
+        .instructorsContainer {
+            align-items:flex-start;
+            flex-direction: column;
+            gap: 0;
+            .instructorsLeft{
+                width: 100%;
+            }
+            .instructorsRight{
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+
+@media (max-width:576px){
+    .instructors{
+        .instructorsRight{
+            .swiper-wrapper{
+                flex-direction: column !important;
+            }
+        }
+    }
+}

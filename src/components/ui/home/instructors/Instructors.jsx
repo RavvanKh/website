@@ -13,7 +13,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import styles from "./instructors.module.css";
 
-
 const Instructors = ({ instructors, loading, error }) => {
   const t = useI18n();
 
@@ -46,6 +45,18 @@ const Instructors = ({ instructors, loading, error }) => {
                 slidesPerView={2}
                 slidesPerGroup={2}
                 spaceBetween={20}
+                grid={{ rows: 2 }}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                    grid: { rows: 2 },
+                  },
+                  577:{
+                    slidesPerView: 2,
+                    slidesPerGroup: 2,
+                  }
+                }}
                 pagination={{
                   clickable: true,
                   bulletClass: `swiper-bullet ${styles.bullet}`,
