@@ -13,14 +13,14 @@ const Course = ({
   duration = false,
   lines = 2,
   imgHeight = "180px",
-  imgWidth = "290px",
+  imgWidth = "300px",
 }) => {
   const t = useI18n();
 
   return (
     <div className={styles.course} style={{ flexDirection: direction }}>
       <div
-        className={styles.courseIcon}
+        className={`${styles.courseIcon} ${direction === 'row' ? styles.courseIconMinWidth : styles.courseIconMaxWidth} `}
         style={{ height: imgHeight, width: imgWidth }}
       >
         {levelPosition === "top" && (

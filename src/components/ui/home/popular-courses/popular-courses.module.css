@@ -30,3 +30,20 @@
         gap: 32px;
     }
 }
+
+
+@media (max-width:1024px){
+    .popularCourses{
+        .popularCoursesList{
+            grid-template-columns: repeat(2,1fr);
+        }
+    }
+}
+
+@media (max-width:768px){
+    .popularCourses{
+        .popularCoursesList{
+            grid-template-columns: 1fr;
+        }
+    }
+}

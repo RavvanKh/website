@@ -26,7 +26,7 @@ const ExploreCoursesAllCourses = ({ category, courses }) => {
               key={course?.key}
               levelPosition="right"
               imgHeight="180px"
-              imgWidth="290px"
+              imgWidth="300px"
             />
           ))
         ) : (
