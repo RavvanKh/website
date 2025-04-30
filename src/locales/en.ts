@@ -1,5 +1,3 @@
-import { contact } from "@/data/contact";
-
 export default {
   exploreCourses: "Explore Courses",
   about: "About",
@@ -63,4 +61,5 @@ export default {
   company: "Company",
   contactUs: "Contact Us",
   seeMoreDescription: " Opens in a new page for more information",
+  courseSubjects: "Course Subjects",
 } as const;

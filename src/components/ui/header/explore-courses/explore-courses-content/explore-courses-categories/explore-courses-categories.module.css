@@ -32,6 +32,7 @@
                 color: rgba(51, 51, 51, 1);
                 font-size: 15px;
                 line-height: 21px;
+                font-weight: 200;
                 font-family: 'Nunito', 'sans-serif';
                 white-space: nowrap;
                 overflow: hidden;
@@ -46,6 +47,27 @@
             .exploreCoursesCategoriesName {
                 color: rgba(7, 57, 172, 1);
                 font-weight: 600;
+            }
+        }
+    }
+}
+
+
+@media (max-width:768px){
+    .exploreCoursesCategories{
+        border:none;
+        padding: 0;
+        width: 100%;
+        .exploreCoursesCategoriesTitle{
+            display: none;
+        }
+        .exploreCoursesCategoriesContent{
+            .exploreCoursesCategoriesCategory{
+                width: 100%;
+                padding: 8px;
+                .exploreCoursesCategoriesName{
+                    font-size: 14px;
+                }
             }
         }
     }

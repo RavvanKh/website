@@ -1,15 +1,17 @@
 .exploreCoursesContent {
     display: flex;
-    align-items:flex-start;
+    align-items: flex-start;
+
     .exploreCoursesCategories {
         display: flex;
-        align-items:center;
+        align-items: center;
         justify-content: center;
         width: 300px;
         min-height: 500px;
         position: relative;
     }
-    .exploreCoursesAllCoursesContainer{
+
+    .exploreCoursesAllCoursesContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -19,6 +21,7 @@
         overflow-y: auto;
         position: relative;
     }
+
     .loaderContainer {
         display: flex;
         justify-content: center;
@@ -36,5 +39,20 @@
         color: #e74c3c;
         text-align: center;
         padding: 20px;
+    }
+}
+
+
+@media (max-width:768px) {
+    .exploreCoursesContent {
+        .exploreCoursesCategories {
+            min-height: max-content;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .exploreCoursesAllCoursesContainer {
+            display: none;
+        }
     }
 }

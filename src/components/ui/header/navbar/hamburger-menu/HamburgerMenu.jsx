@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
+import CourseSubjects from "../../course-subjects/CourseSubjects";
 import NavbarItems from "../navbar-items/NavbarItems";
-import Apply from "../apply/Apply";
+import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 
 import styles from "./hamburger-menu.module.css";
+
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +22,22 @@ const HamburgerMenu = () => {
         {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
 
-      {/* {isOpen && (
-        <div className={styles.mobileMenu}>
-          <NavbarItems />
-          <Apply />
+      <div
+        className={`${styles.mobileNavbar} ${
+          isOpen ? styles.mobileNavbarOpen : ""
+        }`}
+        aria-hidden={!isOpen}
+      >
+        <div className={styles.mobileNavbarContent}>
+          <div className={styles.mobileNavbarTop}>
+            <CourseSubjects isFetch = {isOpen} />
+            <NavbarItems />
+          </div>
+          <div className={styles.mobileNavbarSocials}>
+            <ContactSocials />
+          </div>
         </div>
-      )} */}
+      </div>
     </>
   );
 };

@@ -10,7 +10,7 @@ import { getCourses } from "@/lib/utils/api/courses";
 
 import styles from "./explore-courses-content.module.css";
 
-const ExploreCoursesContent = () => {
+const ExploreCoursesContent = ({ isFetch = true }) => {
   const [selectedCategory, setSelectedCategory] = useState({});
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -37,8 +37,8 @@ const ExploreCoursesContent = () => {
         setLoading(false);
       }
     };
-    fetchCategories();
-  }, []);
+    isFetch && fetchCategories();
+  }, [isFetch]);
 
   useEffect(() => {
     const fetchCourses = async () => {

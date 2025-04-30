@@ -24,8 +24,13 @@
     }
 }
 
-/* @media (max-width: 1024px) {
-    .navbarItemContainer:last-child .navbarDivider {
-        display: none;
+@media (max-width: 768px) {
+    .navbarItemContainer {
+        .navbarItem{
+            padding: 8px 0;
+        }
+        .navbarDivider {
+            display: none;
+        }
     }
-} */
+}
