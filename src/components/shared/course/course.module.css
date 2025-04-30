@@ -121,7 +121,7 @@
 }
 
 
-@media (max-width:576px) {
+@media (max-width:768px) {
     .course {
         max-width: 350px;
         width: 100%;

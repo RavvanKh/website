@@ -38,17 +38,29 @@
             }
         }
     }
-    .logoBottom{
+
+    .logoBottom {
         font-weight: 500;
         font-size: 18px;
         line-height: 24px;
-        
+
     }
 }
 
-@media(max-width:768px){
-    .logo{
+@media(max-width:768px) {
+    .logo {
         max-width: 220px;
         width: max-content;
+
+        .logoTop {
+            .logoText {
+                .logoTextContainer {
+                    font-size: 16px;
+                }
+                .logoTextBottom{
+                    font-size: 8px;
+                }
+            }
+        }
     }
 }
