@@ -25,7 +25,7 @@ const ExploreCourses = () => {
           selectedSection={selectedSection}
           onClick={handleChangeSection}
         />
-        <ExploreCoursesContent />
+        <ExploreCoursesContent isFetch={true} />
       </div>
     </section>
   );
