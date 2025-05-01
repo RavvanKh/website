@@ -20,7 +20,7 @@ export default async function SubLayout({ params, children }) {
   const { locale } = await params;
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
         <I18nProviderClient locale={locale}>
           <Header />

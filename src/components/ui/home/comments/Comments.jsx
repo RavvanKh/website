@@ -15,8 +15,7 @@ import styles from "./comments.module.css";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const Comments = ({comments = [],loading,error}) => {
-
+const Comments = ({ comments = [], loading, error }) => {
   const t = useI18n();
 
   return (
@@ -32,7 +31,8 @@ const Comments = ({comments = [],loading,error}) => {
             Failed to load comments: {error}
           </div>
         ) : (
-          <div className={styles.swiperContainer}>
+          <>
+            <div className={styles.swiperContainer}>
             <Swiper
               modules={[Navigation, Pagination]}
               slidesPerView="auto"
@@ -67,6 +67,43 @@ const Comments = ({comments = [],loading,error}) => {
               <FaArrowRight size={20} color="white" />
             </div>
           </div>
+          <div className={styles.mobileSwiper}>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView="auto"
+              centeredSlides={true}
+              initialSlide={1}
+              spaceBetween={20}
+              loop={true}
+              pagination={{
+                clickable: true,
+                bulletClass: `swiper-bullet ${styles.bullet}`,
+                bulletActiveClass: styles.active,
+              }}
+              navigation={{
+                nextEl: ".custom-next",
+                prevEl: ".custom-prev",
+              }}
+              className={styles.mySwiper}
+            >
+              {comments.map((comment) => (
+                <SwiperSlide key={comment.id} className={styles.mobileSwiperSlide}>
+                  <Comment comment={comment} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div
+              className={`custom-prev ${styles.customNav} ${styles.customPrev}`}
+            >
+              <FaArrowLeft size={20} color="white" />
+            </div>
+            <div
+              className={`custom-next ${styles.customNav} ${styles.customNext}`}
+            >
+              <FaArrowRight size={20} color="white" />
+            </div>
+          </div>
+          </>
         )}
       </div>
     </section>
