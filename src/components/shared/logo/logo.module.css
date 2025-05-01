@@ -64,3 +64,14 @@
         }
     }
 }
+
+
+@media(max-width:300px){
+    .logo{
+        .logoTop{
+            .logoText{
+                display: none;
+            }
+        }
+    }
+}
