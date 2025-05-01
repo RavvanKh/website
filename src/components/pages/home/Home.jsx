@@ -109,13 +109,13 @@ const Home = () => {
         error={error.instructors}
       />
       <PracticePortal />
-      {/* <Comments
+      <Comments
         loading={loading.comments}
         error={error.comments}
         comments={data.comments?.result?.reviews}
       />
       <Customers />
-      <CourseApplication courses={data.courses} /> */}
+      <CourseApplication courses={data.courses} />
     </div>
   );
 };
