@@ -130,3 +130,33 @@
     }
 
 }
+
+
+@media (max-width:1024px) {
+    .footer {
+        .footerTopContainer {
+            .footerTop {
+                gap: 24px;
+                flex-direction: column;
+                .footerTopLeft {
+                    gap: 20px;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:768px){
+    .footer {
+        .footerTopContainer {
+            .footerTop {
+                .footerTopLeft {
+                    gap: 24px;
+                    flex-direction: column;
+                }
+            }
+        }
+    }
+}
