@@ -25,7 +25,7 @@ export default async function SubLayout({ params, children }) {
         <I18nProviderClient locale={locale}>
           <Header />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </I18nProviderClient>
       </body>
     </html>
