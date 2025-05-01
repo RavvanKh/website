@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Grid, Pagination } from "swiper/modules";
 
 import { useI18n } from "@/locales/client";
 
@@ -11,6 +11,7 @@ import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/grid";
 import styles from "./instructors.module.css";
 
 const Instructors = ({ instructors, loading, error }) => {
@@ -41,21 +42,19 @@ const Instructors = ({ instructors, loading, error }) => {
           ) : (
             <div className={styles.swiperWrapper}>
               <Swiper
-                modules={[Pagination]}
-                slidesPerView={2}
-                slidesPerGroup={2}
+                modules={[Pagination, Grid]}
                 spaceBetween={20}
-                grid={{ rows: 2 }}
+                grid={{ rows: 2, fill: "row" }}
                 breakpoints={{
                   0: {
                     slidesPerView: 1,
                     slidesPerGroup: 1,
-                    grid: { rows: 2 },
                   },
-                  577:{
+                  577: {
                     slidesPerView: 2,
                     slidesPerGroup: 2,
-                  }
+                    grid: { rows: 1 },
+                  },
                 }}
                 pagination={{
                   clickable: true,
@@ -64,7 +63,7 @@ const Instructors = ({ instructors, loading, error }) => {
                 }}
                 className={styles.swiper}
               >
-                {instructors.map((instructor, index) => (
+                {instructors.map((instructor) => (
                   <SwiperSlide
                     key={instructor?.id}
                     style={{ height: "auto", marginBottom: "30px" }}

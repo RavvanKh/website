@@ -1,8 +1,6 @@
 .hamburgerButton {
     cursor: pointer;
     color: #333;
-    height: 48px;
-    width: 48px;
     display: flex;
     align-items: center;
     justify-content: center;

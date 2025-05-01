@@ -1,61 +1,144 @@
 .practicePortal {
-    background:rgba(249, 249, 249, 1);
+    background: rgba(249, 249, 249, 1);
     padding: 32px 0;
+
     .practicePortalContainer {
         display: flex;
         align-items: center;
         gap: 70px;
         width: 85%;
         margin: 0 auto;
-        .practicePortalLeft{
-            position:relative;
+
+        .practicePortalLeft {
+            position: relative;
             min-width: 489px;
-            height:424px;
-            .practicePortalImage{
+            height: 424px;
+
+            .practicePortalImage {
                 object-fit: cover;
                 border-radius: 16px;
-                &:last-child{
+                transition: all 0.3s ease;
+
+                &:last-child {
                     position: absolute;
                     top: 50%;
-                    z-index: 1;
                     left: 50%;
-                    transform: translate(-30%,-30%);
+                    z-index: 1;
+                    transform: translate(-30%, -30%);
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
                 }
             }
         }
-        .practicePortalRight{
+
+        .practicePortalRight {
             display: flex;
             flex-direction: column;
             gap: 24px;
-            .practicePortalRightHeader{
+
+            .practicePortalRightHeader {
                 display: flex;
                 align-items: center;
                 gap: 18px;
-                .practicePortalRightTitle{
-                    color:rgba(33, 37, 41, 1);
+
+                .practicePortalRightTitle {
+                    color: rgba(33, 37, 41, 1);
                     font-weight: 600;
                     line-height: 120%;
                     letter-spacing: -2%;
                     font-size: 20px;
                 }
-                .practicePortalRightSubTitle{
-                    color:rgba(33, 37, 41, 1);
+
+                .practicePortalRightSubTitle {
+                    color: rgba(33, 37, 41, 1);
                     line-height: 22px;
                     font-size: 14px;
                     font-weight: 400;
                     font-family: 'Nunito', sans-serif;
                 }
             }
-            .practicePortalRightContent{
+
+            .practicePortalRightContent {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-                .practicePortalRightContentDescription{
-                    color:rgba(58, 58, 58, 1);
+
+                .practicePortalRightContentDescription {
+                    color: rgba(58, 58, 58, 1);
                     font-family: 'Nunito', sans-serif;
                     font-size: 16px;
                     font-weight: 500;
                     line-height: 24px;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media (max-width: 1200px) {
+    .practicePortal {
+        .practicePortalContainer {
+            .practicePortalLeft {
+                min-width: 400px;
+                height: 350px;
+
+                .practicePortalImage {
+                    width: 280px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .practicePortal {
+        .practicePortalContainer {
+            .practicePortalLeft {
+                min-width: 300px;
+                height: 260px;
+
+                .practicePortalImage {
+                    width: 200px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .practicePortal {
+        .practicePortalContainer {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+
+            .practicePortalLeft {
+                min-width: 300px;
+                height: 260px;
+                align-self: center;
+
+                .practicePortalImage {
+                    width: 200px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .practicePortal {
+        padding-bottom: 70px;
+        .practicePortalContainer {
+            .practicePortalLeft {
+                min-width: 200px;
+                height: 160px;
+
+                .practicePortalImage {
+                    width: 180px;
+                    height: auto;
                 }
             }
         }
