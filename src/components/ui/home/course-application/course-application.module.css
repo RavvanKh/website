@@ -1,6 +1,6 @@
 .courseApplication {
     background: rgba(251, 253, 255, 1);
-    padding: 48px 0 ;
+    padding: 48px 0;
 
     .courseApplicationContainer {
         margin: 0 auto;
@@ -48,6 +48,8 @@
                     .courseApplicationContactIcon {
                         height: 36px;
                         width: 36px;
+                        min-width: 36px;
+                        min-height: 36px;
                         border-radius: 50%;
                         display: flex;
                         align-items: center;
@@ -80,7 +82,7 @@
                 .courseApplicationLeftBottomTitle {
                     color: rgba(0, 0, 0, 1);
                     font-weight: 700;
-                    font-family: 'Nunito'sans-serif;
+                    font-family: 'Nunito', sans-serif;
                     font-size: 20px;
                     line-height: 140%;
                 }
@@ -104,7 +106,6 @@
                     font-size: 13px;
                     margin-top: 5px;
                     min-height: 20px;
-
                 }
 
                 .courseApplicationFormSubmitBtn {
@@ -123,8 +124,8 @@
                     line-height: 27px;
                     letter-spacing: 0.64px;
                     font-size: 18px;
+                    width: 100%;
                 }
-
 
                 .courseApplicationFormFlex {
                     display: flex;
@@ -146,7 +147,6 @@
                     padding-top: 8px !important;
                     width: 100%;
                     resize: vertical;
-
                 }
 
                 .courseApplicationFormInputGroup label {
@@ -160,7 +160,6 @@
                     appearance: none;
                     -moz-appearance: none;
                     -webkit-appearance: none;
-
                     background-image: url("/icons/arrow-down.svg") !important;
                     background-repeat: no-repeat !important;
                     background-position: right 12px center !important;
@@ -177,9 +176,81 @@
                     background: rgba(255, 255, 255, 1);
                     border-radius: 4px;
                     padding: 0 16px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .courseApplication {
+
+        .courseApplicationContainer {
+            align-items: flex-start;
+            flex-direction: column-reverse;
+
+
+            .courseApplicationLeftTopTitle,
+            .courseApplicationRightTitle {
+                font-size: 32px;
+            }
+
+            .courseApplicationLeft {
+                border-right: none;
+                gap: 32px;
+
+                .courseApplicationContact {
+
+                    .contactForCourseApplicationContactKey,
+                    .contactForCourseApplicationContactText {
+                        font-size: 16px;
+                    }
                 }
             }
 
+            .courseApplicationRight {
+                width: 100%;
+                padding: 32px;
+                border-bottom: 1px solid rgba(239, 239, 239, 1);
+
+                .courseApplicationForm {
+                    .courseApplicationFormSubmitBtn button {
+                        width: max-content;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width:768px){
+    .courseApplication{
+        .courseApplicationContainer{
+            .courseApplicationLeft,.courseApplicationRight{
+                padding: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width:576px) {
+    .courseApplication {
+
+        .courseApplicationContainer {
+
+            .courseApplicationRight {
+                .courseApplicationFormFlex{
+                    flex-direction: column;
+                }
+
+                .courseApplicationForm {
+                    .courseApplicationFormSubmitBtn button {
+                        width: 100%;
+                    }
+                }
+            }
         }
     }
 }

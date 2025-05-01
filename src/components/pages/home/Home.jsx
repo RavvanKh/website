@@ -115,7 +115,7 @@ const Home = () => {
         comments={data.comments?.result?.reviews}
       />
       <Customers />
-      {/* <CourseApplication courses={data.courses} /> */}
+      <CourseApplication courses={data.courses} />
     </div>
   );
 };
