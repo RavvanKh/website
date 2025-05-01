@@ -19,6 +19,8 @@ const Customers = () => {
   const animationRef = useRef();
   const sliderContentRef = useRef(null);
   const [slideWidth, setSlideWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
   const t = useI18n();
 
   useEffect(() => {
@@ -41,62 +43,69 @@ const Customers = () => {
       if (sliderRef.current) {
         const containerWidth = sliderRef.current.offsetWidth;
         setSlideWidth(containerWidth / 8);
+        setIsMobile(window.innerWidth <= 1024);
       }
     };
 
     calculateSlideWidth();
     window.addEventListener("resize", calculateSlideWidth);
-
-    return () => {
-      window.removeEventListener("resize", calculateSlideWidth);
-    };
+    return () => window.removeEventListener("resize", calculateSlideWidth);
   }, []);
 
   useEffect(() => {
-    if (
-      !customers.length ||
-      !sliderRef.current ||
-      !sliderContentRef.current ||
-      slideWidth === 0
-    )
-      return;
+    if (!isMobile) {
+      if (
+        !customers.length ||
+        !sliderRef.current ||
+        !sliderContentRef.current ||
+        slideWidth === 0
+      )
+        return;
 
-    const customerItems = Array.from(sliderContentRef.current.children);
-    const totalWidth = slideWidth * customers.length;
+      const totalWidth = slideWidth * customers.length;
 
-    sliderContentRef.current.style.width = `${totalWidth * 2}px`;
+      sliderContentRef.current.style.width = `${totalWidth * 2}px`;
 
-    let position = 0;
-    const speed = 2;
+      let position = 0;
+      const speed = 2;
 
-    const animate = () => {
-      position -= speed;
+      const animate = () => {
+        position -= speed;
 
-      if (position <= -totalWidth) {
-        position = 0;
-      }
+        if (position <= -totalWidth) {
+          position = 0;
+        }
 
-      if (sliderContentRef.current) {
-        sliderContentRef.current.style.transform = `translateX(${position}px)`;
-      }
+        if (sliderContentRef.current) {
+          sliderContentRef.current.style.transform = `translateX(${position}px)`;
+        }
+
+        animationRef.current = requestAnimationFrame(animate);
+      };
 
       animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
+    }
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [customers, slideWidth]);
+  }, [customers, slideWidth, isMobile]);
+
+  const displayedCustomers = isMobile ? customers.slice(0, 8) : customers;
 
   return (
     <section className={styles.customers}>
       <div className={styles.customersTop}>
         <div className={styles.customersTopTitle}>{t("ourCustomers")}</div>
-        <SeeMore url="/" />
+        <div
+          className={`${
+            !isMobile ? styles.customersBtnShown : styles.customersBtnHide
+          }`}
+        >
+          <SeeMore url="/" />
+        </div>
       </div>
       {loading ? (
         <div className={styles.customerLoaderContainer}>
@@ -108,12 +117,20 @@ const Customers = () => {
         </div>
       ) : (
         <div className={styles.customersSliderContainer} ref={sliderRef}>
-          <div className={styles.customersSliderTrack} ref={sliderContentRef}>
-            {[...customers, ...customers].map((customer, index) => (
+          <div
+            className={styles.customersSliderTrack}
+            style={{
+              gridTemplateColumns: isMobile
+                ? ""
+                : `repeat(${customers.length * 2},1fr)`,
+            }}
+            ref={sliderContentRef}
+          >
+            {displayedCustomers.map((customer, index) => (
               <div
                 key={`${customer?.id}-${index}`}
                 className={styles.customerSlide}
-                style={{ width: `${slideWidth}px` }}
+                style={{ width: isMobile ? "100%" : `${slideWidth}px` }}
               >
                 <Customer customer={customer} />
               </div>
@@ -121,6 +138,13 @@ const Customers = () => {
           </div>
         </div>
       )}
+      <div
+        className={`${
+          isMobile ? styles.customersBtnShown : styles.customersBtnHide
+        }`}
+      >
+        <SeeMore url="/" />
+      </div>
     </section>
   );
 };
