@@ -16,8 +16,10 @@ const ContactSocials = () => {
           title={item.key}
           target="_blank"
           rel="noopener noreferrer"
+          className={styles.contactInfoSocialsLink}
+          data-social={item.key}
         >
-          <item.icon height={24} width={24} color="black" />
+          <item.icon className={styles.contactInfoSocialIcon} size={18} />
         </Link>
       ))}
     </div>
