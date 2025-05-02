@@ -1,10 +1,20 @@
 import axios from "axios";
 
+const API_DOMAIN = process.env.NEXT_PUBLIC_API_DOMAIN || "https://ingress.academy";
 
 
-const createAxiosInstance = (baseURL) => {
+const getMsUrl = (servicePath) => {
+  const baseDomain = API_DOMAIN.endsWith('/') ? API_DOMAIN.slice(0, -1) : API_DOMAIN;
+  const path = servicePath.startsWith('/') ? servicePath : `/${servicePath}`;
+  
+  return `${baseDomain}${path}`;
+};
+
+const createAxiosInstance = (servicePath) => {
+  const baseURL = getMsUrl(servicePath);
+
   return axios.create({
-    baseURL:`${baseURL}`,
+    baseURL,
     headers: {
       "Content-Type": "application/json",
     },
