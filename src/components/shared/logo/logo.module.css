@@ -43,6 +43,9 @@
         font-weight: 500;
         font-size: 18px;
         line-height: 24px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
 
     }
 }
@@ -68,9 +71,16 @@
 
 @media(max-width:300px){
     .logo{
+        width: 100%;
+        max-width: 100%;
         .logoTop{
             .logoText{
                 display: none;
+            }
+            .logoBottom{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
             }
         }
     }

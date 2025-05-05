@@ -69,4 +69,7 @@ export default {
   techLeaderP2: "{strong} - Benjamin Franklin",
   techLeaderP3:
     "Unlike theory-heavy university programs, {strong} is built around real work environments, ensuring students develop practical, job-ready skills under the mentorship of industry experts. Participants will work on real-world projects, gain hands-on experience, and acquire knowledge that most universities do not offer—giving them a significant advantage in the tech industry.",
+  programFocusAreas: "Program Focus Areas",
+  programFocusAreasSubTitle:
+    "Our scholarship program covers the most in-demand areas of technology",
 } as const;
