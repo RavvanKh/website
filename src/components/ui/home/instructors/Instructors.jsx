@@ -51,10 +51,16 @@ const Instructors = ({ instructors, loading, error }) => {
                     slidesPerGroup: 1,
                   },
                   577: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     slidesPerGroup: 2,
                     grid: { rows: 1 },
                   },
+                  1023:{
+                    slidesPerView:3,
+                    slidesPerGroup: 3,
+                    grid: { rows: 1 },
+                  }
+
                 }}
                 pagination={{
                   clickable: true,

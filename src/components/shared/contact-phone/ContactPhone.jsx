@@ -10,7 +10,7 @@ import styles from './contact-phone.module.css'
 const ContactPhone = () => {
   return (
     <Link href={links.phone} className={styles.contactPhone}>
-        <Image loading='lazy' src='/icons/contact-phone.svg' height={32} width={32} alt='Phone' />
+        <Image loading='lazy' src='/icons/contact-phone.svg' height={24} width={24} alt='Phone' />
     </Link>
   )
 }

@@ -43,7 +43,7 @@
             .commentAuthorName {
                 color: rgba(25, 33, 61, 1);
                 font-size: 12px;
-                font-family: 'Nunito' sans-serif;
+                font-family: 'Nunito', sans-serif;
                 font-weight: 700;
                 line-height: 32px;
             }
