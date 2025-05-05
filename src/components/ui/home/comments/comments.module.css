@@ -4,6 +4,7 @@
     .commentsTitle {
 
         background-image: url('/images/comments-bg.png');
+        background-position:center;
         width: 100%;
         padding-top: 50px;
         height: 200px;
