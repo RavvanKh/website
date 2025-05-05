@@ -62,4 +62,11 @@ export default {
   contactUs: "Contact Us",
   seeMoreDescription: " Opens in a new page for more information",
   courseSubjects: "Course Subjects",
+  techLeaderTitle: "TechLeaders of Tomorrow",
+  techLeaderSubTitle: "Ingress Academy Scholarship Program",
+  techLeaderP1:
+    "Ingress Academy presents {strong}, a prestigious scholarship program designed for the top 3% of talented university students in Azerbaijan. This initiative provides a unique opportunity to learn directly from experienced engineers and gain real-world expertise in cutting-edge technologies",
+  techLeaderP2: "{strong} - Benjamin Franklin",
+  techLeaderP3:
+    "Unlike theory-heavy university programs, {strong} is built around real work environments, ensuring students develop practical, job-ready skills under the mentorship of industry experts. Participants will work on real-world projects, gain hands-on experience, and acquire knowledge that most universities do not offer—giving them a significant advantage in the tech industry.",
 } as const;
