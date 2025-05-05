@@ -51,7 +51,7 @@ const Instructors = ({ instructors, loading, error }) => {
                     slidesPerGroup: 1,
                   },
                   577: {
-                    slidesPerView: 2,
+                    slidesPerView: 3,
                     slidesPerGroup: 2,
                     grid: { rows: 1 },
                   },

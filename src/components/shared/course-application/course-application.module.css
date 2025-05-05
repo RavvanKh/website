@@ -200,11 +200,13 @@
                 border-right: none;
                 gap: 32px;
 
-                .courseApplicationContact {
+                .courseApplicationLeftTop {
+                    .courseApplicationContact {
 
-                    .contactForCourseApplicationContactKey,
-                    .contactForCourseApplicationContactText {
-                        font-size: 16px;
+                        .contactForCourseApplicationContactKey,
+                        .contactForCourseApplicationContactText {
+                            font-size: 16px;
+                        }
                     }
                 }
             }
@@ -225,10 +227,12 @@
 }
 
 
-@media (max-width:768px){
-    .courseApplication{
-        .courseApplicationContainer{
-            .courseApplicationLeft,.courseApplicationRight{
+@media (max-width:768px) {
+    .courseApplication {
+        .courseApplicationContainer {
+
+            .courseApplicationLeft,
+            .courseApplicationRight {
                 padding: 16px;
             }
         }
@@ -241,7 +245,7 @@
         .courseApplicationContainer {
 
             .courseApplicationRight {
-                .courseApplicationFormFlex{
+                .courseApplicationFormFlex {
                     flex-direction: column;
                 }
 

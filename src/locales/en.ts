@@ -72,4 +72,21 @@ export default {
   programFocusAreas: "Program Focus Areas",
   programFocusAreasSubTitle:
     "Our scholarship program covers the most in-demand areas of technology",
+  scholarshipBenefits: "Scholarship Benefits:",
+  scholarshipDescription:
+    "Students who excel in the selection process can receive ",
+  or: "or",
+  tuitionWaivers:
+    "tuition fee waivers, making high-quality tech education more accessible and affordable.",
+  selectionProcess: "Selection Process:",
+  admissionProcess:
+    "Admission is based on a rigorous selection process, evaluating:",
+  universityAcceptance: "University Acceptance (TQDK) test results",
+  englishProficiency: "English Language Proficiency",
+  academyTest: "Ingress Academy's Test & Interview Performance",
+  finalDecisions: "Final decisions are primarily based on this step.",
+  practicePortal: "Your Practice Portal",
+  practicePortalDescription:
+    "To help applicants prepare, we offer a dedicated practice portal where they can review question types and complete practice sessions in advance.",
+  getStart: "Get start",
 } as const;
