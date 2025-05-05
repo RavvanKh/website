@@ -4,7 +4,7 @@ import styles from './course-box.module.css'
 
 const CourseBox = ({item}) => {
   return (
-    <div className={styles.courseBoxItem}>{item?.name}</div>
+    <div title={item?.name} className={styles.courseBoxItem}>{item?.name}</div>
   )
 }
 
