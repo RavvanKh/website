@@ -1,8 +1,9 @@
 "use client";
+import Image from "next/image";
 import { useI18n } from "@/locales/client";
 
 import styles from "./stay-updated.module.css";
-import Image from "next/image";
+
 
 const StayUpdated = () => {
   const t = useI18n();

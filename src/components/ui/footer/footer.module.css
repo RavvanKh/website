@@ -153,9 +153,15 @@
     .footer {
         .footerTopContainer {
             .footerTop {
+                width: 90%;
                 .footerTopLeft {
                     gap: 24px;
                     flex-direction: column;
+                }
+            }
+            .footerBottomContainer{
+                .footerBottom{
+                    width: 90%;
                 }
             }
         }

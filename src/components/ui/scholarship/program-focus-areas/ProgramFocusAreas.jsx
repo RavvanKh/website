@@ -5,10 +5,11 @@ import { useI18n } from "@/locales/client";
 
 import { getCourses } from "@/lib/utils/api/courses";
 
+import CourseBoxes from "./course-boxes/CourseBoxes";
 import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./program-focus-areas.module.css";
-import CourseBoxes from "./course-boxes/CourseBoxes";
+
 
 const ProgramFocusAreas = () => {
   const [loading, setLoading] = useState(false);

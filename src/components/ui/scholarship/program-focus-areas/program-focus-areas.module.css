@@ -19,7 +19,7 @@
         font-size: 32px;
         line-height: 48px;
         font-weight: 700;
-        font-family: 'Nunito'sans-serif;
+        font-family: 'Nunito', sans-serif;
     }
 
     .programFocusAreasTop p {
@@ -43,4 +43,11 @@
         width: 100%;
     }
 
+}
+
+
+@media (max-width:768px){
+    .programFocusAreas{
+        width: 90%;
+    }
 }

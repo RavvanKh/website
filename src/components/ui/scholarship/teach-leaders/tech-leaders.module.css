@@ -30,7 +30,7 @@
                     font-weight: 700;
                     line-height: 44px;
                     font-size: 44px;
-                    font-family: 'Nunito'sans-serif;
+                    font-family: 'Nunito', sans-serif;
                     color: #212529;
                 }
 
@@ -51,7 +51,7 @@
             .techLeadersLeftBottom p {
                 line-height: 24px;
                 font-size: 16px;
-                font-family: 'Nunito'sans-serif;
+                font-family: 'Nunito', sans-serif;
                 color: #262A2D;
             }
         }
