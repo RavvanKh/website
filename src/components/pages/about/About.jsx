@@ -1,11 +1,13 @@
-import AboutUs from '@/components/ui/about/about-us/AboutUs'
+import AboutUs from "@/components/ui/about/about-us/AboutUs";
+import HistoryMission from "@/components/ui/about/about-us/history-mission/HistoryMission";
 
 const About = () => {
   return (
     <section>
-        <AboutUs/>
+      <AboutUs />
+      <HistoryMission />
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

@@ -39,6 +39,10 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+
+            .whyChooseUsDetail {
+                max-width: 496px;
+            }
         }
     }
 }
@@ -48,6 +52,10 @@
         .whyChooseUsDetails {
             .whyChooseUsDetailsRight {
                 width: auto;
+
+                .whyChooseUsDetail {
+                    margin-left: 20px !important;
+                }
             }
         }
     }
@@ -73,6 +81,14 @@
                     height: 492px;
                     background: url("/images/why-choose-us.png") no-repeat center center;
                     background-size: contain;
+                }
+            }
+
+            .whyChooseUsDetailsRight {
+                .whyChooseUsDetail {
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0 !important;
                 }
             }
         }
