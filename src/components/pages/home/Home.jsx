@@ -13,7 +13,7 @@ import Instructors from "@/components/ui/home/instructors/Instructors";
 import PracticePortal from "@/components/ui/home/practice-portal/PracticePortal";
 import Comments from "@/components/ui/home/comments/Comments";
 import Customers from "@/components/ui/home/customers/Customers";
-import CourseApplication from "@/components/ui/home/course-application/CourseApplication";
+import CourseApplication from "@/components/shared/course-application/CourseApplication";
 
 import styles from "./home.module.css";
 
