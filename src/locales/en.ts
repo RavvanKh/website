@@ -89,4 +89,8 @@ export default {
   practicePortalDescription:
     "To help applicants prepare, we offer a dedicated practice portal where they can review question types and complete practice sessions in advance.",
   getStart: "Get start",
+  getStartNow: "Get start now",
+  stayUpdatedTitle: "Stay Updated & Apply!",
+  stayUpdatedDescription:
+    "The TechLeaders of Tomorrow scholarship opens several times a year. Stay ahead by subscribing or following us on social media to get notified first — and don’t miss your chance to build real-world tech skills and boost your career!",
 } as const;
