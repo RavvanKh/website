@@ -1,9 +1,7 @@
-import React from 'react'
+import Scholarship from "@/components/pages/scholarship/Scholarship";
 
 const ScholarshipPage = () => {
-  return (
-    <div>ScholarshipPage</div>
-  )
-}
+  return <Scholarship />;
+};
 
-export default ScholarshipPage
+export default ScholarshipPage;

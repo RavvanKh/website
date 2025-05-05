@@ -4,8 +4,8 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_QUIZ_MS_URL: "quiz",
     NEXT_PUBLIC_APPLICATION_MS_URL: "applications-ms",
-    NEXT_PUBLIC_API_DOMAIN: "https://ingress.academy",
-    // NEXT_PUBLIC_API_DOMAIN: "/",
+    // NEXT_PUBLIC_API_DOMAIN: "https://ingress.academy",
+    NEXT_PUBLIC_API_DOMAIN: "/",
   },
 };
 
