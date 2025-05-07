@@ -32,13 +32,13 @@
                 gap: 16px;
 
                 .sectionTitle {
-                    font-size: 28px;
+                    font-size: 24px;
                     font-weight: 700;
                     color: #212529;
                 }
 
                 .benefitsText {
-                    font-size: 20px;
+                    font-size: 16px;
                     color: #1A1A1A;
                     line-height: 28px;
                     font-weight: 500;
@@ -49,7 +49,7 @@
                 }
 
                 .processDescription {
-                    font-size: 20px;
+                    font-size: 16px;
                     line-height: 32px;
                     color: #868686;
                     font-weight: 500;
@@ -61,7 +61,7 @@
                 }
 
                 .criteriaList li {
-                    font-size: 20px;
+                    font-size: 16px;
                     color: #1A1A1A;
                     font-weight: 500;
                     line-height: 32px

@@ -13,38 +13,8 @@
         margin: 0 auto;
 
         .instructorsLeft {
-            width: 40%;
+            width: 30%;
             max-width: 383px;
-            display: flex;
-            flex-direction: column;
-            gap: 17px;
-
-            .instructorsLeftTitle {
-                color: rgba(33, 37, 41, 1);
-                font-weight: 700;
-                line-height: 36px;
-                font-size: 28px;
-
-                .instructorsLeftTitleColored {
-                    color: rgba(254, 87, 32, 1);
-                }
-            }
-
-            .instructorsLeftParagraph {
-                color: rgba(126, 129, 133, 1);
-                font-size: 16px;
-                line-height: 24px;
-                font-weight: 500;
-            }
-
-            .instructorsLeftBtn {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: max-content;
-                color: rgba(0, 84, 192, 1);
-                gap: 6px;
-            }
         }
 
         .instructorsRight {
@@ -70,6 +40,8 @@
 
             .instructorContainer {
                 height: 100%;
+                max-width: 350px;
+                max-height: 270px;
                 width: 100%;
                 display: flex;
                 padding: 0 5px;
@@ -112,15 +84,22 @@
     .instructors {
         height: auto;
         padding: 32px 0;
+
         .instructorsContainer {
-            align-items:flex-start;
+            align-items: flex-start;
             flex-direction: column;
             gap: 0;
-            .instructorsLeft{
+
+            .instructorsLeft {
                 width: 100%;
             }
-            .instructorsRight{
+
+            .instructorsRight {
                 width: 100%;
+                .instructorContainer{
+                    width: 100%;
+                    max-width: 100%;
+                }
             }
         }
     }
@@ -128,11 +107,14 @@
 
 
 
-@media (max-width:576px){
-    .instructors{
-        .instructorsRight{
-            .swiper-wrapper{
-                flex-direction: column !important;
+@media (max-width:576px) {
+    .instructors {
+        .instructorsContainer {
+            .instructorsRight {
+                min-height: 564px;
+                .swiper-wrapper {
+                    flex-direction: column !important;
+                }
             }
         }
     }
