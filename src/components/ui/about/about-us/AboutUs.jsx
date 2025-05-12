@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/locales/client";
 
-import { aboutUs } from "@/data/aboutUs";
+import { aboutUs } from "@/lib/constants/aboutUs";
 
 import styles from "./about-us.module.css";
 import Image from "next/image";

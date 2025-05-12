@@ -20,8 +20,16 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
   const [loadingCourses, setLoadingCourses] = useState(false);
   const [errorCourses, setErrorCourses] = useState(null);
 
-  const handleChangeCategory = (category) => {
-    setSelectedCategory(category);
+  const handleChangeCategory = (category, isMobile) => {
+    if (isMobile) {
+      if (selectedCategory?.key === category?.key) {
+        setSelectedCategory({});
+      } else {
+        setSelectedCategory(category);
+      }
+    } else {
+      setSelectedCategory(category);
+    }
   };
 
   useEffect(() => {
@@ -72,6 +80,9 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
             categories={categories}
             selectedCategory={selectedCategory}
             onClick={handleChangeCategory}
+            courses={courses}
+            loadingCourses={loadingCourses}
+            errorCourses={errorCourses}
           />
         )}
       </div>
@@ -80,7 +91,7 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
           <div className={styles.loaderContainer}>
             <Loader size="medium" color="primary" />
           </div>
-        ) : error ? (
+        ) : errorCourses ? (
           <div className={styles.errorMessage}>
             Failed to load courses: {errorCourses}
           </div>
@@ -88,6 +99,7 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
           <ExploreCoursesAllCourses
             courses={courses}
             category={selectedCategory}
+            showEmptyMessage={!loadingCourses && selectedCategory?.key}
           />
         )}
       </div>

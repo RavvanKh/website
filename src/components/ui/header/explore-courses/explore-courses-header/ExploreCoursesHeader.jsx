@@ -2,7 +2,7 @@
 
 import { useI18n } from "@/locales/client";
 
-import { exploreCoursesSections } from "@/data/exploreCoursesSections";
+import { exploreCoursesSections } from "@/lib/constants/exploreCoursesSections";
 
 import styles from "./explore-courses-header.module.css";
 

@@ -1,10 +1,10 @@
-import React from "react";
+'use client'
 
-import Course from "@/components/shared/course/Course";
+import Course from '@/components/shared/course/Course';
 
-import styles from "./explore-courses-all-courses.module.css";
+import styles from './explore-courses-all-courses.module.css'
 
-const ExploreCoursesAllCourses = ({ category, courses }) => {
+const ExploreCoursesAllCourses = ({ category, courses, showEmptyMessage }) => {
   return (
     <section className={styles.exploreAllCourses}>
       <div className={styles.exploreAllCoursesTitle}>
@@ -26,17 +26,17 @@ const ExploreCoursesAllCourses = ({ category, courses }) => {
               key={course?.key}
               levelPosition="right"
               imgHeight="180px"
-              imgWidth="300px"
+              imgWidth="290px"
             />
           ))
-        ) : (
+        ) : showEmptyMessage ? (
           <div className={styles.exploreAllCoursesNoCourse}>
             No courses available in this category.
           </div>
-        )}
+        ) : null}
       </div>
     </section>
   );
 };
 
-export default ExploreCoursesAllCourses;
+export default ExploreCoursesAllCourses
