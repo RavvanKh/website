@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import { filterArray } from "@/lib/utils/helpers";
-import { contacts } from "@/data/contact";
+import { contacts } from "@/lib/constants/contact";
 
 import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 

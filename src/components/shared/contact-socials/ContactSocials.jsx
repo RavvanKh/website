@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import { filterArray } from "@/lib/utils/helpers";
-import { contactSocials } from "@/data/contact";
+import { contactSocials } from "@/lib/constants/contact";
 
 import styles from "./contact-social.module.css";
 

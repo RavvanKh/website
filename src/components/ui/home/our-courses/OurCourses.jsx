@@ -1,34 +1,40 @@
-'use client'
-import React, { useEffect, useState } from "react";
+"use client";
 import { useI18n } from "@/locales/client";
 
 import Loader from "@/components/shared/loader/Loader";
 import Course from "@/components/shared/course/Course";
 import ExploreFullCatalog from "@/components/shared/explore-full-catalog/ExploreFullCatalog";
+import CourseTypes from "./course-types/CourseTypes";
+import CategoriesSlider from "./categories-slider/CategoriesSlider";
 
-import styles from "./popular-courses.module.css";
+import styles from "./our-courses.module.css";
 
-const PopularCourses = ({ courses, loading, error }) => {
+
+const OurCourses = ({
+  courses,
+  loading,
+  error,
+  onChangeFilter,
+  categories,
+  categoriesError,
+  categoriesLoading,
+  filter,
+}) => {
   const t = useI18n();
-  const [imgWidth, setImgWidth] = useState("100%");
-
-  useEffect(() => {
-    const handleResize = () => {
-      setImgWidth(window.innerWidth < 1200 ? "250px" : "290px");
-    };
-
-    handleResize(); 
-    window.addEventListener("resize", handleResize); 
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
-    <section className={styles.popularCourses}>
-      <div className={styles.popularCoursesTitle}>{t("popularCourses")}</div>
-
+    <section className={styles.ourCourses}>
+      <div className={styles.ourCoursesTitle}>{t("ourCourses")}</div>
+      <CourseTypes t={t} selectedType={filter.type} onClick={onChangeFilter} />
+      <CategoriesSlider
+        categories={categories}
+        selectedCategory={filter.category}
+        onClick={onChangeFilter}
+        loading={categoriesLoading}
+        error={categoriesError}
+      />
       {loading ? (
-        <div className={styles.popularCoursesLoaderContainer}>
+        <div className={styles.ourCoursesLoaderContainer}>
           <Loader size="medium" color="primary" />
         </div>
       ) : error ? (
@@ -36,11 +42,11 @@ const PopularCourses = ({ courses, loading, error }) => {
           Failed to load categories: {error}
         </div>
       ) : (
-        <div className={styles.popularCoursesList}>
+        <div className={styles.ourCoursesList}>
           {courses.map((course) => (
             <Course
               imgHeight="200px"
-              imgWidth='100%'
+              imgWidth="100%"
               duration={true}
               lines={4}
               levelPosition="top"
@@ -57,4 +63,4 @@ const PopularCourses = ({ courses, loading, error }) => {
   );
 };
 
-export default PopularCourses;
+export default OurCourses;

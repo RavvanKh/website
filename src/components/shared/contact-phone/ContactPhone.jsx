@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { links } from '@/data/contact'
+import { links } from '@/lib/constants/contact'
 
 import styles from './contact-phone.module.css'
 

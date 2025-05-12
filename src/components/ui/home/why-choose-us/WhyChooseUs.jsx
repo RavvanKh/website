@@ -2,7 +2,7 @@ import React from "react";
 
 import { useI18n } from "@/locales/client";
 
-import { whyChooseUsDetails } from "@/data/whyChooseUs";
+import { whyChooseUsDetails } from "@/lib/constants/whyChooseUs";
 
 import Detail from "../../../shared/why-choose-us-detail/WhyChooseUsDetail";
 

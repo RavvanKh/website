@@ -1,4 +1,4 @@
-import { aboutUs } from "@/data/aboutUs";
+import { aboutUs } from "@/lib/constants/aboutUs";
 
 import WhyChooseUsDetail from "@/components/shared/why-choose-us-detail/WhyChooseUsDetail";
 
