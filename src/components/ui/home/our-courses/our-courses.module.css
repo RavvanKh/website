@@ -1,4 +1,4 @@
-.popularCourses {
+.ourCourses {
     padding: 24px 0 40px 0;
     width: 85%;
     margin: 0 auto;
@@ -6,7 +6,7 @@
     flex-direction: column;
     gap: 45px;
 
-    .popularCoursesTitle {
+    .ourCoursesTitle {
         color: rgba(33, 37, 41, 1);
         font-size: 32px;
         line-height: 48px;
@@ -15,34 +15,34 @@
         text-align: center;
     }
 
-    .popularCoursesLoaderContainer {
+    .ourCoursesLoaderContainer {
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 200px;
     }
 
-    .popularCoursesList {
+    .ourCoursesList {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         place-items: center;
         align-items: stretch;
-        gap: 32px;
+        gap: 16px;
     }
 }
 
 
 @media (max-width:1024px){
-    .popularCourses{
-        .popularCoursesList{
+    .ourCourses{
+        .ourCoursesList{
             grid-template-columns: repeat(2,1fr);
         }
     }
 }
 
 @media (max-width:768px){
-    .popularCourses{
-        .popularCoursesList{
+    .ourCourses{
+        .ourCoursesList{
             grid-template-columns: 1fr;
         }
     }

@@ -1,0 +1,20 @@
+.lesson {
+    padding: 11px 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(231, 231, 231, 1);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+
+    .lessonName {
+        flex: 1;
+        color: rgba(51, 51, 51, 1);
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 28px;
+        user-select: none;
+
+    }
+}

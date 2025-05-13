@@ -2,7 +2,7 @@ import React from "react";
 
 import Box from "../Box";
 
-import { courseInfo } from "@/data/info";
+import { courseInfo } from "@/lib/constants/info";
 
 import styles from "./students.module.css";
 

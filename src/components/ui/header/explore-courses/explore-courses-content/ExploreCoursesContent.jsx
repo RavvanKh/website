@@ -10,7 +10,7 @@ import { getCourses } from "@/lib/utils/api/courses";
 
 import styles from "./explore-courses-content.module.css";
 
-const ExploreCoursesContent = ({ isFetch = true }) => {
+const ExploreCoursesContent = ({ isFetch = true, onClose }) => {
   const [selectedCategory, setSelectedCategory] = useState({});
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,8 +20,16 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
   const [loadingCourses, setLoadingCourses] = useState(false);
   const [errorCourses, setErrorCourses] = useState(null);
 
-  const handleChangeCategory = (category) => {
-    setSelectedCategory(category);
+  const handleChangeCategory = (category, isMobile) => {
+    if (isMobile) {
+      if (selectedCategory?.key === category?.key) {
+        setSelectedCategory({});
+      } else {
+        setSelectedCategory(category);
+      }
+    } else {
+      setSelectedCategory(category);
+    }
   };
 
   useEffect(() => {
@@ -69,9 +77,13 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
           </div>
         ) : (
           <ExploreCoursesCategories
+            onClose={onClose}
             categories={categories}
             selectedCategory={selectedCategory}
             onClick={handleChangeCategory}
+            courses={courses}
+            loadingCourses={loadingCourses}
+            errorCourses={errorCourses}
           />
         )}
       </div>
@@ -80,14 +92,16 @@ const ExploreCoursesContent = ({ isFetch = true }) => {
           <div className={styles.loaderContainer}>
             <Loader size="medium" color="primary" />
           </div>
-        ) : error ? (
+        ) : errorCourses ? (
           <div className={styles.errorMessage}>
             Failed to load courses: {errorCourses}
           </div>
         ) : (
           <ExploreCoursesAllCourses
+            onClose={onClose}
             courses={courses}
             category={selectedCategory}
+            showEmptyMessage={!loadingCourses && selectedCategory?.key}
           />
         )}
       </div>

@@ -4,9 +4,10 @@ import NavbarLogo from "./navbar-logo/NavbarLogo";
 import NavbarItems from "./navbar-items/NavbarItems";
 import Apply from "./apply/Apply";
 import HamburgerMenu from "./hamburger-menu/HamburgerMenu";
+import ContactPhone from "@/components/shared/contact-phone/ContactPhone";
 
 import styles from "./navbar.module.css";
-import ContactPhone from "@/components/shared/contact-phone/ContactPhone";
+
 
 const Navbar = () => {
   return (

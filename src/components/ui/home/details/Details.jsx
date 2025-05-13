@@ -23,7 +23,7 @@ const Details = ({
         rating={rating}
         ratingLoading={ratingLoading}
       />
-      <SubjectAreas />
+      {/* <SubjectAreas /> */}
     </section>
   );
 };

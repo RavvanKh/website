@@ -1,7 +1,8 @@
+import Image from "next/image";
+
 import GetInTouch from "@/components/shared/get-in-touch/GetInTouch";
 
 import styles from "./location.module.css";
-import Image from "next/image";
 
 const Location = () => {
   return (

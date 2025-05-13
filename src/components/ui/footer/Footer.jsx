@@ -4,8 +4,8 @@ import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
 
-import { navbarItems } from "@/data/navbar";
-import {contacts, contactSocials } from "@/data/contact";
+import { navbarItems } from "@/lib/constants/navbar";
+import {contacts, contactSocials } from "@/lib/constants/contact";
 import { filterArray } from "@/lib/utils/helpers";
 
 import Logo from "@/components/shared/logo/Logo";

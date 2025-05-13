@@ -8,7 +8,7 @@ import * as yup from "yup";
 
 import { useI18n } from "@/locales/client";
 
-import { contacts } from "@/data/contact";
+import { contacts } from "@/lib/constants/contact";
 
 import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 

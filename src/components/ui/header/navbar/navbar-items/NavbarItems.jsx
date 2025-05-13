@@ -2,7 +2,7 @@ import React from "react";
 
 import NavbarItem from "./navbar-item/NavbarItem";
 
-import { navbarItems } from "@/data/navbar";
+import { navbarItems } from "@/lib/constants/navbar";
 
 import styles from "./navbar-items.module.css";
 
