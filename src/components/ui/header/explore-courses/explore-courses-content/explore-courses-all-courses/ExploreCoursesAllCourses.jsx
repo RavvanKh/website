@@ -1,10 +1,15 @@
-'use client'
+"use client";
 
-import Course from '@/components/shared/course/Course';
+import Course from "@/components/shared/course/Course";
 
-import styles from './explore-courses-all-courses.module.css'
+import styles from "./explore-courses-all-courses.module.css";
 
-const ExploreCoursesAllCourses = ({ category, courses, showEmptyMessage }) => {
+const ExploreCoursesAllCourses = ({
+  onClose,
+  category,
+  courses,
+  showEmptyMessage,
+}) => {
   return (
     <section className={styles.exploreAllCourses}>
       <div className={styles.exploreAllCoursesTitle}>
@@ -19,6 +24,7 @@ const ExploreCoursesAllCourses = ({ category, courses, showEmptyMessage }) => {
         {courses?.length > 0 ? (
           courses.map((course) => (
             <Course
+              onClose={onClose}
               duration={false}
               lines={2}
               direction="row"
@@ -39,4 +45,4 @@ const ExploreCoursesAllCourses = ({ category, courses, showEmptyMessage }) => {
   );
 };
 
-export default ExploreCoursesAllCourses
+export default ExploreCoursesAllCourses;

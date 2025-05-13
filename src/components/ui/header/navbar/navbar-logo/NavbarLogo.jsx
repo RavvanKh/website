@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
@@ -11,11 +11,20 @@ import styles from "./navbar-logo.module.css";
 
 const NavbarLogo = () => {
   const t = useI18n();
+  const menuContainerRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const [isCourseMenuOpen, setIsCourseMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleOpenExploreCoursesMenu = () => {
     setIsCourseMenuOpen(!isCourseMenuOpen);
+    setIsAnimating(true);
+  };
+
+  const handleCloseMenu = () => {
+    setIsCourseMenuOpen(false);
+    setIsAnimating(true);
   };
 
   useEffect(() => {
@@ -25,10 +34,30 @@ const NavbarLogo = () => {
       document.body.style.overflow = "auto";
     }
 
+    const handleClickOutside = (event) => {
+      if (
+        menuContainerRef.current &&
+        !menuContainerRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        handleCloseMenu();
+      }
+    };
+
+    if (isCourseMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
     return () => {
       document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isCourseMenuOpen]);
+
+  const handleAnimationEnd = () => {
+    setIsAnimating(false);
+  };
 
   return (
     <>
@@ -36,6 +65,7 @@ const NavbarLogo = () => {
         <Logo theme="light" isShownBottom={false} />
         <div className={styles.navbarLeftButton}>
           <button
+            ref={buttonRef}
             className={`${styles.navbarLeftButtonContainer} ${
               isCourseMenuOpen ? styles.navbarLeftButtonContainerOpen : ""
             }`}
@@ -67,7 +97,17 @@ const NavbarLogo = () => {
           </button>
         </div>
       </div>
-      {isCourseMenuOpen && <ExploreCourses />}
+      {(isCourseMenuOpen || isAnimating) && (
+        <div
+          ref={menuContainerRef}
+          className={`${styles.menuContainer} ${
+            isCourseMenuOpen ? styles.menuOpen : styles.menuClose
+          }`}
+          onAnimationEnd={handleAnimationEnd}
+        >
+          <ExploreCourses onClose={handleCloseMenu} />
+        </div>
+      )}
     </>
   );
 };
