@@ -5,14 +5,14 @@ import ExploreCoursesContent from "../explore-courses/explore-courses-content/Ex
 import styles from "./course-subjects.module.css";
 
 
-const CourseSubjects = ({isFetch}) => {
+const CourseSubjects = ({isFetch,onClose}) => {
 
   const t = useI18n();
 
   return (
     <div className={styles.courseSubjects}>
       <div className={styles.courseSubjectsTitle}>{t("courseSubjects")}</div>
-      <ExploreCoursesContent isFetch = {isFetch}/>
+      <ExploreCoursesContent onClose={onClose} isFetch = {isFetch}/>
     </div>
   );
 };

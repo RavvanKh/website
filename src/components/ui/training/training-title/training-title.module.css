@@ -1,0 +1,50 @@
+.trainingTitle {
+    width: 100%;
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%),
+        url('/images/home-bg.svg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0 50px 0;
+
+    .trainingTitleContainer {
+        width: 85%;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 64px;
+
+        .trainingTitleLeft {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            flex: 1;
+        }
+
+        .trainingTitleLeft h2 {
+            color: #212529;
+            font-size: 44px;
+            font-weight: 900;
+            font-family: "Nunito", sans-serif;
+            line-height: 44px;
+        }
+
+        .trainingTitleLeft p {
+            color: #000F28;
+            font-size: 20px;
+            line-height: 28px;
+            font-weight: 400;
+        }
+
+        .trainingTitleRight{
+            width: 447px;
+        }
+        .trainingTitleRight img{
+            object-fit: cover;
+            width: 100%;
+            border-radius:8px;
+        }
+    }
+}

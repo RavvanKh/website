@@ -58,7 +58,7 @@ const OurCourses = ({
         </div>
       )}
 
-      <ExploreFullCatalog t={t} url="/courses" />
+      <ExploreFullCatalog t={t} url="/trainings" />
     </section>
   );
 };

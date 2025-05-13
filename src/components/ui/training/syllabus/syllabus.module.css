@@ -1,0 +1,42 @@
+.syllabus {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 24px 24px 24px;
+    border: 1px solid rgba(234, 234, 234, 1);
+    gap: 12px;
+
+    .syllabusTop {
+        display: flex;
+        justify-content: space-between;
+
+        .syllabusTopLeft {
+            color: rgba(0, 58, 157, 1);
+            line-height: 32px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+
+    .syllabusTop button {
+        color: rgba(26, 138, 251, 1);
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: underline;
+        font-weight: 700;
+    }
+
+    .syllabusLessons {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+}
+
+
+.loaderContainer {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

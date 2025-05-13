@@ -8,7 +8,7 @@ import { exploreCoursesConfig } from "@/lib/constants/exploreCoursesSections";
 
 import styles from "./explore-courses.module.css";
 
-const ExploreCourses = () => {
+const ExploreCourses = ({ onClose }) => {
   const [selectedSection, setSelectedSection] = useState(
     exploreCoursesConfig.defaultSection
   );
@@ -17,7 +17,6 @@ const ExploreCourses = () => {
     setSelectedSection(item);
   };
 
-
   return (
     <section className={styles.exploreCoursesContainer}>
       <div className={styles.exploreCoursesBox}>
@@ -25,7 +24,7 @@ const ExploreCourses = () => {
           selectedSection={selectedSection}
           onClick={handleChangeSection}
         />
-        <ExploreCoursesContent isFetch={true} />
+        <ExploreCoursesContent onClose={onClose} isFetch={true} />
       </div>
     </section>
   );

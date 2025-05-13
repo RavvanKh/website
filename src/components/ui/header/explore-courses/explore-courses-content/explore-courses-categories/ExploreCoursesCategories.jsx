@@ -4,12 +4,10 @@ import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
 
-
 import Loader from "@/components/shared/loader/Loader";
 import MobileCourse from "@/components/shared/mobile-course/MobileCourse";
 
 import styles from "./explore-courses-categories.module.css";
-
 
 const ExploreCoursesCategories = ({
   categories,
@@ -18,6 +16,7 @@ const ExploreCoursesCategories = ({
   courses = [],
   loadingCourses = false,
   errorCourses = null,
+  onClose = () =>{},
 }) => {
   const t = useI18n();
 
@@ -51,7 +50,7 @@ const ExploreCoursesCategories = ({
                     ? styles.exploreCoursesCategoriesCategorySelected
                     : ""
                 }`}
-                onClick={() => onClick(category,isMobile)}
+                onClick={() => onClick(category, isMobile)}
               >
                 <div className={styles.exploreCoursesCategoriesName}>
                   {category.name}
@@ -84,7 +83,12 @@ const ExploreCoursesCategories = ({
                           key={course.key}
                           className={styles.mobileCourseItem}
                         >
-                          <MobileCourse course={course} direction="row" lines={3} />
+                          <MobileCourse
+                            onClose={onClose}
+                            course={course}
+                            direction="row"
+                            lines={3}
+                          />
                         </div>
                       ))}
                     </div>

@@ -8,22 +8,20 @@ import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 
 import styles from "./hamburger-menu.module.css";
 
-
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-    useEffect(() => {
-      if (isOpen) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "auto";
-      }
-  
-      return () => {
-        document.body.style.overflow = "auto";
-      };
-    }, [isOpen]);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -42,7 +40,7 @@ const HamburgerMenu = () => {
       >
         <div className={styles.mobileNavbarContent}>
           <div className={styles.mobileNavbarTop}>
-            <CourseSubjects isFetch = {isOpen} />
+            <CourseSubjects onClose={() => setIsOpen(false)} isFetch={isOpen} />
             <NavbarItems />
           </div>
           <div className={styles.mobileNavbarSocials}>
