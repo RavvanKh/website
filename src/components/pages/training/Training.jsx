@@ -11,6 +11,7 @@ import {
 } from "@/lib/constants/selectSections";
 
 import { getSyllabus } from "@/lib/utils/api/syllabus";
+import { getInstructors } from "@/lib/utils/api/instructors";
 
 import Loader from "@/components/shared/loader/Loader";
 import TrainingTitle from "@/components/ui/training/training-title/TrainingTitle";
@@ -18,6 +19,8 @@ import SelectSection from "@/components/ui/training/select-section/SelectSection
 import NextGroup from "@/components/shared/next-group/NextGroup";
 
 import styles from "./training.module.css";
+import { getCustomers } from "@/lib/utils/api/customers";
+import { set } from "react-hook-form";
 
 const Training = ({ trainingKey }) => {
   const [training, setTraining] = useState(null);
@@ -27,6 +30,21 @@ const Training = ({ trainingKey }) => {
   const [syllabus, setSyllabus] = useState({});
   const [syllabusLoading, setSyllabusLoading] = useState(true);
   const [syllabusError, setSyllabusError] = useState(null);
+
+  const [data, setData] = useState({
+    instructors: [],
+    companies: [],
+  });
+
+  const [loadings, setLoadings] = useState({
+    instructors: false,
+    companies: false,
+  });
+
+  const [errors, setErrors] = useState({
+    instructors: null,
+    companies: null,
+  });
 
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
@@ -38,7 +56,8 @@ const Training = ({ trainingKey }) => {
     advantages: useRef(null),
     syllabus: useRef(null),
     nextGroups: useRef(null),
-    alumni: useRef(null),
+    graduates: useRef(null),
+    companies: useRef(null),
     feedbacks: useRef(null),
     instructors: useRef(null),
     applicationForm: useRef(null),
@@ -155,6 +174,47 @@ const Training = ({ trainingKey }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [selectedSection]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoadings({
+          instructors: true,
+          companies: true,
+        });
+        const [instructorsRes, companiesRes] = await Promise.allSettled([
+          getInstructors(0, 100),
+          getCustomers(0, 5),
+        ]);
+
+        setData((prev) => ({
+          ...prev,
+          instructors:
+            instructorsRes.status === "fulfilled"
+              ? instructorsRes.value.content
+              : [],
+          companies:
+            companiesRes.status === "fulfilled"
+              ? companiesRes.value.content
+              : [],
+        }));
+
+        setErrors({
+          instructors:
+            instructorsRes.status === "rejected" ? instructorsRes.reason : null,
+          companies:
+            companiesRes.status === "rejected" ? companiesRes.reason : null,
+        });
+      } finally {
+        setLoadings({
+          companies: false,
+          instructors: false,
+        });
+      }
+    };
+
+    fetchData()
+  }, []);
+
   if (loading) {
     return (
       <section className={styles.trainingContainer}>
@@ -212,9 +272,18 @@ const Training = ({ trainingKey }) => {
               const propsMap = {
                 syllabus: {
                   syllabus,
-                  onClickSyllabus: handleDownloadSyllabus,
                   loading: syllabusLoading,
                   error: syllabusError,
+                },
+                graduates: {
+                  graduates: data.instructors,
+                  loading: loadings.instructors,
+                  error: errors.instructors,
+                },
+                companies: {
+                  companies: data.companies,
+                  loading: loadings.companies,
+                  error: errors.companies,
                 },
               };
 
@@ -225,9 +294,6 @@ const Training = ({ trainingKey }) => {
               );
             }
           )}
-          {/* <Customers /> */}
-          {/* <Comments/> */}
-          {/* <CourseApplication/> */}
         </div>
       </div>
     </section>

@@ -125,4 +125,10 @@ export default {
   academicTranscript: "Academic transcript",
   academicTranscriptDesc:
     "Assignments and projects are checked by the instructor, and your knowledge and skills are determined based on the assessment.",
+  graduatesContent:
+    "Real-world learning that helps graduates stand out and secure roles quickly.",
+  graduates: "Graduates",
+  expandAll: " Expand all",
+  collapseAll: " Collapse all",
+  companies: "Companies",
 } as const;

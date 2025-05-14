@@ -1,5 +1,7 @@
 import Advantages from "@/components/ui/training/advantages/Advantages";
-import NextGroups from "@/components/ui/training/syllabus/next-groups/NextGroups";
+import Companies from "@/components/ui/training/companies/Companies";
+import Graduates from "@/components/ui/training/graduates/Graduates";
+import NextGroups from "@/components/ui/training/next-groups/NextGroups";
 import Syllabus from "@/components/ui/training/syllabus/Syllabus";
 
 export const selectSections = [
@@ -13,8 +15,9 @@ export const selectSections = [
     key: "nextGroups",
   },
   {
-    key: "alumni",
+    key: "graduates",
   },
+  { key: "companies" },
   {
     key: "feedbacks",
   },
@@ -41,4 +44,6 @@ export const selectSectionsAsComponent = [
     key: "nextGroups",
     component: NextGroups,
   },
+  { key: "graduates", component: Graduates },
+  { key:'companies', component:Companies},
 ];

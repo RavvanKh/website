@@ -42,7 +42,7 @@
         transition: all 0.3s ease-in;
 
         &:hover {
-            color: #2e6eff;
+            background: #2e6eff;
         }
     }
 
