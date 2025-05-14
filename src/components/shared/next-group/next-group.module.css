@@ -45,8 +45,13 @@
         gap: 16px;
 
         .nextGroupSyllabus {
-            border: 1px solid #E1E1E1;
+            border: 1px solid rgba(2, 63, 203, 1);
             color: #343434;
+
+            &:hover {
+                background: rgba(46, 110, 255, 1);
+                color: #FFFFFF;
+            }
         }
 
         .nextGroupApply {
