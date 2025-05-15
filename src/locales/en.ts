@@ -131,4 +131,5 @@ export default {
   expandAll: " Expand all",
   collapseAll: " Collapse all",
   companies: "Companies",
+  courseApplicationForm:"Course Application Form",
 } as const;

@@ -1,6 +1,9 @@
+import CourseApplicationForm from "@/components/shared/course-application-form/CourseApplicationForm";
+import Comments from "@/components/ui/home/comments/Comments";
 import Advantages from "@/components/ui/training/advantages/Advantages";
 import Companies from "@/components/ui/training/companies/Companies";
 import Graduates from "@/components/ui/training/graduates/Graduates";
+import Instructors from "@/components/ui/training/instructors/Instructors";
 import NextGroups from "@/components/ui/training/next-groups/NextGroups";
 import Syllabus from "@/components/ui/training/syllabus/Syllabus";
 
@@ -25,7 +28,7 @@ export const selectSections = [
     key: "instructors",
   },
   {
-    key: "applicationForm",
+    key: "courseApplicationForm",
   },
 ];
 
@@ -45,5 +48,11 @@ export const selectSectionsAsComponent = [
     component: NextGroups,
   },
   { key: "graduates", component: Graduates },
-  { key:'companies', component:Companies},
+  { key: "companies", component: Companies },
+  // { key: "feedbacks", component: Comments },
+  { key: "instructors", component: Instructors },
+  {
+    key: "courseApplicationForm",
+    component: CourseApplicationForm,
+  },
 ];
