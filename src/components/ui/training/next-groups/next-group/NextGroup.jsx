@@ -1,11 +1,11 @@
 import styles from "./next-group.module.css";
 
-const NextGroup = ({ group }) => {
+const NextGroup = ({ group,onClick }) => {
   return (
     <div className={styles.nextGroup}>
       <div className={styles.nextGroupTop}>
         <div>{group.date}</div>
-        <button>Apply</button>
+        <button onClick={onClick}>Apply</button>
       </div>
       <div className={styles.nextGroupContent}>
         <div>Dərs günləri</div>

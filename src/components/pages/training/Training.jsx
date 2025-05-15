@@ -21,6 +21,8 @@ import NextGroup from "@/components/shared/next-group/NextGroup";
 import styles from "./training.module.css";
 import { getCustomers } from "@/lib/utils/api/customers";
 import { set } from "react-hook-form";
+import { getRandomItems } from "@/lib/utils/helpers";
+import next from "next";
 
 const Training = ({ trainingKey }) => {
   const [training, setTraining] = useState(null);
@@ -30,6 +32,8 @@ const Training = ({ trainingKey }) => {
   const [syllabus, setSyllabus] = useState({});
   const [syllabusLoading, setSyllabusLoading] = useState(true);
   const [syllabusError, setSyllabusError] = useState(null);
+
+  const [randomInstructors, setRandomInstructors] = useState([]);
 
   const [data, setData] = useState({
     instructors: [],
@@ -60,7 +64,7 @@ const Training = ({ trainingKey }) => {
     companies: useRef(null),
     feedbacks: useRef(null),
     instructors: useRef(null),
-    applicationForm: useRef(null),
+    courseApplicationForm: useRef(null),
   };
 
   const handleSelectSection = (section) => {
@@ -108,7 +112,9 @@ const Training = ({ trainingKey }) => {
     }
   };
 
-  const handleApply = () => {};
+  const handleApply = () => {
+    handleSelectSection("courseApplicationForm");
+  };
 
   const fetchSyllabus = async (syllabusId) => {
     if (!syllabusId) return;
@@ -175,6 +181,12 @@ const Training = ({ trainingKey }) => {
   }, [selectedSection]);
 
   useEffect(() => {
+    if (data.instructors.length > 0 && randomInstructors.length === 0) {
+      setRandomInstructors(getRandomItems(data.instructors, 5));
+    }
+  }, [data.instructors, randomInstructors.length]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         setLoadings({
@@ -183,7 +195,7 @@ const Training = ({ trainingKey }) => {
         });
         const [instructorsRes, companiesRes] = await Promise.allSettled([
           getInstructors(0, 100),
-          getCustomers(0, 5),
+          getCustomers(0, 100),
         ]);
 
         setData((prev) => ({
@@ -212,7 +224,7 @@ const Training = ({ trainingKey }) => {
       }
     };
 
-    fetchData()
+    fetchData();
   }, []);
 
   if (loading) {
@@ -275,6 +287,9 @@ const Training = ({ trainingKey }) => {
                   loading: syllabusLoading,
                   error: syllabusError,
                 },
+                nextGroups: {
+                  onClickApply: handleApply,
+                },
                 graduates: {
                   graduates: data.instructors,
                   loading: loadings.instructors,
@@ -284,6 +299,14 @@ const Training = ({ trainingKey }) => {
                   companies: data.companies,
                   loading: loadings.companies,
                   error: errors.companies,
+                },
+                instructors: {
+                  instructors: randomInstructors,
+                  loading: loadings.instructors,
+                  error: errors.instructors,
+                },
+                courseApplicationForm: {
+                  course: training,
                 },
               };
 

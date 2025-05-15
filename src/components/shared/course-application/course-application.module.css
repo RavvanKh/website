@@ -11,112 +11,7 @@
         border-radius: 4px;
         border: 1px solid rgba(26, 26, 26, 0.1);
 
-        .courseApplicationRightTitle {
-            color: rgba(26, 26, 26, 1);
-            font-weight: 700;
-            font-size: 40px;
-            line-height: 150%;
-        }
 
-        .courseApplicationRightDescription {
-            color: rgba(26, 26, 26, 1);
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 150%;
-        }
-
-
-        .courseApplicationRight {
-            flex: 1;
-            padding: 32px 32px 32px 48px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-
-            .courseApplicationForm {
-                display: flex;
-                flex-direction: column;
-                gap: 28px;
-
-                .error {
-                    color: red;
-                    font-size: 13px;
-                    margin-top: 5px;
-                    min-height: 20px;
-                }
-
-                .courseApplicationFormSubmitBtn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                }
-
-                .courseApplicationFormSubmitBtn button {
-                    background: rgba(7, 57, 172, 1);
-                    height: 52px;
-                    padding: 12.5px 40px;
-                    border-radius: 6px;
-                    color: rgba(255, 255, 255, 1);
-                    font-weight: 500;
-                    line-height: 27px;
-                    letter-spacing: 0.64px;
-                    font-size: 18px;
-                    width: 100%;
-                }
-
-                .courseApplicationFormFlex {
-                    display: flex;
-                    gap: 24px;
-
-                    .courseApplicationFormInputGroup {
-                        flex: 1;
-                    }
-                }
-
-                .courseApplicationFormInputGroup {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 8px;
-                }
-
-                .courseApplicationFormInputGroup textarea {
-                    height: 80px !important;
-                    padding-top: 8px !important;
-                    width: 100%;
-                    resize: vertical;
-                }
-
-                .courseApplicationFormInputGroup label {
-                    color: rgba(0, 0, 0, 1);
-                    font-size: 14px;
-                    font-family: "Montserrat", sans-serif;
-                }
-
-                .courseApplicationFormInputGroup select {
-                    cursor: pointer;
-                    appearance: none;
-                    -moz-appearance: none;
-                    -webkit-appearance: none;
-                    background-image: url("/icons/arrow-down.svg") !important;
-                    background-repeat: no-repeat !important;
-                    background-position: right 12px center !important;
-                    padding-right: 10px !important;
-                }
-
-                .courseApplicationFormInputGroup input,
-                .courseApplicationFormInputGroup select,
-                .courseApplicationFormInputGroup textarea {
-                    height: 40px;
-                    display: flex;
-                    align-items: center;
-                    border: 1px solid rgba(226, 232, 240, 1);
-                    background: rgba(255, 255, 255, 1);
-                    border-radius: 4px;
-                    padding: 0 16px;
-                    width: 100%;
-                }
-            }
-        }
     }
 }
 
@@ -127,22 +22,6 @@
             align-items: flex-start;
             flex-direction: column-reverse;
 
-
-            .courseApplicationRightTitle {
-                font-size: 32px;
-            }
-
-            .courseApplicationRight {
-                width: 100%;
-                padding: 32px;
-                border-bottom: 1px solid rgba(239, 239, 239, 1);
-
-                .courseApplicationForm {
-                    .courseApplicationFormSubmitBtn button {
-                        width: max-content;
-                    }
-                }
-            }
         }
     }
 }
@@ -152,32 +31,7 @@
     .courseApplication {
         .courseApplicationContainer {
             width: 90%;
-            .courseApplicationRightTitle{
-                font-size: 24px;
-            }
-            .courseApplicationRight {
-                padding: 16px;
-            }
-        }
-    }
-}
 
-@media (max-width:576px) {
-    .courseApplication {
-
-        .courseApplicationContainer {
-
-            .courseApplicationRight {
-                .courseApplicationFormFlex {
-                    flex-direction: column;
-                }
-
-                .courseApplicationForm {
-                    .courseApplicationFormSubmitBtn button {
-                        width: 100%;
-                    }
-                }
-            }
         }
     }
 }
