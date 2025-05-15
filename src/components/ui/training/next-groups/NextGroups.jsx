@@ -1,7 +1,8 @@
 import NextGroup from "./next-group/NextGroup";
+
 import styles from "./next-groups.module.css";
 
-const NextGroups = ({ t, title }) => {
+const NextGroups = ({ t, title, onClickApply }) => {
   const nextGroups = [
     {
       date: "16 may, 2025",
@@ -21,7 +22,7 @@ const NextGroups = ({ t, title }) => {
       <div className={styles.nextGroupsTitle}>{t(title)}</div>
       <div className={styles.nextGroupsContent}>
         {nextGroups.map((group, index) => (
-          <NextGroup key={index} group={group} />
+          <NextGroup key={index} group={group} onClick={onClickApply} />
         ))}
       </div>
     </section>
