@@ -12,6 +12,8 @@ import {
 
 import { getSyllabus } from "@/lib/utils/api/syllabus";
 import { getInstructors } from "@/lib/utils/api/instructors";
+import { getCustomers } from "@/lib/utils/api/customers";
+import { getRandomItems } from "@/lib/utils/helpers";
 
 import Loader from "@/components/shared/loader/Loader";
 import TrainingTitle from "@/components/ui/training/training-title/TrainingTitle";
@@ -19,10 +21,6 @@ import SelectSection from "@/components/ui/training/select-section/SelectSection
 import NextGroup from "@/components/shared/next-group/NextGroup";
 
 import styles from "./training.module.css";
-import { getCustomers } from "@/lib/utils/api/customers";
-import { set } from "react-hook-form";
-import { getRandomItems } from "@/lib/utils/helpers";
-import next from "next";
 
 const Training = ({ trainingKey }) => {
   const [training, setTraining] = useState(null);
@@ -65,6 +63,7 @@ const Training = ({ trainingKey }) => {
     feedbacks: useRef(null),
     instructors: useRef(null),
     courseApplicationForm: useRef(null),
+    faq: useRef(null),
   };
 
   const handleSelectSection = (section) => {

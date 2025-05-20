@@ -4,15 +4,24 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 45px;
+    gap: 24px;
 
-    .ourCoursesTitle {
-        color: rgba(33, 37, 41, 1);
-        font-size: 32px;
-        line-height: 48px;
-        font-weight: 700;
-        font-family: 'Nunito', sans-serif;
-        text-align: center;
+    .ourCoursesTop {
+        .ourCoursesTitle {
+            color: rgba(33, 37, 41, 1);
+            font-size: 32px;
+            line-height: 48px;
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .ourCoursesDescription {
+            color: #7e8185;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            font-family: 'Nunito', sans-serif;
+        }
     }
 
     .ourCoursesLoaderContainer {
@@ -28,22 +37,97 @@
         place-items: center;
         align-items: stretch;
         gap: 16px;
+
+        .slide {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            height: 100%;
+        }
     }
+
+    .swiperContainer {
+        position: relative;
+
+        .customNav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(25, 33, 61, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+
+            &:hover {
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                transform: translateY(-50%) scale(1.05);
+            }
+
+            &.customPrev {
+                left: 0;
+            }
+
+            &.customNext {
+                right: 0;
+            }
+        }
+
+    }
+
+    .swiperContainer .swiper {
+        display: flex;
+      }
+      
+      .swiperContainer .swiper-wrapper {
+        display: flex;
+        align-items: stretch;
+      }
+      
+      .swiperContainer .swiper-slide {
+        height: auto !important;
+        display: flex;
+      }
+      
+      .swiperContainer .slide {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        min-height: 450px;
+      }
+
+      .exploreFullCatalogContainer{
+        display: flex;
+        align-items:flex-start
+      }
 }
 
 
-@media (max-width:1024px){
-    .ourCourses{
-        .ourCoursesList{
-            grid-template-columns: repeat(2,1fr);
+@media (max-width:1024px) {
+    .ourCourses {
+        .ourCoursesList {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }
 
-@media (max-width:768px){
-    .ourCourses{
-        .ourCoursesList{
+@media (max-width:768px) {
+    .ourCourses {
+        .ourCoursesList {
             grid-template-columns: 1fr;
         }
+    }
+
+    .slide{
+        align-items: center !important;
     }
 }

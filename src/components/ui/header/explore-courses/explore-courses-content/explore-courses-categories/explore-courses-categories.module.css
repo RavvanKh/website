@@ -9,19 +9,21 @@
         font-size: 20px;
         font-weight: 600;
         line-height: 28px;
-        padding:24px 16px 0 16px;
+        padding: 24px 16px 0 16px;
     }
 
-    .mobileLoaderContainer{
+    .mobileLoaderContainer {
         height: 100px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
+
     .exploreCoursesCategoriesContent {
         height: calc(100vh - 300px);
         overflow-y: auto;
         padding: 0 16px 24px 16px;
+
         .exploreCoursesCategoriesCategory {
             cursor: pointer;
             width: 270px;
@@ -62,27 +64,34 @@
 }
 
 
-@media (max-width:768px){
-    .exploreCoursesCategories{
-        border:none;
+@media (max-width:768px) {
+    .exploreCoursesCategories {
+        border: none;
         padding: 0;
         width: 100%;
-        .exploreCoursesCategoriesTitle{
+
+        .exploreCoursesCategoriesTitle {
             display: none;
         }
-        .exploreCoursesCategoriesContent{
+
+        .exploreCoursesCategoriesContent {
+            width: 100%;
             height: auto;
-            overflow-y:none;
-            .mobileCourseList{
+            overflow-y: hidden;
+            padding: 0;
+
+            .mobileCourseList {
                 margin-top: 10px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
             }
-            .exploreCoursesCategoriesCategory{
+
+            .exploreCoursesCategoriesCategory {
                 width: 100%;
                 padding: 8px;
-                .exploreCoursesCategoriesName{
+
+                .exploreCoursesCategoriesName {
                     font-size: 14px;
                 }
             }

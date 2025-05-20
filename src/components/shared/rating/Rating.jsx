@@ -6,8 +6,8 @@ import Loader from "../loader/Loader";
 
 import styles from "./rating.module.css";
 
-const Rating = ({ rating, height = 31, width = 20, ratingLoading = false }) => {
-  if (ratingLoading || rating === null || rating === undefined) {
+const Rating = ({ rating = 5, height = 31, width = 20, ratingLoading = false }) => {
+  if (ratingLoading) {
     return (
       <div className={styles.ratingLoader}>
         <Loader size="small" />

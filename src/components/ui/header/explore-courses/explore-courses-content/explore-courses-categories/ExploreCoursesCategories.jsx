@@ -16,7 +16,7 @@ const ExploreCoursesCategories = ({
   courses = [],
   loadingCourses = false,
   errorCourses = null,
-  onClose = () =>{},
+  onClose = () => {},
 }) => {
   const t = useI18n();
 
@@ -37,13 +37,13 @@ const ExploreCoursesCategories = ({
       <p className={styles.exploreCoursesCategoriesTitle}>{t("subjects")}</p>
       <div className={styles.exploreCoursesCategoriesContent}>
         {categories.map((category) => {
-          const isSelected = selectedCategory?.key === category?.key;
+          const isSelected = selectedCategory?.id === category?.id;
           {
             /* const coursesByCategory = courses[category?.key] || []; */
           }
 
           return (
-            <div key={category?.key}>
+            <div key={category?.id}>
               <div
                 className={`${styles.exploreCoursesCategoriesCategory} ${
                   isSelected
@@ -80,7 +80,7 @@ const ExploreCoursesCategories = ({
                     <div className={styles.mobileCourseList}>
                       {courses.map((course) => (
                         <div
-                          key={course.key}
+                          key={course.id}
                           className={styles.mobileCourseItem}
                         >
                           <MobileCourse
