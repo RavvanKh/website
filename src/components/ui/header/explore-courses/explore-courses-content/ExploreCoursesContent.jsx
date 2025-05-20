@@ -1,107 +1,73 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import { useHome } from "@/contexts/HomeContext";
 
 import ExploreCoursesCategories from "./explore-courses-categories/ExploreCoursesCategories";
 import ExploreCoursesAllCourses from "./explore-courses-all-courses/ExploreCoursesAllCourses";
 import Loader from "@/components/shared/loader/Loader";
 
-import { getCategories } from "@/lib/utils/api/categories";
-import { getCourses } from "@/lib/utils/api/courses";
-
 import styles from "./explore-courses-content.module.css";
 
-const ExploreCoursesContent = ({ isFetch = true, onClose }) => {
-  const [selectedCategory, setSelectedCategory] = useState({});
-  const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const [courses, setCourses] = useState([]);
-  const [loadingCourses, setLoadingCourses] = useState(false);
-  const [errorCourses, setErrorCourses] = useState(null);
+const ExploreCoursesContent = ({onClose }) => {
+  const {
+    data,
+    error,
+    loading,
+    setSelectedCategoryForExplore,
+    selectedCategoryForExplore: selectedCategory,
+  } = useHome();
 
   const handleChangeCategory = (category, isMobile) => {
     if (isMobile) {
-      if (selectedCategory?.key === category?.key) {
-        setSelectedCategory({});
+      if (selectedCategory?.id === category?.id) {
+        setSelectedCategoryForExplore({});
       } else {
-        setSelectedCategory(category);
+        setSelectedCategoryForExplore(category);
       }
     } else {
-      setSelectedCategory(category);
+      setSelectedCategoryForExplore(category);
     }
   };
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        setLoading(true);
-        const data = await getCategories(0, 100);
-        setCategories(data?.content);
-        setSelectedCategory(data?.content[0]);
-      } catch (err) {
-        setError(err?.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    isFetch && fetchCategories();
-  }, [isFetch]);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      if (!selectedCategory || !selectedCategory?.key) return;
-      try {
-        setLoadingCourses(true);
-        const data = await getCourses(0, 100);
-        setCourses(data?.content);
-      } catch (err) {
-        setErrorCourses(err?.message);
-      } finally {
-        setLoadingCourses(false);
-      }
-    };
-    fetchCourses();
-  }, [selectedCategory?.key]);
 
   return (
     <div className={styles.exploreCoursesContent}>
       <div className={styles.exploreCoursesCategories}>
-        {loading ? (
+        {loading.home ? (
           <div className={styles.loaderContainer}>
             <Loader size="medium" color="primary" />
           </div>
-        ) : error ? (
+        ) : error.home ? (
           <div className={styles.errorMessage}>
-            Failed to load categories: {error}
+            Failed to load categories: {error.home}
           </div>
         ) : (
           <ExploreCoursesCategories
             onClose={onClose}
-            categories={categories}
+            categories={data.categories}
             selectedCategory={selectedCategory}
             onClick={handleChangeCategory}
-            courses={courses}
-            loadingCourses={loadingCourses}
-            errorCourses={errorCourses}
+            courses={data.filteredExploreCourses}
+            loadingCourses={loading.home}
+            errorCourses={error.home}
           />
         )}
       </div>
       <div className={styles.exploreCoursesAllCoursesContainer}>
-        {loadingCourses ? (
+        {loading.home ? (
           <div className={styles.loaderContainer}>
             <Loader size="medium" color="primary" />
           </div>
-        ) : errorCourses ? (
+        ) : error.home ? (
           <div className={styles.errorMessage}>
-            Failed to load courses: {errorCourses}
+            Failed to load courses: {error.home}
           </div>
         ) : (
           <ExploreCoursesAllCourses
             onClose={onClose}
-            courses={courses}
+            courses={data.filteredExploreCourses}
             category={selectedCategory}
-            showEmptyMessage={!loadingCourses && selectedCategory?.key}
+            showEmptyMessage={!loading.home && selectedCategory?.key}
           />
         )}
       </div>

@@ -20,7 +20,9 @@ export default {
   subjectAreas: "Subject Areas",
   exploreFullCatalog: "Explore Full Catalog",
   whyChooseUs: "Why Choose us",
-  ourCourses: "Our Courses",
+  ourCoursesTitle: "Transform Your Potential Into Expertise ",
+  ourCoursesDescription:
+    "Explore a complete range of IT and tech courses designed for every level — from beginners building foundations to professionals mastering advanced skills.",
   months: "months",
   hours: "hours",
   energeticInstructorsWith: "Energetic Instructors with",
@@ -131,5 +133,6 @@ export default {
   expandAll: " Expand all",
   collapseAll: " Collapse all",
   companies: "Companies",
-  courseApplicationForm:"Course Application Form",
+  courseApplicationForm: "Course Application Form",
+  faq: "FAQ",
 } as const;

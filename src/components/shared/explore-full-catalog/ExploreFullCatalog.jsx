@@ -2,13 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import styles from './explore-full-catalog.module.css';
+import styles from "./explore-full-catalog.module.css";
 
-const ExploreFullCatalog = ({ url, t }) => {
+const ExploreFullCatalog = ({ url, t, title }) => {
   return (
     <Link href={url} className={styles.subjectAreasExploreFullCatalog}>
       <div className={styles.subjectAreasExploreFullCatalogContent}>
-        {t("exploreFullCatalog")}
+        {t("exploreFullCatalog", { key: title })}
       </div>
       <div className={styles.iconContainer}>
         <Image

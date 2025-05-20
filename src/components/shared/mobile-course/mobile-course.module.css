@@ -5,10 +5,7 @@
     align-items: stretch;
 
     .courseIcon {
-        /* flex: 1; */
-        /* width: 100%; */
         height: 150px;
-        /* overflow: hidden; */
         position: relative;
 
         .courseLevel {
@@ -44,7 +41,6 @@
     }
 
     .courseInfo {
-        /* flex: 1; */
         height: 100%;
         padding: 16px 24px;
         display: flex;
@@ -52,6 +48,9 @@
         align-items: flex-start;
         justify-content: flex-start;
         gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
 
         .courseHeader {
             display: flex;
@@ -85,7 +84,7 @@
             width: 100%;
 
             .courseBodyEllipsis {
-                width: 90%;
+                width: 100%;
                 overflow: hidden;
                 .courseName {
                     color: rgba(33, 37, 41, 1);
@@ -96,7 +95,7 @@
                     text-overflow: ellipsis;
                     overflow: hidden;
                     white-space: nowrap;
-                    max-width: 100%;
+                    max-width: 90%;
                     width: max-content;
                 }
 

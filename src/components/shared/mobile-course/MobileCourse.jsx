@@ -11,7 +11,7 @@ const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
   const t = useI18n();
 
   return (
-    <Link onClick={onClose} href={`/trainings/${course?.key}`}>
+    <Link onClick={onClose} href={`/trainings/${course?.id}`}>
       <div className={styles.course}>
         <div className={styles.courseIcon}>
           <img
@@ -46,7 +46,7 @@ const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
                 className={styles.courseTitle}
                 style={{ WebkitLineClamp: lines }}
               >
-                {course?.title}
+                {course?.description}
               </p>
             </div>
             {duration && (

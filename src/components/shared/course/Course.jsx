@@ -7,7 +7,6 @@ import { useI18n } from "@/locales/client";
 
 import styles from "./course.module.css";
 
-
 const Course = ({
   course,
   levelPosition = "right",
@@ -21,8 +20,12 @@ const Course = ({
   const t = useI18n();
 
   return (
-    <Link href={`/trainings/${course?.key}`} onClick={onClose}>
-      <div className={styles.course} style={{ flexDirection: direction }}>
+    <Link
+      href={`/trainings/${course?.id}`}
+      onClick={onClose}
+      className={styles.courseLink}
+    >
+      <div className={styles.course} style={{ flexDirection: direction,minHeight:direction ==='row'?'auto':'450px' }}>
         <div
           className={`${styles.courseIcon} ${
             direction === "row"
@@ -70,7 +73,7 @@ const Course = ({
                 className={styles.courseTitle}
                 style={{ WebkitLineClamp: lines }}
               >
-                {course?.title}
+                {course?.description}
               </p>
             </div>
             {duration && (

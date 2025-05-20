@@ -15,9 +15,6 @@ const Box = ({ iconSrc, title, detail, loading = false }) => {
     if (loading) {
       return <Loader size="small" />;
     }
-    if (detail === 0 && !loading) {
-      return null;
-    }
     return detail;
   };
 
