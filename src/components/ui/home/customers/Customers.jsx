@@ -11,10 +11,7 @@ import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import styles from "./customers.module.css";
 
-const Customers = () => {
-  const [customers, setCustomers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+const Customers = ({customers,loading,error}) => {
   const sliderRef = useRef(null);
   const animationRef = useRef();
   const sliderContentRef = useRef(null);
@@ -22,21 +19,6 @@ const Customers = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   const t = useI18n();
-
-  useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        setLoading(true);
-        const res = await getCustomers(0, 100);
-        setCustomers(res?.content);
-      } catch (error) {
-        setError(error?.message || "Failed to load customers");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCustomers();
-  }, []);
 
   useEffect(() => {
     const calculateSlideWidth = () => {

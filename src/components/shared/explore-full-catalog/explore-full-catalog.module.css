@@ -7,10 +7,10 @@
     border-radius: 4px;
     padding: 12px 24px;
     width: max-content;
-    margin: 0 auto;
     height: 49px;
     transition: all 0.3s ease-in;
     position: relative;
+    user-select: none;
 }
 
 .subjectAreasExploreFullCatalog:hover {

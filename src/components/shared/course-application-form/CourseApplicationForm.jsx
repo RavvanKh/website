@@ -75,11 +75,11 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
               id="courseId"
               name="courseId"
             >
-              <option value="" disabled>
+              <option value=""  label={t("selectCourse")} disabled>
                 {t("selectCourse")}
               </option>
               {courses?.map((course) => (
-                <option key={course.id} value={course.id}>
+                <option key={course.id} label={course.name} value={course.id}>
                   {course.name}
                 </option>
               ))}

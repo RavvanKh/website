@@ -42,12 +42,12 @@ const CategoriesSlider = ({
             className={styles.swiper}
           >
             {categories.map((category) => (
-              <SwiperSlide key={category.key} className={styles.slide}>
+              <SwiperSlide key={category.id} className={styles.slide}>
                 <div
                   className={`${styles.category} ${
-                    selectedCategory === category.key ? styles.selectedCategory : ""
+                    selectedCategory === category.id ? styles.selectedCategory : ""
                   }`}
-                  onClick={() => onClick('category',category.key)}
+                  onClick={() => onClick('category',category.id)}
                 >
                   <div>{category.name}</div>
                   <p>14+</p>

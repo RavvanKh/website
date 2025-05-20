@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const API_DOMAIN = process.env.NEXT_PUBLIC_API_DOMAIN || "https://ingress.academy";
-
+const API_DOMAIN =
+  process.env.NEXT_PUBLIC_API_DOMAIN || "https://ingress.academy";
 
 const getMsUrl = (servicePath) => {
-  const baseDomain = API_DOMAIN.endsWith('/') ? API_DOMAIN.slice(0, -1) : API_DOMAIN;
-  const path = servicePath.startsWith('/') ? servicePath : `/${servicePath}`;
-  
+  const baseDomain = API_DOMAIN.endsWith("/")
+    ? API_DOMAIN.slice(0, -1)
+    : API_DOMAIN;
+  const path = servicePath.startsWith("/") ? servicePath : `/${servicePath}`;
+
   return `${baseDomain}${path}`;
 };
 
@@ -21,7 +23,9 @@ const createAxiosInstance = (servicePath) => {
   });
 };
 
-export const quizAxios = createAxiosInstance(process.env.NEXT_PUBLIC_QUIZ_MS_URL);
+export const quizAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_QUIZ_MS_URL
+);
 
 quizAxios.interceptors.request.use(
   (config) => {
@@ -33,8 +37,9 @@ quizAxios.interceptors.request.use(
   }
 );
 
-
-export const applicationAxios = createAxiosInstance(process.env.NEXT_PUBLIC_APPLICATION_MS_URL);
+export const applicationAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_APPLICATION_MS_URL
+);
 
 applicationAxios.interceptors.request.use(
   (config) => {
@@ -46,3 +51,16 @@ applicationAxios.interceptors.request.use(
   }
 );
 
+export const homeAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_HOME_API_URL
+);
+
+applicationAxios.interceptors.request.use(
+  (config) => {
+    config.headers["Accept-Language"] = "en";
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
