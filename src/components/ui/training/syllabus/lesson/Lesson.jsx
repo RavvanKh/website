@@ -38,13 +38,13 @@ const Lesson = ({ lesson,isExpanded }) => {
       <div
         className={`${styles.taskList} ${isOpen ? styles.open : styles.closed}`}
       >
-        {lesson?.tasksEntityList?.map((task, index) => (
+        {lesson?.children?.map((task, index) => (
           <div key={index} className={styles.task}>
             <div className={styles.taskInfo}>
               <div>{index + 1}</div>
-              <p>{task.taskName}</p>
+              <p>{task.name}</p>
             </div>
-            {index !== lesson?.tasksEntityList.length - 1 && (
+            {index !== lesson?.children.length - 1 && (
               <Image src="/icons/task.png" height={20} width={18} alt="task" />
             )}
           </div>

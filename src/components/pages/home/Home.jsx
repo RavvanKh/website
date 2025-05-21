@@ -1,5 +1,6 @@
 "use client";
-import { useHome } from "@/contexts/HomeContext";
+
+import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import Details from "@/components/ui/home/details/Details";
 import WhyChooseUs from "@/components/ui/home/why-choose-us/WhyChooseUs";
@@ -12,8 +13,9 @@ import CourseApplication from "@/components/shared/course-application/CourseAppl
 
 import styles from "./home.module.css";
 
+
 const Home = () => {
-  const { data, filter, error, loading, updateFilter } = useHome();
+  const { data, filter, error, loading, updateFilter } = useGlobalData();
 
 
   return (

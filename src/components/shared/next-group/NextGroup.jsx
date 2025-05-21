@@ -2,18 +2,23 @@ import { RiLoader2Fill } from "react-icons/ri";
 import { MdOutlineFileDownload } from "react-icons/md";
 
 import styles from "./next-group.module.css";
+import { convertStringToDate } from "@/lib/utils/helpers";
 
 const NextGroup = ({
   isDownloadingSyllabus = false,
   t,
   onClickApply,
   onClickSyllabus,
+  nextGroup
 }) => {
+
+  const formatted = convertStringToDate(nextGroup?.startDate);
+
   return (
     <div className={styles.nextGroup}>
       <div className={styles.nextGroupTop}>
         <div>{t("nextGroup")}:</div>
-        <p>16 may, 2025</p>
+        <p>{formatted}</p>
       </div>
       <div className={styles.nextGroupContent}>{t("nextGroupContent")}</div>
       <div className={styles.nextGroupBtnGroup}>

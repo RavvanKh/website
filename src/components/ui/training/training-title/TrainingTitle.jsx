@@ -6,7 +6,7 @@ const TrainingTitle = ({ training }) => {
       <div className={styles.trainingTitleContainer}>
         <div className={styles.trainingTitleLeft}>
           <h2>{training.name}</h2>
-          <p>{training.title}</p>
+          <p>{training.description}</p>
         </div>
         <div className={styles.trainingTitleRight}>
           <img alt={training.name} src={training.icon} fetchPriority="high" />

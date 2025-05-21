@@ -2,21 +2,9 @@ import NextGroup from "./next-group/NextGroup";
 
 import styles from "./next-groups.module.css";
 
-const NextGroups = ({ t, title, onClickApply }) => {
-  const nextGroups = [
-    {
-      date: "16 may, 2025",
-      time: "Həftəiçi",
-      duration: "15:00 - 21:00",
-      types: ["Online", "Office"],
-    },
-    {
-      date: "16 may, 2025",
-      time: "Həftəiçi",
-      duration: "15:00 - 21:00",
-      types: ["Online", "Office"],
-    },
-  ];
+const NextGroups = ({ t, title, onClickApply, nextGroups }) => {
+
+  
   return (
     <section className={styles.nextGroups}>
       <div className={styles.nextGroupsTitle}>{t(title)}</div>

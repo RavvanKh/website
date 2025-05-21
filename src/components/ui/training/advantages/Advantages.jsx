@@ -1,10 +1,8 @@
-import { advantages } from "@/lib/constants/advantages";
-
 import Advantage from "./advantage/Advantage";
 
 import styles from "./advantages.module.css";
 
-const Advantages = ({ t, title }) => {
+const Advantages = ({ t, title, advantages }) => {
   return (
     <section className={styles.advantages}>
       <div className={styles.advantagesTop}>{t(title)}</div>
