@@ -1,40 +1,11 @@
 "use client";
-import { useState } from "react";
-import styles from "./faq.module.css";
 import Image from "next/image";
+import { useState } from "react";
 
-const Faq = ({ t, title }) => {
-  const faqData = [
-    {
-      question: "What is the duration of the course?",
-      answer:
-        "The course lasts for 12 weeks with weekly live sessions and assignments.",
-    },
-    {
-      question: "Do I get a certificate after completing the course?",
-      answer:
-        "Yes, you will receive a certificate of completion once you successfully finish the course.",
-    },
-    {
-      question: "Are there any prerequisites?",
-      answer:
-        "Basic knowledge of programming is recommended but not mandatory.",
-    },
-    {
-      question: "Can I access the course materials after it ends?",
-      answer: "Yes, lifetime access to course materials is included.",
-    },
-    {
-      question: "Is there any refund policy?",
-      answer:
-        "Yes, you can request a full refund within the first 7 days of the course.",
-    },
-    {
-      question: "Will I have access to instructors?",
-      answer:
-        "Yes, instructors are available through weekly Q&A sessions and discussion forums.",
-    },
-  ];
+import styles from "./faq.module.css";
+
+
+const Faq = ({ t, title,faqData }) => {
 
   const [activeIndexes, setActiveIndexes] = useState([]);
 

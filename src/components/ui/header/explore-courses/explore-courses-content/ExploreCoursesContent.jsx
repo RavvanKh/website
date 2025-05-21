@@ -1,6 +1,5 @@
 "use client";
-
-import { useHome } from "@/contexts/HomeContext";
+import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import ExploreCoursesCategories from "./explore-courses-categories/ExploreCoursesCategories";
 import ExploreCoursesAllCourses from "./explore-courses-all-courses/ExploreCoursesAllCourses";
@@ -8,14 +7,16 @@ import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./explore-courses-content.module.css";
 
-const ExploreCoursesContent = ({onClose }) => {
+
+
+const ExploreCoursesContent = ({ onClose }) => {
   const {
     data,
     error,
     loading,
     setSelectedCategoryForExplore,
     selectedCategoryForExplore: selectedCategory,
-  } = useHome();
+  } = useGlobalData();
 
   const handleChangeCategory = (category, isMobile) => {
     if (isMobile) {
@@ -28,7 +29,6 @@ const ExploreCoursesContent = ({onClose }) => {
       setSelectedCategoryForExplore(category);
     }
   };
-
 
   return (
     <div className={styles.exploreCoursesContent}>
