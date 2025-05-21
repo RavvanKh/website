@@ -51,8 +51,8 @@ applicationAxios.interceptors.request.use(
   }
 );
 
-export const homeAxios = createAxiosInstance(
-  process.env.NEXT_PUBLIC_HOME_API_URL
+export const customAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_BASE_URL
 );
 
 applicationAxios.interceptors.request.use(

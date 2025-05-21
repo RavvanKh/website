@@ -3,17 +3,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/locales/client";
 
-import { getCourse } from "@/lib/utils/api/courses";
+import { useGlobalData } from "@/contexts/GlobalDataContext";
+import { useTraining } from "@/contexts/TrainingContext";
 
 import {
   defaultSection,
   selectSectionsAsComponent,
 } from "@/lib/constants/selectSections";
-
-import { getSyllabus } from "@/lib/utils/api/syllabus";
-import { getInstructors } from "@/lib/utils/api/instructors";
-import { getCustomers } from "@/lib/utils/api/customers";
-import { getRandomItems } from "@/lib/utils/helpers";
 
 import Loader from "@/components/shared/loader/Loader";
 import TrainingTitle from "@/components/ui/training/training-title/TrainingTitle";
@@ -22,31 +18,10 @@ import NextGroup from "@/components/shared/next-group/NextGroup";
 
 import styles from "./training.module.css";
 
-const Training = ({ trainingKey }) => {
-  const [training, setTraining] = useState(null);
-  const [loading, setLoading] = useState(!!trainingKey);
-  const [error, setError] = useState(null);
+const Training = () => {
+  const { data } = useGlobalData();
 
-  const [syllabus, setSyllabus] = useState({});
-  const [syllabusLoading, setSyllabusLoading] = useState(true);
-  const [syllabusError, setSyllabusError] = useState(null);
-
-  const [randomInstructors, setRandomInstructors] = useState([]);
-
-  const [data, setData] = useState({
-    instructors: [],
-    companies: [],
-  });
-
-  const [loadings, setLoadings] = useState({
-    instructors: false,
-    companies: false,
-  });
-
-  const [errors, setErrors] = useState({
-    instructors: null,
-    companies: null,
-  });
+  const { training, loading, error } = useTraining();
 
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
@@ -115,43 +90,6 @@ const Training = ({ trainingKey }) => {
     handleSelectSection("courseApplicationForm");
   };
 
-  const fetchSyllabus = async (syllabusId) => {
-    if (!syllabusId) return;
-
-    try {
-      setSyllabusLoading(true);
-      setSyllabusError(null);
-      const syllabusData = await getSyllabus(syllabusId);
-      setSyllabus(syllabusData);
-    } catch (err) {
-      setSyllabusError(err.message);
-    } finally {
-      setSyllabusLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    const fetchTraining = async () => {
-      if (!trainingKey) return;
-
-      try {
-        setLoading(true);
-        setError(null);
-        const res = await getCourse(trainingKey);
-        setTraining(res);
-        if (res && res.syllabusId) {
-          fetchSyllabus(res.syllabusId);
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTraining();
-  }, [trainingKey]);
-
   useEffect(() => {
     const handleScroll = () => {
       const sectionEntries = Object.entries(sectionRefs);
@@ -178,53 +116,6 @@ const Training = ({ trainingKey }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [selectedSection]);
-
-  useEffect(() => {
-    if (data.instructors.length > 0 && randomInstructors.length === 0) {
-      setRandomInstructors(getRandomItems(data.instructors, 5));
-    }
-  }, [data.instructors, randomInstructors.length]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoadings({
-          instructors: true,
-          companies: true,
-        });
-        const [instructorsRes, companiesRes] = await Promise.allSettled([
-          getInstructors(0, 100),
-          getCustomers(0, 100),
-        ]);
-
-        setData((prev) => ({
-          ...prev,
-          instructors:
-            instructorsRes.status === "fulfilled"
-              ? instructorsRes.value.content
-              : [],
-          companies:
-            companiesRes.status === "fulfilled"
-              ? companiesRes.value.content
-              : [],
-        }));
-
-        setErrors({
-          instructors:
-            instructorsRes.status === "rejected" ? instructorsRes.reason : null,
-          companies:
-            companiesRes.status === "rejected" ? companiesRes.reason : null,
-        });
-      } finally {
-        setLoadings({
-          companies: false,
-          instructors: false,
-        });
-      }
-    };
-
-    fetchData();
-  }, []);
 
   if (loading) {
     return (
@@ -269,6 +160,7 @@ const Training = ({ trainingKey }) => {
             onClick={handleSelectSection}
           />
           <NextGroup
+            nextGroup={training.upcomingSessions[0]}
             isDownloadingSyllabus={isDownloadingSyllabus}
             t={t}
             onClickSyllabus={handleDownloadSyllabus}
@@ -281,31 +173,38 @@ const Training = ({ trainingKey }) => {
               const commonProps = { t, title: key };
 
               const propsMap = {
+                advantages: {
+                  advantages: training.advantages,
+                },
                 syllabus: {
-                  syllabus,
-                  loading: syllabusLoading,
-                  error: syllabusError,
+                  syllabus: { name: training.name, lessons: training.syllabus },
+                  loading,
+                  error,
                 },
                 nextGroups: {
                   onClickApply: handleApply,
+                  nextGroups: training.upcomingSessions,
                 },
                 graduates: {
-                  graduates: data.instructors,
-                  loading: loadings.instructors,
-                  error: errors.instructors,
+                  graduates: training.graduatesWorkplaces,
+                  loading,
+                  error,
                 },
                 companies: {
-                  companies: data.companies,
-                  loading: loadings.companies,
-                  error: errors.companies,
+                  companies: data?.customers,
+                  loading,
+                  error,
                 },
                 instructors: {
-                  instructors: randomInstructors,
-                  loading: loadings.instructors,
-                  error: errors.instructors,
+                  instructors: training?.instructors,
+                  loading,
+                  error,
                 },
                 courseApplicationForm: {
                   course: training,
+                },
+                faq: {
+                  faqData: training.faq,
                 },
               };
 

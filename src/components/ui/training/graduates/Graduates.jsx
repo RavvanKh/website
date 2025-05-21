@@ -27,7 +27,7 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
             container.scrollTop = scrollTop + 0.5;
           }
         }
-      }, 16); // ~60fps
+      }, 16);
     };
 
     const timeout = setTimeout(startAutoScroll, 200);
@@ -131,9 +131,9 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
         <div className={styles.graduatesListWrapper} ref={scrollRef}>
           <div className={styles.graduatesList}>
             <div className={styles.graduatesListFirstColumn}>
-              {firstColumn.map((graduate, index) => (
+              {firstColumn.map(({company}, index) => (
                 <div className={styles.graduate} key={index}>
-                  <Instructor instructor={graduate} />
+                  <Instructor instructor={company} />
                 </div>
               ))}
             </div>
