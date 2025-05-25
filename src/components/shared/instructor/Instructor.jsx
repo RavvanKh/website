@@ -14,7 +14,7 @@ const Instructor = ({ instructor }) => {
         />
       </div>
       <div className={styles.instructorInfo}>{instructor?.name}</div>
-      <div className={styles.instructorRole}>{instructor?.workPlace}</div>
+      <div className={styles.instructorRole}>{instructor?.workPlaceId}</div>
     </div>
   );
 };

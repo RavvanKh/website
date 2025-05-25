@@ -8,7 +8,7 @@ import styles from "./navbar-item.module.css";
 
 
 
-const NavbarItem =  ({ item }) => {
+const   NavbarItem =  ({ item }) => {
   const t = useI18n();
 
   return (
@@ -16,7 +16,7 @@ const NavbarItem =  ({ item }) => {
       <div
         className={styles.navbarItem}
       >
-        <Link href={`${item.key}`} className={styles.navbarItemText}>
+        <Link href={`/${item.key}`} className={styles.navbarItemText}>
           {t(item.key)}
         </Link>
       </div>

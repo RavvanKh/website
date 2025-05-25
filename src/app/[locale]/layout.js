@@ -1,12 +1,11 @@
 import { I18nProviderClient } from "@/locales/client";
 
+import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
 
 import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
 
 import "./globals.css";
-import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
-
 
 export const metadata = {
   title: "Ingress Academy",

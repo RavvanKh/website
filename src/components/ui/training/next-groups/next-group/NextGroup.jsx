@@ -2,7 +2,7 @@ import { convertStartEndTime, convertStringToDate } from "@/lib/utils/helpers";
 
 import styles from "./next-group.module.css";
 
-const NextGroup = ({ group, onClick }) => {
+const NextGroup = ({t, group, onClick }) => {
   const formatted = convertStringToDate(group.startDate);
 
   const hour = convertStartEndTime(group.startHour, group.endHour);
@@ -14,11 +14,11 @@ const NextGroup = ({ group, onClick }) => {
         <button onClick={onClick}>Apply</button>
       </div>
       <div className={styles.nextGroupContent}>
-        <div>Dərs günləri</div>
+        <div>{t("lessonDays")}</div>
         <p>{group.sessionDayType}</p>
       </div>
       <div className={styles.nextGroupContent}>
-        <div>Dərs saatları</div>
+        <div>{t("lessonHours")}</div>
         <p>{hour}</p>
       </div>
       <div className={styles.nextGroupType}>
