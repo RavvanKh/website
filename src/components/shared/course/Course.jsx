@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useI18n } from "@/locales/client";
 
 import styles from "./course.module.css";
+import { convertWeekToHour } from "@/lib/utils/helpers";
 
 const Course = ({
   course,
@@ -25,7 +26,13 @@ const Course = ({
       onClick={onClose}
       className={styles.courseLink}
     >
-      <div className={styles.course} style={{ flexDirection: direction,minHeight:direction ==='row'?'auto':'450px' }}>
+      <div
+        className={styles.course}
+        style={{
+          flexDirection: direction,
+          minHeight: direction === "row" ? "auto" : "450px",
+        }}
+      >
         <div
           className={`${styles.courseIcon} ${
             direction === "row"
@@ -86,8 +93,8 @@ const Course = ({
                   loading="lazy"
                 />
                 <div className={styles.courseDurationInfo}>
-                  {course?.duration} {t("months")} / {course?.lessonHour}{" "}
-                  {t("hours")}
+                  {course?.durationInWeeks} {t("weeks")} /{" "}
+                  {convertWeekToHour(course?.durationInWeeks)} {t("hours")}
                 </div>
               </div>
             )}

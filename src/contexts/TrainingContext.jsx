@@ -1,5 +1,6 @@
 "use client";
 
+import { getGraduates } from "@/lib/utils/api/graduates";
 import { getTrainingData } from "@/lib/utils/api/training";
 
 import {
@@ -19,6 +20,7 @@ export const TrainingProvider = ({ children, trainingKey }) => {
     durationInWeeks: 0,
     faq: [],
     graduatesWorkplaces: [],
+    graduates:[],
     hoursPerSession: 0,
     icon: null,
     id: "",
@@ -37,13 +39,24 @@ export const TrainingProvider = ({ children, trainingKey }) => {
 
   const fetchTraining = useCallback(async () => {
     setLoading(true);
-    const [trainingResult] = await Promise.allSettled([
+    const [trainingResult,graduatesResult] = await Promise.allSettled([
       getTrainingData(trainingKey),
+      getGraduates(trainingKey, 0, 100),
     ]);
     if (trainingResult.status === "fulfilled") {
       setTraining(trainingResult.value);
     } else {
       setError(trainingResult.reason);
+    }
+    
+    if(graduatesResult.status === "fulfilled") {
+      setTraining((prevTraining) => ({
+        ...prevTraining,
+        graduates: graduatesResult.value.content,
+      }));
+    }
+    else {
+      setError(graduatesResult.reason);
     }
     setLoading(false);
   }, [trainingKey]);

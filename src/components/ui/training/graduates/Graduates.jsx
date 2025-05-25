@@ -1,7 +1,10 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
+
 import Loader from "@/components/shared/loader/Loader";
+
 import Instructor from "@/components/shared/instructor/Instructor";
+
 import styles from "./graduates.module.css";
 
 const Graduates = ({ t, title, error, loading, graduates }) => {
@@ -39,75 +42,19 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
   }, [graduates]);
 
   useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
+  const container = scrollRef.current;
+  if (!container) return;
 
-    const handleMouseEnter = () => {
-      isHovered.current = true;
-      clearInterval(scrollInterval.current);
-    };
+  const interval = setInterval(() => {
+    container.scrollTop += 1;
+    if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
+      container.scrollTop = 0;
+    }
+  }, 16);
 
-    const handleMouseLeave = () => {
-      isHovered.current = false;
-      if (!isUserScrolling.current) {
-        const timeout = setTimeout(() => {
-          if (!isHovered.current && !isUserScrolling.current) {
-            const newInterval = setInterval(() => {
-              if (!isHovered.current && !isUserScrolling.current) {
-                container.scrollTop += 0.5;
-                if (
-                  container.scrollTop + container.clientHeight >=
-                  container.scrollHeight
-                ) {
-                  container.scrollTop = 0;
-                }
-              }
-            }, 16);
-            scrollInterval.current = newInterval;
-          }
-        }, 1500);
-        return () => clearTimeout(timeout);
-      }
-    };
+  return () => clearInterval(interval);
+}, []);
 
-    const handleScroll = () => {
-      if (!isUserScrolling.current) {
-        isUserScrolling.current = true;
-        clearInterval(scrollInterval.current);
-      }
-
-      clearTimeout(container.scrollTimeout);
-      container.scrollTimeout = setTimeout(() => {
-        isUserScrolling.current = false;
-        if (!isHovered.current) {
-          const newInterval = setInterval(() => {
-            if (!isHovered.current && !isUserScrolling.current) {
-              container.scrollTop += 0.5;
-              if (
-                container.scrollTop + container.clientHeight >=
-                container.scrollHeight
-              ) {
-                container.scrollTop = 0;
-              }
-            }
-          }, 16);
-          scrollInterval.current = newInterval;
-        }
-      }, 1500);
-    };
-
-    container.addEventListener("mouseenter", handleMouseEnter);
-    container.addEventListener("mouseleave", handleMouseLeave);
-    container.addEventListener("scroll", handleScroll);
-
-    return () => {
-      container.removeEventListener("mouseenter", handleMouseEnter);
-      container.removeEventListener("mouseleave", handleMouseLeave);
-      container.removeEventListener("scroll", handleScroll);
-      clearTimeout(container.scrollTimeout);
-      clearInterval(scrollInterval.current);
-    };
-  }, []);
 
   const firstColumn = graduates.slice(0, Math.ceil(graduates.length / 2));
   const secondColumn = graduates.slice(Math.ceil(graduates.length / 2));
@@ -131,9 +78,9 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
         <div className={styles.graduatesListWrapper} ref={scrollRef}>
           <div className={styles.graduatesList}>
             <div className={styles.graduatesListFirstColumn}>
-              {firstColumn.map(({company}, index) => (
+              {firstColumn.map((graduate, index) => (
                 <div className={styles.graduate} key={index}>
-                  <Instructor instructor={company} />
+                  <Instructor instructor={graduate} />
                 </div>
               ))}
             </div>
