@@ -12,8 +12,8 @@
     }
 
     .nextGroupsContent {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
         gap: 15px;
     }
 }

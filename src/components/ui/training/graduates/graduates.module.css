@@ -30,7 +30,8 @@
     }
 
     .graduatesListWrapper {
-        height: 470px;
+        min-height: 250px;
+        max-height: 470px;
         overflow-y: auto;
         scrollbar-width: none;
 

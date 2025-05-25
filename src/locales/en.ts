@@ -23,7 +23,7 @@ export default {
   ourCoursesTitle: "Transform Your Potential Into Expertise ",
   ourCoursesDescription:
     "Explore a complete range of IT and tech courses designed for every level — from beginners building foundations to professionals mastering advanced skills.",
-  months: "months",
+  weeks: "weeks",
   hours: "hours",
   energeticInstructorsWith: "Energetic Instructors with",
   realWorldExperience: "Real-World Expertise",
@@ -135,4 +135,6 @@ export default {
   companies: "Companies",
   courseApplicationForm: "Course Application Form",
   faq: "FAQ",
+  lessonDays: "Lesson Days",
+  lessonHours: "Lesson Hours",
 } as const;

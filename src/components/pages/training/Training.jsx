@@ -19,7 +19,6 @@ import NextGroup from "@/components/shared/next-group/NextGroup";
 import styles from "./training.module.css";
 
 const Training = () => {
-  const { data } = useGlobalData();
 
   const { training, loading, error } = useTraining();
 
@@ -149,6 +148,7 @@ const Training = () => {
     );
   }
 
+
   return (
     <section className={styles.training}>
       <TrainingTitle training={training} />
@@ -174,24 +174,24 @@ const Training = () => {
 
               const propsMap = {
                 advantages: {
-                  advantages: training.advantages,
+                  advantages: training?.advantages,
                 },
                 syllabus: {
-                  syllabus: { name: training.name, lessons: training.syllabus },
+                  syllabus: { name: training?.name, lessons: training?.syllabus },
                   loading,
                   error,
                 },
                 nextGroups: {
                   onClickApply: handleApply,
-                  nextGroups: training.upcomingSessions,
+                  nextGroups: training?.upcomingSessions,
                 },
                 graduates: {
-                  graduates: training.graduatesWorkplaces,
+                  graduates: training?.graduates,
                   loading,
                   error,
                 },
                 companies: {
-                  companies: data?.customers,
+                  companies: training?.graduatesWorkplaces,
                   loading,
                   error,
                 },
