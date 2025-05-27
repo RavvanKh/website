@@ -2,7 +2,10 @@ import React, { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { routes } from "@/lib/constants/routes";
+
 import styles from "./logo.module.css";
+
 
 const Logo = memo(({ theme = "light", isShownBottom = false }) => {
   const titleColor = theme === "light" ? "#233131" : "#ffffff";
@@ -11,7 +14,7 @@ const Logo = memo(({ theme = "light", isShownBottom = false }) => {
 
   return (
     <div className={styles.logo}>
-      <Link href="/" className={styles.logoTop}>
+      <Link href={routes.home} className={styles.logoTop}>
         <Image
           src="/icons/logo.svg"
           height={50}

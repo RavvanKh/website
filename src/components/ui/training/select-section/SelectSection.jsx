@@ -1,11 +1,10 @@
-import { selectSections } from "@/lib/constants/selectSections";
 
 import styles from "./select-section.module.css";
 
-const SelectSection = ({ t, selectedSection, onClick }) => {
+const SelectSection = ({ t, selectedSection, onClick,sections }) => {
   return (
     <div className={styles.selectSection}>
-      {selectSections.map((section, index) => (
+      {sections.map((section, index) => (
         <div
           key={index}
           onClick={() => onClick(section.key)}

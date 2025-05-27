@@ -9,7 +9,10 @@ import Courses from "./absolute-boxes/courses/Courses";
 import Students from "./absolute-boxes/students/Students";
 import StudentRates from "./student-rates/StudentRates";
 
+import { routes } from "@/lib/constants/routes";
+
 import styles from "./info.module.css";
+
 
 const Info = ({
   totalCourses,
@@ -31,7 +34,7 @@ const Info = ({
         </h1>
         <div className={styles.infoLeftTitle}>{t("infoTitle")}</div>
         <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
-        <Link href="/" className={styles.infoLeftButton}>
+        <Link href={routes.home} className={styles.infoLeftButton}>
           <div>{t("exploreOurCourses")}</div>
           <Image
             src="/icons/arrow-right-2.svg"

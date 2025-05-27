@@ -26,7 +26,7 @@ const Footer = () => {
             <div className={styles.footerPages}>
               <div>{t("company")}</div>
               {navbarItems.map((item) => (
-                <Link href={`/${item.key}`} key={item.key}>
+                <Link href={item.url} key={item.key}>
                   {t(item.key)}
                 </Link>
               ))}

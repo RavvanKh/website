@@ -1,60 +1,32 @@
 "use client";
-import { useRef, useEffect } from "react";
-
+import { useRef, useEffect, useState } from "react";
 import Loader from "@/components/shared/loader/Loader";
-
 import Instructor from "@/components/shared/instructor/Instructor";
-
 import styles from "./graduates.module.css";
 
 const Graduates = ({ t, title, error, loading, graduates }) => {
   const scrollRef = useRef(null);
-  const isHovered = useRef(false);
-  const isUserScrolling = useRef(false);
   const scrollInterval = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const isScrollable = graduates?.length > 6;
 
   useEffect(() => {
-    if (!graduates || graduates.length === 0) return;
+    if (!isScrollable || !isHovered || !scrollRef.current) return;
+
     const container = scrollRef.current;
-    if (!container) return;
 
-    const startAutoScroll = () => {
-      scrollInterval.current = setInterval(() => {
-        if (!isHovered.current && !isUserScrolling.current) {
-          const { scrollTop, clientHeight, scrollHeight } = container;
-          const maxScroll = scrollHeight - clientHeight;
+    scrollInterval.current = setInterval(() => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      if (scrollTop + clientHeight >= scrollHeight - 1) {
+        container.scrollTop = 0;
+      } else {
+        container.scrollTop += 0.5;
+      }
+    }, 16);
 
-          if (scrollTop >= maxScroll - 1) {
-            container.scrollTop = 0;
-          } else {
-            container.scrollTop = scrollTop + 0.5;
-          }
-        }
-      }, 16);
-    };
-
-    const timeout = setTimeout(startAutoScroll, 200);
-
-    return () => {
-      clearTimeout(timeout);
-      clearInterval(scrollInterval.current);
-    };
-  }, [graduates]);
-
-  useEffect(() => {
-  const container = scrollRef.current;
-  if (!container) return;
-
-  const interval = setInterval(() => {
-    container.scrollTop += 1;
-    if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
-      container.scrollTop = 0;
-    }
-  }, 16);
-
-  return () => clearInterval(interval);
-}, []);
-
+    return () => clearInterval(scrollInterval.current);
+  }, [isHovered, isScrollable]);
 
   const firstColumn = graduates.slice(0, Math.ceil(graduates.length / 2));
   const secondColumn = graduates.slice(Math.ceil(graduates.length / 2));
@@ -68,6 +40,7 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
         <div>{t(title)}</div>
         <p>{t("graduatesContent")}</p>
       </div>
+
       {loading ? (
         <div className={styles.loaderContainer}>
           <Loader size="medium" color="primary" />
@@ -75,7 +48,12 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
       ) : error ? (
         <div>Failed to load graduates: {error}</div>
       ) : (
-        <div className={styles.graduatesListWrapper} ref={scrollRef}>
+        <div
+          className={styles.graduatesListWrapper}
+          ref={scrollRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <div className={styles.graduatesList}>
             <div className={styles.graduatesListFirstColumn}>
               {firstColumn.map((graduate, index) => (

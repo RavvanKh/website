@@ -1,13 +1,15 @@
 "use client";
-import { set, useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { useI18n } from "@/locales/client";
 
-import styles from "./course-application-form.module.css";
-import { useEffect } from "react";
 import { createCourseApplication } from "@/lib/utils/api/courseApplication";
+
+import styles from "./course-application-form.module.css";
+
 
 const CourseApplicationForm = ({ courses = [], course = {} }) => {
   const t = useI18n();
@@ -19,7 +21,7 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
     fullName: yup.string().required("Full name is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
     phone: yup.string().required("Phone number is required"),
-    message: yup.string().required("Message is required"),
+    // message: yup.string().required("Message is required"),
   });
 
   const {
@@ -151,7 +153,7 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
           </div>
         </div>
 
-        <div className={styles.courseApplicationFormInputGroup}>
+        {/* <div className={styles.courseApplicationFormInputGroup}>
           <label htmlFor="message">{t("message")}</label>
           <textarea
             name="message"
@@ -162,7 +164,7 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
           {errors.message && (
             <p className={styles.error}>{errors.message.message}</p>
           )}
-        </div>
+        </div> */}
 
         <div className={styles.courseApplicationFormSubmitBtn}>
           <button type="submit">{t("submit")}</button>

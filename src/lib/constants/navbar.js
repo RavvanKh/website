@@ -1,11 +1,16 @@
+import { routes } from "./routes";
+
 export const navbarItems = [
-    {
-        key:"about",
-    },
-    {
-        key:"scholarship",
-    },
-    {
-        key:"career",
-    }
-]
+  {
+    key: "about",
+    url: routes.about,
+  },
+  {
+    key: "scholarship",
+    url: routes.scholarship,
+  },
+//   {
+//     key: "career",
+//     url: routes.career,
+//   },
+];

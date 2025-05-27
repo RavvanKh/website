@@ -1,0 +1,28 @@
+.skeleton {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+
+    .objImgSkeleton {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.rounded {
+    .objImgSkeleton{
+        border-radius: 50%;
+    }
+}
+
+.rounded img{
+        border-radius: 50%;
+        object-fit: cover;
+}
+
+.skeleton img {
+    width: 100%;
+    height: 100%;
+}
