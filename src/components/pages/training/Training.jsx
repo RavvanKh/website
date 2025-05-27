@@ -160,7 +160,7 @@ const Training = () => {
             onClick={handleSelectSection}
             sections={filteredSections}
           />
-          {training?.upcomingSessions && (
+          {Object.keys(training?.upcomingSessions).length > 0 && (
             <NextGroup
               nextGroup={training.upcomingSessions[0]}
               isDownloadingSyllabus={isDownloadingSyllabus}
