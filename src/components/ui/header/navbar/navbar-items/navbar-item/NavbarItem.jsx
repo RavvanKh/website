@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import Link from "next/link";
 
@@ -6,21 +6,17 @@ import { useI18n } from "@/locales/client";
 
 import styles from "./navbar-item.module.css";
 
-
-
-const   NavbarItem =  ({ item }) => {
+const NavbarItem = ({ item, isLast }) => {
   const t = useI18n();
 
   return (
     <div className={styles.navbarItemContainer}>
-      <div
-        className={styles.navbarItem}
-      >
-        <Link href={`/${item.key}`} className={styles.navbarItemText}>
+      <div className={styles.navbarItem}>
+        <Link href={item.url} className={styles.navbarItemText}>
           {t(item.key)}
         </Link>
       </div>
-      <span className={styles.navbarDivider} />
+      {!isLast && <div className={styles.navbarItemDivider} />}
     </div>
   );
 };

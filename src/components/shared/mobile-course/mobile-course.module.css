@@ -5,6 +5,7 @@
     align-items: stretch;
 
     .courseIcon {
+        width: 100%;
         height: 150px;
         position: relative;
 

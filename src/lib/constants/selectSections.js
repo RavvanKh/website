@@ -13,10 +13,10 @@ export const selectSections = [
     key: "advantages",
   },
   {
-    key: "syllabus",
+    key: "trainingProgram",
   },
   {
-    key: "nextGroups",
+    key: "upcomingGroups",
   },
   {
     key: "graduates",
@@ -42,11 +42,11 @@ export const selectSectionsAsComponent = [
     component: Advantages,
   },
   {
-    key: "syllabus",
+    key: "trainingProgram",
     component: Syllabus,
   },
   {
-    key: "nextGroups",
+    key: "upcomingGroups",
     component: NextGroups,
   },
   { key: "graduates", component: Graduates },

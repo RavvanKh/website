@@ -4,11 +4,23 @@
     gap: 16px;
 
     .companiesTop {
-        color: rgba(0, 58, 157, 1);
-        font-size: 24px;
-        line-height: 32px;
-        font-weight: 700;
-        font-family: 'Nunito', sans-serif;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .companiesTitle {
+            color: rgba(0, 58, 157, 1);
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+        }
+    }
+
+    .companiesTop p {
+        color: #606060;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
     }
 
     .companiesList {

@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className={styles.navbarRightContainer}>
         <div className={styles.navbarDesktop}>
           <NavbarItems />
-          <Apply />
+          {/* <Apply /> */}
         </div>
         <div className={styles.navbarMobile}>
           <ContactPhone />

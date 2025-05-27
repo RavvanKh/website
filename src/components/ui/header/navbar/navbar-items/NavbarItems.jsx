@@ -6,12 +6,15 @@ import { navbarItems } from "@/lib/constants/navbar";
 
 import styles from "./navbar-items.module.css";
 
-
 const NavbarItems = () => {
   return (
     <div className={styles.navbarItems}>
-      {navbarItems.map((item) => (
-        <NavbarItem  key={item.key} item={item} />
+      {navbarItems.map((item, index) => (
+        <NavbarItem
+          key={item.key}
+          item={item}
+          isLast={index === navbarItems.length - 1}
+        />
       ))}
     </div>
   );

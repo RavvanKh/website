@@ -17,14 +17,14 @@ const NextGroup = ({
   return (
     <div className={styles.nextGroup}>
       <div className={styles.nextGroupTop}>
-        <div>{t("nextGroup")}:</div>
+        <div>{t("upcomingGroup")}:</div>
         <p>{formatted}</p>
       </div>
-      <div className={styles.nextGroupContent}>{t("nextGroupContent")}</div>
+      <div className={styles.nextGroupContent}>{t("upcomingGroupContent")}</div>
       <div className={styles.nextGroupBtnGroup}>
         <button
           className={styles.nextGroupSyllabus}
-          onClick={() => onClickSyllabus("nextGroup")}
+          onClick={() => onClickSyllabus("upcomingGroupContent")}
           disabled={isDownloadingSyllabus}
         >
           {isDownloadingSyllabus ? (
@@ -37,7 +37,7 @@ const NextGroup = ({
                 height={20}
                 width={20}
               />
-              {t("syllabus")}
+              {t("trainingProgram")}
             </>
           )}
         </button>

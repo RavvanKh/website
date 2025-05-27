@@ -50,7 +50,7 @@ const ExploreCoursesCategories = ({
                     ? styles.exploreCoursesCategoriesCategorySelected
                     : ""
                 }`}
-                onClick={() => onClick(category, isMobile)}
+                onMouseEnter={() => onClick(category, isMobile)}
               >
                 <div className={styles.exploreCoursesCategoriesName}>
                   {category.name}
