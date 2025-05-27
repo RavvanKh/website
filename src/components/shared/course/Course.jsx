@@ -5,8 +5,12 @@ import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
 
-import styles from "./course.module.css";
 import { convertWeekToHour } from "@/lib/utils/helpers";
+import { routes } from "@/lib/constants/routes";
+
+import styles from "./course.module.css";
+import ImgSkeleton from "../img-skeleton/ImgSkeleton";
+
 
 const Course = ({
   course,
@@ -22,7 +26,7 @@ const Course = ({
 
   return (
     <Link
-      href={`/trainings/${course?.id}`}
+      href={`${routes.trainings}/${course?.id}`}
       onClick={onClose}
       className={styles.courseLink}
     >
@@ -44,15 +48,7 @@ const Course = ({
           {levelPosition === "top" && (
             <div className={styles.courseLevel}>{course?.level}</div>
           )}
-          <img
-            className={styles.courseImg}
-            src={course?.icon}
-            alt={course?.name}
-            width={100}
-            loading="lazy"
-            height={100}
-            fetchPriority="high"
-          />
+          <ImgSkeleton obj={course} keyName='icon' isRounded={false}/>
         </div>
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>

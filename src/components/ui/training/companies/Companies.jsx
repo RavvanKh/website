@@ -6,7 +6,11 @@ import styles from "./companies.module.css";
 const Companies = ({ t, title, companies, loading, error }) => {
   return (
     <section className={styles.companies}>
-      <div className={styles.companiesTop}>{t(title)}</div>
+      <div className={styles.companiesTop}>
+        <div className={styles.companiesTitle}>{t("graduatesTitle")}</div>
+        <p>{t("graduatesDescription")}</p>
+
+      </div>
       {loading ? (
         <div className={styles.loaderContainer}>
           <Loader size="medium" color="primary" />

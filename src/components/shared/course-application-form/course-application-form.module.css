@@ -1,7 +1,7 @@
 .courseApplicationRightTitle {
     color: rgba(26, 26, 26, 1);
     font-weight: 700;
-    font-size: 40px;
+    font-size: 32px;
     line-height: 150%;
 
 }
@@ -52,8 +52,11 @@
 
         .courseApplicationFormSubmitBtn button {
             background: rgba(7, 57, 172, 1);
-            height: 52px;
-            padding: 12.5px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 12px 24px;
             border-radius: 6px;
             color: rgba(255, 255, 255, 1);
             font-weight: 500;
@@ -61,6 +64,11 @@
             letter-spacing: 0.64px;
             font-size: 18px;
             width: max-content;
+            transition: all 0.3s ease-in;
+
+            &:hover {
+                background: #2e6eff;
+            }
         }
 
         .courseApplicationFormFlex {

@@ -168,10 +168,6 @@ export const GlobalDataProvider = ({ children }) => {
     }));
   }, [filteredExploreCourses]);
 
-  useEffect(() => {
-    setSelectedCategoryForExplore(data.categories[0] || {});
-  }, [data.categories]);
-
 useEffect(() => {
   setFilter({
     type: urlType,

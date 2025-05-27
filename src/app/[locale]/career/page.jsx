@@ -1,9 +1,7 @@
-import React from 'react'
+import Career from "@/components/pages/career/Career";
 
 const CareerPage = () => {
-  return (
-    <div>CareerPage</div>
-  )
-}
+  return <Career />;
+};
 
-export default CareerPage
+export default CareerPage;

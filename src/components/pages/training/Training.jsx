@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/locales/client";
 
-import { useGlobalData } from "@/contexts/GlobalDataContext";
 import { useTraining } from "@/contexts/TrainingContext";
 
 import {
@@ -17,9 +16,9 @@ import SelectSection from "@/components/ui/training/select-section/SelectSection
 import NextGroup from "@/components/shared/next-group/NextGroup";
 
 import styles from "./training.module.css";
+import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
 const Training = () => {
-
   const { training, loading, error } = useTraining();
 
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
@@ -28,10 +27,12 @@ const Training = () => {
 
   const t = useI18n();
 
+  const filteredSections = filterValidSections(training);
+
   const sectionRefs = {
     advantages: useRef(null),
-    syllabus: useRef(null),
-    nextGroups: useRef(null),
+    trainingProgram: useRef(null),
+    upcomingGroups: useRef(null),
     graduates: useRef(null),
     companies: useRef(null),
     feedbacks: useRef(null),
@@ -59,7 +60,7 @@ const Training = () => {
 
   const handleDownloadSyllabus = (source = "default") => {
     if (syllabus && syllabus.link && !isDownloadingSyllabus) {
-      if (source === "nextGroup") {
+      if (source === "upcomingGroup") {
         setIsDownloadingSyllabus(true);
       }
 
@@ -71,7 +72,7 @@ const Training = () => {
         setIsDownloadingSyllabus(false)
       );
 
-      if (source === "nextGroup") {
+      if (source === "upcomingGroup") {
         setTimeout(() => {
           setIsDownloadingSyllabus(false);
         }, 2000);
@@ -148,7 +149,6 @@ const Training = () => {
     );
   }
 
-
   return (
     <section className={styles.training}>
       <TrainingTitle training={training} />
@@ -158,63 +158,67 @@ const Training = () => {
             t={t}
             selectedSection={selectedSection}
             onClick={handleSelectSection}
+            sections={filteredSections}
           />
-          <NextGroup
-            nextGroup={training.upcomingSessions[0]}
-            isDownloadingSyllabus={isDownloadingSyllabus}
-            t={t}
-            onClickSyllabus={handleDownloadSyllabus}
-            onClickApply={handleApply}
-          />
+          {training?.upcomingSessions && (
+            <NextGroup
+              nextGroup={training.upcomingSessions[0]}
+              isDownloadingSyllabus={isDownloadingSyllabus}
+              t={t}
+              onClickSyllabus={handleDownloadSyllabus}
+              onClickApply={handleApply}
+            />
+          )}
         </div>
         <div className={styles.trainingSectionsRight}>
-          {selectSectionsAsComponent.map(
-            ({ key, component: Component }, index) => {
-              const commonProps = { t, title: key };
+          {filteredSections.map(({ key, component: Component }, index) => {
+            const commonProps = { t, title: key };
 
-              const propsMap = {
-                advantages: {
-                  advantages: training?.advantages,
+            const propsMap = {
+              advantages: {
+                advantages: training?.advantages,
+              },
+              trainingProgram: {
+                trainingProgram: {
+                  name: training?.name,
+                  lessons: training?.syllabus,
                 },
-                syllabus: {
-                  syllabus: { name: training?.name, lessons: training?.syllabus },
-                  loading,
-                  error,
-                },
-                nextGroups: {
-                  onClickApply: handleApply,
-                  nextGroups: training?.upcomingSessions,
-                },
-                graduates: {
-                  graduates: training?.graduates,
-                  loading,
-                  error,
-                },
-                companies: {
-                  companies: training?.graduatesWorkplaces,
-                  loading,
-                  error,
-                },
-                instructors: {
-                  instructors: training?.instructors,
-                  loading,
-                  error,
-                },
-                courseApplicationForm: {
-                  course: training,
-                },
-                faq: {
-                  faqData: training.faq,
-                },
-              };
+                loading,
+                error,
+              },
+              upcomingGroups: {
+                onClickApply: handleApply,
+                upcomingGroups: training?.upcomingSessions,
+              },
+              graduates: {
+                graduates: training?.graduates,
+                loading,
+                error,
+              },
+              companies: {
+                companies: training?.graduatesWorkplaces,
+                loading,
+                error,
+              },
+              instructors: {
+                instructors: training?.instructors,
+                loading,
+                error,
+              },
+              courseApplicationForm: {
+                course: training,
+              },
+              faq: {
+                faqData: training.faq,
+              },
+            };
 
-              return (
-                <div ref={sectionRefs[key]} key={index}>
-                  <Component {...commonProps} {...(propsMap[key] || {})} />
-                </div>
-              );
-            }
-          )}
+            return (
+              <div ref={sectionRefs[key]} key={index}>
+                <Component {...commonProps} {...(propsMap[key] || {})} />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

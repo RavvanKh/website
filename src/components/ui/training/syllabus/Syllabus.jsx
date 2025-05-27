@@ -5,7 +5,7 @@ import Lesson from "./lesson/Lesson";
 
 import styles from "./syllabus.module.css";
 
-const Syllabus = ({ syllabus, t, title, error, loading }) => {
+const Syllabus = ({ trainingProgram, t, title, error, loading }) => {
   const [expandAll, setExpandAll] = useState(false);
 
   const handleToggle = () => {
@@ -22,7 +22,7 @@ const Syllabus = ({ syllabus, t, title, error, loading }) => {
     <section className={styles.syllabus}>
       <div className={styles.syllabusTop}>
         <div className={styles.syllabusTopLeft}>
-          {t(title)}: {syllabus.name}
+          {t(title)}: {trainingProgram?.name}
         </div>
         <div className={styles.syllabusTopRight}>
           <button onClick={handleToggle}>
@@ -31,7 +31,7 @@ const Syllabus = ({ syllabus, t, title, error, loading }) => {
         </div>
       </div>
       <div className={styles.syllabusLessons}>
-        {syllabus?.lessons
+        {trainingProgram?.lessons
           ?.sort((a, b) => a.positionIndex - b.positionIndex)
           ?.map((lesson) => (
             <Lesson key={lesson.id} lesson={lesson} isExpanded={expandAll} />

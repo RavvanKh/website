@@ -1,17 +1,11 @@
-import React from "react";
+import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
 
 import styles from "./customer.module.css";
 
 const Customer = ({ customer }) => {
   return (
     <div className={styles.customer}>
-      <img
-        src={customer?.image}
-        alt={customer?.name}
-        title={customer?.name}
-        loading="lazy"
-        className={styles.customerImage}
-      />
+      <ImgSkeleton obj={customer} keyName="image" isRounded={false} />
     </div>
   );
 };
