@@ -1,31 +1,82 @@
-import { use } from "react";
-
 import Training from "@/components/pages/training/Training";
 
 import { getTrainingData } from "@/lib/utils/api/training";
-import { generateCustomMetadata } from "@/lib/utils/helpers/generateCustomMetadata";
+import { getHomeData } from "@/lib/utils/api/home";
+import { generateSchema } from "@/lib/utils/helpers/generateSchema";
 
-export const generateMetadata = async ({params}) =>{
-  const {key} = await params;
-  
+export async function generateMetadata({ params }) {
+  const { key } = await params;
+  const { organization } = await getHomeData();
   const training = await getTrainingData(key);
+
   if (!training?.name) {
     return {
       title: "Training not found",
       description: "The requested training could not be found.",
     };
   }
-  return generateCustomMetadata({
-    title:training?.name,
-    description:training?.description,
-    keywords: training?.searchKeys,
-  })
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: training.name,
+    description: training.description,
+    provider: {
+      "@type": "Organization",
+      name: organization?.name || "Ingress Academy",
+      sameAs: organization?.url || "https://ingress.academy",
+    },
+  };
+
+  return {
+    title: `${training.name} - ${organization?.name}`,
+    description: training.description,
+    keywords: training.searchKeys || [],
+    openGraph: {
+      title: training.name,
+      description: training.description,
+      url: `${organization?.url}/training/${key}`,
+      siteName: organization?.name,
+      images: [
+        {
+          url: training.image || organization?.logo,
+          width: 800,
+          height: 600,
+          alt: training.name,
+        },
+      ],
+      type: "website",
+    },
+    alternates: {
+      canonical: `${organization?.url}/en/training/${key}`,
+    },
+    other: {
+      "structured-data": (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      ),
+    },
+  };
 }
 
-const TrainingPage = ({ params }) => {
-  const { key } = use(params);
+export default async function TrainingPage({ params }) {
+  const { key } = await params;
 
-  return <Training trainingKey={key} />;
-};
+  const training = await getTrainingData(key);
 
-export default TrainingPage;
+  const optimizedSchema = generateSchema("training", training);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(optimizedSchema) }}
+      />
+      <Training trainingKey={key} />;
+    </>
+  );
+}

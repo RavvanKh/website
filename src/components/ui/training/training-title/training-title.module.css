@@ -40,6 +40,7 @@
 
         .trainingTitleRight{
             width: 447px;
+            height: 250px;
         }
         .trainingTitleRight img{
             object-fit: cover;

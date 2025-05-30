@@ -11,7 +11,6 @@ import {
 } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
-
 import { getHomeData } from "@/lib/utils/api/home";
 import { getComments } from "@/lib/utils/api/comments";
 import { filterByCategory } from "@/lib/utils/helpers";
@@ -19,7 +18,6 @@ import { filterByCategory } from "@/lib/utils/helpers";
 const GlobalDataContext = createContext();
 
 export const GlobalDataProvider = ({ children }) => {
-
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -35,6 +33,7 @@ export const GlobalDataProvider = ({ children }) => {
     comments: {},
     totalCourses: 0,
     totalInstructors: 0,
+    organization: {},
   });
 
   const [loading, setLoading] = useState({
@@ -59,14 +58,13 @@ export const GlobalDataProvider = ({ children }) => {
     {}
   );
 
-    const filteredExploreCourses = useMemo(() => {
-      let filtered = [...data?.courses];
-  
-      filtered = filterByCategory(filtered, selectedCategoryForExplore.id);
-  
-      return filtered;
-    }, [data.courses, selectedCategoryForExplore.id]);
-  
+  const filteredExploreCourses = useMemo(() => {
+    let filtered = [...data?.courses];
+
+    filtered = filterByCategory(filtered, selectedCategoryForExplore.id);
+
+    return filtered;
+  }, [data.courses, selectedCategoryForExplore.id]);
 
   const updateFilter = useCallback(
     (key, value) => {
@@ -87,7 +85,7 @@ export const GlobalDataProvider = ({ children }) => {
 
       setFilter(updatedFilter);
     },
-    [filter, pathname, router, searchParams]
+    [filter.type, filter.category, pathname, router, searchParams]
   );
 
   const fetchAllData = useCallback(async () => {
@@ -106,7 +104,6 @@ export const GlobalDataProvider = ({ children }) => {
         totalCourses: homeData.courses?.length || 0,
         totalInstructors: homeData.instructors?.length || 0,
       }));
-
 
       hasFetched.current = true;
       setError((prev) => ({ ...prev, home: null }));
@@ -168,13 +165,12 @@ export const GlobalDataProvider = ({ children }) => {
     }));
   }, [filteredExploreCourses]);
 
-useEffect(() => {
-  setFilter({
-    type: urlType,
-    category: urlCategory,
-  });
-}, [urlType, urlCategory]);
-
+  useEffect(() => {
+    setFilter({
+      type: urlType,
+      category: urlCategory,
+    });
+  }, [urlType, urlCategory]);
 
   const contextValue = useMemo(
     () => ({
@@ -192,12 +188,15 @@ useEffect(() => {
   );
 
   return (
-    <GlobalDataContext.Provider value={contextValue}>{children}</GlobalDataContext.Provider>
+    <GlobalDataContext.Provider value={contextValue}>
+      {children}
+    </GlobalDataContext.Provider>
   );
 };
 
 export const useGlobalData = () => {
   const context = useContext(GlobalDataContext);
-  if (!context) throw new Error("useGlobalData must be used within HomeProvider");
+  if (!context)
+    throw new Error("useGlobalData must be used within HomeProvider");
   return context;
 };

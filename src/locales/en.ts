@@ -141,6 +141,16 @@ export default {
   trainingDays: "Training Days",
   trainingHours: "Training Hours",
   weekdays: "Weekdays",
+  weekend: "Weekend",
   online: "Online",
   office: "Office",
+  level:'Level',
+  type:'Type',
+  category:'Category',
+  beginner:'Beginner',
+  intermediate:'Intermediate',
+  advanced:'Advanced',
+  noTrainingsFound:"No trainings found",
+  allTrainings:'All trainings',
+  results:'results'
 } as const;

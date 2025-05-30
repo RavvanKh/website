@@ -1,7 +1,7 @@
-import React from "react";
+import Trainings from "@/components/pages/trainings/Trainings";
 
 const TrainingsPage = () => {
-  return <div>page</div>;
+  return <Trainings />;
 };
 
 export default TrainingsPage;

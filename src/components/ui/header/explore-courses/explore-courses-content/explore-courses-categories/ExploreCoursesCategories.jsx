@@ -93,7 +93,7 @@ const ExploreCoursesCategories = ({
                       ))}
                     </div>
                   ) : (
-                    <div>No courses found.</div>
+                    <div>{t("noTrainingsFound")}</div>
                   )}
                 </div>
               )}

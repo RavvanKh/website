@@ -8,6 +8,7 @@
         border: 1px solid rgba(227, 227, 227, 1);
         border-radius: 4px;
         align-items: stretch;
+        border-bottom: 1px solid rgba(93, 156, 224, 1);
 
         .courseIcon {
             width: 290px;

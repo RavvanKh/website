@@ -6,7 +6,12 @@ import Skeleton from "@mui/material/Skeleton";
 
 import styles from "./img-skeleton.module.css";
 
-const ImgSkeleton = ({ obj, keyName, isRounded = false }) => {
+const ImgSkeleton = ({
+  obj,
+  keyName,
+  isRounded = false,
+  borderRadius = "",
+}) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
@@ -16,6 +21,7 @@ const ImgSkeleton = ({ obj, keyName, isRounded = false }) => {
           variant="rectangular"
           animation="wave"
           className={styles.objImgSkeleton}
+          style={{ borderRadius }}
         />
       )}
 
