@@ -15,6 +15,10 @@ export const metadata = {
     follow: true,
     nocache: false,
   },
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.svg",}],
+    apple: [{ url: "/apple-icon.svg" }],
+  },
 };
 
 export default async function SubLayout({ params, children }) {
