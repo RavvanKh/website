@@ -1,12 +1,20 @@
-import React from "react";
+"use client";
 import Link from "next/link";
+
+import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import { filterArray } from "@/lib/utils/helpers";
 import { contactSocials } from "@/lib/constants/contact";
 
 import styles from "./contact-social.module.css";
 
+
 const ContactSocials = () => {
+  const {
+    data: { organization },
+  } = useGlobalData();
+
+
   return (
     <div className={styles.contactInfoSocials}>
       {filterArray(contactSocials, "youtube").map((item) => (

@@ -5,11 +5,13 @@ import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
 
+import ImgSkeleton from "../img-skeleton/ImgSkeleton";
+
 import { convertWeekToHour } from "@/lib/utils/helpers";
 import { routes } from "@/lib/constants/routes";
 
 import styles from "./course.module.css";
-import ImgSkeleton from "../img-skeleton/ImgSkeleton";
+
 
 
 const Course = ({
