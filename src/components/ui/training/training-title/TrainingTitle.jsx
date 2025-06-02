@@ -1,4 +1,5 @@
 import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
+
 import styles from "./training-title.module.css";
 
 const TrainingTitle = ({ training }) => {
@@ -10,7 +11,6 @@ const TrainingTitle = ({ training }) => {
           <p>{training.description}</p>
         </div>
         <div className={styles.trainingTitleRight}>
-        {/* <img alt={training.name} src={training.icon} fetchPriority="high" /> */}
           <ImgSkeleton obj={training} keyName='icon' isRounded={false} borderRadius="8px"/>
         </div>
       </div>

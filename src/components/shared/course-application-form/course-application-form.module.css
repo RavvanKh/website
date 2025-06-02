@@ -74,9 +74,10 @@
         .courseApplicationFormFlex {
             display: flex;
             gap: 24px;
+            flex-wrap: wrap;
 
             .courseApplicationFormInputGroup {
-                flex: 1;
+                /* flex: 1; */
             }
         }
 

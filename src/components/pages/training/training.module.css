@@ -14,7 +14,7 @@
         align-items: flex-start;
 
         .trainingSectionsLeft {
-            width:25%;
+            width: 25%;
             min-width: 250px;
             max-width: 25%;
             display: flex;
@@ -32,6 +32,26 @@
             flex-direction: column;
             gap: 48px;
             padding: 24px 40px 64px 40px;
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .training {
+        .trainingSections {
+            width: 90%;
+            flex-direction: column;
+
+            .trainingSectionsLeft {
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+                flex-direction: column;
+                position: static;
+            }
+            .trainingSectionsRight{
+                padding: 24px 0 64px 0;
+            }
         }
     }
 }

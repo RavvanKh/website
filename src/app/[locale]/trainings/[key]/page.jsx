@@ -55,7 +55,7 @@ export default async function TrainingPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(optimizedSchema) }}
       />
-      <Training trainingKey={key} />;
+      <Training trainingKey={key} />
     </>
   );
 }

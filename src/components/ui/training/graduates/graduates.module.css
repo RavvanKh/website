@@ -19,7 +19,7 @@
     }
 
     .graduatesLeft p {
-        color:rgba(96, 96, 96, 1);
+        color: rgba(96, 96, 96, 1);
         font-size: 16px;
         font-weight: 500;
         line-height: 24px;
@@ -39,15 +39,19 @@
             display: flex;
             gap: 20px;
 
+            .graduatesAllList {
+                display: none;
+            }
+
             .graduatesListFirstColumn,
             .graduatesListSecondColumn {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                width: 249px;
-                max-width: 249px;
-                min-width: 249px;
+                width: 240px;
+                max-width: 240px;
+                min-width: 240px;
             }
 
             .graduate {
@@ -63,4 +67,53 @@
     justify-content: center;
     align-items: center;
     min-height: 470px;
+}
+
+
+@media(max-width:1200) {
+    .graduates {
+        flex-direction: column;
+        gap: 16px;
+
+        .graduatesLeft {
+            width: 100%;
+        }
+
+        .graduatesListWrapper {
+            width: 100%;
+
+            .graduatesList {
+                width: 100%;
+                justify-content: center;
+
+                .graduatesListFirstColumn,
+                .graduatesListSecondColumn {
+                    width: 45%;
+                    min-width: 45%;
+                    max-width: 45%;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:375px) {
+    .graduates {
+        .graduatesListWrapper {
+            .graduatesList {
+                .graduatesAllList {
+                    display: flex;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    width: 100%;
+                }
+
+                .graduatesListFirstColumn,
+                .graduatesListSecondColumn {
+                    display: none;
+                }
+            }
+        }
+    }
 }

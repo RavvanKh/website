@@ -51,7 +51,7 @@ export const selectSectionsAsComponent = [
   },
   { key: "graduates", component: Graduates },
   { key: "companies", component: Companies },
-  // { key: "feedbacks", component: Comments },
+  // // { key: "feedbacks", component: Comments },
   { key: "instructors", component: Instructors },
   {
     key: "courseApplicationForm",

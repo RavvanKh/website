@@ -7,8 +7,9 @@ import { useTraining } from "@/contexts/TrainingContext";
 
 import {
   defaultSection,
-  selectSectionsAsComponent,
 } from "@/lib/constants/selectSections";
+
+import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
 import Loader from "@/components/shared/loader/Loader";
 import TrainingTitle from "@/components/ui/training/training-title/TrainingTitle";
@@ -16,10 +17,11 @@ import SelectSection from "@/components/ui/training/select-section/SelectSection
 import NextGroup from "@/components/shared/next-group/NextGroup";
 
 import styles from "./training.module.css";
-import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
+
 
 const Training = () => {
   const { training, loading, error } = useTraining();
+
 
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
