@@ -20,14 +20,20 @@
             display: flex;
             flex-direction: column;
             gap: 24px;
-            flex: 1;
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: auto;
 
             position: sticky;
             top: 50px;
         }
 
         .trainingSectionsRight {
-            flex: 1;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+            width: 100%;
+
             display: flex;
             flex-direction: column;
             gap: 48px;
@@ -49,7 +55,8 @@
                 flex-direction: column;
                 position: static;
             }
-            .trainingSectionsRight{
+
+            .trainingSectionsRight {
                 padding: 24px 0 64px 0;
             }
         }
