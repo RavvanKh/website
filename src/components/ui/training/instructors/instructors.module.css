@@ -3,13 +3,14 @@
     flex-direction: column;
     gap: 16px;
 
-    .loaderContainer{
+    .loaderContainer {
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 246px;
         width: 100%;
     }
+
     .instructorsTop {
         color: rgba(0, 58, 157, 1);
         font-size: 24px;
@@ -20,7 +21,25 @@
 
     .instructorsList {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 24px;
+    }
+}
+
+
+@media(max-width:1024px) {
+    .instructors {
+        .instructorsList {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+
+@media(max-width:375px) {
+    .instructors {
+        .instructorsList {
+            grid-template-columns: 1fr;
+        }
     }
 }

@@ -38,14 +38,63 @@
             font-weight: 400;
         }
 
-        .trainingTitleRight{
+        .trainingTitleRight {
             width: 447px;
             height: 250px;
         }
-        .trainingTitleRight img{
+
+        .trainingTitleRight img {
             object-fit: cover;
             width: 100%;
-            border-radius:8px;
+            border-radius: 8px;
+        }
+    }
+}
+
+@media (max-width:1024px) {
+    .trainingTitle {
+        .trainingTitleContainer {
+            flex-direction: column;
+
+            .trainingTitleRight {
+                align-self: center;
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .trainingTitle {
+        padding: 16px 0;
+        .trainingTitleContainer{
+            width: 90%;
+            .trainingTitleLeft h2{
+                font-size: 32px;
+            }
+            .trainingTitleRight{
+                width: 100%;
+                height: 350px;
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    .trainingTitle {
+        .trainingTitleContainer{
+            .trainingTitleRight{
+                height: 250px;
+            }
+        }
+    }
+}
+
+@media(max-width:320px) {
+    .trainingTitle {
+        .trainingTitleContainer{
+            .trainingTitleRight{
+                height: 150px;
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ import Customer from "../../home/customers/customer/Customer";
 
 import styles from "./companies.module.css";
 
-const Companies = ({ t, title, companies, loading, error }) => {
+const Companies = ({ t, companies, loading, error }) => {
   return (
     <section className={styles.companies}>
       <div className={styles.companiesTop}>
