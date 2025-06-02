@@ -16,17 +16,6 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: training.name,
-    description: training.description,
-    provider: {
-      "@type": "Organization",
-      name: organization?.name || "Ingress Academy",
-      sameAs: organization?.url || "https://ingress.academy",
-    },
-  };
 
   return {
     title: `${training.name} - ${organization?.name}`,
@@ -49,17 +38,7 @@ export async function generateMetadata({ params }) {
     },
     alternates: {
       canonical: `${organization?.url}/en/training/${key}`,
-    },
-    other: {
-      "structured-data": (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
-      ),
-    },
+    }
   };
 }
 

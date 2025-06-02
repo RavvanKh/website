@@ -2,9 +2,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    max-height: 80vh;
-    /* padding: 16px; */
-    overflow-y: auto;
     flex: 1;
 }
 

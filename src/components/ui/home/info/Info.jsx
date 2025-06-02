@@ -34,7 +34,7 @@ const Info = ({
         </h1>
         <div className={styles.infoLeftTitle}>{t("infoTitle")}</div>
         <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
-        <Link href={routes.home} className={styles.infoLeftButton}>
+        <Link href={routes.trainings} className={styles.infoLeftButton}>
           <div>{t("exploreOurCourses")}</div>
           <Image
             src="/icons/arrow-right-2.svg"
