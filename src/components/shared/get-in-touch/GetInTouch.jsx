@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
+import { useGlobalData } from "@/contexts/GlobalDataContext";
+
+import { generateLink } from "@/lib/utils/helpers";
 
 import { contacts } from "@/lib/constants/contact";
 
@@ -12,6 +15,16 @@ import styles from "./get-in-touch.module.css";
 
 const GetInTouch = () => {
   const t = useI18n();
+
+  const {
+    data: { organization },
+  } = useGlobalData();
+
+  const dynamicData = {
+    email: organization?.email,
+    phone: organization?.phoneNumbers?.[0],
+    location: organization?.addresses?.[0]?.streetAddress,
+  };
 
   return (
     <div className={styles.courseApplicationLeft}>
@@ -32,10 +45,13 @@ const GetInTouch = () => {
                 {t(contact.key)}
               </div>
               <Link
-                href={contact.url}
+                href={generateLink(
+                  contact.key,
+                  dynamicData?.[contact.key] || ""
+                )}
                 className={styles.contactForCourseApplicationContactText}
               >
-                {t(contact.text)}
+                {t(dynamicData[contact.key])}
               </Link>
             </div>
           </div>
