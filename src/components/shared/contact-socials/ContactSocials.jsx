@@ -8,18 +8,16 @@ import { contactSocials } from "@/lib/constants/contact";
 
 import styles from "./contact-social.module.css";
 
-
 const ContactSocials = () => {
   const {
     data: { organization },
   } = useGlobalData();
 
-
   return (
     <div className={styles.contactInfoSocials}>
       {filterArray(contactSocials, "youtube").map((item) => (
         <Link
-          href={item.url}
+          href={organization?.socialLinks?.[item.key] || ""}
           key={item.key}
           title={item.key}
           target="_blank"

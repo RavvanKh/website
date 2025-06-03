@@ -2,7 +2,7 @@ import Training from "@/components/pages/training/Training";
 
 import { getTrainingData } from "@/lib/utils/api/training";
 import { getHomeData } from "@/lib/utils/api/home";
-import { generateSchema } from "@/lib/utils/helpers/generateSchema";
+import { generateSchema } from "@/lib/utils/helpers";
 
 export async function generateMetadata({ params }) {
   const { key } = await params;
