@@ -85,30 +85,30 @@
 
     .swiperContainer .swiper {
         display: flex;
-      }
-      
-      .swiperContainer .swiper-wrapper {
+    }
+
+    .swiperContainer .swiper-wrapper {
         display: flex;
         align-items: stretch;
-      }
-      
-      .swiperContainer .swiper-slide {
+    }
+
+    .swiperContainer .swiper-slide {
         height: auto !important;
         display: flex;
-      }
-      
-      .swiperContainer .slide {
+    }
+
+    .swiperContainer .slide {
         display: flex;
         flex-direction: column;
         height: 100%;
         width: 100%;
         min-height: 450px;
-      }
+    }
 
-      .exploreFullCatalogContainer{
+    .exploreFullCatalogContainer {
         display: flex;
-        align-items:flex-start
-      }
+        align-items: flex-start
+    }
 }
 
 
@@ -127,7 +127,7 @@
         }
     }
 
-    .slide{
+    .slide {
         align-items: center !important;
     }
 }

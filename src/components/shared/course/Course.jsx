@@ -12,8 +12,6 @@ import { routes } from "@/lib/constants/routes";
 
 import styles from "./course.module.css";
 
-
-
 const Course = ({
   course,
   levelPosition = "right",
@@ -26,11 +24,13 @@ const Course = ({
 }) => {
   const t = useI18n();
 
+
   return (
     <Link
       href={`${routes.trainings}/${course?.id}`}
       onClick={onClose}
       className={styles.courseLink}
+      style={{ maxWidth: direction === "column" ? "300px" : "auto" }}
     >
       <div
         className={styles.course}
@@ -50,7 +50,7 @@ const Course = ({
           {levelPosition === "top" && (
             <div className={styles.courseLevel}>{course?.level}</div>
           )}
-          <ImgSkeleton obj={course} keyName='icon' isRounded={false}/>
+          <ImgSkeleton obj={course} keyName="icon" isRounded={false} />
         </div>
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>

@@ -12,7 +12,7 @@ const Filters = ({ filters, onClick, activeFilter,trainings = [] }) => {
   return (
     <section className={styles.filters}>
       <div className={styles.filterTop}>
-        <div className={styles.filterTopTitle}>{t("allTrainings")}</div>
+        <div className={styles.filterTopTitle}>{t("allTrainings")}:</div>
         <div className={styles.filterTopResults}>{trainings.length} {t("results")}</div>
       </div>
       <div className={styles.filtersList}>
