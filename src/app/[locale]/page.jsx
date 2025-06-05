@@ -1,12 +1,13 @@
 import Home from "@/components/pages/home/Home";
 
 import { getHomeData } from "@/lib/utils/api/home";
+import { generateSchema } from "@/lib/utils/helpers";
 
-export const generateMetadata = async () =>{
-  const {organization} = await getHomeData();
-  
-  if(Object.keys(organization).length === 0){
-    return {}
+export const generateMetadata = async () => {
+  const { organization } = await getHomeData();
+
+  if (Object.keys(organization).length === 0) {
+    return {};
   }
 
   return {
@@ -24,22 +25,31 @@ export const generateMetadata = async () =>{
           height: 600,
         },
       ],
-      type: 'website',
+      type: "website",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: organization?.name,
       description: organization?.description,
       images: [organization?.logo],
     },
     alternates: {
       canonical: organization?.url,
-    }
-  }
-}
+    },
+  };
+};
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { organization } = await getHomeData();
+
+  const optimizedSchema = generateSchema("organization", organization);
   return (
-    <Home/>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(optimizedSchema) }}
+      />
+      <Home />
+    </>
   );
 }

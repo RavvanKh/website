@@ -16,7 +16,6 @@ export async function generateMetadata({ params }) {
     };
   }
 
-
   return {
     title: `${training.name} - ${organization?.name}`,
     description: training.description,
@@ -28,7 +27,7 @@ export async function generateMetadata({ params }) {
       siteName: organization?.name,
       images: [
         {
-          url: training.image || organization?.logo,
+          url: training.icon || organization?.logo,
           width: 800,
           height: 600,
           alt: training.name,
@@ -38,7 +37,7 @@ export async function generateMetadata({ params }) {
     },
     alternates: {
       canonical: `${organization?.url}/en/training/${key}`,
-    }
+    },
   };
 }
 
@@ -47,7 +46,9 @@ export default async function TrainingPage({ params }) {
 
   const training = await getTrainingData(key);
 
-  const optimizedSchema = generateSchema("training", training);
+  const { organization } = await getHomeData();
+
+  const optimizedSchema = generateSchema("course", { training, organization });
 
   return (
     <>

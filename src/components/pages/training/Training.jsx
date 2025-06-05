@@ -5,9 +5,7 @@ import { useI18n } from "@/locales/client";
 
 import { useTraining } from "@/contexts/TrainingContext";
 
-import {
-  defaultSection,
-} from "@/lib/constants/selectSections";
+import { defaultSection } from "@/lib/constants/selectSections";
 
 import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
@@ -18,10 +16,8 @@ import NextGroup from "@/components/shared/next-group/NextGroup";
 
 import styles from "./training.module.css";
 
-
 const Training = () => {
   const { training, loading, error } = useTraining();
-
 
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
@@ -61,14 +57,18 @@ const Training = () => {
   };
 
   const handleDownloadSyllabus = (source = "default") => {
-    if (syllabus && syllabus.link && !isDownloadingSyllabus) {
+    if (
+      training?.syllabus.length > 0 &&
+      training?.syllabusUrl &&
+      !isDownloadingSyllabus
+    ) {
       if (source === "upcomingGroup") {
         setIsDownloadingSyllabus(true);
       }
 
       const downloadLink = document.createElement("a");
-      downloadLink.href = syllabus.driveLink;
-      downloadLink.download = syllabus.name || "course-syllabus";
+      downloadLink.href = training?.syllabusUrl;
+      downloadLink.download = training?.name || "course-syllabus";
 
       downloadLink.addEventListener("abort", () =>
         setIsDownloadingSyllabus(false)
