@@ -1,3 +1,5 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { I18nProviderClient } from "@/locales/client";
 
 import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
@@ -16,7 +18,7 @@ export const metadata = {
     nocache: false,
   },
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/icon.svg",}],
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.svg" }],
     apple: [{ url: "/apple-icon.svg" }],
   },
 };
@@ -31,6 +33,7 @@ export default async function SubLayout({ params, children }) {
           <GlobalDataProvider>
             <Header />
             {children}
+            <SpeedInsights />
             <Footer />
           </GlobalDataProvider>
         </I18nProviderClient>
