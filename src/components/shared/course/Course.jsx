@@ -24,13 +24,12 @@ const Course = ({
 }) => {
   const t = useI18n();
 
-
   return (
     <Link
       href={`${routes.trainings}/${course?.id}`}
       onClick={onClose}
       className={styles.courseLink}
-      style={{ maxWidth: direction === "column" ? "300px" : "auto" }}
+      style={{ maxWidth: direction === "column" ? "400px" : "auto" }}
     >
       <div
         className={styles.course}
@@ -92,7 +91,12 @@ const Course = ({
                 />
                 <div className={styles.courseDurationInfo}>
                   {course?.durationInWeeks} {t("weeks")} /{" "}
-                  {convertWeekToHour(course?.durationInWeeks)} {t("hours")}
+                  {convertWeekToHour(
+                    course?.durationInWeeks,
+                    course?.hoursPerSession,
+                    course?.sessionsPerWeek
+                  )}{" "}
+                  {t("hours")}
                 </div>
               </div>
             )}

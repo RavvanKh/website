@@ -7,6 +7,12 @@ export const generateSchema = (type, data) => {
         name: data?.training?.name,
         image: data?.training?.icon,
         description: data?.training?.description,
+        instructor: data?.instructors?.map((inst) => ({
+          "@type": "Person",
+          name: inst.name,
+          sameAs: inst.linkedinUrl,
+          image: inst.image,
+        })),
         provider: {
           "@type": "Organization",
           name: data?.organization?.name,
@@ -16,18 +22,30 @@ export const generateSchema = (type, data) => {
     case "organization":
       return {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": "EducationalOrganization",
         name: data?.name,
         url: data?.url,
-        logo: data?.logo,
-        sameAs: Object.values(data?.socialLinks),
+        description: data?.description,
+        logo: {
+          "@type": "ImageObject",
+          url: data?.logo,
+        },
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: data?.phoneNumbers[0],
+          telephone: data?.phoneNumbers?.[0],
           contactType: "Customer Support",
           areaServed: "AZ",
           availableLanguage: ["English", "Azerbaijani"],
+          email: data?.email,
         },
+        sameAs: Object.values(data?.socialLinks || {}),
+        address: data?.addresses?.map((address) => ({
+          "@type": "PostalAddress",
+          streetAddress: address.streetAddress,
+          addressLocality: address.locality,
+          addressRegion: address.region,
+          addressCountry: address.country,
+        })),
       };
     default:
       return null;

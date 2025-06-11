@@ -6,6 +6,7 @@ import Faq from "@/components/ui/training/faq/Faq";
 import Graduates from "@/components/ui/training/graduates/Graduates";
 import Instructors from "@/components/ui/training/instructors/Instructors";
 import NextGroups from "@/components/ui/training/next-groups/NextGroups";
+import RelatedCourses from "@/components/ui/training/related-courses/RelatedCourses";
 import Syllabus from "@/components/ui/training/syllabus/Syllabus";
 
 export const selectSections = [
@@ -56,6 +57,10 @@ export const selectSectionsAsComponent = [
   {
     key: "courseApplicationForm",
     component: CourseApplicationForm,
+  },
+  {
+    key: "relatedCourses",
+    component: RelatedCourses,
   },
   {
     key: "faq",

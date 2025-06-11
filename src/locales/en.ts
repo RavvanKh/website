@@ -152,5 +152,6 @@ export default {
   advanced:'Advanced',
   noTrainingsFound:"No trainings found",
   allTrainings:'All trainings',
-  results:'results'
+  results:'results',
+  relatedCourses:'Related courses'
 } as const;

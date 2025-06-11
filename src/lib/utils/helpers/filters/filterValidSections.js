@@ -17,6 +17,8 @@ export const filterValidSections = (training) => {
         return training?.instructors?.length > 0;
       case "courseApplicationForm":
         return true;
+      case "relatedCourses":
+        return training?.relatedCourses?.length > 0;
       case "faq":
         return training?.faq?.length > 0;
       default:

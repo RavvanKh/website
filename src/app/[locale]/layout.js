@@ -1,4 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 import { I18nProviderClient } from "@/locales/client";
 
@@ -34,6 +35,7 @@ export default async function SubLayout({ params, children }) {
             <Header />
             {children}
             <SpeedInsights />
+            <Analytics />
             <Footer />
           </GlobalDataProvider>
         </I18nProviderClient>

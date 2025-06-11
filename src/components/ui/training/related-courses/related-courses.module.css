@@ -1,0 +1,21 @@
+.relatedCourses {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .relatedCoursesTitle {
+        color: rgba(0, 58, 157, 1);
+        font-weight: 700;
+        font-family: "Nunito", sans-serif;
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .relatedCoursesList {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}

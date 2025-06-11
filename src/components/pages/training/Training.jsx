@@ -36,6 +36,7 @@ const Training = () => {
     feedbacks: useRef(null),
     instructors: useRef(null),
     courseApplicationForm: useRef(null),
+    relatedCourses: useRef(null),
     faq: useRef(null),
   };
 
@@ -209,6 +210,9 @@ const Training = () => {
               },
               courseApplicationForm: {
                 course: training,
+              },
+              relatedCourses: {
+                relatedCourses: training?.relatedCourses,
               },
               faq: {
                 faqData: training.faq,

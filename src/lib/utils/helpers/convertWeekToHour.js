@@ -1,3 +1,3 @@
-export const convertWeekToHour = (week) =>{
-    return week*7*24
-}
+export const convertWeekToHour = (week, hoursPerSession, sessionsPerWeek) => {
+  return week * hoursPerSession * sessionsPerWeek;
+};

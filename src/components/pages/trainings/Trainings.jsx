@@ -51,7 +51,6 @@ const Trainings = () => {
 
   const updateFilter = (name, value) => {
 
-    console.log(name,value)
     const updatedFilter = { ...filter, [name]: value };
 
     const params = new URLSearchParams();
