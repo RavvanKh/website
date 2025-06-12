@@ -1,28 +1,32 @@
 .skeleton {
+    flex: 1;
     position: relative;
-    height: 100%;
     width: 100%;
-    min-width: 100%;
-    min-height: 100%;
-
-    .objImgSkeleton {
-        width: 100%;
-        height: 100%;
-    }
+    overflow: hidden;
 }
 
-.rounded {
-    .objImgSkeleton{
-        border-radius: 50%;
-    }
-}
-
-.rounded img{
-        border-radius: 50%;
-        object-fit: cover;
+.objImgSkeleton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 250px;
 }
 
 .skeleton img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.skeleton img.loaded {
+    opacity: 1;
+}
+
+.rounded .objImgSkeleton,
+.rounded img {
+    border-radius: 50%;
 }

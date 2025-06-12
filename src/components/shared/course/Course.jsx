@@ -38,7 +38,14 @@ const Course = ({
           minHeight: direction === "row" ? "auto" : "450px",
         }}
       >
-        <div
+        <ImgSkeleton
+          type="training"
+          obj={course}
+          keyName="icon"
+          isRounded={false}
+        />
+
+        {/* <div
           className={`${styles.courseIcon} ${
             direction === "row"
               ? styles.courseIconMinWidth
@@ -49,8 +56,7 @@ const Course = ({
           {levelPosition === "top" && (
             <div className={styles.courseLevel}>{course?.level}</div>
           )}
-          <ImgSkeleton obj={course} keyName="icon" isRounded={false} />
-        </div>
+        </div> */}
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>
             <div className={styles.courseHeaderIcon}>
@@ -61,7 +67,9 @@ const Course = ({
                 alt="Course"
                 loading="lazy"
               />
-              <div className={styles.courseType}>{course?.courseType}</div>
+              <div className={styles.courseType}>
+                {course?.type || t("course")}
+              </div>
             </div>
             {levelPosition === "right" && (
               <>

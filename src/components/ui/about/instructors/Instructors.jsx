@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-import { getInstructors } from "@/lib/utils/api/instructors";
 import { getLimitByWidth } from "@/lib/utils/helpers";
 
 import InstructorsContent from "@/components/shared/instructors-content/InstructorsContent";
@@ -10,45 +9,30 @@ import Instructor from "@/components/shared/instructor/Instructor";
 
 import styles from "./instructors.module.css";
 
-
-
-const Instructors = () => {
-  const [instructors, setInstructors] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
+const Instructors = ({ instructors, loading, error }) => {
+  const [customInstructors, setCustomInstructors] = useState([]);
   const previousLimitRef = useRef(null);
 
-  const fetchInstructors = async (limit) => {
-    try {
-      setLoading(true);
-      const res = await getInstructors(0, limit);
-      setInstructors(res?.content);
-    } catch (error) {
-      setError(error?.message);
-    } finally {
-      setLoading(false);
-    }
+  const updateInstructorsByWidth = (instructorList) => {
+    const limit = getLimitByWidth(window.innerWidth);
+    previousLimitRef.current = limit;
+    setCustomInstructors(instructorList.slice(0, limit));
   };
 
-  
-  
   useEffect(() => {
-  
     const handleResize = () => {
       const newLimit = getLimitByWidth(window.innerWidth);
       if (previousLimitRef.current !== newLimit) {
-        previousLimitRef.current = newLimit;
-        fetchInstructors(newLimit);
+        updateInstructorsByWidth(instructors);
       }
     };
-  
-    handleResize();
-  
+
+    // Initial load
+    updateInstructorsByWidth(instructors);
+
     window.addEventListener("resize", handleResize);
-  
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [instructors]); // instructors dəyişəndə də slice yenilənməlidir
 
   return (
     <section className={styles.instructors}>
@@ -65,8 +49,8 @@ const Instructors = () => {
         </div>
       ) : (
         <div className={styles.instructorsBottom}>
-          {instructors.map((instructor) => (
-            <Instructor instructor={instructor} key={instructor?.id} />
+          {customInstructors.map((instructor) => (
+            <Instructor instructor={instructor} key={instructor?.name} />
           ))}
         </div>
       )}

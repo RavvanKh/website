@@ -1,4 +1,5 @@
 import Course from "@/components/shared/course/Course";
+
 import styles from "./related-courses.module.css";
 
 const RelatedCourses = ({ t, title, relatedCourses }) => {

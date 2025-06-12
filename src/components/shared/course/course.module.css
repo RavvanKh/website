@@ -5,37 +5,42 @@
     margin: 0 auto;
 
     .course {
+        height: 100%;
+        width: 100%;
         display: flex;
         border: 1px solid rgba(227, 227, 227, 1);
         border-radius: 4px;
         align-items: stretch;
         border-bottom: 1px solid rgba(93, 156, 224, 1);
+        position: relative;
+
+        .courseLevel {
+            position: absolute;
+            background: rgba(209, 223, 255, 1);
+            border-radius: 4px;
+            height: 26px;
+            top: 17px;
+            left: 10px;
+            color: rgba(42, 42, 42, 1);
+            padding: 6px 7px;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            line-height: 18px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
 
         .courseIcon {
             width: 290px;
-            height: 180px;
-            overflow: hidden;
+            /* height: 180px; */
+            /* overflow: hidden; */
             position: relative;
 
-            .courseLevel {
-                position: absolute;
-                background: rgba(209, 223, 255, 1);
-                border-radius: 4px;
-                height: 26px;
-                top: 17px;
-                left: 10px;
-                color: rgba(42, 42, 42, 1);
-                padding: 6px 7px;
-                font-size: 12px;
-                font-family: Arial, Helvetica, sans-serif;
-                font-weight: 700;
-                line-height: 18px;
-                z-index: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
 
-            }
 
             .courseImg {
                 width: 100%;

@@ -9,6 +9,7 @@ import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
 
 import "./globals.css";
+import AmplitudeProvider from "@/contexts/AmplitudeProvider";
 
 export const metadata = {
   title: "Ingress Academy",
@@ -33,6 +34,7 @@ export default async function SubLayout({ params, children }) {
         <I18nProviderClient locale={locale}>
           <GlobalDataProvider>
             <Header />
+            <AmplitudeProvider />
             {children}
             <SpeedInsights />
             <Analytics />

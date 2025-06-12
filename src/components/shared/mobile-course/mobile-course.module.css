@@ -6,7 +6,7 @@
 
     .courseIcon {
         width: 100%;
-        height: 150px;
+        /* height: 150px; */
         position: relative;
 
         .courseLevel {
@@ -139,7 +139,7 @@
         flex-direction: column;
 
         .courseIcon {
-            height: 180px;
+            /* height: 180px; */
 
             .courseImg {
                 min-width: 100%;
