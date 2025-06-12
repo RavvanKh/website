@@ -26,7 +26,7 @@ const ExploreCoursesAllCourses = ({
             <Course
               onClose={onClose}
               duration={false}
-              lines={2}
+              lines={4}
               direction="row"
               course={course}
               key={course?.id}

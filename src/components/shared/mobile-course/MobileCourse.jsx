@@ -17,7 +17,12 @@ const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
     <Link onClick={onClose} href={`${routes.trainings}/${course?.id}`}>
       <div className={styles.course}>
         <div className={styles.courseIcon}>
-          <ImgSkeleton obj={course} keyName="icon" isRounded={false} />
+          <ImgSkeleton
+            type="training"
+            obj={course}
+            keyName="icon"
+            isRounded={false}
+          />
           {/* <img
             className={styles.courseImg}
             src={course?.icon}

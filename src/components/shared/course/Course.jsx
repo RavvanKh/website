@@ -24,6 +24,7 @@ const Course = ({
 }) => {
   const t = useI18n();
 
+  console.log(levelPosition, course.name);
   return (
     <Link
       href={`${routes.trainings}/${course?.id}`}
@@ -45,6 +46,9 @@ const Course = ({
           isRounded={false}
         />
 
+        {levelPosition === "top" && (
+          <div className={styles.courseLevel}>{course?.level}</div>
+        )}
         {/* <div
           className={`${styles.courseIcon} ${
             direction === "row"
@@ -53,9 +57,7 @@ const Course = ({
           } `}
           style={{ height: imgHeight, width: imgWidth }}
         >
-          {levelPosition === "top" && (
-            <div className={styles.courseLevel}>{course?.level}</div>
-          )}
+          
         </div> */}
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>
@@ -74,7 +76,11 @@ const Course = ({
             {levelPosition === "right" && (
               <>
                 <div className={styles.courseDivider} />
-                <div className={styles.courseLevel}>{course?.level}</div>
+                <div
+                  className={styles.courseLevell}
+                >
+                  {course?.level}
+                </div>
               </>
             )}
           </div>
