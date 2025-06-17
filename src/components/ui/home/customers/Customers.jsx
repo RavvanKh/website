@@ -10,8 +10,9 @@ import Customer from "./customer/Customer";
 import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import styles from "./customers.module.css";
+import { CUSTOMER_STYLES } from "@/lib/constants/customer-styles";
 
-const Customers = ({customers,loading,error}) => {
+const Customers = ({ customers, loading, error }) => {
   const sliderRef = useRef(null);
   const animationRef = useRef();
   const sliderContentRef = useRef(null);
@@ -114,7 +115,10 @@ const Customers = ({customers,loading,error}) => {
                 className={styles.customerSlide}
                 style={{ width: isMobile ? "100%" : `${slideWidth}px` }}
               >
-                <Customer customer={customer} />
+                <Customer
+                  customer={customer}
+                  style={CUSTOMER_STYLES.homePage}
+                />
               </div>
             ))}
           </div>

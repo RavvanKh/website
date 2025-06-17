@@ -18,13 +18,11 @@ const Course = ({
   direction = "row",
   duration = false,
   lines = 2,
-  imgHeight = "180px",
-  imgWidth = "300px",
   onClose,
+  courseStyle = {},
 }) => {
   const t = useI18n();
 
-  console.log(levelPosition, course.name);
   return (
     <Link
       href={`${routes.trainings}/${course?.id}`}
@@ -36,7 +34,7 @@ const Course = ({
         className={styles.course}
         style={{
           flexDirection: direction,
-          minHeight: direction === "row" ? "auto" : "450px",
+          minHeight: direction === "row" ? "auto" : "375px",
         }}
       >
         <ImgSkeleton
@@ -44,21 +42,12 @@ const Course = ({
           obj={course}
           keyName="icon"
           isRounded={false}
+          style={courseStyle}
         />
 
         {levelPosition === "top" && (
           <div className={styles.courseLevel}>{course?.level}</div>
         )}
-        {/* <div
-          className={`${styles.courseIcon} ${
-            direction === "row"
-              ? styles.courseIconMinWidth
-              : styles.courseIconMaxWidth
-          } `}
-          style={{ height: imgHeight, width: imgWidth }}
-        >
-          
-        </div> */}
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>
             <div className={styles.courseHeaderIcon}>
@@ -76,11 +65,7 @@ const Course = ({
             {levelPosition === "right" && (
               <>
                 <div className={styles.courseDivider} />
-                <div
-                  className={styles.courseLevell}
-                >
-                  {course?.level}
-                </div>
+                <div className={styles.courseLevell}>{course?.level}</div>
               </>
             )}
           </div>

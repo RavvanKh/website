@@ -13,12 +13,13 @@ const ImgSkeleton = ({
   keyName,
   isRounded = false,
   borderRadius = "",
+  style = {},
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div
-      style={{ aspectRatio: aspectRatios?.[type] }}
+      style={{ aspectRatio: aspectRatios?.[type], ...style }}
       className={`${styles.skeleton} ${isRounded ? styles.rounded : ""}`}
     >
       {!imageLoaded && (
@@ -32,6 +33,7 @@ const ImgSkeleton = ({
 
       {obj?.[keyName] && (
         <Image
+          style={style}
           src={obj?.[keyName]}
           alt={obj?.name}
           title={obj?.name}

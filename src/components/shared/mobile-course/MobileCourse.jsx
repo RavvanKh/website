@@ -5,13 +5,22 @@ import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
 
+import ImgSkeleton from "../img-skeleton/ImgSkeleton";
+
 import { routes } from "@/lib/constants/routes";
 
 import styles from "./mobile-course.module.css";
-import ImgSkeleton from "../img-skeleton/ImgSkeleton";
 
-const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
+const MobileCourse = ({
+  course,
+  duration = false,
+  lines = 2,
+  onClose,
+  courseStyle,
+}) => {
   const t = useI18n();
+
+  console.log(courseStyle);
 
   return (
     <Link onClick={onClose} href={`${routes.trainings}/${course?.id}`}>
@@ -22,6 +31,7 @@ const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
             obj={course}
             keyName="icon"
             isRounded={false}
+            courseStyle={courseStyle}
           />
           {/* <img
             className={styles.courseImg}

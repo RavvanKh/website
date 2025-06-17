@@ -7,7 +7,7 @@ export const generateSchema = (type, data) => {
         name: data?.training?.name,
         image: data?.training?.icon,
         description: data?.training?.description,
-        instructor: data?.instructors?.map((inst) => ({
+        instructor: data?.training?.instructors?.map((inst) => ({
           "@type": "Person",
           name: inst.name,
           sameAs: inst.linkedinUrl,

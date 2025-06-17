@@ -5,6 +5,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { useI18n } from "@/locales/client";
 
+import { COURSE_STYLES } from "@/lib/constants/course-styles";
+
 import Loader from "@/components/shared/loader/Loader";
 import Course from "@/components/shared/course/Course";
 import ExploreFullCatalog from "@/components/shared/explore-full-catalog/ExploreFullCatalog";
@@ -56,7 +58,7 @@ const OurCourses = ({
           </div>
           <Swiper
             modules={[Navigation]}
-            spaceBetween={10}
+            spaceBetween={18}
             slidesPerView={4}
             navigation={{
               prevEl: `.${styles.customPrev}`,
@@ -78,13 +80,12 @@ const OurCourses = ({
             {courses.map((course) => (
               <SwiperSlide key={course?.id} className={styles.slide}>
                 <Course
-                  imgHeight="200px"
-                  imgWidth="100%"
                   duration={true}
-                  lines={4}
+                  lines={3}
                   levelPosition="top"
                   direction="column"
                   course={course}
+                  courseStyle={COURSE_STYLES.ourCourses}
                 />
               </SwiperSlide>
             ))}
@@ -96,15 +97,19 @@ const OurCourses = ({
       ) : (
         <div className={styles.ourCoursesList}>
           {courses.map((course) => (
-            <div key={course?.id} className={styles.slide}>
+            <div
+              key={course?.id}
+              className={styles.slide}
+            >
               <Course
                 imgHeight="200px"
                 imgWidth="100%"
                 duration={true}
-                lines={4}
+                lines={3}
                 levelPosition="top"
                 direction="column"
                 course={course}
+                courseStyle={COURSE_STYLES.ourCourses}
               />
             </div>
           ))}

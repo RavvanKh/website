@@ -46,9 +46,9 @@ export default async function TrainingPage({ params }) {
 
   const training = await getTrainingData(key);
 
-  const { organization,instructors } = await getHomeData();
+  const { organization } = await getHomeData();
 
-  const optimizedSchema = generateSchema("course", { training, organization,instructors });
+  const optimizedSchema = generateSchema("course", { training, organization });
 
   return (
     <>

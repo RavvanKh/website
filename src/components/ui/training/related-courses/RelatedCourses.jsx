@@ -1,6 +1,9 @@
 import Course from "@/components/shared/course/Course";
 
+import { COURSE_STYLES } from "@/lib/constants/course-styles";
+
 import styles from "./related-courses.module.css";
+
 
 const RelatedCourses = ({ t, title, relatedCourses }) => {
   return (
@@ -17,6 +20,7 @@ const RelatedCourses = ({ t, title, relatedCourses }) => {
             levelPosition="top"
             direction="column"
             course={course}
+            courseStyle={COURSE_STYLES.ourCourses}
           />
         ))}
       </div>

@@ -2,6 +2,8 @@
 
 import Course from "@/components/shared/course/Course";
 
+import { COURSE_STYLES } from "@/lib/constants/course-styles";
+
 import styles from "./explore-courses-all-courses.module.css";
 
 const ExploreCoursesAllCourses = ({
@@ -26,13 +28,14 @@ const ExploreCoursesAllCourses = ({
             <Course
               onClose={onClose}
               duration={false}
-              lines={4}
+              lines={2}
               direction="row"
               course={course}
               key={course?.id}
               levelPosition="right"
               imgHeight="180px"
               imgWidth="290px"
+              courseStyle={COURSE_STYLES.exploreCoursesDesktop}
             />
           ))
         ) : showEmptyMessage ? (

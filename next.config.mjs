@@ -15,7 +15,8 @@ const nextConfig = {
     NEXT_PUBLIC_BASE_URL: "course-ms/api",
     NEXT_PUBLIC_APPLICATION_MS_URL: "applications-ms",
     NEXT_PUBLIC_API_DOMAIN: "http://api.ingress.academy",
-    NEXT_PUBLIC_AMPLITUDE_API_KEY:'c3088893370f88bae1238020cd57bf7'
+    NEXT_PUBLIC_AMPLITUDE_API_KEY:'c3088893370f88bae1238020cd57bf7',
+    NEXT_PUBLIC_GOOGLE_KEY:'G-7CJZ9PTHMP'
     // NEXT_PUBLIC_API_DOMAIN: "/",
   },
 };

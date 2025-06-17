@@ -1,6 +1,8 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+
 import { I18nProviderClient } from "@/locales/client";
 
 import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
@@ -36,6 +38,8 @@ export default async function SubLayout({ params, children }) {
             <Header />
             <AmplitudeProvider />
             {children}
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <SpeedInsights />
             <Analytics />
             <Footer />

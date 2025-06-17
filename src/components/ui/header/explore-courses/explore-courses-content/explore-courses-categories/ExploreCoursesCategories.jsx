@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
 
+import { COURSE_STYLES } from "@/lib/constants/course-styles";
+
 import Loader from "@/components/shared/loader/Loader";
 import MobileCourse from "@/components/shared/mobile-course/MobileCourse";
 
@@ -21,10 +23,12 @@ const ExploreCoursesCategories = ({
   const t = useI18n();
 
   const [isMobile, setIsMobile] = useState(false);
+  const [isMobileS, setIsMobileS] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
+      setIsMobileS(window.innerWidth <= 576);
     };
 
     handleResize();
@@ -97,6 +101,7 @@ const ExploreCoursesCategories = ({
                             course={course}
                             direction="row"
                             lines={3}
+                            courseStyle={isMobileS ? COURSE_STYLES.exploreCoursesMobileS : COURSE_STYLES.exploreCoursesMobile}
                           />
                         </div>
                       ))}

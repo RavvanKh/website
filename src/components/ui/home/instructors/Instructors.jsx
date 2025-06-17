@@ -13,7 +13,6 @@ import "swiper/css/grid";
 import styles from "./instructors.module.css";
 
 const Instructors = ({ instructors, loading, error }) => {
-
   return (
     <section className={styles.instructors}>
       <div className={styles.instructorsContainer}>
@@ -43,9 +42,14 @@ const Instructors = ({ instructors, loading, error }) => {
                     slidesPerGroup: 2,
                     grid: { rows: 1 },
                   },
-                  1023: {
+                  1024: {
                     slidesPerView: 3,
                     slidesPerGroup: 3,
+                    grid: { rows: 1 },
+                  },
+                  1200: {
+                    slidesPerView: 4,
+                    slidesPerGroup: 4,
                     grid: { rows: 1 },
                   },
                 }}

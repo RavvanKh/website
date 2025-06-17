@@ -13,10 +13,8 @@ import CourseApplication from "@/components/shared/course-application/CourseAppl
 
 import styles from "./home.module.css";
 
-
 const Home = () => {
   const { data, filter, error, loading, updateFilter } = useGlobalData();
-
 
   return (
     <div className={styles.home}>
@@ -28,7 +26,6 @@ const Home = () => {
         ratingLoading={loading.comments}
         rating={data.comments?.result?.rating}
       />
-      <WhyChooseUs />
       <OurCourses
         courses={data.filteredCourses}
         loading={loading.home}
@@ -39,6 +36,7 @@ const Home = () => {
         categoriesError={error.home}
         filter={filter}
       />
+      <WhyChooseUs />
       <Instructors
         instructors={data.instructors}
         loading={loading.home}

@@ -11,11 +11,12 @@ export const generateMetadata = async () => {
   }
 
   return {
-    title: organization?.name,
-    description: organization?.description,
+    title: organization?.metaTitle,
+    description: organization?.metaDescription,
+    keywords: organization?.metaKeywords,
     openGraph: {
-      title: organization?.name,
-      description: organization?.description,
+      title: organization?.metaTitle,
+      description: organization?.metaDescription,
       url: organization?.url,
       siteName: organization?.name,
       images: [
@@ -29,8 +30,8 @@ export const generateMetadata = async () => {
     },
     twitter: {
       card: "summary_large_image",
-      title: organization?.name,
-      description: organization?.description,
+      title: organization?.metaTitle,
+      description: organization?.metaDescription,
       images: [organization?.logo],
     },
     alternates: {
