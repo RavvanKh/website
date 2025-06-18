@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 import Training from "@/components/pages/training/Training";
 
 import { getTrainingData } from "@/lib/utils/api/training";
@@ -10,6 +12,7 @@ export async function generateMetadata({ params }) {
   const training = await getTrainingData(key);
 
   if (!training?.name) {
+    notFound()
     return {
       title: "Training not found",
       description: "The requested training could not be found.",

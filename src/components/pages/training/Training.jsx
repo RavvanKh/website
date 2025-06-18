@@ -163,15 +163,13 @@ const Training = () => {
             onClick={handleSelectSection}
             sections={filteredSections}
           />
-          {Object.keys(training?.upcomingSessions).length > 0 && (
-            <NextGroup
-              nextGroup={training.upcomingSessions[0]}
-              isDownloadingSyllabus={isDownloadingSyllabus}
-              t={t}
-              onClickSyllabus={handleDownloadSyllabus}
-              onClickApply={handleApply}
-            />
-          )}
+          <NextGroup
+            nextGroup={training.upcomingSessions[0]}
+            isDownloadingSyllabus={isDownloadingSyllabus}
+            t={t}
+            onClickSyllabus={handleDownloadSyllabus}
+            onClickApply={handleApply}
+          />
         </div>
         <div className={styles.trainingSectionsRight}>
           {filteredSections.map(({ key, component: Component }, index) => {

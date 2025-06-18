@@ -9,17 +9,18 @@ const NextGroup = ({
   t,
   onClickApply,
   onClickSyllabus,
-  nextGroup
+  nextGroup,
 }) => {
-
   const formatted = convertStringToDate(nextGroup?.startDate);
 
   return (
     <div className={styles.nextGroup}>
-      <div className={styles.nextGroupTop}>
-        <div>{t("upcomingGroup")}:</div>
-        <p>{formatted}</p>
-      </div>
+      {nextGroup?.startDate && (
+        <div className={styles.nextGroupTop}>
+          <div>{t("upcomingGroup")}:</div>
+          <p>{formatted}</p>
+        </div>
+      )}
       <div className={styles.nextGroupContent}>{t("upcomingGroupContent")}</div>
       <div className={styles.nextGroupBtnGroup}>
         <button

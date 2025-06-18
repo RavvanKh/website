@@ -114,6 +114,7 @@
 
 @media (max-width:1024px) {
     .ourCourses {
+        margin-top: 150px;
         .ourCoursesList {
             grid-template-columns: repeat(2, 1fr);
         }

@@ -20,8 +20,6 @@ const MobileCourse = ({
 }) => {
   const t = useI18n();
 
-  console.log(courseStyle);
-
   return (
     <Link onClick={onClose} href={`${routes.trainings}/${course?.id}`}>
       <div className={styles.course}>

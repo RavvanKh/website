@@ -1,7 +1,7 @@
 export const COURSE_STYLES = {
   ourCourses: {
     borderRadius: "4px 4px 0 0",
-    maxHeight: "141px",
+    maxHeight: "200px",
     objectFit: "cover",
     objectPosition: "center",
   },

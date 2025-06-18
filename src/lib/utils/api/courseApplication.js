@@ -1,3 +1,4 @@
+"use server";
 import { applicationAxios } from "@/lib/axios";
 
 export const createCourseApplication = async (data) => {

@@ -96,6 +96,7 @@ export const GlobalDataProvider = ({ children }) => {
       getComments(),
     ]);
 
+
     if (homeResult.status === "fulfilled") {
       const homeData = homeResult.value;
       setData((prevData) => ({

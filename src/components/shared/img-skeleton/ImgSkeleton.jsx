@@ -4,8 +4,10 @@ import Image from "next/image";
 
 import Skeleton from "@mui/material/Skeleton";
 
-import styles from "./img-skeleton.module.css";
 import { aspectRatios } from "@/lib/constants/aspectRatios";
+
+import styles from "./img-skeleton.module.css";
+
 
 const ImgSkeleton = ({
   obj,
