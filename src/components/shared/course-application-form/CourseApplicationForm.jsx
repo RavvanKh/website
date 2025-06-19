@@ -44,7 +44,6 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
     try {
       await createCourseApplication(payload);
     } catch (err) {
-      console.log(err);
       throw new Error(err?.message);
     }
   };

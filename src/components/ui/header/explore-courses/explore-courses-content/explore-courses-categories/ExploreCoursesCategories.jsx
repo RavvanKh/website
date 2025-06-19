@@ -22,6 +22,7 @@ const ExploreCoursesCategories = ({
 }) => {
   const t = useI18n();
 
+
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileS, setIsMobileS] = useState(false);
 
@@ -35,6 +36,7 @@ const ExploreCoursesCategories = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
 
   return (
     <div className={styles.exploreCoursesCategories}>
@@ -100,7 +102,7 @@ const ExploreCoursesCategories = ({
                             onClose={onClose}
                             course={course}
                             direction="row"
-                            lines={3}
+                            lines={2}
                             courseStyle={isMobileS ? COURSE_STYLES.exploreCoursesMobileS : COURSE_STYLES.exploreCoursesMobile}
                           />
                         </div>

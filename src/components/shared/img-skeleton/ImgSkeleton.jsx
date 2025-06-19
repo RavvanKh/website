@@ -17,6 +17,7 @@ const ImgSkeleton = ({
   borderRadius = "",
   style = {},
 }) => {
+  
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (

@@ -4,16 +4,18 @@ import Image from "next/image";
 
 import styles from "./lesson.module.css";
 
-const Lesson = ({ lesson,isExpanded }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Lesson = ({ lesson, isExpanded }) => {
+  const [isOpen, setIsOpen] = useState(isExpanded);
 
   useEffect(() => {
     setIsOpen(isExpanded);
   }, [isExpanded]);
 
+  const handleToggle = () => setIsOpen((prev) => !prev);
+
   return (
-    <div className={styles.lessonContainer}>
-      <div className={styles.lesson} onClick={() => setIsOpen(!isOpen)}>
+    <article className={styles.lessonContainer}>
+      <header className={styles.lesson} onClick={handleToggle}>
         <Image
           src="/icons/syllabus.svg"
           height={32}
@@ -21,7 +23,7 @@ const Lesson = ({ lesson,isExpanded }) => {
           alt="syllabus"
           loading="lazy"
         />
-        <div className={styles.lessonName}>{lesson.name}</div>
+        <h3 className={styles.lessonName}>{lesson.name}</h3>
         <Image
           src={
             isOpen
@@ -33,24 +35,30 @@ const Lesson = ({ lesson,isExpanded }) => {
           alt="toggle"
           loading="lazy"
         />
-      </div>
+      </header>
 
-      <div
+      <ul
         className={`${styles.taskList} ${isOpen ? styles.open : styles.closed}`}
       >
         {lesson?.children?.map((task, index) => (
-          <div key={index} className={styles.task}>
+          <li key={index} className={styles.task}>
             <div className={styles.taskInfo}>
               <div>{index + 1}</div>
               <p>{task.name}</p>
             </div>
-            {index !== lesson?.children.length - 1 && (
-              <Image src="/icons/task.png" height={20} width={18} alt="task" />
+            {index !== lesson.children.length - 1 && (
+              <Image
+                src="/icons/task.png"
+                height={20}
+                width={18}
+                alt="task"
+                loading="lazy"
+              />
             )}
-          </div>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </article>
   );
 };
 

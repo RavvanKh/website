@@ -29,7 +29,7 @@
         .navbarItem{
             padding: 8px 0;
         }
-        .navbarDivider {
+        .navbarItemDivider {
             display: none;
         }
     }

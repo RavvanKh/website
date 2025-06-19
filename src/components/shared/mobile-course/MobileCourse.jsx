@@ -20,6 +20,7 @@ const MobileCourse = ({
 }) => {
   const t = useI18n();
 
+
   return (
     <Link onClick={onClose} href={`${routes.trainings}/${course?.id}`}>
       <div className={styles.course}>
@@ -28,18 +29,9 @@ const MobileCourse = ({
             type="training"
             obj={course}
             keyName="icon"
-            isRounded={false}
-            courseStyle={courseStyle}
+             isRounded={false}
+            style={courseStyle}
           />
-          {/* <img
-            className={styles.courseImg}
-            src={course?.icon}
-            alt={course?.name}
-            width={100}
-            loading="lazy"
-            height={100}
-            fetchPriority="high"
-          /> */}
         </div>
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>

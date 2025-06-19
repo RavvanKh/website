@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 
 import Loader from "@/components/shared/loader/Loader";
@@ -9,16 +10,22 @@ const Syllabus = ({ trainingProgram, t, title, error, loading }) => {
   const [expandAll, setExpandAll] = useState(false);
 
   const handleToggle = () => {
-    setExpandAll((prevState) => !prevState);
+    setExpandAll((prev) => !prev);
   };
 
-  return loading ? (
-    <div className={styles.loaderContainer}>
-      <Loader size="medium" color="primary" />
-    </div>
-  ) : error ? (
-    <div>Failed to load syllabus: {error} </div>
-  ) : (
+  if (loading) {
+    return (
+      <div className={styles.loaderContainer}>
+        <Loader size="medium" color="primary" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Failed to load syllabus: {error}</div>;
+  }
+
+  return (
     <section className={styles.syllabus}>
       <div className={styles.syllabusTop}>
         <div className={styles.syllabusTopLeft}>
@@ -30,6 +37,7 @@ const Syllabus = ({ trainingProgram, t, title, error, loading }) => {
           </button>
         </div>
       </div>
+
       <div className={styles.syllabusLessons}>
         {trainingProgram?.lessons
           ?.sort((a, b) => a.positionIndex - b.positionIndex)
