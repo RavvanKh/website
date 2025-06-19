@@ -6,18 +6,27 @@ import FilterGroup from "./filter-group/FilterGroup";
 
 import styles from "./filters.module.css";
 
-const Filters = ({ filters, onClick, activeFilter,trainings = [] }) => {
+const Filters = ({
+  filters,
+  onClick,
+  activeFilter,
+  trainings = [],
+  loading,
+}) => {
   const t = useI18n();
 
   return (
     <section className={styles.filters}>
       <div className={styles.filterTop}>
         <div className={styles.filterTopTitle}>{t("allTrainings")}:</div>
-        <div className={styles.filterTopResults}>{trainings.length} {t("results")}</div>
+        <div className={styles.filterTopResults}>
+          {trainings.length} {t("results")}
+        </div>
       </div>
       <div className={styles.filtersList}>
         {filters.map((f, index) => (
           <FilterGroup
+            loading={loading}
             onClick={onClick}
             activeFilter={activeFilter?.[f.key]}
             t={t}

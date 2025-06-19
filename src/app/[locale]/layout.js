@@ -14,7 +14,6 @@ import Footer from "@/components/ui/footer/Footer";
 
 import "./globals.css";
 
-
 export const generateMetadata = async () => {
   const { organization } = await getHomeData();
 
@@ -61,11 +60,6 @@ export const generateMetadata = async () => {
   };
 };
 
-// export const metadata = {
-//   title: "Ingress Academy",
-//   description: "Ingress Academy",
-// };
-
 export default async function SubLayout({ params, children }) {
   const { locale } = await params;
 
@@ -76,7 +70,7 @@ export default async function SubLayout({ params, children }) {
           <GlobalDataProvider>
             <Header />
             <AmplitudeProvider />
-            {children}
+            <main>{children}</main>
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <SpeedInsights />

@@ -211,6 +211,8 @@ const Training = () => {
               },
               relatedCourses: {
                 relatedCourses: training?.relatedCourses,
+                loading,
+                error,
               },
               faq: {
                 faqData: training.faq,

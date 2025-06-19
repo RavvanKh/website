@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 16px;
 
+
     .relatedCoursesTitle {
         color: rgba(0, 58, 157, 1);
         font-weight: 700;
@@ -11,28 +12,4 @@
         line-height: 32px;
     }
 
-    .relatedCoursesList {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-        grid-auto-rows: 1fr;
-
-    }
-
-    .relatedCoursesList>* {
-        height: 100%;
-        /* hər kart maksimum hündürlükdə olsun */
-        display: flex;
-        flex-direction: column;
-        /* lazım ola bilər */
-    }
-}
-
-
-@media(max-width:1024px) {
-    .relatedCourses {
-        .relatedCoursesList {
-            grid-template-columns: 1fr;
-        }
-    }
 }

@@ -91,6 +91,8 @@ export const GlobalDataProvider = ({ children }) => {
   const fetchAllData = useCallback(async () => {
     setLoading({ home: true, comments: true });
 
+      await new Promise((r) => setTimeout(r, 500));
+
     const [homeResult, commentsResult] = await Promise.allSettled([
       getHomeData(),
       getComments(),

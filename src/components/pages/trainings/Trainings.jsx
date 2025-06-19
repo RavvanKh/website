@@ -14,14 +14,13 @@ import { filterOptions } from "@/lib/constants/filterOptions";
 
 import styles from "./trainings.module.css";
 
-
-
 const Trainings = () => {
   const {
     data: { courses, categories },
+    loading,
   } = useGlobalData();
 
-  const t = useI18n()
+  const t = useI18n();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -50,7 +49,6 @@ const Trainings = () => {
   });
 
   const updateFilter = (name, value) => {
-
     const updatedFilter = { ...filter, [name]: value };
 
     const params = new URLSearchParams();
@@ -116,12 +114,16 @@ const Trainings = () => {
       <CourseTypes t={t} selectedType={filter.type} onClick={updateFilter} />
       <div className={styles.trainingsContent}>
         <Filters
-        trainings={filteredTrainings}
+        loading={loading.home}
+          trainings={filteredTrainings}
           activeFilter={filter}
           filters={filters}
           onClick={updateFilter}
         />
-        <FilteredTrainings trainings={filteredTrainings} />
+        <FilteredTrainings
+          loading={loading.home}
+          trainings={filteredTrainings}
+        />
       </div>
     </section>
   );

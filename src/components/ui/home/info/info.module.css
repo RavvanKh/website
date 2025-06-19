@@ -15,7 +15,7 @@
             font-size: 44px;
             font-family: 'Nunito', sans-serif;
             line-height: 52px;
-            font-weight: 800;
+            font-weight: 860;
 
             .infoTitleItem {
                 &:first-child {
@@ -65,6 +65,7 @@
     .infoRight {
         position: relative;
         width: 100%;
+        max-width: 530px;
 
         .infoRightImg {
             border-radius: 8px;
@@ -94,6 +95,7 @@
             }
         }
         .infoRight {
+            max-width: 100%;
             .infoRightImg{
                 width: 90%;
                 margin: 0 auto;

@@ -42,16 +42,15 @@
 
                 .practicePortalRightTitle {
                     color: rgba(33, 37, 41, 1);
-                    font-weight: 600;
-                    line-height: 120%;
-                    letter-spacing: -2%;
-                    font-size: 20px;
+                    font-weight: 700;
+                    line-height: 36px;
+                    font-size: 28px;
                 }
 
                 .practicePortalRightSubTitle {
                     color: rgba(33, 37, 41, 1);
-                    line-height: 22px;
-                    font-size: 14px;
+                    line-height: 24px;
+                    font-size: 16px;
                     font-weight: 400;
                     font-family: 'Nunito', sans-serif;
                 }
@@ -65,9 +64,9 @@
                 .practicePortalRightContentDescription {
                     color: rgba(58, 58, 58, 1);
                     font-family: 'Nunito', sans-serif;
-                    font-size: 16px;
+                    font-size: 18px;
                     font-weight: 500;
-                    line-height: 24px;
+                    line-height: 26px;
                 }
             }
         }

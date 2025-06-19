@@ -12,7 +12,7 @@ const ITEMS_PER_PAGE = 9;
 
 const FilteredTrainings = ({ trainings, loading }) => {
   const t = useI18n();
-  const [currentPage, setCurrentPage] = useState(1); // MUI 1-dən başlayır
+  const [currentPage, setCurrentPage] = useState(1); 
 
   if (loading) {
     return (
@@ -33,7 +33,7 @@ const FilteredTrainings = ({ trainings, loading }) => {
 
   const handleChange = (event, value) => {
     setCurrentPage(value);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // istəyə görə əlavə et
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
