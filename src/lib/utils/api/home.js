@@ -3,7 +3,7 @@ import { customAxios } from "@/lib/axios";
 
 import { cache } from "react";
 
-export const getHomeData = (async () => {
+export const getHomeData = cache(async () => {
   try {
     const res = await customAxios.get(`/v1/home`);
     return res.data;

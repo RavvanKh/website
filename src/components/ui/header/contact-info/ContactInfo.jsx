@@ -1,7 +1,4 @@
-"use client";
 import Image from "next/image";
-
-import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import { filterArray } from "@/lib/utils/helpers";
 import { contacts } from "@/lib/constants/contact";
@@ -10,10 +7,7 @@ import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 
 import styles from "./contact-info.module.css";
 
-const ContactInfo = () => {
-  const {
-    data: { organization },
-  } = useGlobalData();
+const ContactInfo = ({organization}) => {
 
   const dynamicData = {
     phone: organization?.phoneNumbers?.[0],

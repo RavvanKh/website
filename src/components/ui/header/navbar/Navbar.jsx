@@ -9,7 +9,7 @@ import ContactPhone from "@/components/shared/contact-phone/ContactPhone";
 import styles from "./navbar.module.css";
 
 
-const Navbar = () => {
+const Navbar = ({organization}) => {
   return (
     <nav className={styles.navbar}>
       <NavbarLogo />
@@ -19,7 +19,7 @@ const Navbar = () => {
           {/* <Apply /> */}
         </div>
         <div className={styles.navbarMobile}>
-          <ContactPhone />
+          <ContactPhone phone={organization?.phoneNumbers?.[0]} />
           <HamburgerMenu />
         </div>
       </div>

@@ -50,7 +50,7 @@ const MobileCourse = ({
           </div>
           <div className={styles.courseBody}>
             <div className={styles.courseBodyEllipsis}>
-              <h2 className={styles.courseName}>{course?.name}</h2>
+              <h3 className={styles.courseName}>{course?.name}</h3>
               <p
                 className={styles.courseTitle}
                 style={{ WebkitLineClamp: lines }}

@@ -54,8 +54,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function LocaleLayout({ children, params }) {
-  const { locale } = params;
+export default async function LocaleLayout({ children, params }) {
+  const { locale } = await params;
 
   return (
     <I18nProviderClient locale={locale}>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_DOMAIN =
-  process.env.NEXT_PUBLIC_API_DOMAIN || "https://ingress.academy";
+  process.env.NEXT_PUBLIC_API_DOMAIN;
 
 const getMsUrl = (servicePath) => {
   const baseDomain = API_DOMAIN.endsWith("/")
