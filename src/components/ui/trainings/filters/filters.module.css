@@ -13,3 +13,17 @@
         gap: 8px;
     }
 }
+
+@media(max-width: 768px) {
+    .filters {
+        width: 100%;
+        min-width: 200px;
+        max-width: 200px;
+    }
+}
+
+@media(max-width:576px) {
+    .filters {
+        display: none
+    }
+}

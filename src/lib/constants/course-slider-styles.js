@@ -1,6 +1,6 @@
 export const COURSE_SLIDER_STYLES = {
   ourCourses: {
-    sliderPerView: 4,
+    slidesPerView: 4,
     breakpoints: {
       0: {
         slidesPerView: 1,
@@ -14,7 +14,7 @@ export const COURSE_SLIDER_STYLES = {
     },
   },
   relatedCourses: {
-    sliderPerView: 3,
+    slidesPerView: 3,
     breakpoints: {
       0: {
         slidesPerView: 1,

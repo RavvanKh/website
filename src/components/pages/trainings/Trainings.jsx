@@ -111,10 +111,12 @@ const Trainings = () => {
 
   return (
     <section className={styles.trainings}>
-      <CourseTypes t={t} selectedType={filter.type} onClick={updateFilter} />
+      <div className={styles.courseTypes}>
+        <CourseTypes t={t} selectedType={filter.type} onClick={updateFilter} />
+      </div>
       <div className={styles.trainingsContent}>
         <Filters
-        loading={loading.home}
+          loading={loading.home}
           trainings={filteredTrainings}
           activeFilter={filter}
           filters={filters}

@@ -24,7 +24,7 @@ const CourseSlider = ({
     <div className={styles.errorMessage}>
       Failed to load categories: {error}
     </div>
-  ) : courses.length > 3 ? (
+  ) : courses.length > sliderStyle?.slidesPerView ? (
     <div className={styles.swiperContainer}>
       <div className={`${styles.customNav} ${styles.customPrev}`}>
         <FaArrowLeft color="#FFFFFF" size={14} />
@@ -58,7 +58,12 @@ const CourseSlider = ({
       </div>
     </div>
   ) : (
-    <div className={styles.ourCoursesList}>
+    <div
+      className={styles.ourCoursesList}
+      style={{
+        gridTemplateColumns: `repeat(${sliderStyle?.slidesPerView}, 1fr)`,
+      }}
+    >
       {courses.map((course) => (
         <div key={course?.id} className={styles.slide}>
           <Course
