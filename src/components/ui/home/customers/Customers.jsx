@@ -3,20 +3,20 @@ import React, { useEffect, useState, useRef } from "react";
 
 import { useI18n } from "@/locales/client";
 
-import { getCustomers } from "@/lib/utils/api/customers";
+import { CUSTOMER_STYLES } from "@/lib/constants/customer-styles";
 
 import Loader from "@/components/shared/loader/Loader";
 import Customer from "./customer/Customer";
 import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import styles from "./customers.module.css";
-import { CUSTOMER_STYLES } from "@/lib/constants/customer-styles";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 const Customers = ({ customers, loading, error }) => {
   const sliderRef = useRef(null);
-  const animationRef = useRef();
-  const sliderContentRef = useRef(null);
-  const [slideWidth, setSlideWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   const t = useI18n();
@@ -24,8 +24,6 @@ const Customers = ({ customers, loading, error }) => {
   useEffect(() => {
     const calculateSlideWidth = () => {
       if (sliderRef.current) {
-        const containerWidth = sliderRef.current.offsetWidth;
-        setSlideWidth(containerWidth / 8);
         setIsMobile(window.innerWidth <= 1024);
       }
     };
@@ -35,53 +33,12 @@ const Customers = ({ customers, loading, error }) => {
     return () => window.removeEventListener("resize", calculateSlideWidth);
   }, []);
 
-  useEffect(() => {
-    if (!isMobile) {
-      if (
-        !customers.length ||
-        !sliderRef.current ||
-        !sliderContentRef.current ||
-        slideWidth === 0
-      )
-        return;
-
-      const totalWidth = slideWidth * customers.length;
-
-      sliderContentRef.current.style.width = `${totalWidth * 2}px`;
-
-      let position = 0;
-      const speed = 2;
-
-      const animate = () => {
-        position -= speed;
-
-        if (position <= -totalWidth) {
-          position = 0;
-        }
-
-        if (sliderContentRef.current) {
-          sliderContentRef.current.style.transform = `translateX(${position}px)`;
-        }
-
-        animationRef.current = requestAnimationFrame(animate);
-      };
-
-      animationRef.current = requestAnimationFrame(animate);
-    }
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [customers, slideWidth, isMobile]);
-
   const displayedCustomers = isMobile ? customers.slice(0, 8) : customers;
 
   return (
     <section className={styles.customers}>
       <div className={styles.customersTop}>
-        <div className={styles.customersTopTitle}>{t("ourCustomers")}</div>
+        <h2 className={styles.customersTopTitle}>{t("ourCustomers")}</h2>
         <div
           className={`${
             !isMobile ? styles.customersBtnShown : styles.customersBtnHide
@@ -99,30 +56,26 @@ const Customers = ({ customers, loading, error }) => {
           Failed to load customers: {error}
         </div>
       ) : (
-        <div className={styles.customersSliderContainer} ref={sliderRef}>
-          <div
-            className={styles.customersSliderTrack}
-            style={{
-              gridTemplateColumns: isMobile
-                ? ""
-                : `repeat(${customers.length * 2},1fr)`,
-            }}
-            ref={sliderContentRef}
-          >
-            {displayedCustomers.map((customer, index) => (
-              <div
-                key={`${customer?.id}-${index}`}
-                className={styles.customerSlide}
-                style={{ width: isMobile ? "100%" : `${slideWidth}px` }}
-              >
-                <Customer
-                  customer={customer}
-                  style={CUSTOMER_STYLES.homePage}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <Swiper
+          modules={[Autoplay]}
+          slidesPerView={isMobile ? 2 : 8}
+          spaceBetween={20}
+          loop={true}
+          autoplay={{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }}
+          speed={4000}
+          allowTouchMove={false}
+          style={{ width: "100%" }}
+        >
+          {displayedCustomers.map((customer, index) => (
+            <SwiperSlide key={customer?.id || index}>
+              <Customer customer={customer} style={CUSTOMER_STYLES.homePage} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       )}
       <div
         className={`${

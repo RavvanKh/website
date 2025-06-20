@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 
 import { useI18n } from "@/locales/client";
 
@@ -9,10 +10,10 @@ import { defaultSection } from "@/lib/constants/selectSections";
 
 import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
-import Loader from "@/components/shared/loader/Loader";
-import TrainingTitle from "@/components/ui/training/training-title/TrainingTitle";
-import SelectSection from "@/components/ui/training/select-section/SelectSection";
-import NextGroup from "@/components/shared/next-group/NextGroup";
+const Loader = dynamic(() => import("@/components/shared/loader/Loader"), { ssr: false, loading: () => null });
+const TrainingTitle = dynamic(() => import("@/components/ui/training/training-title/TrainingTitle"), { ssr: false, loading: () => null });
+const SelectSection = dynamic(() => import("@/components/ui/training/select-section/SelectSection"), { ssr: false, loading: () => null });
+const NextGroup = dynamic(() => import("@/components/shared/next-group/NextGroup"), { ssr: false, loading: () => null });
 
 import styles from "./training.module.css";
 

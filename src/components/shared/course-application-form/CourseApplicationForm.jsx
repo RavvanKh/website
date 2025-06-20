@@ -21,7 +21,6 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
     fullName: yup.string().required("Full name is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
     phone: yup.string().required("Phone number is required"),
-    // message: yup.string().required("Message is required"),
   });
 
   const {
@@ -58,9 +57,9 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
         course?.name ? styles.courseApplicationRightWithCourse : ""
       }`}
     >
-      <div className={styles.courseApplicationRightTitle}>
+      <h2 className={styles.courseApplicationRightTitle}>
         {t("courseApplication")}
-      </div>
+      </h2>
       <div className={styles.courseApplicationRightDescription}>
         {t("courseApplicationRightDescription")}
       </div>

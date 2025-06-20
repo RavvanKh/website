@@ -13,10 +13,10 @@ const InstructorsContent = ({ showBtn = false, isFlex = false }) => {
   return (
     <div className={`${styles.instructorsContent} ${className}`}>
       <div className={styles.instructorsContentTitle}>
-        <div>{t("energeticInstructorsWith")}</div>
-        <div className={styles.instructorsContentTitleColored}>
+        <h2>{t("energeticInstructorsWith")}</h2>
+        <h2 className={styles.instructorsContentTitleColored}>
           {t("realWorldExperience")}
-        </div>
+        </h2>
       </div>
       <p className={styles.instructorsContentParagraph}>
         {t("instructorsSectionParagraph")}

@@ -16,9 +16,9 @@ const Info = () => {
       <div className={styles.infoRight}>
         <div className={styles.container}>
           <div className={styles.textGroup}>
-            <div className={styles.sectionTitle}>
+            <h3 className={styles.sectionTitle}>
               {t("scholarshipBenefits")}
-            </div>
+            </h3>
 
             <p className={styles.benefitsText}>
               {t("scholarshipDescription")}
@@ -31,7 +31,7 @@ const Info = () => {
           </div>
 
           <div className={styles.textGroup}>
-            <div className={styles.sectionTitle}>{t("selectionProcess")}</div>
+            <h3 className={styles.sectionTitle}>{t("selectionProcess")}</h3>
 
             <div>
               <p className={styles.processDescription}>

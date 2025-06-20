@@ -5,7 +5,7 @@ import styles from "./advantages.module.css";
 const Advantages = ({ t, title, advantages }) => {
   return (
     <section className={styles.advantages}>
-      <div className={styles.advantagesTop}>{t(title)}</div>
+      <h2 className={styles.advantagesTop}>{t(title)}</h2>
       <div className={styles.advantagesContent}>
         {advantages.map((advantage, index) => (
           <Advantage t={t} advantage={advantage} key={index} />

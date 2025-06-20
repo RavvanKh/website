@@ -1,19 +1,45 @@
 "use client";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
+import dynamic from "next/dynamic";
 
-import Details from "@/components/ui/home/details/Details";
-import WhyChooseUs from "@/components/ui/home/why-choose-us/WhyChooseUs";
-import Instructors from "@/components/ui/home/instructors/Instructors";
-import OurCourses from "@/components/ui/home/our-courses/OurCourses";
-import PracticePortal from "@/components/ui/home/practice-portal/PracticePortal";
-import Comments from "@/components/ui/home/comments/Comments";
-import Customers from "@/components/ui/home/customers/Customers";
-import CourseApplication from "@/components/shared/course-application/CourseApplication";
+const Details = dynamic(() => import("@/components/ui/home/details/Details"), {
+  ssr: false,
+});
+const OurCourses = dynamic(
+  () => import("@/components/ui/home/our-courses/OurCourses"),
+  { ssr: false }
+);
+const WhyChooseUs = dynamic(
+  () => import("@/components/ui/home/why-choose-us/WhyChooseUs"),
+  { ssr: false }
+);
+const Instructors = dynamic(
+  () => import("@/components/ui/home/instructors/Instructors"),
+  { ssr: false }
+);
+const PracticePortal = dynamic(
+  () => import("@/components/ui/home/practice-portal/PracticePortal"),
+  { ssr: false }
+);
+const Comments = dynamic(
+  () => import("@/components/ui/home/comments/Comments"),
+  { ssr: false }
+);
+const CourseApplication = dynamic(
+  () => import("@/components/shared/course-application/CourseApplication"),
+  { ssr: false }
+);
+const Customers = dynamic(
+  () => import("@/components/ui/home/customers/Customers"),
+  {
+    ssr: false,
+  }
+);
 
 import styles from "./home.module.css";
 
-const Home = () => {
+export default function Home() {
   const { data, filter, error, loading, updateFilter } = useGlobalData();
 
   return (
@@ -56,6 +82,4 @@ const Home = () => {
       <CourseApplication courses={data.courses} />
     </div>
   );
-};
-
-export default Home;
+}

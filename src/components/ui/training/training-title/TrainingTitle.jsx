@@ -7,7 +7,7 @@ const TrainingTitle = ({ training }) => {
     <section className={styles.trainingTitle}>
       <div className={styles.trainingTitleContainer}>
         <div className={styles.trainingTitleLeft}>
-          <h2>{training.name}</h2>
+          <h1>{training.name}</h1>
           <p>{training.description}</p>
         </div>
         <div className={styles.trainingTitleRight}>

@@ -27,12 +27,11 @@ const Instructors = ({ instructors, loading, error }) => {
       }
     };
 
-    // Initial load
     updateInstructorsByWidth(instructors);
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [instructors]); // instructors dəyişəndə də slice yenilənməlidir
+  }, [instructors]); 
 
   return (
     <section className={styles.instructors}>

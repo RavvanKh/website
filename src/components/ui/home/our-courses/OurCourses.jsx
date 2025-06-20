@@ -27,7 +27,7 @@ const OurCourses = ({
     <section className={styles.ourCourses}>
       <div className={styles.ourCoursesContainer}>
         <div className={styles.ourCoursesTop}>
-          <div className={styles.ourCoursesTitle}>{t("ourCoursesTitle")}</div>
+          <h2 className={styles.ourCoursesTitle}>{t("ourCoursesTitle")}</h2>
           <div className={styles.ourCoursesDescription}>
             {t("ourCoursesDescription")}
           </div>

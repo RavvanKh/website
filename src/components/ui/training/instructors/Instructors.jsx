@@ -6,7 +6,7 @@ import styles from "./instructors.module.css";
 const Instructors = ({ t, title, error, loading, instructors }) => {
   return (
     <section className={styles.instructors}>
-      <div className={styles.instructorsTop}>{t(title)}</div>
+      <h2 className={styles.instructorsTop}>{t(title)}</h2>
       {loading ? (
         <div className={styles.loaderContainer}>
           <Loader size="medium" color="primary" />

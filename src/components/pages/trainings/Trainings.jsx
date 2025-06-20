@@ -1,14 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import dynamic from "next/dynamic";
 
 import { useI18n } from "@/locales/client";
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
-import Filters from "@/components/ui/trainings/filters/Filters";
-import FilteredTrainings from "@/components/ui/trainings/filtered-trainings/FilteredTrainings";
-import CourseTypes from "@/components/ui/home/our-courses/course-types/CourseTypes";
+const Filters = dynamic(() => import("@/components/ui/trainings/filters/Filters"), { ssr: false, loading: () => null });
+const FilteredTrainings = dynamic(() => import("@/components/ui/trainings/filtered-trainings/FilteredTrainings"), { ssr: false, loading: () => null });
+const CourseTypes = dynamic(() => import("@/components/ui/home/our-courses/course-types/CourseTypes"), { ssr: false, loading: () => null });
 
 import { filterOptions } from "@/lib/constants/filterOptions";
 

@@ -23,7 +23,7 @@ const Faq = ({ t, title, faqData }) => {
 
   return (
     <section className={styles.faq}>
-      <div className={styles.faqTop}>{t(title)}</div>
+      <h2 className={styles.faqTop}>{t(title)}</h2>
       <div className={styles.faqList}>
         {sortedData.map((item, index) => {
           const isActive = activeIndexes.includes(index);

@@ -40,12 +40,12 @@ const PracticePortal = () => {
               loading="lazy"
             />
             <div>
-              <div className={styles.practicePortalRightTitle}>
+              <h2 className={styles.practicePortalRightTitle}>
                 {t("yourPracticePortal")}
-              </div>
-              <div className={styles.practicePortalRightSubTitle}>
+              </h2>
+              <h3 className={styles.practicePortalRightSubTitle}>
                 {t("yourPracticePortalSubTitle")}
-              </div>
+              </h3>
             </div>
           </div>
           <div className={styles.practicePortalRightContent}>

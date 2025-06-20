@@ -11,7 +11,7 @@ const WhyChooseUsDetail = ({ item, index }) => {
       className={styles.whyChooseUsDetailItem}
     >
       <div className={styles.whyChooseUsDetailItemAbsoluteBorder} />
-      <div className={styles.whyChooseUsDetailItemTitle}>{t(item?.title)}</div>
+      <h3 className={styles.whyChooseUsDetailItemTitle}>{t(item?.title)}</h3>
       <div className={styles.whyChooseUsDetailItemDescription}>
         {t(item?.description)}
       </div>

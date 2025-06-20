@@ -14,11 +14,11 @@ const AboutUs = () => {
     <section className={styles.aboutUs}>
       <div className={styles.aboutUsContainer}>
         <div className={styles.aboutUsLeft}>
-          <div className={styles.aboutUsTop}>{t("aboutUs")}</div>
+          <h1 className={styles.aboutUsTop}>{t("aboutUs")}</h1>
           <div className={styles.aboutUsBottom}>
             {aboutUs.map((item, index) => (
               <div key={index} className={styles.aboutUsContent}>
-                <div>{t(item.title)}</div>
+                <h2>{t(item.title)}</h2>
                 <p>{t(item.description)}</p>
               </div>
             ))}

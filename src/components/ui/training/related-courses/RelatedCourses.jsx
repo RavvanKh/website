@@ -8,7 +8,7 @@ import styles from "./related-courses.module.css";
 const RelatedCourses = ({ t, title, relatedCourses, loading, error }) => {
   return (
     <section className={styles.relatedCourses}>
-      <div className={styles.relatedCoursesTitle}>{t(title)}</div>
+      <h2 className={styles.relatedCoursesTitle}>{t(title)}</h2>
       <div className={styles.relatedCoursesList}>
         <CourseSlider
           loading={loading}

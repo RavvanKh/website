@@ -13,7 +13,7 @@ const WhyChooseUs = () => {
 
   return (
     <section className={styles.whyChooseUs}>
-      <div className={styles.whyChooseUsTitle}>{t("whyChooseUs")}</div>
+      <h2 className={styles.whyChooseUsTitle}>{t("whyChooseUs")}</h2>
       <div className={styles.whyChooseUsDetails}>
         <div className={styles.whyChooseUsDetailsLeft}>
           <div className={styles.whyChooseUsDetailsLeftBg}></div>

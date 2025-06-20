@@ -39,7 +39,7 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
       style={{ justifyContent: loading ? "flex-start" : "space-between" }}
     >
       <div className={styles.graduatesLeft}>
-        <div>{t(title)}</div>
+        <h2>{t(title)}</h2>
         <p>{t("graduatesContent")}</p>
       </div>
 

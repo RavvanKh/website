@@ -20,7 +20,7 @@ const Comments = ({ comments = [], loading, error }) => {
 
   return (
     <section className={styles.comments}>
-      <div className={styles.commentsTitle}>{t("whatOurStudentsSay")}</div>
+      <h2 className={styles.commentsTitle}>{t("whatOurStudentsSay")}</h2>
       <div className={styles.commentsSlider}>
         {loading ? (
           <div className={styles.loaderContainer}>

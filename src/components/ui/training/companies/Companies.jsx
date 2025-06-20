@@ -7,7 +7,7 @@ const Companies = ({ t, companies, loading, error }) => {
   return (
     <section className={styles.companies}>
       <div className={styles.companiesTop}>
-        <div className={styles.companiesTitle}>{t("graduatesTitle")}</div>
+        <h2 className={styles.companiesTitle}>{t("graduatesTitle")}</h2>
         <p>{t("graduatesDescription")}</p>
 
       </div>

@@ -29,9 +29,9 @@ const GetInTouch = () => {
   return (
     <div className={styles.courseApplicationLeft}>
       <div className={styles.courseApplicationLeftTop}>
-        <div className={styles.courseApplicationLeftTopTitle}>
+        <h3 className={styles.courseApplicationLeftTopTitle}>
           {t("getInTouch")}
-        </div>
+        </h3>
         <p className={styles.courseApplicationLeftDescription}>
           {t("contactUsDirectlyForQuickInteraction")}
         </p>

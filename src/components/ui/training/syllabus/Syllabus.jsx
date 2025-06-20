@@ -28,9 +28,9 @@ const Syllabus = ({ trainingProgram, t, title, error, loading }) => {
   return (
     <section className={styles.syllabus}>
       <div className={styles.syllabusTop}>
-        <div className={styles.syllabusTopLeft}>
+        <h2 className={styles.syllabusTopLeft}>
           {t(title)}: {trainingProgram?.name}
-        </div>
+        </h2>
         <div className={styles.syllabusTopRight}>
           <button onClick={handleToggle}>
             {expandAll ? t("collapseAll") : t("expandAll")}

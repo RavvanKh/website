@@ -32,7 +32,7 @@ const Info = ({
           <br />
           <span className={styles.infoTitleItem}>{t("innovation")}</span>
         </h1>
-        <div className={styles.infoLeftTitle}>{t("infoTitle")}</div>
+        <h2 className={styles.infoLeftTitle}>{t("infoTitle")}</h2>
         <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
         <Link href={routes.trainings} className={styles.infoLeftButton}>
           <div>{t("exploreOurCourses")}</div>
