@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Grid } from "swiper/modules";
+
 import { useI18n } from "@/locales/client";
 
 import { CUSTOMER_STYLES } from "@/lib/constants/customer-styles";
@@ -10,10 +13,9 @@ import Customer from "./customer/Customer";
 import SeeMore from "@/components/shared/see-more/SeeMore";
 
 import styles from "./customers.module.css";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
+import "swiper/css/grid";
 
 const Customers = ({ customers, loading, error }) => {
   const sliderRef = useRef(null);
@@ -32,8 +34,6 @@ const Customers = ({ customers, loading, error }) => {
     window.addEventListener("resize", calculateSlideWidth);
     return () => window.removeEventListener("resize", calculateSlideWidth);
   }, []);
-
-  const displayedCustomers = isMobile ? customers.slice(0, 8) : customers;
 
   return (
     <section className={styles.customers}>
@@ -57,8 +57,9 @@ const Customers = ({ customers, loading, error }) => {
         </div>
       ) : (
         <Swiper
-          modules={[Autoplay]}
-          slidesPerView={isMobile ? 2 : 8}
+          ref={sliderRef}
+          modules={[Autoplay, Grid]}
+          slidesPerView={2}
           spaceBetween={20}
           loop={true}
           autoplay={{
@@ -69,8 +70,31 @@ const Customers = ({ customers, loading, error }) => {
           speed={4000}
           allowTouchMove={false}
           style={{ width: "100%" }}
+          breakpoints={{
+            0: {
+              slidesPerView: 2,
+              grid: {
+                rows: 4,
+                fill: "row",
+              },
+            },
+            768: {
+              slidesPerView: 4,
+              grid: {
+                rows: 2,
+                fill: "row",
+              },
+            },
+            1024: {
+              slidesPerView: 8,
+              grid: {
+                rows: 1,
+                fill: "row",
+              },
+            },
+          }}
         >
-          {displayedCustomers.map((customer, index) => (
+          {customers.map((customer, index) => (
             <SwiperSlide key={customer?.id || index}>
               <Customer customer={customer} style={CUSTOMER_STYLES.homePage} />
             </SwiperSlide>

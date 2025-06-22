@@ -3,6 +3,8 @@ import { useI18n } from "@/locales/client";
 
 import SeeMore from "../see-more/SeeMore";
 
+import { routes } from "@/lib/constants/routes";
+
 import styles from "./instructors-content.module.css";
 
 const InstructorsContent = ({ showBtn = false, isFlex = false }) => {
@@ -21,7 +23,7 @@ const InstructorsContent = ({ showBtn = false, isFlex = false }) => {
       <p className={styles.instructorsContentParagraph}>
         {t("instructorsSectionParagraph")}
       </p>
-      {showBtn && <SeeMore url="/" />}
+      {showBtn && <SeeMore url={routes.about} />}
     </div>
   );
 };

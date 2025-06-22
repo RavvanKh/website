@@ -24,7 +24,7 @@ const Scholarship = () => {
       />
       <Info />
       <StayUpdated />
-      <CourseApplication />
+      <CourseApplication courses={data.courses} />
     </section>
   );
 };
