@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Grid } from "swiper/modules";
+import { Autoplay, Grid } from "swiper/modules"
 
 import { useI18n } from "@/locales/client";
 
@@ -12,7 +12,7 @@ import Loader from "@/components/shared/loader/Loader";
 import Customer from "./customer/Customer";
 import SeeMore from "@/components/shared/see-more/SeeMore";
 
-import styles from "./customers.module.css";
+import styles from "./customers.module.css";;
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/grid";
@@ -22,6 +22,7 @@ const Customers = ({ customers, loading, error }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   const t = useI18n();
+
 
   useEffect(() => {
     const calculateSlideWidth = () => {
@@ -34,6 +35,7 @@ const Customers = ({ customers, loading, error }) => {
     window.addEventListener("resize", calculateSlideWidth);
     return () => window.removeEventListener("resize", calculateSlideWidth);
   }, []);
+
 
   return (
     <section className={styles.customers}>
@@ -57,7 +59,7 @@ const Customers = ({ customers, loading, error }) => {
         </div>
       ) : (
         <Swiper
-          ref={sliderRef}
+        ref={sliderRef}
           modules={[Autoplay, Grid]}
           slidesPerView={2}
           spaceBetween={20}
@@ -73,24 +75,22 @@ const Customers = ({ customers, loading, error }) => {
           breakpoints={{
             0: {
               slidesPerView: 2,
+              loop: false,
               grid: {
                 rows: 4,
-                fill: "row",
-              },
+                fill: 'row'
+              }
             },
             768: {
               slidesPerView: 4,
+              loop: false,
               grid: {
                 rows: 2,
-                fill: "row",
-              },
+                fill: 'row'
+              }
             },
             1024: {
               slidesPerView: 8,
-              grid: {
-                rows: 1,
-                fill: "row",
-              },
             },
           }}
         >
