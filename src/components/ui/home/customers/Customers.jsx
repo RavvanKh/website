@@ -94,7 +94,7 @@ const Customers = ({ customers, loading, error }) => {
             },
           }}
         >
-          {customers.map((customer, index) => (
+          {customers.slice(0, 12).map((customer, index) => (
             <SwiperSlide key={customer?.id || index}>
               <Customer customer={customer} style={CUSTOMER_STYLES.homePage} />
             </SwiperSlide>

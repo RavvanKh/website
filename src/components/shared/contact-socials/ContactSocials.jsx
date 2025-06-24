@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
@@ -16,7 +15,7 @@ const ContactSocials = () => {
   return (
     <div className={styles.contactInfoSocials}>
       {filterArray(contactSocials, "youtube").map((item) => (
-        <Link
+        <a
           href={organization?.socialLinks?.[item.key] || ""}
           key={item.key}
           title={item.key}
@@ -26,7 +25,7 @@ const ContactSocials = () => {
           data-social={item.key}
         >
           <item.icon className={styles.contactInfoSocialIcon} size={18} />
-        </Link>
+        </a>
       ))}
     </div>
   );

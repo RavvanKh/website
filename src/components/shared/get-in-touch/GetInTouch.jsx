@@ -35,27 +35,42 @@ const GetInTouch = () => {
         <p className={styles.courseApplicationLeftDescription}>
           {t("contactUsDirectlyForQuickInteraction")}
         </p>
-        {contacts.map((contact) => (
-          <div className={styles.courseApplicationContact} key={contact.key}>
-            <div className={styles.courseApplicationContactIcon}>
-              <Image src={contact.icon2} height={18} width={24} alt="Icon" />
-            </div>
-            <div>
-              <div className={styles.contactForCourseApplicationContactKey}>
-                {t(contact.key)}
+        {contacts.map((contact) => {
+          const value = dynamicData?.[contact.key] || "";
+          const isEmail = contact.key === "email";
+
+          const [user, domain] = isEmail ? value.split("@") : [];
+
+          return (
+            <div className={styles.courseApplicationContact} key={contact.key}>
+              <div className={styles.courseApplicationContactIcon}>
+                <Image src={contact.icon2} height={18} width={24} alt="Icon" />
               </div>
-              <Link
-                href={generateLink(
-                  contact.key,
-                  dynamicData?.[contact.key] || ""
+              <div>
+                <div className={styles.contactForCourseApplicationContactKey}>
+                  {t(contact.key)}
+                </div>
+                {isEmail ? (
+                  <a
+                    href={`mailto:${user}@${domain}`}
+                    className={styles.contactForCourseApplicationContactText}
+                  >
+                    {user}
+                    <span>@</span>
+                    {domain}
+                  </a>
+                ) : (
+                  <a
+                    href={generateLink(contact.key, value)}
+                    className={styles.contactForCourseApplicationContactText}
+                  >
+                    {t(value)}
+                  </a>
                 )}
-                className={styles.contactForCourseApplicationContactText}
-              >
-                {t(dynamicData[contact.key])}
-              </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className={styles.courseApplicationLeftBottom}>
         <div className={styles.courseApplicationLeftBottomTitle}>

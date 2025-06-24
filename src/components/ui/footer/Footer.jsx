@@ -48,19 +48,42 @@ const Footer = () => {
               {contacts
                 .slice()
                 .reverse()
-                .map((item) => (
-                  <Link
-                    href={generateLink(item.key, dynamicData?.[item.key] || "")}
-                    key={item.key}
-                  >
-                    {dynamicData?.[item.key]}
-                  </Link>
-                ))}
+                .map((item) => {
+                  const value = dynamicData?.[item.key];
+                  const isEmail = item.key === "email";
+
+                  if (!value) return null;
+
+                  if (isEmail) {
+                    const [user, domain] = value.split("@");
+                    return (
+                      <a
+                        key={item.key}
+                        href={`mailto:${user}@${domain}`}
+                        className={styles.footerContactLink}
+                      >
+                        {user}
+                        <span>@</span>
+                        {domain}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <a
+                      href={generateLink(item.key, value)}
+                      key={item.key}
+                      className={styles.footerContactLink}
+                    >
+                      {value}
+                    </a>
+                  );
+                })}
             </div>
           </div>
           <div className={styles.footerTopRight}>
             {filterArray(contactSocials).map((item) => (
-              <Link
+              <a
                 rel="noopener noreferrer"
                 title={item.key}
                 href={organization?.socialLinks?.[item.key] || ""}
@@ -76,7 +99,7 @@ const Footer = () => {
                   size={20}
                   className={styles.footerTopRightSocialsIcon}
                 />
-              </Link>
+              </a>
             ))}
           </div>
         </div>

@@ -50,7 +50,7 @@ const Comments = ({ comments = [], loading, error }) => {
               }}
               className={styles.mySwiper}
             >
-              {comments.map((comment) => (
+              {comments.slice(0, 8).map((comment) => (
                 <SwiperSlide key={comment.id} className={styles.swiperSlide}>
                   <Comment comment={comment} />
                 </SwiperSlide>
@@ -86,7 +86,7 @@ const Comments = ({ comments = [], loading, error }) => {
               }}
               className={styles.mySwiper}
             >
-              {comments.map((comment) => (
+              {comments.slice(0, 8).map((comment) => (
                 <SwiperSlide key={comment.id} className={styles.mobileSwiperSlide}>
                   <Comment comment={comment} />
                 </SwiperSlide>

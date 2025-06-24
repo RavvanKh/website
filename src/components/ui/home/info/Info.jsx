@@ -13,7 +13,6 @@ import { routes } from "@/lib/constants/routes";
 
 import styles from "./info.module.css";
 
-
 const Info = ({
   totalCourses,
   totalInstructors,
@@ -48,9 +47,11 @@ const Info = ({
         <Image
           className={styles.infoRightImg}
           src="/images/info-right-img.svg"
-          height={410}
-          width={530}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="Info img"
+          objectFit="cover"
+          priority
         />
         <Teachers
           totalInstructors={totalInstructors}
