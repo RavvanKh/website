@@ -60,7 +60,7 @@ const Instructors = ({ instructors, loading, error }) => {
                 }}
                 className={styles.swiper}
               >
-                {instructors.slice(0, 8).map((instructor) => (
+                {instructors.map((instructor) => (
                   <SwiperSlide
                     key={instructor?.id}
                     style={{ height: "auto", marginBottom: "30px" }}
