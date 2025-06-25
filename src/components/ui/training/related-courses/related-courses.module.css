@@ -12,4 +12,9 @@
         line-height: 32px;
     }
 
+    .relatedCoursesList{
+        width: 100%;
+        max-width: 100%;
+    }
+
 }

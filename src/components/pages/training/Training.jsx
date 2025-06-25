@@ -10,10 +10,22 @@ import { defaultSection } from "@/lib/constants/selectSections";
 
 import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
-const Loader = dynamic(() => import("@/components/shared/loader/Loader"), { ssr: false, loading: () => null });
-const TrainingTitle = dynamic(() => import("@/components/ui/training/training-title/TrainingTitle"), { ssr: false, loading: () => null });
-const SelectSection = dynamic(() => import("@/components/ui/training/select-section/SelectSection"), { ssr: false, loading: () => null });
-const NextGroup = dynamic(() => import("@/components/shared/next-group/NextGroup"), { ssr: false, loading: () => null });
+const Loader = dynamic(() => import("@/components/shared/loader/Loader"), {
+  ssr: false,
+  loading: () => null,
+});
+const TrainingTitle = dynamic(
+  () => import("@/components/ui/training/training-title/TrainingTitle"),
+  { ssr: false, loading: () => null }
+);
+const SelectSection = dynamic(
+  () => import("@/components/ui/training/select-section/SelectSection"),
+  { ssr: false, loading: () => null }
+);
+const NextGroup = dynamic(
+  () => import("@/components/shared/next-group/NextGroup"),
+  { ssr: false, loading: () => null }
+);
 
 import styles from "./training.module.css";
 
@@ -165,6 +177,7 @@ const Training = () => {
             sections={filteredSections}
           />
           <NextGroup
+            url={training?.syllabusUrl}
             nextGroup={training.upcomingSessions[0]}
             isDownloadingSyllabus={isDownloadingSyllabus}
             t={t}

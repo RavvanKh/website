@@ -10,6 +10,7 @@ const NextGroup = ({
   t,
   onClickApply,
   onClickSyllabus,
+  url,
   nextGroup,
 }) => {
   const formatted = convertStringToDate(nextGroup?.startDate);
@@ -25,7 +26,7 @@ const NextGroup = ({
       <div className={styles.nextGroupContent}>{t("upcomingGroupContent")}</div>
       <div className={styles.nextGroupBtnGroup}>
         <a
-          href="https://docs.google.com/document/d/1iYXlsn6vAnt2CXHzV1Gsjg6RiOdLVRec3z_dwcmLVjk/edit?usp=sharing"
+          href={url}
           target="_blank"
         >
           <button

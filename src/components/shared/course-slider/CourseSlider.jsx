@@ -7,6 +7,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Loader from "../loader/Loader";
 import Course from "../course/Course";
 
+import "swiper/css";
+import "swiper/css/pagination";
 import styles from "./course-slide.module.css";
 
 const CourseSlider = ({
@@ -67,8 +69,6 @@ const CourseSlider = ({
       {courses.map((course) => (
         <div key={course?.id} className={styles.slide}>
           <Course
-            imgHeight="200px"
-            imgWidth="100%"
             duration={true}
             lines={3}
             levelPosition="top"

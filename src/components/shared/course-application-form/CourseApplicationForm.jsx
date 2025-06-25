@@ -10,7 +10,6 @@ import { createCourseApplication } from "@/lib/utils/api/courseApplication";
 
 import styles from "./course-application-form.module.css";
 
-
 const CourseApplicationForm = ({ courses = [], course = {} }) => {
   const t = useI18n();
 
@@ -67,7 +66,13 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
         className={styles.courseApplicationForm}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {!hasCourse && (
+        <a
+          target="_blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSc5RF6OP5SmUqhaCYl3gBbctvJPR7v7HqYFu2IyZPv8bc35eQ/viewform"
+        >
+          {t("applicationForm")}
+        </a>
+        {/* {!hasCourse && (
           <div className={styles.courseApplicationFormInputGroup}>
             <label htmlFor="course">{t("course")}</label>
             <select
@@ -105,9 +110,9 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
               <p className={styles.error}>{errors.fullName.message}</p>
             )}
           </div>
-        )}
+        )} */}
 
-        <div className={styles.courseApplicationFormFlex}>
+        {/* <div className={styles.courseApplicationFormFlex}>
           {hasCourse && (
             <div className={styles.courseApplicationFormInputGroup}>
               <label htmlFor="fullName">{t("fullName")}</label>
@@ -150,7 +155,7 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
               <p className={styles.error}>{errors.phoneNumber.message}</p>
             )}
           </div>
-        </div>
+        </div> */}
 
         {/* <div className={styles.courseApplicationFormInputGroup}>
           <label htmlFor="message">{t("message")}</label>
@@ -165,9 +170,14 @@ const CourseApplicationForm = ({ courses = [], course = {} }) => {
           )}
         </div> */}
 
-        <div className={styles.courseApplicationFormSubmitBtn}>
-          <button type="submit">{t("submit")}</button>
-        </div>
+        {/* <div className={styles.courseApplicationFormSubmitBtn}>
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc5RF6OP5SmUqhaCYl3gBbctvJPR7v7HqYFu2IyZPv8bc35eQ/viewform"
+          >
+            <button>{t("applicationForm")}</button>
+          </a>
+        </div> */}
       </form>
     </div>
   );

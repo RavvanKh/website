@@ -50,7 +50,6 @@ const CategoriesSlider = ({
                   onClick={() => onClick('category',category.id)}
                 >
                   <div>{category.name}</div>
-                  <p>14+</p>
                 </div>
               </SwiperSlide>
             ))}
