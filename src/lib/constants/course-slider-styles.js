@@ -1,6 +1,6 @@
 export const COURSE_SLIDER_STYLES = {
-  className: "ourCourses",
   ourCourses: {
+  className: "ourCourses",
     slidesPerView: 4,
     maxWidth: "292px",
     breakpoints: {
