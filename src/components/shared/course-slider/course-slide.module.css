@@ -6,11 +6,9 @@
 }
 
 .ourCoursesList {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    place-items: center;
-    align-items: stretch;
+    display: flex;
     gap: 16px;
+    align-items: stretch;
 
     .slide {
         width: 100%;
@@ -18,7 +16,7 @@
         align-items: center;
         justify-content: center;
         flex: 1;
-        height: 100%;
+        max-width: 292px;
     }
 }
 
@@ -79,19 +77,49 @@
     min-height: 375px;
 }
 
+@media (max-width:1200px) {
 
-@media(max-width: 1024px) {
-    .ourCoursesList {
-        grid-template-columns: repeat(2, 1fr);
+    .ourCoursesList{
+        .slide{
+            flex-shrink:0;
+            flex-grow: 1;
+            flex-basis: 225px;
+        }
+    }
+    .relatedCourses {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width:1024px) {
+    .relatedCourses {
+        grid-template-columns: repeat(1, 1fr) !important;
     }
 }
 
 @media(max-width: 768px) {
-    .ourCoursesList {
-        grid-template-columns: 1fr;
+    .ourCourses {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .relatedCourses {
+        grid-template-columns: repeat(2, 1fr) !important;
     }
 
     .slide {
         align-items: center !important;
+    }
+}
+
+@media (max-width:576px) {
+    .ourCourses {
+        grid-template-columns: 1fr !important;
+    }
+
+    .relatedCourses {
+        grid-template-columns: 1fr !important;
     }
 }

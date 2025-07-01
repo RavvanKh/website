@@ -5,6 +5,8 @@ import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
 
 import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
+import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
+
 
 import { getHomeData } from "@/lib/utils/api/home";
 
@@ -63,6 +65,7 @@ export default async function LocaleLayout({ children, params }) {
         <Header />
         <AmplitudeProvider />
         <main>{children}</main>
+        <WhatsappIcon />
         <Footer />
       </GlobalDataProvider>
     </I18nProviderClient>

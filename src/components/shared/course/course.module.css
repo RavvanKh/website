@@ -101,6 +101,11 @@
                     line-height: 22px;
                     min-height: 46px;
                     margin-bottom: 5px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -webkit-line-clamp: 2;
                 }
 
                 .courseTitle {
@@ -140,5 +145,16 @@
 @media (max-width:768px) {
     .courseLink {
         max-width: 350px;
+    }
+}
+
+@media(max-height:650px) {
+    .courseLink {
+        height: 162px !important;
+        .course{
+            .courseInfo{
+                gap: 0;
+            }
+        }
     }
 }

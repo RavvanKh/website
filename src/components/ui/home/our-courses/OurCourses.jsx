@@ -48,7 +48,7 @@ const OurCourses = ({
           courseStyle={COURSE_STYLES.ourCourses}
           loading={loading}
           error={error}
-          courses={courses}
+          courses={courses}       
           sliderStyle={COURSE_SLIDER_STYLES.ourCourses}
         />
 

@@ -1,6 +1,8 @@
 export const COURSE_SLIDER_STYLES = {
+  className: "ourCourses",
   ourCourses: {
     slidesPerView: 4,
+    maxWidth: "292px",
     breakpoints: {
       0: {
         slidesPerView: 1,
@@ -14,6 +16,7 @@ export const COURSE_SLIDER_STYLES = {
     },
   },
   relatedCourses: {
+    className: "relatedCourses",
     slidesPerView: 3,
     breakpoints: {
       0: {

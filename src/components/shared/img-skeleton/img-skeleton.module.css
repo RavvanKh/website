@@ -30,3 +30,16 @@
 .rounded img {
     border-radius: 50%;
 }
+
+@media(max-height:650px) {
+
+    .skeleton,
+    .objImgSkeleton {
+        height: 162px;
+    }
+
+    .skeleton img {
+        height: 162px !important;
+        object-fit: cover;
+    }
+}

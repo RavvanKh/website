@@ -12,7 +12,7 @@ const ITEMS_PER_PAGE = 9;
 
 const FilteredTrainings = ({ trainings, loading }) => {
   const t = useI18n();
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [currentPage, setCurrentPage] = useState(1);
 
   if (loading) {
     return (
@@ -40,15 +40,17 @@ const FilteredTrainings = ({ trainings, loading }) => {
     <section className={styles.filteredTrainings}>
       <div className={styles.filteredTrainingsList}>
         {currentItems.map((training) => (
-          <Course
-            key={training.id}
-            levelPosition="top"
-            imgHeight="200px"
-            imgWidth="100%"
-            duration={true}
-            direction="column"
-            course={training}
-          />
+          <div key={training.id} className={styles.training}>
+            <Course
+              levelPosition="top"
+              imgHeight="200px"
+              imgWidth="100%"
+              duration={true}
+              direction="column"
+              course={training}
+              lines={3}
+            />
+          </div>
         ))}
       </div>
 

@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -18,6 +19,36 @@ const CourseSlider = ({
   courseStyle,
   sliderStyle,
 }) => {
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (!courses || courses.length === 0) return;
+
+    const updateSlideHeights = () => {
+      const slides = swiperRef.current?.querySelectorAll(".swiper-slide");
+      if (!slides) return;
+
+      let maxHeight = 0;
+
+      slides.forEach((slide) => {
+        slide.style.height = "auto";
+      });
+
+      slides.forEach((slide) => {
+        const height = slide.offsetHeight;
+        if (height > maxHeight) maxHeight = height;
+      });
+
+      slides.forEach((slide) => {
+        slide.style.height = `${maxHeight}px`;
+      });
+    };
+
+    updateSlideHeights();
+    window.addEventListener("resize", updateSlideHeights);
+    return () => window.removeEventListener("resize", updateSlideHeights);
+  }, [courses]);
+
   return loading ? (
     <div className={styles.ourCoursesLoaderContainer}>
       <Loader size="medium" color="primary" />
@@ -27,7 +58,7 @@ const CourseSlider = ({
       Failed to load categories: {error}
     </div>
   ) : courses.length > sliderStyle?.slidesPerView ? (
-    <div className={styles.swiperContainer}>
+    <div className={styles.swiperContainer} ref={swiperRef}>
       <div className={`${styles.customNav} ${styles.customPrev}`}>
         <FaArrowLeft color="#FFFFFF" size={14} />
       </div>
@@ -43,7 +74,11 @@ const CourseSlider = ({
         className={styles.swiper}
       >
         {courses.map((course) => (
-          <SwiperSlide key={course?.id} className={styles.slide}>
+          <SwiperSlide
+            key={course?.id}
+            className={styles.slide}
+            style={{ maxWidth: sliderStyle?.maxWidth }}
+          >
             <Course
               duration={true}
               lines={3}
@@ -61,10 +96,7 @@ const CourseSlider = ({
     </div>
   ) : (
     <div
-      className={styles.ourCoursesList}
-      style={{
-        gridTemplateColumns: `repeat(${sliderStyle?.slidesPerView}, 1fr)`,
-      }}
+      className={`${styles.ourCoursesList} ${styles?.[sliderStyle?.className]}`}
     >
       {courses.map((course) => (
         <div key={course?.id} className={styles.slide}>

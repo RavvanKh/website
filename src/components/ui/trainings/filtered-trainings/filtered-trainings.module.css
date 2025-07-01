@@ -5,6 +5,10 @@
         place-items: center;
         gap: 10px;
         flex: 1;
+
+        .training {
+            max-width: 384px;
+        }
     }
 
 
