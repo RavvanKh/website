@@ -4,6 +4,14 @@
     height: 100%;
     margin: 0 auto;
     box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover{
+        box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+        .courseIcon img{
+            transform: scale(1.1);
+        }
+    }
 
     .course {
         height: 100%;
@@ -35,16 +43,8 @@
 
         }
 
-        .courseIcon {
-            width: 290px;
-            position: relative;
-
-            .courseImg {
-                width: 100%;
-                height: 100%;
-                border-radius: 4px 0 0 4px;
-                object-fit: fill;
-            }
+        .courseIcon img{
+            transition: all 0.3s ease;
         }
 
         .courseIconMinWidth {

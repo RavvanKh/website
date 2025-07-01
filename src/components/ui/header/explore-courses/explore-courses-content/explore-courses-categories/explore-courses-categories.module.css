@@ -99,3 +99,13 @@
         }
     }
 }
+
+@media(max-height:700px){
+    .exploreCoursesCategories{
+        .exploreCoursesCategoriesContent{
+            .exploreCoursesCategoriesCategory{
+                padding: 8px;
+            }
+        }
+    }
+}

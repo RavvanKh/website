@@ -37,13 +37,15 @@ const Course = ({
             minHeight: direction === "row" ? "auto" : 375,
           }}
         >
-          <ImgSkeleton
-            type="training"
-            obj={course}
-            keyName="icon"
-            isRounded={false}
-            style={courseStyle}
-          />
+          <div className={styles.courseIcon}>
+            <ImgSkeleton
+              type="training"
+              obj={course}
+              keyName="icon"
+              isRounded={false}
+              style={courseStyle}
+            />
+          </div>
 
           {levelPosition === "top" && (
             <div className={styles.courseLevel}>{course?.level}</div>
