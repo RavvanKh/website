@@ -1,7 +1,8 @@
 .info {
     display: flex;
     padding: 48px 0;
-    width: 85%;
+    width: 85%;;
+    max-width: 1216px;
     margin: 0 auto;
     gap: 48px;
     align-items: center;

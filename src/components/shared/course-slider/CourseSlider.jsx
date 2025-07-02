@@ -18,7 +18,6 @@ const CourseSlider = ({
   courseStyle,
   sliderStyle,
 }) => {
-  console.log(sliderStyle)
   return loading ? (
     <div className={styles.ourCoursesLoaderContainer}>
       <Loader size="medium" color="primary" />
@@ -34,14 +33,21 @@ const CourseSlider = ({
       </div>
       <Swiper
         modules={[Navigation]}
-        spaceBetween={18}
+        spaceBetween={16}
         slidesPerView='auto'
         navigation={{
           prevEl: `.${styles.customPrev}`,
           nextEl: `.${styles.customNext}`,
         }}
+        watchOverflow={true}
+        style={{
+          padding: '20px 0',
+          margin: '-20px 0',
+          marginRight:'-15px'
+        }}
         // breakpoints={sliderStyle?.breakpoints}
         className={styles.swiper}
+        wrapperClass={styles.swiperWrapper}
       >
         {courses.map((course) => (
           <SwiperSlide key={course?.id} className={styles.slide}>

@@ -9,7 +9,8 @@
     min-height: 100vh;
     .trainingSections {
         padding: 32px 0;
-        width: 85%;
+        width: 85%;;
+        max-width: 1216px;
         margin: 0 auto;
         display: flex;
         align-items: flex-start;

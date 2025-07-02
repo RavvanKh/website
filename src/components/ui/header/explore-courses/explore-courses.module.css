@@ -16,7 +16,8 @@
         margin: 20px auto;
         display: flex;
         flex-direction: column;
-        width: 85%;
+        width: 85%;;
+        max-width: 1216px;
         height: calc(100% - 40px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         animation: fadeIn 0.3s ease-in-out;

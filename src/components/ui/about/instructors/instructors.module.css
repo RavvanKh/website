@@ -1,6 +1,7 @@
 .instructors {
     background: #FBFDFF;
-    width: 85%;
+    width: 85%;;
+    max-width: 1216px;
     margin: 0 auto;
     padding: 53px 0;
     display: flex;

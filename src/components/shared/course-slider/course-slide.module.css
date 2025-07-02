@@ -17,6 +17,7 @@
         justify-content: center;
         flex: 1;
         max-width: 292px;
+        overflow: visible !important;
     }
 }
 
@@ -57,6 +58,8 @@
 
 .swiperContainer .swiper {
     display: flex;
+    padding: 20px; /* Add padding to accommodate box shadows */
+    margin: -20px; 
 }
 
 .swiperContainer .swiper-wrapper {

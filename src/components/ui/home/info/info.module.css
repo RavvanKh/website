@@ -1,77 +1,91 @@
 .info {
     display: flex;
-    padding-top: 94px;
     width: 85%;
+    max-width: 1216px;
     margin: 0 auto;
     gap: 16px;
-
-    .infoLeft {
+    background: #FFFFFF;
+    border-radius: 12px;
+    height: 452px;
+    align-items: center;
+    justify-content: center;
+    .infoContainer {
+        max-width: 1120px;
+        margin: 0 auto;
         display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 90%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        height: 360px;
 
-        .infoTitle {
-            font-size: 44px;
-            font-family: 'Nunito', sans-serif;
-            line-height: 52px;
-            font-weight: 860;
+        .infoLeft {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 90%;
 
-            .infoTitleItem {
-                &:first-child {
-                    color: rgba(2, 63, 203, 1);
+            .infoTitle {
+                font-size: 44px;
+                font-family: 'Nunito', sans-serif;
+                line-height: 52px;
+                font-weight: 860;
+
+                .infoTitleItem {
+                    &:first-child {
+                        color: rgba(2, 63, 203, 1);
+                    }
+                }
+            }
+
+            .infoLeftTitle {
+                font-family: 'Nunito', sans-serif;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 600;
+                color: rgba(33, 37, 41, 1);
+            }
+
+            .infoLeftDescription {
+                font-family: 'Nunito', sans-serif;
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 400;
+                color: rgba(73, 80, 87, 1)
+            }
+
+            .infoLeftButton {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                background: rgba(2, 63, 203, 1);
+                color: rgba(255, 255, 255, 1);
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                text-transform: uppercase;
+                border-radius: 4px;
+                padding: 16px 24px;
+                width: max-content;
+                height: 49px;
+                transition: all 0.3s ease-in;
+
+                &:hover {
+                    background: #2E6EFF;
                 }
             }
         }
 
-        .infoLeftTitle {
-            font-family: 'Nunito', sans-serif;
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 600;
-            color: rgba(33, 37, 41, 1);
-        }
+        .infoRight {
+            position: relative;
+            width: 100%;
+            max-width: 470px;
+            height: 340px;
 
-        .infoLeftDescription {
-            font-family: 'Nunito', sans-serif;
-            font-size: 16px;
-            line-height: 24px;
-            font-weight: 400;
-            color: rgba(73, 80, 87, 1)
-        }
-
-        .infoLeftButton {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(2, 63, 203, 1);
-            color: rgba(255, 255, 255, 1);
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 21px;
-            text-transform: uppercase;
-            border-radius: 4px;
-            padding: 16px 24px;
-            width: max-content;
-            height: 49px;
-            transition: all 0.3s ease-in;
-
-            &:hover {
-                background: #2E6EFF;
+            .infoRightImg {
+                border-radius: 8px;
+                /* width: 100%; */
+                /* height: 100%; */
             }
-        }
-    }
-
-    .infoRight {
-        position: relative;
-        width: 100%;
-        max-width: 530px;
-        height: 400px;
-
-        .infoRightImg {
-            border-radius: 8px;
-            /* width: 100%; */
-            /* height: 100%; */
         }
     }
 }
@@ -81,22 +95,29 @@
         padding-top: 24px;
         flex-direction: column;
         gap: 100px;
-        .infoLeft{
-            width: 100%;
-            .infoTitle{
-                line-height: 42px;
-                font-size: 32px;
+
+        .infoContainer {
+            .infoLeft {
+                width: 100%;
+
+                .infoTitle {
+                    line-height: 42px;
+                    font-size: 32px;
+                }
+
+                .infoLeftTitle {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+
+                .infoLeftDescription {
+                    font-size: 14px;
+                }
             }
-            .infoLeftTitle{
-                font-size: 14px;
-                line-height: 20px;
+
+            .infoRight {
+                max-width: 100%;
             }
-            .infoLeftDescription{
-                font-size: 14px;
-            }
-        }
-        .infoRight {
-            max-width: 100%;
         }
     }
 }

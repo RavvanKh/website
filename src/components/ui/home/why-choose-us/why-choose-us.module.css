@@ -1,5 +1,6 @@
 .whyChooseUs {
-    width: 85%;
+    width: 85%;;
+    max-width: 1216px;
     padding: 48px 0;
     margin: 0 auto;
     display: flex;

@@ -8,22 +8,20 @@ import { aspectRatios } from "@/lib/constants/aspectRatios";
 
 import styles from "./img-skeleton.module.css";
 
-
 const ImgSkeleton = ({
   obj,
   type = "training",
   keyName,
-  isRounded = false,
   borderRadius = "",
   style = {},
 }) => {
-  
+
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div
       style={{ aspectRatio: aspectRatios?.[type], ...style }}
-      className={`${styles.skeleton} ${isRounded ? styles.rounded : ""}`}
+      className={styles.skeleton}
     >
       {!imageLoaded && (
         <Skeleton
