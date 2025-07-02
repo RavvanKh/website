@@ -92,11 +92,13 @@
 
 @media (max-width:1024px) {
     .info {
-        padding-top: 24px;
-        flex-direction: column;
-        gap: 100px;
+        height: auto;
+        padding: 24px;
 
         .infoContainer {
+            flex-direction: column;
+            gap: 32px;
+            height: auto;
             .infoLeft {
                 width: 100%;
 
