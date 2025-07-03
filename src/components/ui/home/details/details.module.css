@@ -1,8 +1,7 @@
 .details{
-    background: #f7f9ff;
     height: auto;
     width: 100%;
-    padding:32px 0 48px 0;
+    padding-top: 32px;
 }
 
 @media(max-width:1024px){

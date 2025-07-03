@@ -37,6 +37,10 @@ const Customers = dynamic(
   }
 );
 
+const Counts = dynamic(() => import("@/components/ui/home/counts/Counts"), {
+  ssr: false,
+});
+
 import styles from "./home.module.css";
 
 export default function Home() {
@@ -44,24 +48,27 @@ export default function Home() {
 
   return (
     <div className={styles.home}>
-      <Details
-        totalCourses={data.totalCourses}
-        totalInstructors={data.totalInstructors}
-        instructorsLoading={loading.home}
-        coursesLoading={loading.home}
-        ratingLoading={loading.comments}
-        rating={data.comments?.result?.rating}
-      />
-      <OurCourses
-        courses={data.filteredCourses}
-        loading={loading.home}
-        error={error.home}
-        onChangeFilter={updateFilter}
-        categories={data.categories}
-        categoriesLoading={loading.home}
-        categoriesError={error.home}
-        filter={filter}
-      />
+      <div className={styles.homeBackgroundContainer}>
+        <Details
+          totalCourses={data.totalCourses}
+          totalInstructors={data.totalInstructors}
+          instructorsLoading={loading.home}
+          coursesLoading={loading.home}
+          ratingLoading={loading.comments}
+          rating={data.comments?.result?.rating}
+        />
+        <OurCourses
+          courses={data.filteredCourses}
+          loading={loading.home}
+          error={error.home}
+          onChangeFilter={updateFilter}
+          categories={data.categories}
+          categoriesLoading={loading.home}
+          categoriesError={error.home}
+          filter={filter}
+        />
+        <Counts />
+      </div>
       <WhyChooseUs />
       <Instructors
         instructors={data.instructors}

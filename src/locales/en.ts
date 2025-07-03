@@ -113,7 +113,6 @@ export default {
   alumni: "Alumni",
   feedbacks: "Feedbacks",
   instructors: "Instructors",
-  applicationForm: "Application form",
   upcomingGroup: "Next group",
   upcomingGroupContent: "Register now to get a spot in the upcoming group.",
   downloadSyllabus: "Download syllabus",
@@ -155,4 +154,6 @@ export default {
   allTrainings: "All trainings",
   results: "results",
   relatedCourses: "Related courses",
+  trainings: "Trainings",
+  employedAlumni: "Employed Alumni",
 } as const;

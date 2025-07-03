@@ -1,6 +1,6 @@
 import React from "react";
 
-import Category from "../category/Category";
+import Category from "./category/Category";
 
 import styles from "./categories.module.css";
 

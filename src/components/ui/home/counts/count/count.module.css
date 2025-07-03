@@ -1,0 +1,49 @@
+.count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 64px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    .countDetails {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        width: 196px;
+
+        .countDetailsTop{
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            .countNumber{
+                color:rgba(0, 0, 0, 1);
+                line-height: 36px;
+                font-size: 30px;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+        }}
+        .countTitle {
+            color: rgba(0, 0, 0, 0.87);
+            font-weight: 480;
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+
+    .countLine {
+        background: rgba(0, 0, 0, 0.2);
+        width: 2px;
+        height: 74px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .count{
+        .countLine{
+            display: none;
+        }
+
+    }
+}
