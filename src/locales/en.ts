@@ -156,4 +156,5 @@ export default {
   relatedCourses: "Related courses",
   trainings: "Trainings",
   employedAlumni: "Employed Alumni",
+  notFound: "Not Found",
 } as const;

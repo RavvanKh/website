@@ -2,15 +2,20 @@ import { I18nProviderClient } from "@/locales/client";
 
 import AmplitudeProvider from "@/contexts/AmplitudeProvider";
 import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
 import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
 
-
 import { getHomeData } from "@/lib/utils/api/home";
 
+import "../globals.css";
+
 export async function generateMetadata({ params }) {
+  const { locale } = await params;
   const { organization } = await getHomeData();
 
   if (!organization || Object.keys(organization).length === 0) {
@@ -24,8 +29,15 @@ export async function generateMetadata({ params }) {
     robots: {
       index: true,
       follow: true,
-      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
+
     icons: {
       icon: [{ url: "/favicon.ico" }, { url: "/icon.svg" }],
       apple: [{ url: "/apple-icon.svg" }],
@@ -33,15 +45,17 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: organization.metaTitle,
       description: organization.metaDescription,
-      url: organization.url,
+      url: `${organization.url}/${locale}`,
       siteName: organization.name,
       images: [
         {
           url: organization.logo,
-          width: 800,
-          height: 600,
+          width: 1200,
+          height: 630,
+          alt: organization.name,
         },
       ],
+      locale,
       type: "website",
     },
     twitter: {
@@ -51,7 +65,15 @@ export async function generateMetadata({ params }) {
       images: [organization.logo],
     },
     alternates: {
-      canonical: organization.url,
+      canonical: `${organization.url}/${locale}`,
+      languages: {
+        az: `${organization.url}/az`,
+        en: `${organization.url}/en`,
+      },
+    },
+    other: {
+      "google-site-verification": process.env.NEXT_PUBLIC_GOOGLE_KEY,
+      "Content-Security-Policy": "default-src 'self'",
     },
   };
 }
@@ -60,14 +82,22 @@ export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
 
   return (
-    <I18nProviderClient locale={locale}>
-      <GlobalDataProvider>
-        <Header />
-        <AmplitudeProvider />
-        <main>{children}</main>
-        <WhatsappIcon />
-        <Footer />
-      </GlobalDataProvider>
-    </I18nProviderClient>
+    <html lang={locale} suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <I18nProviderClient locale={locale}>
+          <GlobalDataProvider>
+            <Header />
+            <AmplitudeProvider />
+            <main>{children}</main>
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+            <SpeedInsights />
+            <Analytics />
+            <WhatsappIcon />
+            <Footer />
+          </GlobalDataProvider>
+        </I18nProviderClient>
+      </body>
+    </html>
   );
 }

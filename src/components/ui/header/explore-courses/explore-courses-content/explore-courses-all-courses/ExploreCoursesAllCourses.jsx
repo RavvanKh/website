@@ -25,18 +25,18 @@ const ExploreCoursesAllCourses = ({
       <div className={styles.exploreAllCoursesList}>
         {courses?.length > 0 ? (
           courses.map((course) => (
-            <Course
-              onClose={onClose}
-              duration={false}
-              lines={2}
-              direction="row"
-              course={course}
-              key={course?.id}
-              levelPosition="right"
-              imgHeight="180px"
-              imgWidth="290px"
-              courseStyle={COURSE_STYLES.exploreCoursesDesktop}
-            />
+            <div key={course?.id} className={styles.exploreAllCoursesItem}>
+              <Course
+                onClose={onClose}
+                duration={false}
+                lines={2}
+                direction="row"
+                course={course}
+                key={course?.id}
+                levelPosition="right"
+                courseStyle={COURSE_STYLES.exploreCoursesDesktop}
+              />
+            </div>
           ))
         ) : showEmptyMessage ? (
           <div className={styles.exploreAllCoursesNoCourse}>

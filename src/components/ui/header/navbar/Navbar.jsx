@@ -8,8 +8,7 @@ import ContactPhone from "@/components/shared/contact-phone/ContactPhone";
 
 import styles from "./navbar.module.css";
 
-
-const Navbar = ({organization}) => {
+const Navbar = ({ organization }) => {
   return (
     <nav className={styles.navbar}>
       <NavbarLogo />

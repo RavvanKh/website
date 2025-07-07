@@ -1,3 +1,5 @@
+'use server'
+import { getCurrentLocale } from "@/locales/server";
 import axios from "axios";
 
 const API_DOMAIN =
@@ -19,7 +21,7 @@ const createAxiosInstance = (servicePath) => {
     baseURL,
     headers: {
       "Content-Type": "application/json",
-      "Accept-Language": "en",
+      // "Accept-Language": "en",
       "Cache-Control": "no-store",
     },
   });
@@ -29,43 +31,23 @@ export const quizAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_QUIZ_MS_URL
 );
 
-  // quizAxios.interceptors.request.use(
-  //   (config) => {
-  //     config.headers["Accept-Language"] = "en";
-  //     config.headers["Cache-Control"] = "no-store";
-  //     return config;
-  //   },
-  //   (error) => {
-  //     return Promise.reject(error);
-  //   }
-  // );
 
 export const applicationAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_APPLICATION_MS_URL
 );
 
-// applicationAxios.interceptors.request.use(
-//   (config) => {
-//     config.headers["Accept-Language"] = "en";
-//     config.headers["Cache-Control"] = "no-store";
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
 
 export const customAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_BASE_URL
 );
 
-// applicationAxios.interceptors.request.use(
-//   (config) => {
-//     config.headers["Accept-Language"] = "en";
-//     config.headers["Cache-Control"] = "no-store";
-//     return config;
-//   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
-// );
+customAxios.interceptors.request.use(
+    async (config) => {
+      const locale = await getCurrentLocale()
+      config.headers["Accept-Language"] = locale;
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );

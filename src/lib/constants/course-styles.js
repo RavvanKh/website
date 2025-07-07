@@ -6,8 +6,8 @@ export const COURSE_STYLES = {
   },
   exploreCoursesDesktop: {
     borderRadius: "4px 0 0 4px",
-    maxWidth: "290px",
-    maxHeight: "180px",
+    maxWidth: "250px",
+    maxHeight: "150px",
     width:'100%'
   },
   exploreCoursesMobile: {

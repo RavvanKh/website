@@ -26,25 +26,20 @@ const Course = ({
   return (
     <Link href={`${routes.trainings}/${course?.id}`} legacyBehavior>
       <a
-        className={styles.courseLink}
+        className={`${styles.courseLink} ${
+          direction === "row" ? styles.courseLinkRow : styles.courseLinkColumn
+        }`}
         onClick={onClose}
-        style={{ maxWidth: direction === "column" ? 400 : "auto" }}
       >
-        <div
-          className={styles.course}
-          style={{
-            flexDirection: direction,
-            minHeight: direction === "row" ? "auto" : 375,
-          }}
-        >
-          <div className={styles.courseIcon} style={{...courseStyle}}>
-          <ImgSkeleton
-            type="training"
-            obj={course}
-            keyName="icon"
-            isRounded={false}
-            style={courseStyle}
-          />
+        <div className={styles.course}>
+          <div className={styles.courseIcon} style={{ ...courseStyle }}>
+            <ImgSkeleton
+              type="training"
+              obj={course}
+              keyName="icon"
+              isRounded={false}
+              style={courseStyle}
+            />
           </div>
 
           {levelPosition === "top" && (
@@ -78,7 +73,9 @@ const Course = ({
               <h3 className={styles.courseName}>{course?.name}</h3>
               <p
                 className={styles.courseTitle}
-                style={{ WebkitLineClamp: lines }}
+                style={{
+                  WebkitLineClamp: lines,
+                }}
               >
                 {course?.description}
               </p>

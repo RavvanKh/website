@@ -10,7 +10,7 @@
         flex-direction: column;
         gap: 16px;
         align-items: center;
-        width: 196px;
+        width: max-content;
 
         .countDetailsTop{
             display: flex;
@@ -47,3 +47,4 @@
 
     }
 }
+

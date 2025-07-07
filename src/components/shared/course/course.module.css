@@ -143,6 +143,26 @@
     }
 }
 
+.courseLinkColumn {
+    .course{
+        flex-direction: column;
+    }
+}
+
+.courseLinkRow {
+    .course{
+        flex-direction: row;
+        .courseInfo{
+            .courseBody{
+                gap: 0;
+                padding-bottom: 10px;
+                .courseName{
+                    margin-bottom: -5px;
+                }
+            }
+        }
+    }   
+}
 
 @media (max-width:768px) {
     .courseLink {

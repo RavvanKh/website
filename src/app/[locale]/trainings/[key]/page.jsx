@@ -7,12 +7,13 @@ import { getHomeData } from "@/lib/utils/api/home";
 import { generateSchema } from "@/lib/utils/helpers";
 
 export async function generateMetadata({ params }) {
-  const { key } = await params;
+  const { key, locale } = await params;
+
   const { organization } = await getHomeData();
   const training = await getTrainingData(key);
 
   if (!training?.name) {
-    notFound()
+    notFound();
     return {
       title: "Training not found",
       description: "The requested training could not be found.",
@@ -26,20 +27,24 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: training.name,
       description: training.description,
-      url: `${organization?.url}/training/${key}`,
+      url: `${organization?.url}/${locale}/training/${key}`,
       siteName: organization?.name,
       images: [
         {
           url: training.icon || organization?.logo,
-          width: 800,
-          height: 600,
+          width: 1200,
+          height: 630,
           alt: training.name,
         },
       ],
       type: "website",
     },
     alternates: {
-      canonical: `${organization?.url}/en/training/${key}`,
+      canonical: `${organization?.url}/${locale}/training/${key}`,
+      languages: {
+        "az": `${organization?.url}/az/training/${key}`,
+        "en": `${organization?.url}/en/training/${key}`,
+      },
     },
   };
 }
