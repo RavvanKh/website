@@ -7,6 +7,7 @@ import NavbarItems from "../navbar-items/NavbarItems";
 import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
 
 import styles from "./hamburger-menu.module.css";
+import ChangeLocale from "../../change-locale/ChangeLocale";
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,6 +41,9 @@ const HamburgerMenu = () => {
       >
         <div className={styles.mobileNavbarContent}>
           <div className={styles.mobileNavbarTop}>
+            <div className={styles.changeLocale}>
+              <ChangeLocale />
+            </div>
             <CourseSubjects onClose={() => setIsOpen(false)} isFetch={isOpen} />
             <NavbarItems />
           </div>

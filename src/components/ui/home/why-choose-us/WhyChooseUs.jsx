@@ -7,6 +7,7 @@ import { whyChooseUsDetails } from "@/lib/constants/whyChooseUs";
 import Detail from "../../../shared/why-choose-us-detail/WhyChooseUsDetail";
 
 import styles from "./why-choose-us.module.css";
+import Counts from "../counts/Counts";
 
 const WhyChooseUs = () => {
   const t = useI18n();
@@ -17,6 +18,7 @@ const WhyChooseUs = () => {
       <div className={styles.whyChooseUsDetails}>
         <div className={styles.whyChooseUsDetailsLeft}>
           <div className={styles.whyChooseUsDetailsLeftBg}></div>
+          <Counts />
         </div>
         <div className={styles.whyChooseUsDetailsRight}>
           {whyChooseUsDetails.map((item, index) => (

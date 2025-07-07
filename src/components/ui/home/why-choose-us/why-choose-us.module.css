@@ -1,5 +1,6 @@
 .whyChooseUs {
-    width: 85%;;
+    width: 85%;
+    ;
     max-width: 1216px;
     padding: 48px 0;
     margin: 0 auto;
@@ -17,20 +18,20 @@
     }
 
     .whyChooseUsDetails {
+        position: relative;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         gap: 32px;
 
         .whyChooseUsDetailsLeft {
-            width: 500px;
-            margin-right: -70px;
+            width: 40%;
 
             .whyChooseUsDetailsLeftBg {
                 background: url("/images/why-choose-us.png") no-repeat center center;
                 background-size: contain;
-                width: 100%;
-                max-width: 492px;
+                width: 380px;
+                max-width: 380px;
                 aspect-ratio: 1 / 1;
             }
         }
@@ -40,6 +41,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            flex: 1;
 
             .whyChooseUsDetail {
                 max-width: 496px;
@@ -94,6 +96,16 @@
                     margin: 0 !important;
                 }
             }
+        }
+    }
+}
+
+
+@media(max-width:576px) {
+    .whyChooseUs {
+        .whyChooseUsDetailsLeft {
+            display: flex;
+            flex-direction: column;
         }
     }
 }

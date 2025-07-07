@@ -21,15 +21,11 @@
 
     .instructorsList {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 24px;
-    }
-}
-
-@media(max-width:1200px) {
-    .instructors {
-        .instructorsList {
-            grid-template-columns: repeat(3, 1fr);
+        .instructor{
+            width: 250px;
+            height: auto;
         }
     }
 }

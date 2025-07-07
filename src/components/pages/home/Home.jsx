@@ -37,9 +37,6 @@ const Customers = dynamic(
   }
 );
 
-const Counts = dynamic(() => import("@/components/ui/home/counts/Counts"), {
-  ssr: false,
-});
 
 import styles from "./home.module.css";
 
@@ -67,7 +64,6 @@ export default function Home() {
           categoriesError={error.home}
           filter={filter}
         />
-        <Counts />
       </div>
       <WhyChooseUs />
       <Instructors

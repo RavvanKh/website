@@ -16,7 +16,9 @@ const Instructors = ({ t, title, error, loading, instructors }) => {
       ) : (
         <div className={styles.instructorsList}>
           {instructors.map((instructor, index) => (
-            <Instructor instructor={instructor} key={index} />
+            <div key={index} className={styles.instructor}>
+              <Instructor instructor={instructor} />
+            </div>
           ))}
         </div>
       )}

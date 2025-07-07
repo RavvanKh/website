@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 import { locales } from "@/lib/constants/locales";
 import { useChangeLocale, useCurrentLocale } from "@/locales/client";
@@ -14,10 +15,17 @@ const ChangeLocale = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+
   return (
     <div className={styles.localeSwitcher}>
       <button className={styles.toggle} onClick={() => setIsOpen(!isOpen)}>
-        <span className={styles.flag}>{currentLocale.flag}</span>
+        <Image
+          className={styles.flag}
+          src={currentLocale.icon}
+          alt={currentLocale.label}
+          height={20}
+          width={20}
+        />
         <span className={styles.label}>{currentLocale.label}</span>
       </button>
       {isOpen && (
@@ -30,7 +38,13 @@ const ChangeLocale = () => {
               }`}
               onClick={() => changeLocale(locale.code)}
             >
-              <span className={styles.flag}>{locale.flag}</span>
+              <Image
+                className={styles.flag}
+                src={locale.icon}
+                alt={locale.label}
+                height={20}
+                width={20}
+              />
               <span className={styles.label}>{locale.label}</span>
             </li>
           ))}

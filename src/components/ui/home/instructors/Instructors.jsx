@@ -47,11 +47,6 @@ const Instructors = ({ instructors, loading, error }) => {
                     slidesPerGroup: 3,
                     grid: { rows: 1 },
                   },
-                  1200: {
-                    slidesPerView: 4,
-                    slidesPerGroup: 4,
-                    grid: { rows: 1 },
-                  },
                 }}
                 pagination={{
                   clickable: true,

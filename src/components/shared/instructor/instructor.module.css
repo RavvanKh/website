@@ -16,6 +16,8 @@
         width: 110px;
         max-height: 110px;
         max-width: 110px;
+        min-height: 110px;
+        max-height: 110px;
         overflow: hidden;
         border-radius: 50%;
     }
@@ -51,6 +53,13 @@
             font-weight: 400;
             text-align: center;
             font-family: 'Inter', sans-serif;
+        }
+        .instructorName,.instructorRole,.instructorCompany{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 90%;
+            margin: 0 auto;
         }
     }
 }
