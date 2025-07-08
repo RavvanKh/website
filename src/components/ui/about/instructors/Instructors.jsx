@@ -31,28 +31,32 @@ const Instructors = ({ instructors, loading, error }) => {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [instructors]); 
+  }, [instructors]);
 
   return (
     <section className={styles.instructors}>
-      <div className={styles.instructorsTop}>
-        <InstructorsContent showBtn={false} isFlex={true} />
+      <div className={styles.instructorsContainer}>
+        <div className={styles.instructorsTop}>
+          <InstructorsContent showBtn={false} isFlex={true} />
+        </div>
+        {loading ? (
+          <div className={styles.instructorsLoaderContainer}>
+            <Loader size="medium" color="primary" />
+          </div>
+        ) : error ? (
+          <div className={styles.errorMessage}>
+            Failed to load instructors: {error}
+          </div>
+        ) : (
+          <div className={styles.instructorsBottom}>
+            {customInstructors.map((instructor) => (
+              <div key={instructor?.name} className={styles.instructor}>
+                <Instructor instructor={instructor} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {loading ? (
-        <div className={styles.instructorsLoaderContainer}>
-          <Loader size="medium" color="primary" />
-        </div>
-      ) : error ? (
-        <div className={styles.errorMessage}>
-          Failed to load instructors: {error}
-        </div>
-      ) : (
-        <div className={styles.instructorsBottom}>
-          {customInstructors.map((instructor) => (
-            <Instructor instructor={instructor} key={instructor?.name} />
-          ))}
-        </div>
-      )}
     </section>
   );
 };

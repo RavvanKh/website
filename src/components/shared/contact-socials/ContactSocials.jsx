@@ -1,5 +1,4 @@
 "use client";
-
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import { filterArray } from "@/lib/utils/helpers";
