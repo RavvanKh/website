@@ -19,6 +19,8 @@ const Footer = () => {
     data: { organization },
   } = useGlobalData();
 
+
+  
   const dynamicData = {
     email: organization?.email,
     phone: organization?.phoneNumbers?.[0],
@@ -26,8 +28,9 @@ const Footer = () => {
   };
 
   const t = useI18n();
+  
   const currentYear = new Date().getFullYear();
-  const footerText = `© ${currentYear} All rights reserved.`;
+  const footerText = `© ${currentYear} ${t("allRightsReserved")}.`;
 
   return (
     <footer className={styles.footer}>

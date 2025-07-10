@@ -41,9 +41,9 @@ const HamburgerMenu = () => {
       >
         <div className={styles.mobileNavbarContent}>
           <div className={styles.mobileNavbarTop}>
-            <div className={styles.changeLocale}>
+            {/* <div className={styles.changeLocale}>
               <ChangeLocale />
-            </div>
+            </div> */}
             <CourseSubjects onClose={() => setIsOpen(false)} isFetch={isOpen} />
             <NavbarItems />
           </div>

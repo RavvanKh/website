@@ -1,9 +1,10 @@
+import { FaLinkedin } from "react-icons/fa";
+
 import { INSTRUCTOR_STYLES } from "@/lib/constants/instructor-styles";
 
 import ImgSkeleton from "../img-skeleton/ImgSkeleton";
 
 import styles from "./instructor.module.css";
-import { FaLinkedin } from "react-icons/fa";
 
 const Instructor = ({ instructor }) => {
   return (
@@ -17,9 +18,11 @@ const Instructor = ({ instructor }) => {
           style={INSTRUCTOR_STYLES.about}
         />
       </div>
-      <a href={instructor?.linkedinUrl} target="_blank">
+      {instructor?.linkedinUrl && (
+        <a href={instructor?.linkedinUrl} target="_blank">
           <FaLinkedin size={20} color="#0A66C2" />
         </a>
+      )}
       <div className={styles.instructorInfo}>
         <div className={styles.instructorName}>{instructor?.name}</div>
         <div className={styles.instructorRole}>{instructor?.position}</div>

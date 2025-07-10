@@ -8,8 +8,8 @@ const Faq = ({ t, title, faqData }) => {
   const [activeIndexes, setActiveIndexes] = useState([]);
 
   const sortedData = faqData.sort((a, b) => {
-    const numA = parseInt(a.id.replace("faq", ""));
-    const numB = parseInt(b.id.replace("faq", ""));
+    const numA = parseInt(a?.id?.replace("faq", ""));
+    const numB = parseInt(b?.id?.replace("faq", ""));
     return numA - numB;
   });
 

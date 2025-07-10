@@ -13,7 +13,6 @@ import styles from "./course-application-form.module.css";
 const CourseApplicationForm = ({ courses = [], course = {} }) => {
   const t = useI18n();
 
-  const hasCourse = !!course?.name;
 
   const schema = yup.object().shape({
     courseId: yup.string().required("Course is required"),

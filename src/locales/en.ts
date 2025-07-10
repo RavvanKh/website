@@ -157,4 +157,9 @@ export default {
   trainings: "Trainings",
   employedAlumni: "Employed Alumni",
   notFound: "Not Found",
+  "roles&Responsibilities": "Roles & Responsibilities",
+  skillsRequired:'Skills Required',
+  whereDoOurGraduatesWork:"Where do our graduates work",
+  graduatesHere:'Graduates Here',
+  allRightsReserved:'All rights reserved'
 } as const;

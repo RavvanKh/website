@@ -37,7 +37,7 @@ const ContactInfo = ({organization}) => {
             </div>
           ))}
         <ContactSocials />
-        <ChangeLocale />
+        {/* <ChangeLocale /> */}
       </div>
     </div>
   );
