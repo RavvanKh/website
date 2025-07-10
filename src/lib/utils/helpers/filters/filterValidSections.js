@@ -11,7 +11,7 @@ export const filterValidSections = (training, array) => {
         return training?.graduates?.length > 0;
       case "companies":
       case "whereDoOurGraduatesWork":
-        return true
+        return training?.graduatesWorkplaces?.length > 0;
       case "instructors":
         return training?.instructors?.length > 0;
       case "courseApplicationForm":

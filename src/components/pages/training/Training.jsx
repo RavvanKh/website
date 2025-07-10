@@ -13,7 +13,10 @@ import {
 
 import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
-
+const Loader = dynamic(() => import("@/components/shared/loader/Loader"), {
+  ssr: false,
+  loading: () => null,
+});
 const TrainingTitle = dynamic(
   () => import("@/components/ui/training/training-title/TrainingTitle"),
   { ssr: false, loading: () => null }
@@ -27,13 +30,19 @@ const NextGroup = dynamic(
   { ssr: false, loading: () => null }
 );
 
-import SharedSectionRenderer from "@/components/shared/shared-section-renderer/SharedSectionRenderer";
-import { useGlobalData } from "@/contexts/GlobalDataContext";
+const SharedSectionRenderer = dynamic(
+  () =>
+    import("@/components/shared/shared-section-renderer/SharedSectionRenderer"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
 
 const Training = () => {
   const { training, loading, error } = useTraining();
-  const { data } = useGlobalData();
 
+  console.log(JSON.stringify(training));
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
   const [selectedSection, setSelectedSection] = useState(
@@ -189,14 +198,14 @@ const Training = () => {
             upcomingGroups: training?.upcomingSessions,
           },
           graduates: {
-            graduates: data?.instructors,
+            graduates: training?.graduates,
             loading,
             error,
           },
           companies: {
             title: "graduatesTitle",
             subTitle: "graduatesDescription",
-            companies: data?.customers,
+            companies: training?.graduatesWorkplaces,
             loading,
             error,
           },
