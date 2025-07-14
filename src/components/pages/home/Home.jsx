@@ -43,6 +43,7 @@ import styles from "./home.module.css";
 export default function Home() {
   const { data, filter, error, loading, updateFilter } = useGlobalData();
 
+
   return (
     <div className={styles.home}>
       <div className={styles.homeBackgroundContainer}>

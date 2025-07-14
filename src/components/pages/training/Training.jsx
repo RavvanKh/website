@@ -42,7 +42,6 @@ const SharedSectionRenderer = dynamic(
 const Training = () => {
   const { training, loading, error } = useTraining();
 
-  console.log(JSON.stringify(training));
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
   const [selectedSection, setSelectedSection] = useState(
@@ -251,6 +250,7 @@ const Training = () => {
             sections={filteredSections}
           />
           <NextGroup
+            training={training}
             url={training?.syllabusUrl}
             nextGroup={training?.upcomingSessions?.[0]}
             isDownloadingSyllabus={isDownloadingSyllabus}

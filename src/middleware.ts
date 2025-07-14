@@ -1,5 +1,5 @@
 import { createI18nMiddleware } from 'next-international/middleware'
-import { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
  
 const I18nMiddleware = createI18nMiddleware({
   locales: ['en'],
@@ -7,7 +7,15 @@ const I18nMiddleware = createI18nMiddleware({
 })
  
 export function middleware(request: NextRequest) {
-  return I18nMiddleware(request)
+  const response = I18nMiddleware(request)
+  
+  const finalResponse = response instanceof NextResponse 
+    ? response 
+    : NextResponse.next()
+  
+  finalResponse.headers.set('x-pathname', request.nextUrl.pathname)
+  
+  return finalResponse
 }
  
 export const config = {

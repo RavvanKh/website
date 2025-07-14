@@ -66,6 +66,10 @@ export const selectSectionsAsComponentForTraining = [
     component: Advantages,
   },
   {
+    key: "skillsRequired",
+    component: SkillsRequired,
+  },
+  {
     key: "trainingProgram",
     component: Syllabus,
   },
@@ -81,10 +85,10 @@ export const selectSectionsAsComponentForTraining = [
     key: "courseApplicationForm",
     component: CourseApplicationForm,
   },
-  {
-    key: "relatedCourses",
-    component: RelatedCourses,
-  },
+  // {
+  //   key: "relatedCourses",
+  //   component: RelatedCourses,
+  // },
   {
     key: "faq",
     component: Faq,

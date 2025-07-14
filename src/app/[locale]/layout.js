@@ -13,6 +13,8 @@ import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
 import { getHomeData } from "@/lib/utils/api/home";
 
 import "../globals.css";
+import { headers } from "next/headers";
+import { hideHeaderAndFooter } from "@/lib/utils/helpers/hideHeaderAndFooter";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -81,20 +83,26 @@ export async function generateMetadata({ params }) {
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
 
+  const headerList = headers();
+  const pathname = (await headerList).get("x-pathname") || "";
+
+  const isHide = hideHeaderAndFooter(pathname);
+
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <I18nProviderClient locale={locale}>
           <GlobalDataProvider>
-            <Header />
+            {!isHide && <Header />}
             <AmplitudeProvider />
             <main>{children}</main>
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <SpeedInsights />
             <Analytics />
-            <WhatsappIcon />
-            <Footer />
+            {!isHide && <WhatsappIcon />}
+            {!isHide && <Footer />}
           </GlobalDataProvider>
         </I18nProviderClient>
       </body>

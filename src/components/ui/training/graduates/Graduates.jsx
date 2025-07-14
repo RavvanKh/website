@@ -7,7 +7,7 @@ import Instructor from "@/components/shared/instructor/Instructor";
 import styles from "./graduates.module.css";
 
 const Graduates = ({ t, title, error, loading, graduates = [] }) => {
-  console.log(graduates);
+
   const scrollRef = useRef(null);
   const scrollInterval = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
