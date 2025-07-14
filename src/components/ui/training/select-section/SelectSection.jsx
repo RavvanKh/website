@@ -5,7 +5,7 @@ const SelectSection = ({ t, selectedSection, onClick,sections }) => {
   return (
     <div className={styles.selectSection}>
       {sections.map((section, index) => (
-        <div
+        <h3
           key={index}
           onClick={() => onClick(section.key)}
           className={`${styles.selectSectionItem} ${
@@ -13,7 +13,7 @@ const SelectSection = ({ t, selectedSection, onClick,sections }) => {
           }`}
         >
           {t(section.key)}
-        </div>
+        </h3>
       ))}
     </div>
   );

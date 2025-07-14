@@ -20,7 +20,7 @@ const CourseTypes = ({ t, selectedType = "", onClick }) => {
 
   return (
     <div className={styles.courseTypes}>
-      {courseTypes.map((type, index) => (
+      {courseTypes.slice(0, 8).map((type, index) => (
         <div
           onClick={() => handleChangeType(type)}
           className={`${styles.courseType} ${

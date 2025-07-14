@@ -1,8 +1,5 @@
-export const exploreCoursesSections = [
-    'courses','learningPaths'
-]
-
+export const exploreCoursesSections = ["courses"];
 
 export const exploreCoursesConfig = {
-    defaultSection: 'courses',
-}
+  defaultSection: "courses",
+};

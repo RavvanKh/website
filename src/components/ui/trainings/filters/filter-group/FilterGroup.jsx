@@ -5,8 +5,7 @@ import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./filter-group.module.css";
 
-
-const FilterGroup = ({ t, group, onClick,activeFilter = [] }) => {
+const FilterGroup = ({ t, group, onClick, activeFilter = [], loading }) => {
   const [selectedOptions, setSelectedOptions] = useState(activeFilter);
 
   const handleChange = (key) => {
@@ -25,7 +24,7 @@ const FilterGroup = ({ t, group, onClick,activeFilter = [] }) => {
     <div className={styles.filterGroup}>
       <h3 className={styles.title}>{t(group.key)}</h3>
       <div className={styles.options}>
-        {group.options.length === 0 ? (
+        {loading && group.key === "category" ? (
           <div className={styles.loader}>
             <Loader />
           </div>

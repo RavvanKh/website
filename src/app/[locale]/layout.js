@@ -1,37 +1,108 @@
 import { I18nProviderClient } from "@/locales/client";
 
+import AmplitudeProvider from "@/contexts/AmplitudeProvider";
 import { GlobalDataProvider } from "@/contexts/GlobalDataContext";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
+import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
 
-import "./globals.css";
+import { getHomeData } from "@/lib/utils/api/home";
 
-export const metadata = {
-  title: "Ingress Academy",
-  description: "Ingress Academy",
-  robots: {
-    index: true,
-    follow: true,
-    nocache: false,
-  },
-  icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/icon.svg",}],
-    apple: [{ url: "/apple-icon.svg" }],
-  },
-};
+import "../globals.css";
+import { headers } from "next/headers";
+import { hideHeaderAndFooter } from "@/lib/utils/helpers/hideHeaderAndFooter";
 
-export default async function SubLayout({ params, children }) {
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const { organization } = await getHomeData();
+
+  if (!organization || Object.keys(organization).length === 0) {
+    return {};
+  }
+
+  return {
+    title: organization.metaTitle,
+    description: organization.metaDescription,
+    keywords: organization.metaKeywords,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+
+    icons: {
+      icon: [{ url: "/favicon.ico" }, { url: "/icon.svg" }],
+      apple: [{ url: "/apple-icon.svg" }],
+    },
+    openGraph: {
+      title: organization.metaTitle,
+      description: organization.metaDescription,
+      url: `${organization.url}/${locale}`,
+      siteName: organization.name,
+      images: [
+        {
+          url: organization.logo,
+          width: 1200,
+          height: 630,
+          alt: organization.name,
+        },
+      ],
+      locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: organization.metaTitle,
+      description: organization.metaDescription,
+      images: [organization.logo],
+    },
+    alternates: {
+      canonical: `${organization.url}/${locale}`,
+      languages: {
+        az: `${organization.url}/az`,
+        en: `${organization.url}/en`,
+      },
+    },
+    other: {
+      "google-site-verification": process.env.NEXT_PUBLIC_GOOGLE_KEY,
+      "Content-Security-Policy": "default-src 'self'",
+    },
+  };
+}
+
+export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
 
+  const headerList = headers();
+  const pathname = (await headerList).get("x-pathname") || "";
+
+  const isHide = hideHeaderAndFooter(pathname);
+
+
   return (
-    <html lang={locale}>
-      <body>
+    <html lang={locale} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <I18nProviderClient locale={locale}>
           <GlobalDataProvider>
-            <Header />
-            {children}
-            <Footer />
+            {!isHide && <Header />}
+            <AmplitudeProvider />
+            <main>{children}</main>
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+            <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
+            <SpeedInsights />
+            <Analytics />
+            {!isHide && <WhatsappIcon />}
+            {!isHide && <Footer />}
           </GlobalDataProvider>
         </I18nProviderClient>
       </body>

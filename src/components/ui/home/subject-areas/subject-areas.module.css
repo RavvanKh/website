@@ -14,7 +14,8 @@
         text-align: center;
     }
     .subjectAreasList{
-        width: 85%;
+        width: 85%;;
+        max-width: 1216px;
         margin: 0 auto;
         min-height: 180px;
         display: flex;

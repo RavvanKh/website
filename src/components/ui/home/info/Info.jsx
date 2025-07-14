@@ -13,7 +13,6 @@ import { routes } from "@/lib/constants/routes";
 
 import styles from "./info.module.css";
 
-
 const Info = ({
   totalCourses,
   totalInstructors,
@@ -26,39 +25,43 @@ const Info = ({
 
   return (
     <section className={styles.info}>
-      <div className={styles.infoLeft}>
-        <h1 className={styles.infoTitle}>
-          <span className={styles.infoTitleItem}>{t("empoweredBy")}</span>
-          <br />
-          <span className={styles.infoTitleItem}>{t("innovation")}</span>
-        </h1>
-        <div className={styles.infoLeftTitle}>{t("infoTitle")}</div>
-        <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
-        <Link href={routes.home} className={styles.infoLeftButton}>
-          <div>{t("exploreOurCourses")}</div>
+      <div className={styles.infoContainer}>
+        <div className={styles.infoLeft}>
+          <h1 className={styles.infoTitle}>
+            <span className={styles.infoTitleItem}>{t("empoweredBy")}</span>
+            <br />
+            <span className={styles.infoTitleItem}>{t("innovation")}</span>
+          </h1>
+          <h2 className={styles.infoLeftTitle}>{t("infoTitle")}</h2>
+          <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
+          <Link href={routes.trainings} className={styles.infoLeftButton}>
+            <div>{t("exploreOurCourses")}</div>
+            <Image
+              src="/icons/arrow-right-2.svg"
+              width={14}
+              height={14}
+              alt="Arrow"
+            />
+          </Link>
+        </div>
+        <div className={styles.infoRight}>
           <Image
-            src="/icons/arrow-right-2.svg"
-            width={14}
-            height={14}
-            alt="Arrow"
+            className={styles.infoRightImg}
+            src="/images/info-right-img.svg"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            alt="Info img"
+            objectFit="cover"
+            priority
           />
-        </Link>
-      </div>
-      <div className={styles.infoRight}>
-        <Image
-          className={styles.infoRightImg}
-          src="/images/info-right-img.svg"
-          height={410}
-          width={530}
-          alt="Info img"
-        />
-        <Teachers
-          totalInstructors={totalInstructors}
-          loading={instructorsLoading}
-        />
-        <Courses totalCourses={totalCourses} loading={coursesLoading} />
-        <Students />
-        <StudentRates rating={rating} ratingLoading={ratingLoading} />
+          {/* <Teachers
+            totalInstructors={totalInstructors}
+            loading={instructorsLoading}
+          />
+          <Courses totalCourses={totalCourses} loading={coursesLoading} />
+          <Students />
+          <StudentRates rating={rating} ratingLoading={ratingLoading} /> */}
+        </div>
       </div>
     </section>
   );

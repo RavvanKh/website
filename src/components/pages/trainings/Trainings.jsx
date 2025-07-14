@@ -1,27 +1,26 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import dynamic from "next/dynamic";
 
 import { useI18n } from "@/locales/client";
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
-import Filters from "@/components/ui/trainings/filters/Filters";
-import FilteredTrainings from "@/components/ui/trainings/filtered-trainings/FilteredTrainings";
-import CourseTypes from "@/components/ui/home/our-courses/course-types/CourseTypes";
+const Filters = dynamic(() => import("@/components/ui/trainings/filters/Filters"), { ssr: false, loading: () => null });
+const FilteredTrainings = dynamic(() => import("@/components/ui/trainings/filtered-trainings/FilteredTrainings"), { ssr: false, loading: () => null });
+const CourseTypes = dynamic(() => import("@/components/ui/home/our-courses/course-types/CourseTypes"), { ssr: false, loading: () => null });
 
 import { filterOptions } from "@/lib/constants/filterOptions";
 
 import styles from "./trainings.module.css";
 
-
-
 const Trainings = () => {
   const {
     data: { courses, categories },
+    loading,
   } = useGlobalData();
 
-  const t = useI18n()
+  const t = useI18n();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -50,8 +49,6 @@ const Trainings = () => {
   });
 
   const updateFilter = (name, value) => {
-
-    console.log(name,value)
     const updatedFilter = { ...filter, [name]: value };
 
     const params = new URLSearchParams();
@@ -114,15 +111,21 @@ const Trainings = () => {
 
   return (
     <section className={styles.trainings}>
-      <CourseTypes t={t} selectedType={filter.type} onClick={updateFilter} />
+      <div className={styles.courseTypes}>
+        <CourseTypes t={t} selectedType={filter.type} onClick={updateFilter} />
+      </div>
       <div className={styles.trainingsContent}>
         <Filters
-        trainings={filteredTrainings}
+          loading={loading.home}
+          trainings={filteredTrainings}
           activeFilter={filter}
           filters={filters}
           onClick={updateFilter}
         />
-        <FilteredTrainings trainings={filteredTrainings} />
+        <FilteredTrainings
+          loading={loading.home}
+          trainings={filteredTrainings}
+        />
       </div>
     </section>
   );

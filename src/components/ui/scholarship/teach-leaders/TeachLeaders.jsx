@@ -13,12 +13,12 @@ const TeachLeaders = () => {
       <div className={styles.techLeadersContainer}>
         <div className={styles.techLeadersLeft}>
           <div className={styles.techLeadersLeftTop}>
-            <div className={styles.techLeadersLeftTopTitle}>
+            <h1 className={styles.techLeadersLeftTopTitle}>
               {t("techLeaderTitle")}
-            </div>
-            <div className={styles.techLeadersLeftTopSubTitle}>
+            </h1>
+            <h3 className={styles.techLeadersLeftTopSubTitle}>
               {t("techLeaderSubTitle")}
-            </div>
+            </h3>
           </div>
           <div className={styles.techLeadersLeftBottom}>
             <p>

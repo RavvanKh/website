@@ -3,13 +3,12 @@ import Customer from "../../home/customers/customer/Customer";
 
 import styles from "./companies.module.css";
 
-const Companies = ({ t, title, companies, loading, error }) => {
+const Companies = ({ t, title, subTitle, companies = [], loading, error }) => {
   return (
     <section className={styles.companies}>
       <div className={styles.companiesTop}>
-        <div className={styles.companiesTitle}>{t("graduatesTitle")}</div>
-        <p>{t("graduatesDescription")}</p>
-
+        <h2 className={styles.companiesTitle}>{t(title)}</h2>
+        <p>{t(subTitle)}</p>
       </div>
       {loading ? (
         <div className={styles.loaderContainer}>
@@ -19,7 +18,7 @@ const Companies = ({ t, title, companies, loading, error }) => {
         <div>Failed to load companies : {error}</div>
       ) : (
         <div className={styles.companiesList}>
-          {companies.map(({company}, index) => (
+          {companies.map(({ company }, index) => (
             <Customer customer={company} key={index} />
           ))}
         </div>

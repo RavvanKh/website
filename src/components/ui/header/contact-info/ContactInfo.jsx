@@ -1,14 +1,20 @@
-import React from "react";
 import Image from "next/image";
 
 import { filterArray } from "@/lib/utils/helpers";
 import { contacts } from "@/lib/constants/contact";
 
 import ContactSocials from "@/components/shared/contact-socials/ContactSocials";
+import ChangeLocale from "../change-locale/ChangeLocale";
 
 import styles from "./contact-info.module.css";
 
-const ContactInfo = () => {
+const ContactInfo = ({organization}) => {
+
+  const dynamicData = {
+    phone: organization?.phoneNumbers?.[0],
+    location: organization?.addresses?.[0]?.streetAddress,
+  };
+
   return (
     <div className={styles.contactInfo}>
       <div className={styles.contactInfoBox}>
@@ -25,10 +31,13 @@ const ContactInfo = () => {
                 className={styles.contactInfoIcon}
                 priority
               />
-              <div className={styles.contactInfoText}>{item.text}</div>
+              <div className={styles.contactInfoText}>
+                {dynamicData?.[item.key]}
+              </div>
             </div>
           ))}
         <ContactSocials />
+        {/* <ChangeLocale /> */}
       </div>
     </div>
   );

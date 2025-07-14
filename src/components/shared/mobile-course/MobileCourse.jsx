@@ -5,28 +5,33 @@ import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
 
+import ImgSkeleton from "../img-skeleton/ImgSkeleton";
+
 import { routes } from "@/lib/constants/routes";
 
 import styles from "./mobile-course.module.css";
-import ImgSkeleton from "../img-skeleton/ImgSkeleton";
 
-const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
+const MobileCourse = ({
+  course,
+  duration = false,
+  lines = 2,
+  onClose,
+  courseStyle,
+}) => {
   const t = useI18n();
+
 
   return (
     <Link onClick={onClose} href={`${routes.trainings}/${course?.id}`}>
       <div className={styles.course}>
         <div className={styles.courseIcon}>
-          <ImgSkeleton obj={course} keyName="icon" isRounded={false} />
-          {/* <img
-            className={styles.courseImg}
-            src={course?.icon}
-            alt={course?.name}
-            width={100}
-            loading="lazy"
-            height={100}
-            fetchPriority="high"
-          /> */}
+          <ImgSkeleton
+            type="training"
+            obj={course}
+            keyName="icon"
+             isRounded={false}
+            style={courseStyle}
+          />
         </div>
         <div className={styles.courseInfo}>
           <div className={styles.courseHeader}>
@@ -45,7 +50,7 @@ const MobileCourse = ({ course, duration = false, lines = 2, onClose }) => {
           </div>
           <div className={styles.courseBody}>
             <div className={styles.courseBodyEllipsis}>
-              <div className={styles.courseName}>{course?.name}</div>
+              <h3 className={styles.courseName}>{course?.name}</h3>
               <p
                 className={styles.courseTitle}
                 style={{ WebkitLineClamp: lines }}

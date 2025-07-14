@@ -1,7 +1,5 @@
-import { selectSectionsAsComponent } from "@/lib/constants/selectSections";
-
-export const filterValidSections = (training) => {
-  return selectSectionsAsComponent.filter(({ key }) => {
+export const filterValidSections = (training, array) => {
+  return array.filter(({ key }) => {
     switch (key) {
       case "advantages":
         return training?.advantages?.length > 0;
@@ -12,11 +10,14 @@ export const filterValidSections = (training) => {
       case "graduates":
         return training?.graduates?.length > 0;
       case "companies":
+      case "whereDoOurGraduatesWork":
         return training?.graduatesWorkplaces?.length > 0;
       case "instructors":
         return training?.instructors?.length > 0;
       case "courseApplicationForm":
         return true;
+      case "relatedCourses":
+        return training?.relatedCourses?.length > 0;
       case "faq":
         return training?.faq?.length > 0;
       default:

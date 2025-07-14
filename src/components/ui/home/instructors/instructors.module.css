@@ -9,7 +9,8 @@
         display: flex;
         align-items: center;
         gap: 63px;
-        width: 85%;
+        width: 85%;;
+        max-width: 1216px;
         margin: 0 auto;
 
         .instructorsLeft {

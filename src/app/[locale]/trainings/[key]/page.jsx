@@ -1,32 +1,24 @@
+import { notFound } from "next/navigation";
+
 import Training from "@/components/pages/training/Training";
 
 import { getTrainingData } from "@/lib/utils/api/training";
 import { getHomeData } from "@/lib/utils/api/home";
-import { generateSchema } from "@/lib/utils/helpers/generateSchema";
+import { generateSchema } from "@/lib/utils/helpers";
 
 export async function generateMetadata({ params }) {
-  const { key } = await params;
+  const { key, locale } = await params;
+
   const { organization } = await getHomeData();
   const training = await getTrainingData(key);
 
   if (!training?.name) {
+    notFound();
     return {
       title: "Training not found",
       description: "The requested training could not be found.",
     };
   }
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: training.name,
-    description: training.description,
-    provider: {
-      "@type": "Organization",
-      name: organization?.name || "Ingress Academy",
-      sameAs: organization?.url || "https://ingress.academy",
-    },
-  };
 
   return {
     title: `${training.name} - ${organization?.name}`,
@@ -35,30 +27,24 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: training.name,
       description: training.description,
-      url: `${organization?.url}/training/${key}`,
+      url: `${organization?.url}/${locale}/training/${key}`,
       siteName: organization?.name,
       images: [
         {
-          url: training.image || organization?.logo,
-          width: 800,
-          height: 600,
+          url: training.icon || organization?.logo,
+          width: 1200,
+          height: 630,
           alt: training.name,
         },
       ],
       type: "website",
     },
     alternates: {
-      canonical: `${organization?.url}/en/training/${key}`,
-    },
-    other: {
-      "structured-data": (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-        />
-      ),
+      canonical: `${organization?.url}/${locale}/training/${key}`,
+      languages: {
+        "az": `${organization?.url}/az/training/${key}`,
+        "en": `${organization?.url}/en/training/${key}`,
+      },
     },
   };
 }
@@ -68,7 +54,9 @@ export default async function TrainingPage({ params }) {
 
   const training = await getTrainingData(key);
 
-  const optimizedSchema = generateSchema("training", training);
+  const { organization } = await getHomeData();
+
+  const optimizedSchema = generateSchema("course", { training, organization });
 
   return (
     <>
@@ -76,7 +64,7 @@ export default async function TrainingPage({ params }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(optimizedSchema) }}
       />
-      <Training trainingKey={key} />;
+      <Training trainingKey={key} />
     </>
   );
 }

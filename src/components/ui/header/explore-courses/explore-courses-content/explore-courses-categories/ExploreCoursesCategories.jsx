@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { useI18n } from "@/locales/client";
 
+import { COURSE_STYLES } from "@/lib/constants/course-styles";
+
 import Loader from "@/components/shared/loader/Loader";
 import MobileCourse from "@/components/shared/mobile-course/MobileCourse";
 
@@ -20,17 +22,21 @@ const ExploreCoursesCategories = ({
 }) => {
   const t = useI18n();
 
+
   const [isMobile, setIsMobile] = useState(false);
+  const [isMobileS, setIsMobileS] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
+      setIsMobileS(window.innerWidth <= 576);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
 
   return (
     <div className={styles.exploreCoursesCategories}>
@@ -50,7 +56,16 @@ const ExploreCoursesCategories = ({
                     ? styles.exploreCoursesCategoriesCategorySelected
                     : ""
                 }`}
-                onMouseEnter={() => onClick(category, isMobile)}
+                onMouseEnter={() => {
+                  if (!isMobile) {
+                    onClick(category, false);
+                  }
+                }}
+                onClick={() => {
+                  if (isMobile) {
+                    onClick(category, true);
+                  }
+                }}
               >
                 <div className={styles.exploreCoursesCategoriesName}>
                   {category.name}
@@ -87,7 +102,8 @@ const ExploreCoursesCategories = ({
                             onClose={onClose}
                             course={course}
                             direction="row"
-                            lines={3}
+                            lines={2}
+                            courseStyle={isMobileS ? COURSE_STYLES.exploreCoursesMobileS : COURSE_STYLES.exploreCoursesMobile}
                           />
                         </div>
                       ))}

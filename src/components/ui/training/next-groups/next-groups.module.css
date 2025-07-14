@@ -17,3 +17,28 @@
         gap: 15px;
     }
 }
+
+
+@media(max-width:1024px){
+    .nextGroups{
+        .nextGroupsContent{
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media(max-width:768px){
+    .nextGroups{
+        .nextGroupsContent{
+            grid-template-columns: repeat(2,1fr);
+        }
+    }
+}
+
+@media(max-width:576px){
+    .nextGroups{
+        .nextGroupsContent{
+            grid-template-columns: 1fr;
+        }
+    }
+}

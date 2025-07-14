@@ -1,46 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
 
 import { useI18n } from "@/locales/client";
-
-import { getCourses } from "@/lib/utils/api/courses";
 
 import CourseBoxes from "./course-boxes/CourseBoxes";
 import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./program-focus-areas.module.css";
 
-
-const ProgramFocusAreas = () => {
-  const [loading, setLoading] = useState(false);
-  const [courses, setCourses] = useState([]);
-  const [error, setError] = useState(null);
-
+const ProgramFocusAreas = ({ loading, error, courses }) => {
   const t = useI18n();
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        setLoading(true);
-        const res = await getCourses(0, 9);
-        setCourses(res?.content);
-      } catch (error) {
-        setError(error?.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
-  }, []);
-
-  const firstRow = courses.slice(0, 5);
-  const secondRow = courses.slice(5, 9);
 
   return (
     <section className={styles.programFocusAreas}>
       <div className={styles.programFocusAreasTop}>
-        <div>{t("programFocusAreas")}</div>
+        <h2>{t("programFocusAreas")}</h2>
         <p>{t("programFocusAreasSubTitle")}</p>
       </div>
       {loading ? (
@@ -53,8 +26,8 @@ const ProgramFocusAreas = () => {
         </div>
       ) : (
         <div className={styles.programFocusAreasBottom}>
-          <CourseBoxes array={courses} start={0} end={5}/>
-          <CourseBoxes array={courses} start={5} end={9}/>
+          <CourseBoxes array={courses} start={0} end={5} />
+          <CourseBoxes array={courses} start={5} end={9} />
         </div>
       )}
     </section>

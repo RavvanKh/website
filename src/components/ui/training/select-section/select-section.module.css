@@ -31,3 +31,9 @@
         color: #0739AC
     }
 }
+
+@media (max-width:768px){
+    .selectSection{
+        display: none;
+    }
+}

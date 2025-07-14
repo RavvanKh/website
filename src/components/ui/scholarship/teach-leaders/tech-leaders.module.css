@@ -13,7 +13,8 @@
     justify-content: center;
 
     .techLeadersContainer {
-        width: 85%;
+        width: 85%;;
+        max-width: 1216px;
         margin: 0 auto;
         display: flex;
         align-items: flex-start;

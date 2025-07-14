@@ -4,7 +4,8 @@
     background-color: #0739AC;
 
     .stayUpdatedContainer {
-        width: 85%;
+        width: 85%;;
+        max-width: 1216px;
         margin: 0 auto;
         display: flex;
         align-items: center;
@@ -24,7 +25,7 @@
                 gap: 12px;
                 color: #FFFFFF;
             }
-            .stayUpdatedContent div{
+            .stayUpdatedContent h2{
                 font-size: 28px;
                 line-height: 36px;
                 font-weight: 600;

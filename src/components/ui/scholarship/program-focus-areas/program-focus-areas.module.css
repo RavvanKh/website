@@ -1,5 +1,6 @@
 .programFocusAreas {
-    width: 85%;
+    width: 85%;;
+    max-width: 1216px;
     margin: 0 auto;
     padding: 48px 0;
     display: flex;

@@ -1,11 +1,15 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import { useI18n } from "@/locales/client";
 
 import Logo from "@/components/shared/logo/Logo";
-import ExploreCourses from "../../explore-courses/ExploreCourses";
+const ExploreCourses = dynamic(
+  () => import("../../explore-courses/ExploreCourses"),
+  { ssr: false}
+);
 
 import styles from "./navbar-logo.module.css";
 

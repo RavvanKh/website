@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useI18n } from "@/locales/client";
+
 import styles from "./see-more.module.css";
 
 const SeeMore = ({ url }) => {

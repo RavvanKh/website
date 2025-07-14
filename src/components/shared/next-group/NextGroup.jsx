@@ -1,50 +1,61 @@
 import { RiLoader2Fill } from "react-icons/ri";
 import { MdOutlineFileDownload } from "react-icons/md";
 
-import styles from "./next-group.module.css";
 import { convertStringToDate } from "@/lib/utils/helpers";
+
+import styles from "./next-group.module.css";
+import Link from "next/link";
 
 const NextGroup = ({
   isDownloadingSyllabus = false,
   t,
   onClickApply,
   onClickSyllabus,
-  nextGroup
+  url,
+  nextGroup,
+  training,
 }) => {
-
   const formatted = convertStringToDate(nextGroup?.startDate);
 
   return (
     <div className={styles.nextGroup}>
-      <div className={styles.nextGroupTop}>
-        <div>{t("upcomingGroup")}:</div>
-        <p>{formatted}</p>
-      </div>
+      {nextGroup?.startDate && (
+        <div className={styles.nextGroupTop}>
+          <div>{t("upcomingGroup")}:</div>
+          <p>{formatted}</p>
+        </div>
+      )}
       <div className={styles.nextGroupContent}>{t("upcomingGroupContent")}</div>
       <div className={styles.nextGroupBtnGroup}>
-        <button
-          className={styles.nextGroupSyllabus}
-          onClick={() => onClickSyllabus("upcomingGroupContent")}
-          disabled={isDownloadingSyllabus}
-        >
-          {isDownloadingSyllabus ? (
-            <RiLoader2Fill size={20} className={styles.loaderIcon} />
-          ) : (
-            <>
-              <MdOutlineFileDownload
-                size={20}
-                style={{ marginRight: 5 }}
-                height={20}
-                width={20}
-              />
-              {t("trainingProgram")}
-            </>
-          )}
-        </button>
+        <Link href={`/trainings/${training?.id}/pdf`} target="_blank">
+          <button
+            className={styles.nextGroupSyllabus}
+            disabled={isDownloadingSyllabus}
+          >
+            {isDownloadingSyllabus ? (
+              <RiLoader2Fill size={20} className={styles.loaderIcon} />
+            ) : (
+              <>
+                <MdOutlineFileDownload
+                  size={20}
+                  style={{ marginRight: 5 }}
+                  height={20}
+                  width={20}
+                />
+                {t("trainingProgram")}
+              </>
+            )}
+          </button>
+        </Link>
 
-        <button className={styles.nextGroupApply} onClick={onClickApply}>
-          {t("apply")}
-        </button>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSc5RF6OP5SmUqhaCYl3gBbctvJPR7v7HqYFu2IyZPv8bc35eQ/viewform"
+          target="_blank"
+        >
+          <button className={styles.nextGroupApply} onClick={onClickApply}>
+            {t("apply")}
+          </button>
+        </a>
       </div>
     </div>
   );

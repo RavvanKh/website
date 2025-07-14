@@ -21,7 +21,7 @@ const StayUpdated = () => {
             />
           </div>
           <div className={styles.stayUpdatedContent}>
-            <div>{t("stayUpdatedTitle")}</div>
+            <h2>{t("stayUpdatedTitle")}</h2>
             <p>{t("stayUpdatedDescription")}</p>
           </div>
         </div>

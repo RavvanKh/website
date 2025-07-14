@@ -1,7 +1,7 @@
 .details{
-    background: url('/images/home-bg.svg') no-repeat;
     height: auto;
     width: 100%;
+    padding-top: 32px;
 }
 
 @media(max-width:1024px){

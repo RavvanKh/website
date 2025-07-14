@@ -20,7 +20,7 @@ const Comments = ({ comments = [], loading, error }) => {
 
   return (
     <section className={styles.comments}>
-      <div className={styles.commentsTitle}>{t("whatOurStudentsSay")}</div>
+      <h2 className={styles.commentsTitle}>{t("whatOurStudentsSay")}</h2>
       <div className={styles.commentsSlider}>
         {loading ? (
           <div className={styles.loaderContainer}>
@@ -50,7 +50,7 @@ const Comments = ({ comments = [], loading, error }) => {
               }}
               className={styles.mySwiper}
             >
-              {comments.map((comment) => (
+              {comments.slice(0, 8).map((comment) => (
                 <SwiperSlide key={comment.id} className={styles.swiperSlide}>
                   <Comment comment={comment} />
                 </SwiperSlide>
@@ -86,7 +86,7 @@ const Comments = ({ comments = [], loading, error }) => {
               }}
               className={styles.mySwiper}
             >
-              {comments.map((comment) => (
+              {comments.slice(0, 8).map((comment) => (
                 <SwiperSlide key={comment.id} className={styles.mobileSwiperSlide}>
                   <Comment comment={comment} />
                 </SwiperSlide>

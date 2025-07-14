@@ -1,10 +1,13 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
+
 import Loader from "@/components/shared/loader/Loader";
 import Instructor from "@/components/shared/instructor/Instructor";
+
 import styles from "./graduates.module.css";
 
-const Graduates = ({ t, title, error, loading, graduates }) => {
+const Graduates = ({ t, title, error, loading, graduates = [] }) => {
+
   const scrollRef = useRef(null);
   const scrollInterval = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -37,7 +40,7 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
       style={{ justifyContent: loading ? "flex-start" : "space-between" }}
     >
       <div className={styles.graduatesLeft}>
-        <div>{t(title)}</div>
+        <h2>{t(title)}</h2>
         <p>{t("graduatesContent")}</p>
       </div>
 
@@ -64,6 +67,13 @@ const Graduates = ({ t, title, error, loading, graduates }) => {
             </div>
             <div className={styles.graduatesListSecondColumn}>
               {secondColumn.map((graduate, index) => (
+                <div className={styles.graduate} key={index}>
+                  <Instructor instructor={graduate} />
+                </div>
+              ))}
+            </div>
+            <div className={styles.graduatesAllList}>
+              {graduates.map((graduate, index) => (
                 <div className={styles.graduate} key={index}>
                   <Instructor instructor={graduate} />
                 </div>

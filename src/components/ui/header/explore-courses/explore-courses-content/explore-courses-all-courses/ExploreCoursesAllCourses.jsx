@@ -2,6 +2,8 @@
 
 import Course from "@/components/shared/course/Course";
 
+import { COURSE_STYLES } from "@/lib/constants/course-styles";
+
 import styles from "./explore-courses-all-courses.module.css";
 
 const ExploreCoursesAllCourses = ({
@@ -23,17 +25,18 @@ const ExploreCoursesAllCourses = ({
       <div className={styles.exploreAllCoursesList}>
         {courses?.length > 0 ? (
           courses.map((course) => (
-            <Course
-              onClose={onClose}
-              duration={false}
-              lines={2}
-              direction="row"
-              course={course}
-              key={course?.id}
-              levelPosition="right"
-              imgHeight="180px"
-              imgWidth="290px"
-            />
+            <div key={course?.id} className={styles.exploreAllCoursesItem}>
+              <Course
+                onClose={onClose}
+                duration={false}
+                lines={2}
+                direction="row"
+                course={course}
+                key={course?.id}
+                levelPosition="right"
+                courseStyle={COURSE_STYLES.exploreCoursesDesktop}
+              />
+            </div>
           ))
         ) : showEmptyMessage ? (
           <div className={styles.exploreAllCoursesNoCourse}>

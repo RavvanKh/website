@@ -39,7 +39,7 @@ const Logo = memo(({ theme = "light", isShownBottom = false }) => {
       </Link>
       {isShownBottom && (
         <div className={styles.logoBottom} style={{ color: logoBottomColor }}>
-          Empowered by innovation
+          {}
         </div>
       )}
     </div>

@@ -1,5 +1,6 @@
-import { TrainingProvider } from "@/contexts/TrainingContext";
 import { use } from "react";
+
+import { TrainingProvider } from "@/contexts/TrainingContext";
 
 const TrainingLayout = ({ children, params }) => {
   const { key } = use(params);

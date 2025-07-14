@@ -1,18 +1,16 @@
-'use client";';
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { useI18n } from "@/locales/client";
 
-import ImgSkeleton from "../img-skeleton/ImgSkeleton";
-
 import { convertWeekToHour } from "@/lib/utils/helpers";
 import { routes } from "@/lib/constants/routes";
 
+import ImgSkeleton from "../img-skeleton/ImgSkeleton";
+
 import styles from "./course.module.css";
-
-
 
 const Course = ({
   course,
@@ -20,85 +18,92 @@ const Course = ({
   direction = "row",
   duration = false,
   lines = 2,
-  imgHeight = "180px",
-  imgWidth = "300px",
   onClose,
+  courseStyle = {},
 }) => {
   const t = useI18n();
 
   return (
-    <Link
-      href={`${routes.trainings}/${course?.id}`}
-      onClick={onClose}
-      className={styles.courseLink}
-    >
-      <div
-        className={styles.course}
-        style={{
-          flexDirection: direction,
-          minHeight: direction === "row" ? "auto" : "450px",
-        }}
+    <Link href={`${routes.trainings}/${course?.id}`} legacyBehavior>
+      <a
+        className={`${styles.courseLink} ${
+          direction === "row" ? styles.courseLinkRow : styles.courseLinkColumn
+        }`}
+        onClick={onClose}
       >
-        <div
-          className={`${styles.courseIcon} ${
-            direction === "row"
-              ? styles.courseIconMinWidth
-              : styles.courseIconMaxWidth
-          } `}
-          style={{ height: imgHeight, width: imgWidth }}
-        >
+        <div className={styles.course}>
+          <div className={styles.courseIcon} style={{ ...courseStyle }}>
+            <ImgSkeleton
+              type="training"
+              obj={course}
+              keyName="icon"
+              isRounded={false}
+              style={courseStyle}
+            />
+          </div>
+
           {levelPosition === "top" && (
             <div className={styles.courseLevel}>{course?.level}</div>
           )}
-          <ImgSkeleton obj={course} keyName='icon' isRounded={false}/>
-        </div>
-        <div className={styles.courseInfo}>
-          <div className={styles.courseHeader}>
-            <div className={styles.courseHeaderIcon}>
-              <Image
-                src="/icons/course.svg"
-                height={14}
-                width={14}
-                alt="Course"
-                loading="lazy"
-              />
-              <div className={styles.courseType}>{course?.courseType}</div>
+
+          <div className={styles.courseInfo}>
+            <div className={styles.courseHeader}>
+              <span className={styles.courseHeaderIcon}>
+                <Image
+                  src="/icons/course.svg"
+                  height={14}
+                  width={14}
+                  alt="Course icon"
+                  loading="lazy"
+                />
+                <span className={styles.courseType}>
+                  {course?.type || t("course")}
+                </span>
+              </span>
+
+              {levelPosition === "right" && (
+                <>
+                  <div className={styles.courseDivider} />
+                  <span>{course?.level}</span>
+                </>
+              )}
             </div>
-            {levelPosition === "right" && (
-              <>
-                <div className={styles.courseDivider} />
-                <div className={styles.courseLevel}>{course?.level}</div>
-              </>
-            )}
-          </div>
-          <div className={styles.courseBody}>
-            <div>
-              <div className={styles.courseName}>{course?.name}</div>
+
+            <div className={styles.courseBody}>
+              <h3 className={styles.courseName}>{course?.name}</h3>
               <p
                 className={styles.courseTitle}
-                style={{ WebkitLineClamp: lines }}
+                style={{
+                  WebkitLineClamp: lines,
+                }}
               >
                 {course?.description}
               </p>
-            </div>
-            {duration && (
-              <div className={styles.courseDuration}>
-                <Image
-                  src="/icons/duration.svg"
-                  height={18}
-                  width={18}
-                  alt="Duration"
-                  loading="lazy"
-                />
-                <div className={styles.courseDurationInfo}>
-                  {course?.durationInWeeks} {t("weeks")} /{" "}
-                  {convertWeekToHour(course?.durationInWeeks)} {t("hours")}
+
+              {duration && (
+                <div className={styles.courseDuration}>
+                  <Image
+                    src="/icons/duration.svg"
+                    height={18}
+                    width={18}
+                    alt="Duration icon"
+                    loading="lazy"
+                  />
+                  <span className={styles.courseDurationInfo}>
+                    {course?.durationInWeeks} {t("weeks")} /{" "}
+                    {convertWeekToHour(
+                      course?.durationInWeeks,
+                      course?.hoursPerSession,
+                      course?.sessionsPerWeek
+                    )}{" "}
+                    {t("hours")}
+                  </span>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </Link>
   );
 };
