@@ -4,7 +4,6 @@ import { MdOutlineFileDownload } from "react-icons/md";
 import { convertStringToDate } from "@/lib/utils/helpers";
 
 import styles from "./next-group.module.css";
-import Link from "next/link";
 
 const NextGroup = ({
   isDownloadingSyllabus = false,
@@ -27,7 +26,7 @@ const NextGroup = ({
       )}
       <div className={styles.nextGroupContent}>{t("upcomingGroupContent")}</div>
       <div className={styles.nextGroupBtnGroup}>
-        <Link href={`/trainings/${training?.id}/pdf`} target="_blank">
+        <a href={url} target="_blank">
           <button
             className={styles.nextGroupSyllabus}
             disabled={isDownloadingSyllabus}
@@ -46,7 +45,7 @@ const NextGroup = ({
               </>
             )}
           </button>
-        </Link>
+        </a>
 
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLSc5RF6OP5SmUqhaCYl3gBbctvJPR7v7HqYFu2IyZPv8bc35eQ/viewform"

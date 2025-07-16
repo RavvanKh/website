@@ -48,7 +48,7 @@ const Count = ({ count, isLast }) => {
           />
           <p className={styles.countNumber}>{displayValue}</p>
         </div>
-        <p className={styles.countTitle}>{t(count.key)}</p>
+        <p className={styles.countTitle}>{t(count.label)}</p>
       </div>
       {!isLast && <div className={styles.countLine}></div>}
     </div>

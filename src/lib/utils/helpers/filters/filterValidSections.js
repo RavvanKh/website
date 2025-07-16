@@ -22,8 +22,6 @@ export const filterValidSections = (training, array) => {
         return training?.faq?.length > 0;
         case "skillsYou'llGain":
           return true
-      case 'skillsRequired':
-        return true
       default:
         return false;
     }
