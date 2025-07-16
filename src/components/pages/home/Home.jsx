@@ -37,12 +37,10 @@ const Customers = dynamic(
   }
 );
 
-
 import styles from "./home.module.css";
 
 export default function Home() {
   const { data, filter, error, loading, updateFilter } = useGlobalData();
-
 
   return (
     <div className={styles.home}>
@@ -66,7 +64,12 @@ export default function Home() {
           filter={filter}
         />
       </div>
-      <WhyChooseUs />
+      <WhyChooseUs
+        countMeta={{
+          totalCourses: data?.totalCourses,
+          totalInstructors: data?.totalInstructors,
+        }}
+      />
       <Instructors
         instructors={data.instructors}
         loading={loading.home}

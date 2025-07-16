@@ -2,16 +2,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
 }
 
-.coverPage,
-.blankPage {
-    height: 842px;
+.coverPage {
+    background-image: url("/images/pdf-cover.jpg");
+
+}
+
+.page {
+    background-image: url("/images/pdf-bg.jpg");
+
+}
+
+.page,
+.coverPage {
     width: 595px;
+    min-height: 842px;
     position: relative;
-    margin-bottom: 30px;
-    background-color: white;
+    box-sizing: border-box;
     overflow: hidden;
+    page-break-after: always;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
 }
 
 .bg {
@@ -19,40 +33,70 @@
     object-position: center;
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
+.pageContent {
+    position: relative;
+    z-index: 10;
+    /* padding: 100px 50px 50px 50px; */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.trainingInfo{
+    margin-top: 584px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-left: 28px;
+}
 .trainingTitle {
-    position: absolute;
-    top: 584px;
-    left: 320px;
     color: #000;
     font-size: 18px;
-    z-index: 10;
+    max-width: 250px;
+    min-width: 250px;
+    text-align: center;
 }
 
 .trainingDescription {
-    position: absolute;
-    top: 584px;
-    left: 48px;
     color: white;
     font-size: 14px;
     max-width: 215px;
-    z-index: 10;
+    min-width: 215px;
 }
 
-.trainingAdvantages {
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    z-index: 10;
-}
-
-
+/* Print styles */
 @media print {
     @page {
         size: A4;
         margin: 2cm;
+    }
+
+
+    .pdf {
+        width: 210mm !important;
+    }
+
+    .page {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-after: always !important;
+        break-after: always !important;
+        overflow: hidden;
+    }
+
+    .bg {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .downloadSyllabus {
+        display: none !important;
     }
 }

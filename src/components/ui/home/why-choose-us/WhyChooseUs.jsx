@@ -9,16 +9,16 @@ import Detail from "../../../shared/why-choose-us-detail/WhyChooseUsDetail";
 import styles from "./why-choose-us.module.css";
 import Counts from "../counts/Counts";
 
-const WhyChooseUs = () => {
+const WhyChooseUs = ({ countMeta }) => {
   const t = useI18n();
 
   return (
     <section className={styles.whyChooseUs}>
-      <h2 className={styles.whyChooseUsTitle}>{t("whyChooseUs")}</h2>
+      <h2 className={styles.whyChooseUsTitle}>{t("reasonsToChooseUs")}</h2>
       <div className={styles.whyChooseUsDetails}>
         <div className={styles.whyChooseUsDetailsLeft}>
           <div className={styles.whyChooseUsDetailsLeftBg}></div>
-          <Counts />
+          <Counts countMeta={countMeta} />
         </div>
         <div className={styles.whyChooseUsDetailsRight}>
           {whyChooseUsDetails.map((item, index) => (

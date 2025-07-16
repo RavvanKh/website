@@ -26,7 +26,7 @@ const CourseSlider = ({
     <div className={styles.errorMessage}>
       Failed to load categories: {error}
     </div>
-  ) : courses.length > sliderStyle?.slidesPerView ? (
+  ) : courses?.length > sliderStyle?.slidesPerView ? (
     <div className={styles.swiperContainer}>
       <div className={`${styles.customNav} ${styles.customPrev}`}>
         <FaArrowLeft color="#FFFFFF" size={14} />
@@ -49,7 +49,7 @@ const CourseSlider = ({
         className={styles.swiper}
         wrapperClass={styles.swiperWrapper}
       >
-        {courses.map((course) => (
+        {courses?.map((course) => (
           <SwiperSlide key={course?.id} className={styles.slide}>
             <Course
               duration={true}
@@ -70,7 +70,7 @@ const CourseSlider = ({
     <div
       className={`${styles.ourCoursesList} ${styles?.[sliderStyle?.className]}`}
     >
-      {courses.map((course) => (
+      {courses?.map((course) => (
         <div key={course?.id} className={styles.slide}>
           <Course
             duration={true}

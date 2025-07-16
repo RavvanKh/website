@@ -4,10 +4,14 @@ import Count from "./count/Count";
 
 import styles from "./counts.module.css";
 
-const Counts = () => {
+const Counts = ({countMeta}) => {
+  const combined = counts.map((meta) => ({
+    ...meta,
+    count: countMeta[meta.key] ?? meta.count,
+  }));
   return (
     <section className={styles.counts}>
-      {counts.map((count,index) => (
+      {combined.map((count,index) => (
         <Count
           key={count.key}
           count={count}

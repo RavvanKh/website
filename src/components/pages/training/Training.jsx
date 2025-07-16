@@ -42,6 +42,7 @@ const SharedSectionRenderer = dynamic(
 const Training = () => {
   const { training, loading, error } = useTraining();
 
+  console.log(training)
   const [isDownloadingSyllabus, setIsDownloadingSyllabus] = useState(false);
 
   const [selectedSection, setSelectedSection] = useState(
