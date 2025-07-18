@@ -39,7 +39,6 @@ const ImgSkeleton = ({
           alt={obj?.name}
           title={obj?.name}
           fill
-          sizes="100%"
           className={`${styles.objImg} ${imageLoaded ? styles.loaded : ""}`}
           onLoad={(e) => setImageLoaded(true)}
           priority={false}

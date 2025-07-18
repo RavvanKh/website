@@ -20,6 +20,7 @@ export default {
   subjectAreas: "Subject Areas",
   exploreFullCatalog: "Explore Full Catalog",
   whyChooseUs: "Why Choose us",
+  reasonsToChooseUs:'Reasons to Choose Us',
   ourCoursesTitle: "Transform Your Potential Into Expertise ",
   ourCoursesDescription:
     "Explore a complete range of IT and tech courses designed for every level — from beginners building foundations to professionals mastering advanced skills.",

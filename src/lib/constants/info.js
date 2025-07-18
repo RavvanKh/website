@@ -7,7 +7,8 @@ export const courseInfo = {
 
 export const counts = [
   {
-    key: "qualifiedTeachers",
+    key: "totalInstructors",
+    label: "qualifiedTeachers",
     icon: "/icons/qualified-teachers.svg",
     count: 20,
     height: 32,
@@ -16,6 +17,7 @@ export const counts = [
   },
   {
     key: "employedAlumni",
+    label: "employedAlumni",
     icon: "/icons/certified-students.svg",
     count: 86.3,
     height: 32,
@@ -23,7 +25,8 @@ export const counts = [
     isPercentage: true,
   },
   {
-    key: "trainings",
+    key: "totalCourses",
+    label: "trainings",
     icon: "/icons/trainings.svg",
     count: 15,
     height: 32,

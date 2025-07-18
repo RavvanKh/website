@@ -85,10 +85,10 @@ export const selectSectionsAsComponentForTraining = [
     key: "courseApplicationForm",
     component: CourseApplicationForm,
   },
-  // {
-  //   key: "relatedCourses",
-  //   component: RelatedCourses,
-  // },
+  {
+    key: "relatedCourses",
+    component: RelatedCourses,
+  },
   {
     key: "faq",
     component: Faq,

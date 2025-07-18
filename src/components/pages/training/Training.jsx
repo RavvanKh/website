@@ -217,6 +217,7 @@ const Training = () => {
             course: training,
           },
           relatedCourses: {
+            showSlider: true,
             relatedCourses: training?.relatedCourses,
             loading,
             error,
