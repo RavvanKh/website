@@ -23,7 +23,7 @@ const InstructorsContent = ({ showBtn = false, isFlex = false }) => {
       <p className={styles.instructorsContentParagraph}>
         {t("instructorsSectionParagraph")}
       </p>
-      {showBtn && <SeeMore url={routes.about} />}
+      {showBtn && <SeeMore url={routes.instructors} />}
     </div>
   );
 };

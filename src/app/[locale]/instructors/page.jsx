@@ -1,8 +1,8 @@
 import React from "react";
-import Graduates from "@/components/pages/graduates/Graduates";
+import InstructorsPage from "@/components/instructors/Instructors";
 
-const GraduatesPage = () => {
-  return <Graduates />;
+const Instructors = () => {
+  return <InstructorsPage />;
 };
 
-export default GraduatesPage;
+export default Instructors;

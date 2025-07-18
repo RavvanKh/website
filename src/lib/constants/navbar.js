@@ -2,6 +2,10 @@ import { routes } from "./routes";
 
 export const navbarItems = [
   {
+    key: "instructors",
+    url: routes.instructors,
+  },
+  {
     key: "about",
     url: routes.about,
   },
@@ -9,8 +13,8 @@ export const navbarItems = [
     key: "scholarship",
     url: routes.scholarship,
   },
-//   {
-//     key: "career",
-//     url: routes.career,
-//   },
+  // {
+  //   key: "career",
+  //   url: routes.career,
+  // },
 ];
