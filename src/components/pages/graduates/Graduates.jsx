@@ -1,6 +1,7 @@
 "use client";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
+import styles from "./graduates.module.css";
 import dynamic from "next/dynamic";
 
 const GraduatesTitle = dynamic(
@@ -26,7 +27,7 @@ const Graduates = () => {
 
   return (
     <>
-      <section>
+      <section className={styles.graduates}>
         <GraduatesTitle />
         <Instructors
           instructors={data.instructors}
