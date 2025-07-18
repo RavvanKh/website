@@ -162,5 +162,6 @@ export default {
   skillsRequired:'Skills Required',
   whereDoOurGraduatesWork:"Where do our graduates work",
   graduatesHere:'Graduates Here',
-  allRightsReserved:'All rights reserved'
+  allRightsReserved:'All rights reserved',
+  leadingCompaniesEmployingOurGraduates:"Leading Companies Employing Our Graduates"
 } as const;

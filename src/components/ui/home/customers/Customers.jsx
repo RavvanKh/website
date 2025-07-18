@@ -17,7 +17,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/grid";
 
-const Customers = ({ customers, loading, error }) => {
+const Customers = ({ customers, loading, error, title="ourCustomers" }) => {
   const sliderRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -40,7 +40,7 @@ const Customers = ({ customers, loading, error }) => {
   return (
     <section className={styles.customers}>
       <div className={styles.customersTop}>
-        <h2 className={styles.customersTopTitle}>{t("ourCustomers")}</h2>
+        <h2 className={styles.customersTopTitle}>{t(title)}</h2>
         <div
           className={`${
             !isMobile ? styles.customersBtnShown : styles.customersBtnHide
