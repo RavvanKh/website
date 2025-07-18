@@ -1,5 +1,4 @@
 .lessonContainer {
-    border: 1px solid rgba(231, 231, 231, 1);
 
     .lesson {
         padding: 11px 16px;
@@ -7,7 +6,6 @@
         display: flex;
         align-items: center;
         gap: 16px;
-        cursor: pointer;
 
         .lessonName {
             flex: 1;
@@ -92,6 +90,23 @@
 
     .open.taskList::before {
         opacity: 1;
+    }
+}
+
+.normalView {
+    border: 1px solid rgba(231, 231, 231, 1);
+
+    .lesson {
+        cursor: pointer;
+
+    }
+}
+
+.pdfView{
+    .taskList{
+        .task{
+            padding: 0;
+        }
     }
 }
 

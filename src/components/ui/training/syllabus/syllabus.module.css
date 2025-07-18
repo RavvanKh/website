@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     padding: 12px 24px 24px 24px;
-    border: 1px solid rgba(234, 234, 234, 1);
     gap: 12px;
 
     .syllabusTop {
@@ -28,10 +27,24 @@
     .syllabusLessons {
         display: flex;
         flex-direction: column;
-        gap: 24px;
     }
 }
 
+.normalView {
+    border: 1px solid rgba(234, 234, 234, 1);
+
+    .syllabusLessons {
+        gap: 24px;
+
+    }
+
+}
+
+.pdfView{
+    .syllabusLessons{
+        gap: 12px;
+    }
+}
 
 .loaderContainer {
     width: 100%;
@@ -43,17 +56,19 @@
 
 
 
-@media(max-width:1024px){
-    .syllabus{
-        .syllabusTop{
+@media(max-width:1024px) {
+    .syllabus {
+        .syllabusTop {
             flex-direction: column;
             align-items: flex-start;
             gap: 8px;
-            .syllabusTopLeft{
+
+            .syllabusTopLeft {
                 font-size: 18px;
             }
         }
-        .syllabusTop button{
+
+        .syllabusTop button {
             font-size: 14px;
         }
     }
