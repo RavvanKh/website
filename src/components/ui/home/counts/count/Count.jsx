@@ -13,10 +13,16 @@ const Count = ({ count, isLast }) => {
 
   useEffect(() => {
     let start = 0;
-    const end = count.count;
+    let rawValue =
+      typeof count?.value === "string"
+        ? count.value.replace("%", "")
+        : count.value;
+    const end = Number(rawValue);
     const duration = 3000;
     const stepTime = 20;
-    const increment = Math.ceil(end / (duration / stepTime));
+    const steps = duration / stepTime;
+
+    const increment = end / steps;
 
     const counter = setInterval(() => {
       start += increment;
@@ -28,27 +34,22 @@ const Count = ({ count, isLast }) => {
       }
     }, stepTime);
 
-
     return () => clearInterval(counter);
-  }, [count.count]);
+  }, [count?.value]);
 
-  const displayValue = count.isPercentage
-    ? `${animatedCount.toFixed(1)}%`
-    : Math.round(animatedCount);
+  const displayValue = `${animatedCount.toFixed(1)}%`;
 
   return (
     <div className={styles.count}>
       <div className={styles.countDetails}>
         <div className={styles.countDetailsTop}>
-          <Image
-            src={count.icon}
-            alt={count.key}
-            width={count.width}
-            height={count.height}
-          />
+          <Image src={count?.icon} alt={count?.title} width={32} height={32} />
           <p className={styles.countNumber}>{displayValue}</p>
         </div>
-        <p className={styles.countTitle}>{t(count.label)}</p>
+        <div className={styles.countContent}>
+          <p className={styles.countTitle}>{count?.title}</p>
+          <p className={styles.countDescription}>{count?.description}</p>{" "}
+        </div>
       </div>
       {!isLast && <div className={styles.countLine}></div>}
     </div>

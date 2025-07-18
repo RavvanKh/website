@@ -10,84 +10,167 @@ import RelatedCourses from "../related-courses/RelatedCourses";
 import TrainingTitle from "../training-title/TrainingTitle";
 
 import styles from "./generate-pdf.module.css";
+import { notFound } from "next/navigation";
 
 export default function GeneratePdf() {
   const { training, error, loading } = useTraining();
   const t = useI18n();
   const pdfRef = useRef();
 
-  const getFirstTwoSentences = (text = "") => {
-    return text
-      .split(/(?<=[.?!])\s+/)
-      .slice(0, 2)
-      .join(" ");
+  const getFirstThreeSentences = (text = "") => {
+    const sentences = text.split(/(?<=[.?!])\s+/).slice(0, 3);
+    const result = sentences.join(" ");
+    
+    // Çok uzun metinleri sınırla (yaklaşık 200 karakter)
+    if (result.length > 200) {
+      return result.substring(0, 200) + "...";
+    }
+    return result;
   };
+
+  // Uzun başlıkları sınırla
+  const truncateTitle = (title = "", maxLength = 100) => {
+    if (title.length <= maxLength) return title;
+    return title.substring(0, maxLength) + "...";
+  };
+
+  if(error){
+    notFound()
+  }
+
+  const createPage = (content, url, isNewSection = false) => (
+    <div className={`${styles.page} ${isNewSection ? styles.newSection : ""}`}>
+      <div className={styles.pageWrapper}>
+        <img
+          src={url}
+          alt="background"
+          className={styles.bg}
+          width="595"
+          height="842"
+        />
+        <div className={styles.pageContent}>
+          <div className={styles.contentContainer}>
+            {content}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const createPageWithFade = (content, url, isNewSection = false) => (
+    <div className={`${styles.page} ${isNewSection ? styles.newSection : ""}`}>
+      <div className={styles.pageWrapper}>
+        <img
+          src={url}
+          alt="background"
+          className={styles.bg}
+          width="595"
+          height="842"
+        />
+        <div className={styles.pageContent}>
+          <div className={`${styles.contentContainer} ${styles.fadeBottom}`}>
+            {content}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div ref={pdfRef} className={styles.pdf}>
-      <div className={styles.coverPage}>
-        <div className={styles.trainingInfo}>
-          <p className={styles.trainingDescription}>
-            {getFirstTwoSentences(training?.description)}
-          </p>
-          <h1 className={styles.trainingTitle}>{training?.name}</h1>
-        </div>
-      </div>
-
+      {/* Cover Page */}
       <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <TrainingTitle training={training} />
-        </div>
-      </div>
-
-      <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <Advantages
-            advantages={training?.advantages}
-            t={t}
-            title="advantages"
+        <div className={styles.pageWrapper}>
+          <img
+            src="/images/pdf-cover.jpg"
+            alt="cover"
+            className={styles.bg}
+            width="595"
+            height="842"
           />
+          <div className={styles.coverContent}>
+            <h1 className={styles.trainingTitle}>
+              {truncateTitle(training?.name)}
+            </h1>
+            <p className={styles.trainingDescription}>
+              {getFirstThreeSentences(training?.description)}
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <Syllabus
-            t={t}
-            title="trainingProgram"
-            error={error}
-            loading={loading}
-            trainingProgram={{
-              name: training?.name,
-              lessons: training?.syllabus,
-            }}
+      {/* Training Title - New Section */}
+      {createPage(
+        <TrainingTitle training={training} />,
+        "/images/pdf-bg.jpg",
+        true
+      )}
+
+      {/* Advantages - New Section */}
+      {createPageWithFade(
+        <Advantages
+          advantages={training?.advantages}
+          t={t}
+          title="advantages"
+        />,
+        "/images/pdf-bg.jpg",
+        true
+      )}
+
+      {/* Syllabus - New Section with auto-pagination */}
+      <div className={styles.syllabusSection}>
+        <div className={styles.syllabusPage}>
+          <img
+            src="/images/pdf-bg.jpg"
+            alt="background"
+            className={styles.bg}
+            width="595"
+            height="842"
           />
+          <div className={styles.syllabusContent}>
+            <div className={styles.syllabusScrollContainer}>
+              <Syllabus
+                pdfView={true}
+                t={t}
+                title="trainingProgram"
+                error={error}
+                loading={loading}
+                trainingProgram={{
+                  name: training?.name,
+                  lessons: training?.syllabus,
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <Instructors
-            error={error}
-            loading={loading}
-            t={t}
-            title="instructors"
-            instructors={training?.instructors}
-          />
-        </div>
-      </div>
+      {/* Instructors - New Section */}
+      {createPageWithFade(
+        <Instructors
+          error={error}
+          loading={loading}
+          t={t}
+          title="instructors"
+          instructors={training?.instructors}
+        />,
+        "/images/pdf-bg.jpg",
+        true
+      )}
 
-      <div className={styles.page}>
-        <div className={styles.pageContent}>
-          <RelatedCourses
-            t={t}
-            title="relatedCourses"
-            error={error}
-            loading={loading}
-            relatedCourses={training?.relatedCourses}
-          />
-        </div>
-      </div>
+      {/* Related Courses - New Section */}
+      {createPageWithFade(
+        <RelatedCourses
+          showSlider={false}
+          t={t}
+          title="relatedCourses"
+          error={error}
+          loading={loading}
+          relatedCourses={training?.relatedCourses}
+        />,
+        "/images/pdf-last.jpg",
+        true
+      )}
     </div>
   );
 }

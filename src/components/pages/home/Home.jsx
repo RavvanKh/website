@@ -65,10 +65,7 @@ export default function Home() {
         />
       </div>
       <WhyChooseUs
-        countMeta={{
-          totalCourses: data?.totalCourses,
-          totalInstructors: data?.totalInstructors,
-        }}
+      reasons = {data?.reasons}
       />
       <Instructors
         instructors={data.instructors}

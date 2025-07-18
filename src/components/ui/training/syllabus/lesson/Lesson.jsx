@@ -4,17 +4,23 @@ import Image from "next/image";
 
 import styles from "./lesson.module.css";
 
-const Lesson = ({ lesson, isExpanded }) => {
+const Lesson = ({ lesson, isExpanded, pdfView }) => {
   const [isOpen, setIsOpen] = useState(isExpanded);
 
   useEffect(() => {
     setIsOpen(isExpanded);
   }, [isExpanded]);
 
-  const handleToggle = () => setIsOpen((prev) => !prev);
+  const handleToggle = () => {
+    !pdfView && setIsOpen((prev) => !prev);
+  };
 
   return (
-    <article className={styles.lessonContainer}>
+    <article
+      className={`${styles.lessonContainer} ${
+        pdfView ? styles.pdfView : styles.normalView
+      }`}
+    >
       <header className={styles.lesson} onClick={handleToggle}>
         <Image
           src="/icons/syllabus.svg"
@@ -24,17 +30,19 @@ const Lesson = ({ lesson, isExpanded }) => {
           loading="lazy"
         />
         <h3 className={styles.lessonName}>{lesson.name}</h3>
-        <Image
-          src={
-            isOpen
-              ? "/icons/syllabus-collapse.svg"
-              : "/icons/syllabus-expand.svg"
-          }
-          height={30}
-          width={30}
-          alt="toggle"
-          loading="lazy"
-        />
+        {!pdfView && (
+          <Image
+            src={
+              isOpen
+                ? "/icons/syllabus-collapse.svg"
+                : "/icons/syllabus-expand.svg"
+            }
+            height={30}
+            width={30}
+            alt="toggle"
+            loading="lazy"
+          />
+        )}
       </header>
 
       <ul
@@ -43,10 +51,10 @@ const Lesson = ({ lesson, isExpanded }) => {
         {lesson?.children?.map((task, index) => (
           <li key={index} className={styles.task}>
             <div className={styles.taskInfo}>
-              <div>{index + 1}</div>
+              {!pdfView && <div>{index + 1}</div>}
               <p>{task.name}</p>
             </div>
-            {index !== lesson.children.length - 1 && (
+            {index !== lesson.children.length - 1 && !pdfView && (
               <Image
                 src="/icons/task.png"
                 height={20}

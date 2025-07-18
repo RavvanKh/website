@@ -2,14 +2,12 @@ import React from "react";
 
 import { useI18n } from "@/locales/client";
 
-import { whyChooseUsDetails } from "@/lib/constants/whyChooseUs";
-
 import Detail from "../../../shared/why-choose-us-detail/WhyChooseUsDetail";
-
-import styles from "./why-choose-us.module.css";
 import Counts from "../counts/Counts";
 
-const WhyChooseUs = ({ countMeta }) => {
+import styles from "./why-choose-us.module.css";
+
+const WhyChooseUs = ({ reasons }) => {
   const t = useI18n();
 
   return (
@@ -18,10 +16,10 @@ const WhyChooseUs = ({ countMeta }) => {
       <div className={styles.whyChooseUsDetails}>
         <div className={styles.whyChooseUsDetailsLeft}>
           <div className={styles.whyChooseUsDetailsLeftBg}></div>
-          <Counts countMeta={countMeta} />
+          <Counts countMeta={reasons?.counters} />
         </div>
         <div className={styles.whyChooseUsDetailsRight}>
-          {whyChooseUsDetails.map((item, index) => (
+          {reasons?.reasonEntities.map((item, index) => (
             <div
               style={{ marginLeft: `${index * 82}px` }}
               className={styles.whyChooseUsDetail}

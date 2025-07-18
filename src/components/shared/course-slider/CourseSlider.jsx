@@ -17,6 +17,7 @@ const CourseSlider = ({
   courses,
   courseStyle,
   sliderStyle,
+  showSlider,
 }) => {
   return loading ? (
     <div className={styles.ourCoursesLoaderContainer}>
@@ -26,7 +27,7 @@ const CourseSlider = ({
     <div className={styles.errorMessage}>
       Failed to load categories: {error}
     </div>
-  ) : courses?.length > sliderStyle?.slidesPerView ? (
+  ) : courses?.length > sliderStyle?.slidesPerView && showSlider ? (
     <div className={styles.swiperContainer}>
       <div className={`${styles.customNav} ${styles.customPrev}`}>
         <FaArrowLeft color="#FFFFFF" size={14} />
@@ -34,16 +35,16 @@ const CourseSlider = ({
       <Swiper
         modules={[Navigation]}
         spaceBetween={16}
-        slidesPerView='auto'
+        slidesPerView="auto"
         navigation={{
           prevEl: `.${styles.customPrev}`,
           nextEl: `.${styles.customNext}`,
         }}
         watchOverflow={true}
         style={{
-          padding: '20px 0',
-          margin: '-20px 0',
-          marginRight:'-15px'
+          padding: "20px 0",
+          margin: "-20px 0",
+          marginRight: "-15px",
         }}
         // breakpoints={sliderStyle?.breakpoints}
         className={styles.swiper}
