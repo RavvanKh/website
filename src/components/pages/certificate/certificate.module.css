@@ -1,0 +1,166 @@
+.certificateWrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f7fa;
+}
+
+.certificate {
+  position: relative;
+  background: #fff;
+  border: 2px solid #dbe2ef;
+  border-radius: 8px;
+  width: 1200px;
+  max-width: 95vw;
+  padding: 48px 36px 36px 36px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+  font-family: "Nunito", "Arial", sans-serif;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.logoAndTitle {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+}
+
+.ingress {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+.academy {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #2176ff;
+  margin-left: 4px;
+  letter-spacing: 1px;
+}
+
+.slogan {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.name {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+.awardedText {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.diploma {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #2176ff;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.requirements {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.course {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1746a2;
+  margin-bottom: 32px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 32px;
+}
+
+.date {
+  font-size: 1.1rem;
+  color: #222;
+  font-weight: 600;
+}
+
+.label {
+  font-size: 0.95rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.signatureBlock {
+  text-align: right;
+}
+
+.signature {
+  font-family: "Dancing Script", cursive, "Arial";
+  font-size: 1.3rem;
+  color: #555;
+  margin-bottom: 2px;
+}
+
+.decorTopRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #e3eafe 60%, transparent 100%);
+  clip-path: polygon(100% 0, 100% 100%, 0 0);
+  z-index: 1;
+}
+
+.decorBottomLeft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 120px;
+  background: linear-gradient(225deg, #e3eafe 60%, transparent 100%);
+  clip-path: polygon(0 100%, 100% 100%, 0 0);
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .certificate {
+    padding: 24px 8px 16px 8px;
+    width: 98vw;
+  }
+  .header {
+    margin-bottom: 18px;
+  }
+  .course {
+    font-size: 1.05rem;
+  }
+}

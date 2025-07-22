@@ -1,14 +1,22 @@
-import React from "react";
+"use client";
+
+import { useMemo } from "react";
 import Image from "next/image";
-import styles from "./instructors-title.module.css";
+
+import { useI18n } from "@/locales/client";
+
 import { useGlobalData } from "@/contexts/GlobalDataContext";
+
+import styles from "./instructors-title.module.css";
 
 export default function InstructorsTitle() {
   const { data } = useGlobalData();
 
+  const t = useI18n();
+
   // Shuffle and pick 3 random instructors from the already-fetched list
   const instructors = data.instructors || [];
-  const randomInstructors = React.useMemo(() => {
+  const randomInstructors = useMemo(() => {
     if (instructors.length < 3) return instructors;
     const shuffled = [...instructors].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
@@ -75,17 +83,10 @@ export default function InstructorsTitle() {
         </div>
         <div className={styles.instructorsText}>
           <h2>
-            <span className={styles.blue}>Industry-Leading</span> Instructor
-            Team
+            <span className={styles.blue}>{t("industryLeading")}</span>
+            {t("instructorTeam")}
           </h2>
-          <p>
-            Learn from a team of expert instructors who are not only highly
-            qualified but also actively working at leading global and local
-            companies such as Apple, Crossover, Azercell, ABB Bank, Kapital
-            Bank, and Pasha Bank. They bring real-world insights, up-to-date
-            industry practices, and mentorship that bridges the gap between
-            theory and application.
-          </p>
+          <p>{t("instructorDescription")}</p>
         </div>
       </div>
     </section>
