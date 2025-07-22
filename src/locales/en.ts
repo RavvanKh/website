@@ -20,7 +20,7 @@ export default {
   subjectAreas: "Subject Areas",
   exploreFullCatalog: "Explore Full Catalog",
   whyChooseUs: "Why Choose us",
-  reasonsToChooseUs:'Reasons to Choose Us',
+  reasonsToChooseUs: "Reasons to Choose Us",
   ourCoursesTitle: "Transform Your Potential Into Expertise ",
   ourCoursesDescription:
     "Explore a complete range of IT and tech courses designed for every level — from beginners building foundations to professionals mastering advanced skills.",
@@ -159,9 +159,14 @@ export default {
   employedAlumni: "Employed Alumni",
   notFound: "Not Found",
   "roles&Responsibilities": "Roles & Responsibilities",
-  skillsRequired:'Skills Required',
-  whereDoOurGraduatesWork:"Where do our graduates work",
-  graduatesHere:'Graduates Here',
-  allRightsReserved:'All rights reserved',
-  leadingCompaniesEmployingOurGraduates:"Leading Companies Employing Our Graduates"
+  skillsRequired: "Skills Required",
+  whereDoOurGraduatesWork: "Where do our graduates work",
+  graduatesHere: "Graduates Here",
+  allRightsReserved: "All rights reserved",
+  leadingCompaniesEmployingOurGraduates:
+    "Leading Companies Employing Our Graduates",
+  industryLeading: "Industry-Leading ",
+  instructorTeam: "Instructor Team",
+  instructorDescription:
+    "Learn from a team of expert instructors who are not only highly qualified but also actively working at leading global and local companies such as Apple, Crossover, Azercell, ABB Bank, Kapital Bank, and Pasha Bank. They bring real-world insights, up-to-date industry practices, and mentorship that bridges the gap between theory and application.",
 } as const;

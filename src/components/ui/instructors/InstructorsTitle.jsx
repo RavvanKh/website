@@ -1,0 +1,94 @@
+"use client";
+
+import { useMemo } from "react";
+import Image from "next/image";
+
+import { useI18n } from "@/locales/client";
+
+import { useGlobalData } from "@/contexts/GlobalDataContext";
+
+import styles from "./instructors-title.module.css";
+
+export default function InstructorsTitle() {
+  const { data } = useGlobalData();
+
+  const t = useI18n();
+
+  // Shuffle and pick 3 random instructors from the already-fetched list
+  const instructors = data.instructors || [];
+  const randomInstructors = useMemo(() => {
+    if (instructors.length < 3) return instructors;
+    const shuffled = [...instructors].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }, [instructors]);
+
+  return (
+    <section className={styles.instructorsTitle}>
+      <div className={styles.instructorsContent}>
+        <div className={styles.diamondLayout}>
+          {/* Big left diamond */}
+          <div className={styles.bigDiamond}>
+            <div className={styles.bigDiamondImageWrapper}>
+              <Image
+                src="/images/close-up-graduation-certificate.svg"
+                alt="Certificate"
+                fill
+                className={styles.bigDiamondImage}
+                priority
+              />
+            </div>
+          </div>
+          {/* Top small diamond */}
+          <div className={`${styles.smallDiamond} ${styles.topDiamond}`}>
+            <div className={styles.smallDiamondImageWrapper}>
+              {randomInstructors[0]?.image && (
+                <Image
+                  src={randomInstructors[0].image}
+                  alt={randomInstructors[0].name}
+                  fill
+                  className={styles.smallDiamondImage}
+                  sizes="100%"
+                />
+              )}
+            </div>
+          </div>
+          {/* Right small diamond */}
+          <div className={`${styles.smallDiamond} ${styles.rightDiamond}`}>
+            <div className={styles.smallDiamondImageWrapper}>
+              {randomInstructors[1]?.image && (
+                <Image
+                  src={randomInstructors[1].image}
+                  alt={randomInstructors[1].name}
+                  fill
+                  className={styles.smallDiamondImage}
+                  sizes="100%"
+                />
+              )}
+            </div>
+          </div>
+          {/* Bottom small diamond */}
+          <div className={`${styles.smallDiamond} ${styles.bottomDiamond}`}>
+            <div className={styles.smallDiamondImageWrapper}>
+              {randomInstructors[2]?.image && (
+                <Image
+                  src={randomInstructors[2].image}
+                  alt={randomInstructors[2].name}
+                  fill
+                  className={styles.smallDiamondImage}
+                  sizes="100%"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+        <div className={styles.instructorsText}>
+          <h2>
+            <span className={styles.blue}>{t("industryLeading")}</span>
+            {t("instructorTeam")}
+          </h2>
+          <p>{t("instructorDescription")}</p>
+        </div>
+      </div>
+    </section>
+  );
+}

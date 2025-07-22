@@ -9,8 +9,12 @@ export const navbarItems = [
     key: "scholarship",
     url: routes.scholarship,
   },
-//   {
-//     key: "career",
-//     url: routes.career,
-//   },
+  {
+    key: "instructors",
+    url: routes.instructors,
+  },
+  // {
+  //   key: "career",
+  //   url: routes.career,
+  // },
 ];

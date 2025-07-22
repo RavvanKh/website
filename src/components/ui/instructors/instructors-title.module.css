@@ -1,9 +1,9 @@
-.graduatesTitle {
+.instructorsTitle {
   background-color: #f6f9ff;
   padding: 40px 0 0 0;
   min-height: 540px;
 
-  .graduatesContent {
+  .instructorsContent {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,7 +90,7 @@
       }
     }
 
-    .graduatesText {
+    .instructorsText {
       max-width: 600px;
       margin-left: 26px;
       padding-left: 12px;
@@ -98,7 +98,7 @@
       flex-direction: column;
       justify-content: center;
     }
-    .graduatesText h2 {
+    .instructorsText h2 {
       font-size: 2.8rem;
       font-weight: 800;
       margin-top: 75px;
@@ -108,7 +108,7 @@
         color: #023fcb;
       }
     }
-    .graduatesText p {
+    .instructorsText p {
       font-size: 1.15rem;
       color: #555;
       margin: 0;
@@ -133,46 +133,46 @@
 }
 
 @media (max-width: 1200px) {
-  .graduatesTitle {
-    .graduatesContent {
-      .graduatesText {
+  .instructorsTitle {
+    .instructorsContent {
+      .instructorsText {
         max-width: 500px;
         margin-left: 0;
         padding-left: 0;
       }
     }
-    .graduatesText h2 {
+    .instructorsText h2 {
       font-size: 2.2rem;
       margin-top: 10px !important;
     }
 
-    .graduatesText p {
+    .instructorsText p {
       font-size: 1.05rem;
     }
   }
 }
 
 @media (max-width: 1024px) {
-  .graduatesTitle {
-    .graduatesContent {
-      .graduatesText {
+  .instructorsTitle {
+    .instructorsContent {
+      .instructorsText {
         max-width: 100%;
       }
     }
-    .graduatesText h2 {
+    .instructorsText h2 {
       font-size: 2.3rem;
       margin-top: 30px;
     }
-    .graduatesText p {
+    .instructorsText p {
       font-size: 1rem;
     }
   }
 }
 
 @media (max-width: 768px) {
-  .graduatesTitle {
-    .graduatesContent {
-      .graduatesText {
+  .instructorsTitle {
+    .instructorsContent {
+      .instructorsText {
         margin-left: 0;
         padding-left: 0;
         max-width: 100%;
@@ -180,25 +180,26 @@
         align-items: center;
       }
     }
-    .graduatesText h2 {
+    .instructorsText h2 {
       font-size: 2.1rem !important;
-      margin-top: 24px !important;
-      margin-bottom: 10px !important;
+      margin-top: 24px;
+      margin-bottom: 10px;
     }
-    .graduatesText p {
+    .instructorsText p {
       font-size: 0.95rem;
     }
   }
 }
 
 @media (max-width: 1074px) {
-  .graduatesTitle {
+  .instructorsTitle {
     padding: 0 0 20px 0;
-    .graduatesContent {
+    .instructorsContent {
       flex-direction: column;
       align-items: center;
       gap: 32px;
-      .graduatesText {
+
+      .instructorsText {
         margin-left: 0;
         padding-left: 0;
         max-width: 100%;
