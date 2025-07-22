@@ -1,6 +1,5 @@
 .info {
     display: flex;
-    width: 85%;
     max-width: 1216px;
     margin: 0 auto;
     gap: 16px;
@@ -9,20 +8,29 @@
     height: 452px;
     align-items: center;
     justify-content: center;
+
+    .loaderContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
     .infoContainer {
         max-width: 1120px;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 16px;
-        height: 360px;
+        height: 400px;
 
         .infoLeft {
             display: flex;
             flex-direction: column;
             gap: 12px;
             width: 90%;
+            max-width: 556px;
 
             .infoTitle {
                 font-size: 44px;
@@ -83,24 +91,97 @@
 
             .infoRightImg {
                 border-radius: 8px;
-                /* width: 100%; */
-                /* height: 100%; */
+            }
+        }
+    }
+}
+
+.sliderWrapper :global(.swiper-pagination) {
+    width: max-content !important;
+    left: 40px !important;
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    bottom: 0px !important;
+}
+
+
+.bullet {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    min-height: 18px;
+    padding: 8px;
+    background: inherit !important;
+    border: 0.7px solid rgba(188, 188, 188, 0.5);
+    transition: all 0.3s ease;
+    opacity: 1 !important;
+}
+
+.inner {
+    width: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(188, 188, 188, 0.5);
+    transition: all 0.3s ease;
+}
+
+.active {
+    min-height: 24px;
+    min-width: 24px;
+    border: 1px solid rgba(2, 63, 203, 1);
+}
+
+.active .inner {
+    background: rgba(2, 63, 203, 1);
+}
+
+@media(max-width:1200px) {
+    .sliderWrapper :global(.swiper-pagination) {
+        left: 75px !important;
+      }
+    .info {
+        .infoContainer {
+            gap: 16px;
+            padding: 24px;
+            width: 90%;
+
+
+            .infoRight {
+                max-width: 350px;
+                height: 300px;
             }
         }
     }
 }
 
 @media (max-width:1024px) {
+    .sliderWrapper :global(.swiper-pagination) {
+      left: 0 !important;
+      justify-content: center;
+      width: 100% !important;
+    }
+
+
     .info {
         height: auto;
         padding: 24px;
+        width: 85%;
+        min-height: 400px;
 
         .infoContainer {
             flex-direction: column;
             gap: 32px;
             height: auto;
+            padding: 0;
+            padding-bottom: 48px;
+
             .infoLeft {
                 width: 100%;
+                max-width: max-content;
 
                 .infoTitle {
                     line-height: 42px;
