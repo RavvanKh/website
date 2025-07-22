@@ -5,9 +5,11 @@ const SkillsRequired = ({ t, title, arr }) => {
     <section className={styles.skillsRequired}>
       <div className={styles.skillsRequiredTop}>{t(title)}</div>
       <ul className={styles.skillsRequiredBottom}>
-    {arr?.map((item,index) => (
-      <li className={styles.skill} key={index}>{item}</li>
-    ))}
+        {arr?.map((item, index) => (
+          <li className={styles.skill} key={index}>
+            {item}
+          </li>
+        ))}
       </ul>
     </section>
   );
