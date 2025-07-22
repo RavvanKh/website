@@ -15,6 +15,7 @@ import "swiper/css/pagination";
 const Info = ({ details = [], loading, error }) => {
   const t = useI18n();
 
+  
   return (
     <section className={styles.info}>
       {loading ? (
