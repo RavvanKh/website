@@ -4,7 +4,7 @@ export const routes = {
   about: "/about",
   career: "/career",
   trainings: "/trainings",
-  scholarship: "/scholarship",
+  scholarships: "/scholarships",
   pdf: "/pdf",
 };
 

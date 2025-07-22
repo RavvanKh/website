@@ -2,7 +2,7 @@ export default {
   exploreCourses: "Explore Courses",
   about: "About",
   career: "Career",
-  scholarship: "Scholarship",
+  scholarships: "Scholarships",
   applyNow: "Apply Now",
   courses: "Courses",
   learningPaths: "Learning Paths",
