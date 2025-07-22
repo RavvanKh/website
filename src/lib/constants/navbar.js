@@ -6,8 +6,8 @@ export const navbarItems = [
     url: routes.about,
   },
   {
-    key: "scholarship",
-    url: routes.scholarship,
+    key: "scholarships",
+    url: routes.scholarships,
   },
   {
     key: "instructors",

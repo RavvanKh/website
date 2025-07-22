@@ -2,7 +2,7 @@ export default {
     exploreCourses: "Kursları Kəşf Edin",
     about: "Haqqımızda",
     career: "Karyera",
-    scholarship: "Təqaüd",
+    scholarships: "Təqaüdlər",
     applyNow: "İndi Müraciət Edin", 
     courses: "Kurslar",
     learningPaths: "Öyrənmə Yolları",

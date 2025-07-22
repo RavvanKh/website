@@ -6,7 +6,7 @@ export const courseTypes = [
     key: "discounted",
   },
   {
-    key: "scholarship",
+    key: "scholarships",
   },
   {
     key: "new",
@@ -19,7 +19,7 @@ export const courseTypes = [
 export const courseTypesEnum = {
   startingSoon: "startingSoon",
   discounted: "discounted",
-  scholarship: "scholarship",
+  scholarships: "scholarships",
   new: "new",
   all: "all",
 };
