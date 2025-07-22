@@ -13,10 +13,6 @@ import {
 
 import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
 
-const Loader = dynamic(() => import("@/components/shared/loader/Loader"), {
-  ssr: false,
-  loading: () => null,
-});
 const TrainingTitle = dynamic(
   () => import("@/components/ui/training/training-title/TrainingTitle"),
   { ssr: false, loading: () => null }
@@ -116,64 +112,6 @@ const Training = () => {
     handleSelectSection("courseApplicationForm");
   };
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const sectionEntries = Object.entries(sectionRefs);
-  //     let closestSection = null;
-  //     let minDistance = Infinity;
-
-  //     sectionEntries.forEach(([key, ref]) => {
-  //       if (ref?.current) {
-  //         const rect = ref.current.getBoundingClientRect();
-  //         const distance = Math.abs(rect.top - 100);
-
-  //         if (distance < minDistance && rect.top < window.innerHeight) {
-  //           minDistance = distance;
-  //           closestSection = key;
-  //         }
-  //       }
-  //     });
-
-  //     if (closestSection && closestSection !== selectedSection) {
-  //       setSelectedSection(closestSection);
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [selectedSection]);
-
-  // if (loading) {
-  //   return (
-  //     <section className={styles.trainingContainer}>
-  //       <div className={styles.loadingState}>
-  //         <Loader />
-  //       </div>
-  //     </section>
-  //   );
-  // }
-
-  // if (error) {
-  //   return (
-  //     <section className={styles.trainingContainer}>
-  //       <div className={styles.errorState}>
-  //         <p className={styles.errorTitle}>Error</p>
-  //         <p className={styles.errorMessage}>{error}</p>
-  //         <p className={styles.errorSubtitle}>Unable to load course details</p>
-  //       </div>
-  //     </section>
-  //   );
-  // }
-
-  // if (!training) {
-  //   return (
-  //     <section className={styles.trainingContainer}>
-  //       <div className={styles.loadingState}>
-  //         <Loader />
-  //       </div>
-  //     </section>
-  //   );
-  // }
 
   return (
     <SharedSectionRenderer
@@ -224,6 +162,12 @@ const Training = () => {
           },
           faq: {
             faqData: training?.faq,
+          },
+          prerequisites: {
+            arr: training?.prerequisites,
+          },
+          trainingObjectives: {
+            arr: training?.objectives,
           },
         };
 

@@ -20,11 +20,15 @@
         box-shadow: 0.18px 0.18px 1.07px -1.33px rgba(0, 0, 0, 0.19);
         border-radius: 4px;
         padding: 24px 16px;
-        color: rgba(16, 16, 16, 1);
-        font-weight: 400;
-        font-family: 'Nunito', sans-serif;
-        font-size: 14px;
-        line-height: 20px;
+        list-style-type: decimal;
+        .skill {
+            color: rgba(16, 16, 16, 1);
+            font-weight: 400;
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+            margin-left: 10px;
+        }
 
     }
 }

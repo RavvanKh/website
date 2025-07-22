@@ -28,7 +28,7 @@ const ImgSkeleton = ({
           variant="rectangular"
           animation="wave"
           className={styles.objImgSkeleton}
-          style={{ borderRadius }}
+          style={{ borderRadius,...style }}
         />
       )}
 
@@ -36,7 +36,7 @@ const ImgSkeleton = ({
         <Image
           style={style}
           src={obj?.[keyName]}
-          alt={obj?.name}
+          alt={obj?.name || obj?.title}
           title={obj?.name}
           fill
           className={`${styles.objImg} ${imageLoaded ? styles.loaded : ""}`}

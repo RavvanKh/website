@@ -3,10 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
 import { useI18n } from "@/locales/client";
 
+import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
 import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./info.module.css";
@@ -15,7 +16,6 @@ import "swiper/css/pagination";
 const Info = ({ details = [], loading, error }) => {
   const t = useI18n();
 
-  
   return (
     <section className={styles.info}>
       {loading ? (
@@ -27,7 +27,8 @@ const Info = ({ details = [], loading, error }) => {
       ) : (
         <Swiper
           className={styles.sliderWrapper}
-          modules={[Pagination]}
+          modules={[Pagination,Autoplay]}
+          autoplay={{delay:10000}}
           spaceBetween={20}
           pagination={{
             clickable: true,
@@ -65,7 +66,7 @@ const Info = ({ details = [], loading, error }) => {
                         href={detail?.url}
                         className={styles.infoLeftButton}
                       >
-                        <div>{t("exploreOurCourses")}</div>
+                        <div>{t("learnMore")}</div>
                         <Image
                           src="/icons/arrow-right-2.svg"
                           width={14}
@@ -75,13 +76,14 @@ const Info = ({ details = [], loading, error }) => {
                       </Link>
                     </div>
                     <div className={styles.infoRight}>
-                      <Image
-                        className={styles.infoRightImg}
-                        src={detail?.picture}
-                        fill
-                        alt="Info img"
-                        objectFit="cover"
-                        priority
+                      <ImgSkeleton
+                        keyName="picture"
+                        obj={detail}
+                        style={{
+                          borderRadius: "8px",
+                          objectFit: "cover",
+                          minHeight: "370px",
+                        }}
                       />
                     </div>
                   </div>
