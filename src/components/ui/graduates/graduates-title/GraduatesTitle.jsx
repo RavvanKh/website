@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./graduates-title.module.css";
 import { useGlobalData } from "@/contexts/GlobalDataContext";
+import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
 
 export default function GraduatesTitle() {
   const { data } = useGlobalData();
@@ -34,12 +35,13 @@ export default function GraduatesTitle() {
           <div className={`${styles.smallDiamond} ${styles.topDiamond}`}>
             <div className={styles.smallDiamondImageWrapper}>
               {randomInstructors[0]?.image && (
-                <Image
-                  src={randomInstructors[0].image}
-                  alt={randomInstructors[0].name}
-                  fill
-                  className={styles.smallDiamondImage}
-                  sizes="100%"
+                <ImgSkeleton
+                  obj={randomInstructors[0]}
+                  keyName="image"
+                  type="instructor"
+                  style={{}}
+                  borderRadius="50%"
+                  skeletonColor="#E3E3E3"
                 />
               )}
             </div>
@@ -48,12 +50,13 @@ export default function GraduatesTitle() {
           <div className={`${styles.smallDiamond} ${styles.rightDiamond}`}>
             <div className={styles.smallDiamondImageWrapper}>
               {randomInstructors[1]?.image && (
-                <Image
-                  src={randomInstructors[1].image}
-                  alt={randomInstructors[1].name}
-                  fill
-                  className={styles.smallDiamondImage}
-                  sizes="100%"
+                <ImgSkeleton
+                  obj={randomInstructors[1]}
+                  keyName="image"
+                  type="instructor"
+                  style={{}}
+                  borderRadius="50%"
+                  skeletonColor="#E3E3E3"
                 />
               )}
             </div>
@@ -62,12 +65,13 @@ export default function GraduatesTitle() {
           <div className={`${styles.smallDiamond} ${styles.bottomDiamond}`}>
             <div className={styles.smallDiamondImageWrapper}>
               {randomInstructors[2]?.image && (
-                <Image
-                  src={randomInstructors[2].image}
-                  alt={randomInstructors[2].name}
-                  fill
-                  className={styles.smallDiamondImage}
-                  sizes="100%"
+                <ImgSkeleton
+                  obj={randomInstructors[2]}
+                  keyName="image"
+                  type="instructor"
+                  style={{}}
+                  borderRadius="50%"
+                  skeletonColor="#E3E3E3"
                 />
               )}
             </div>
