@@ -7,10 +7,11 @@ import { useI18n } from "@/locales/client";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
+import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./instructors-title.module.css";
 
-export default function InstructorsTitle() {
+export default function InstructorsTitle({ loading = false, error }) {
   const { data } = useGlobalData();
 
   const t = useI18n();
@@ -25,71 +26,79 @@ export default function InstructorsTitle() {
 
   return (
     <section className={styles.instructorsTitle}>
-      <div className={styles.instructorsContent}>
-        <div className={styles.diamondLayout}>
-          {/* Big left diamond */}
-          <div className={styles.bigDiamond}>
-            <div className={styles.bigDiamondImageWrapper}>
-              <Image
-                src="/images/close-up-graduation-certificate.svg"
-                alt="Certificate"
-                fill
-                className={styles.bigDiamondImage}
-                priority
-              />
+      {loading ? (
+        <div className={styles.loaderContainer}>
+          <Loader color="primary" size="medium" />
+        </div>
+      ) : error ? (
+        <div className={styles.loaderContainer}>{error}</div>
+      ) : (
+        <div className={styles.instructorsContent}>
+          <div className={styles.diamondLayout}>
+            {/* Big left diamond */}
+            <div className={styles.bigDiamond}>
+              <div className={styles.bigDiamondImageWrapper}>
+                <Image
+                  src="/images/close-up-graduation-certificate.svg"
+                  alt="Certificate"
+                  fill
+                  className={styles.bigDiamondImage}
+                  priority
+                />
+              </div>
+            </div>
+            {/* Top small diamond */}
+            <div className={`${styles.smallDiamond} ${styles.topDiamond}`}>
+              <div className={styles.smallDiamondImageWrapper}>
+                {randomInstructors[0]?.image && (
+                  <ImgSkeleton
+                    obj={randomInstructors[0]}
+                    keyName="image"
+                    type="instructor"
+                    style={{}}
+                    borderRadius="50%"
+                  />
+                )}
+              </div>
+            </div>
+            {/* Right small diamond */}
+            <div className={`${styles.smallDiamond} ${styles.rightDiamond}`}>
+              <div className={styles.smallDiamondImageWrapper}>
+                {randomInstructors[1]?.image && (
+                  <ImgSkeleton
+                    obj={randomInstructors[1]}
+                    keyName="image"
+                    type="instructor"
+                    style={{}}
+                    borderRadius="50%"
+                  />
+                )}
+              </div>
+            </div>
+            {/* Bottom small diamond */}
+            <div className={`${styles.smallDiamond} ${styles.bottomDiamond}`}>
+              <div className={styles.smallDiamondImageWrapper}>
+                {randomInstructors[2]?.image && (
+                  <ImgSkeleton
+                    obj={randomInstructors[2]}
+                    keyName="image"
+                    type="instructor"
+                    style={{}}
+                    borderRadius="50%"
+                  />
+                )}
+              </div>
             </div>
           </div>
-          {/* Top small diamond */}
-          <div className={`${styles.smallDiamond} ${styles.topDiamond}`}>
-            <div className={styles.smallDiamondImageWrapper}>
-              {randomInstructors[0]?.image && (
-                <ImgSkeleton
-                  obj={randomInstructors[0]}
-                  keyName="image"
-                  type="instructor"
-                  style={{}}
-                  borderRadius="50%"
-                />
-              )}
-            </div>
-          </div>
-          {/* Right small diamond */}
-          <div className={`${styles.smallDiamond} ${styles.rightDiamond}`}>
-            <div className={styles.smallDiamondImageWrapper}>
-              {randomInstructors[1]?.image && (
-                <ImgSkeleton
-                  obj={randomInstructors[1]}
-                  keyName="image"
-                  type="instructor"
-                  style={{}}
-                  borderRadius="50%"
-                />
-              )}
-            </div>
-          </div>
-          {/* Bottom small diamond */}
-          <div className={`${styles.smallDiamond} ${styles.bottomDiamond}`}>
-            <div className={styles.smallDiamondImageWrapper}>
-              {randomInstructors[2]?.image && (
-                <ImgSkeleton
-                  obj={randomInstructors[2]}
-                  keyName="image"
-                  type="instructor"
-                  style={{}}
-                  borderRadius="50%"
-                />
-              )}
-            </div>
+          <div className={styles.instructorsText}>
+            <h2>
+              <span className={styles.blue}>{t("industryLeading")}</span>
+              {t("instructorTeam")}
+            </h2>
+            <p>{t("instructorDescription")}</p>
           </div>
         </div>
-        <div className={styles.instructorsText}>
-          <h2>
-            <span className={styles.blue}>{t("industryLeading")}</span>
-            {t("instructorTeam")}
-          </h2>
-          <p>{t("instructorDescription")}</p>
-        </div>
-      </div>
+      )}
     </section>
   );
 }
