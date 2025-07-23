@@ -14,21 +14,23 @@ const ImgSkeleton = ({
   keyName,
   borderRadius = "",
   style = {},
+  defaultClass = "",
 }) => {
+  console.log(defaultClass);
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <div
       style={{ aspectRatio: aspectRatios?.[type], ...style }}
-      className={styles.skeleton}
+      className={`${styles.skeleton} ${styles?.[defaultClass]}`}
     >
       {!imageLoaded && (
         <Skeleton
           variant="rectangular"
           animation="wave"
-          className={styles.objImgSkeleton}
-          style={{ borderRadius,...style }}
+          className={` ${styles.objImgSkeleton} ${styles?.[defaultClass]}`}
+          style={{ borderRadius, ...style }}
         />
       )}
 
@@ -39,7 +41,9 @@ const ImgSkeleton = ({
           alt={obj?.name || obj?.title}
           title={obj?.name}
           fill
-          className={`${styles.objImg} ${imageLoaded ? styles.loaded : ""}`}
+          className={`${styles.objImg} ${styles?.[defaultClass]} ${
+            imageLoaded ? styles.loaded : ""
+          }`}
           onLoad={(e) => setImageLoaded(true)}
           priority={false}
         />

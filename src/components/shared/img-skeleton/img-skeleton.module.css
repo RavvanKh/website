@@ -25,3 +25,17 @@
 .skeleton img.loaded {
     opacity: 1;
 }
+
+.homeTitle{
+    border-radius:8px;
+    object-fit: cover;
+    min-height: 340px;
+    max-height: 340px;
+}
+
+@media(max-width:1200px){
+    .homeTitle{
+        min-height: 300px;
+        max-height: 300px;
+    }
+}
