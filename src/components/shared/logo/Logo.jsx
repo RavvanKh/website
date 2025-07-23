@@ -1,13 +1,15 @@
-import React, { memo } from "react";
+"use client";
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { routes } from "@/lib/constants/routes";
 
 import styles from "./logo.module.css";
-
+import { useI18n } from "@/locales/client";
 
 const Logo = memo(({ theme = "light", isShownBottom = false }) => {
+  const t = useI18n();
   const titleColor = theme === "light" ? "#233131" : "#ffffff";
   const descriptionColor = theme === "light" ? "#586268" : "#EEEEEE";
   const logoBottomColor = theme === "light" ? "#233131" : "#FFFFFF";
@@ -39,7 +41,7 @@ const Logo = memo(({ theme = "light", isShownBottom = false }) => {
       </Link>
       {isShownBottom && (
         <div className={styles.logoBottom} style={{ color: logoBottomColor }}>
-          {}
+          {t("empoweredByInnovation")}
         </div>
       )}
     </div>

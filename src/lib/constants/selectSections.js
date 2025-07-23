@@ -58,6 +58,14 @@ const SkillsRequired = dynamic(
   }
 );
 
+const Objectives = dynamic(
+  () => import("@/components/ui/roadmap/objectives/Objectives"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
 export const defaultSectionForTraining = "advantages";
 
 export const selectSectionsAsComponentForTraining = [
@@ -66,7 +74,11 @@ export const selectSectionsAsComponentForTraining = [
     component: Advantages,
   },
   {
-    key: "skillsRequired",
+    key: "prerequisites",
+    component: SkillsRequired,
+  },
+  {
+    key: "trainingObjectives",
     component: SkillsRequired,
   },
   {
@@ -101,7 +113,7 @@ export const selectSectionsAsComponentForRoadmap = [
     component: RolesResponsibilities,
   },
   {
-    key: "skillsRequired",
+    key: "prerequisites",
     component: SkillsRequired,
   },
   // {

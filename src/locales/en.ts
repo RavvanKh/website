@@ -2,7 +2,7 @@ export default {
   exploreCourses: "Explore Courses",
   about: "About",
   career: "Career",
-  scholarship: "Scholarship",
+  scholarships: "Scholarships",
   applyNow: "Apply Now",
   courses: "Courses",
   learningPaths: "Learning Paths",
@@ -169,4 +169,8 @@ export default {
   instructorTeam: "Instructor Team",
   instructorDescription:
     "Learn from a team of expert instructors who are not only highly qualified but also actively working at leading global and local companies such as Apple, Crossover, Azercell, ABB Bank, Kapital Bank, and Pasha Bank. They bring real-world insights, up-to-date industry practices, and mentorship that bridges the gap between theory and application.",
+  prerequisites: "Prerequisites",
+  learnMore: "Learn more",
+  trainingObjectives:"Training Objectives",
+  empoweredByInnovation:"Empowered by Innovation"
 } as const;

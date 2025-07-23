@@ -1,29 +1,12 @@
-import React from "react";
 
 import Info from "../info/Info";
-import SubjectAreas from "../subject-areas/SubjectAreas";
 
 import styles from "./details.module.css";
 
-const Details = ({
-  totalCourses,
-  totalInstructors,
-  instructorsLoading,
-  coursesLoading,
-  rating,
-  ratingLoading,
-}) => {
+const Details = ({ details, loading, error }) => {
   return (
     <section className={styles.details}>
-      <Info
-        totalCourses={totalCourses}
-        totalInstructors={totalInstructors}
-        instructorsLoading={instructorsLoading}
-        coursesLoading={coursesLoading}
-        rating={rating}
-        ratingLoading={ratingLoading}
-      />
-      {/* <SubjectAreas /> */}
+      <Info details={details} loading={loading} error={error} />
     </section>
   );
 };

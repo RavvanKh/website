@@ -46,12 +46,9 @@ export default function Home() {
     <div className={styles.home}>
       <div className={styles.homeBackgroundContainer}>
         <Details
-          totalCourses={data.totalCourses}
-          totalInstructors={data.totalInstructors}
-          instructorsLoading={loading.home}
-          coursesLoading={loading.home}
-          ratingLoading={loading.comments}
-          rating={data.comments?.result?.rating}
+          loading={loading.home}
+          error={error.home}
+          details={data?.headlineDtos}
         />
         <OurCourses
           courses={data.filteredCourses}
@@ -64,9 +61,7 @@ export default function Home() {
           filter={filter}
         />
       </div>
-      <WhyChooseUs
-      reasons = {data?.reasons}
-      />
+      <WhyChooseUs reasons={data?.reasons} />
       <Instructors
         instructors={data.instructors}
         loading={loading.home}

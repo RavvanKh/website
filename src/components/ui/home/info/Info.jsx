@@ -1,68 +1,98 @@
-import React from "react";
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
 import { useI18n } from "@/locales/client";
 
-import Teachers from "./absolute-boxes/teachers/Teachers";
-import Courses from "./absolute-boxes/courses/Courses";
-import Students from "./absolute-boxes/students/Students";
-import StudentRates from "./student-rates/StudentRates";
-
-import { routes } from "@/lib/constants/routes";
+import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
+import Loader from "@/components/shared/loader/Loader";
 
 import styles from "./info.module.css";
+import "swiper/css/pagination";
 
-const Info = ({
-  totalCourses,
-  totalInstructors,
-  instructorsLoading,
-  coursesLoading,
-  rating,
-  ratingLoading,
-}) => {
+const Info = ({ details = [], loading, error }) => {
   const t = useI18n();
 
   return (
     <section className={styles.info}>
-      <div className={styles.infoContainer}>
-        <div className={styles.infoLeft}>
-          <h1 className={styles.infoTitle}>
-            <span className={styles.infoTitleItem}>{t("empoweredBy")}</span>
-            <br />
-            <span className={styles.infoTitleItem}>{t("innovation")}</span>
-          </h1>
-          <h2 className={styles.infoLeftTitle}>{t("infoTitle")}</h2>
-          <p className={styles.infoLeftDescription}>{t("infoDescription")}</p>
-          <Link href={routes.trainings} className={styles.infoLeftButton}>
-            <div>{t("exploreOurCourses")}</div>
-            <Image
-              src="/icons/arrow-right-2.svg"
-              width={14}
-              height={14}
-              alt="Arrow"
-            />
-          </Link>
+      {loading ? (
+        <div className={styles.loaderContainer}>
+          <Loader color="primary" size="medium" />
         </div>
-        <div className={styles.infoRight}>
-          <Image
-            className={styles.infoRightImg}
-            src="/images/info-right-img.svg"
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            alt="Info img"
-            objectFit="cover"
-            priority
-          />
-          {/* <Teachers
-            totalInstructors={totalInstructors}
-            loading={instructorsLoading}
-          />
-          <Courses totalCourses={totalCourses} loading={coursesLoading} />
-          <Students />
-          <StudentRates rating={rating} ratingLoading={ratingLoading} /> */}
-        </div>
-      </div>
+      ) : error ? (
+        <div className={styles.loaderContainer}>{error}</div>
+      ) : (
+        <Swiper
+          className={styles.sliderWrapper}
+          modules={[Pagination,Autoplay]}
+          autoplay={{delay:10000}}
+          spaceBetween={20}
+          pagination={{
+            clickable: true,
+            bulletActiveClass: styles.active,
+            renderBullet: (index, className) => {
+              return `<div class="${className} ${styles.bullet}">
+          <div class="${styles.inner}"></div>
+        </div>`;
+            },
+          }}
+        >
+          {details?.map((detail, index) => {
+            if (detail?.active) {
+              const detailHeaderItems = detail?.header?.split(" ");
+              return (
+                <SwiperSlide>
+                  <div className={styles.infoContainer} key={index}>
+                    <div className={styles.infoLeft}>
+                      <h1 className={styles.infoTitle}>
+                        <span className={styles.infoTitleItem}>
+                          {detailHeaderItems.slice(0, 2).join(" ")}
+                        </span>
+                        &nbsp;
+                        <span className={styles.infoTitleItem}>
+                          {detailHeaderItems
+                            .slice(2, detailHeaderItems.length)
+                            .join(" ")}
+                        </span>
+                      </h1>
+                      <h2 className={styles.infoLeftTitle}>{detail?.title}</h2>
+                      <p className={styles.infoLeftDescription}>
+                        {detail?.description}
+                      </p>
+                      <Link
+                        href={detail?.url}
+                        className={styles.infoLeftButton}
+                      >
+                        <div>{t("learnMore")}</div>
+                        <Image
+                          src="/icons/arrow-right-2.svg"
+                          width={14}
+                          height={14}
+                          alt="Arrow"
+                        />
+                      </Link>
+                    </div>
+                    <div className={styles.infoRight}>
+                      <ImgSkeleton
+                        keyName="picture"
+                        obj={detail}
+                        style={{
+                          borderRadius: "8px",
+                          objectFit: "cover",
+                          minHeight: "370px",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </SwiperSlide>
+              );
+            }
+          })}
+        </Swiper>
+      )}
     </section>
   );
 };

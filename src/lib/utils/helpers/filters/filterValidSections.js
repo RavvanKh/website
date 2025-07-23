@@ -20,8 +20,10 @@ export const filterValidSections = (training, array) => {
         return training?.relatedCourses?.length > 0;
       case "faq":
         return training?.faq?.length > 0;
-        case "skillsYou'llGain":
-          return true
+      case "prerequisites":
+        return training?.prerequisites?.length > 0;
+      case "trainingObjectives":
+        return training?.objectives?.length > 0;
       default:
         return false;
     }
