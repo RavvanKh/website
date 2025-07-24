@@ -177,4 +177,5 @@ export default {
   learnMore: "Learn more",
   trainingObjectives: "Training Objectives",
   empoweredByInnovation: "Empowered by Innovation",
+  lesson: "lesson",
 } as const;

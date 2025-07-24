@@ -28,7 +28,7 @@ const Info = ({ details = [], loading, error }) => {
         <Swiper
           className={styles.sliderWrapper}
           modules={[Pagination,Autoplay]}
-          autoplay={{delay:10000}}
+          // autoplay={{delay:10000}}
           spaceBetween={20}
           pagination={{
             clickable: true,
@@ -79,11 +79,7 @@ const Info = ({ details = [], loading, error }) => {
                       <ImgSkeleton
                         keyName="picture"
                         obj={detail}
-                        style={{
-                          borderRadius: "8px",
-                          objectFit: "cover",
-                          minHeight: "370px",
-                        }}
+                        defaultClass="homeTitle"
                       />
                     </div>
                   </div>
