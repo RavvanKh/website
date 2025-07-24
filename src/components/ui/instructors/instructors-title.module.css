@@ -3,6 +3,14 @@
   padding: 40px 0 0 0;
   min-height: 540px;
 
+  .loaderContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 160px 0 0 0;
+  }
+
   .instructorsContent {
     display: flex;
     align-items: center;

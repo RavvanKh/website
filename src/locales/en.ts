@@ -169,6 +169,10 @@ export default {
   instructorTeam: "Instructor Team",
   instructorDescription:
     "Learn from a team of expert instructors who are not only highly qualified but also actively working at leading global and local companies such as Apple, Crossover, Azercell, ABB Bank, Kapital Bank, and Pasha Bank. They bring real-world insights, up-to-date industry practices, and mentorship that bridges the gap between theory and application.",
+  ourGraduates: "Our graduates ",
+  reflectOurValues: "reflect our values.",
+  graduateDescription:
+    "Our graduates succeed thanks to energetic instructors who share real-world experience and practical skills, preparing them to excel from day one.",
   prerequisites: "Prerequisites",
   learnMore: "Learn more",
   trainingObjectives: "Training Objectives",
