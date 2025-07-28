@@ -5,6 +5,7 @@ const I18nMiddleware = createI18nMiddleware({
   locales: ['en','az'],
   defaultLocale: 'en',
 })
+
  
 export function middleware(request: NextRequest) {
   const response = I18nMiddleware(request)
