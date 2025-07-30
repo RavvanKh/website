@@ -34,7 +34,7 @@ const SharedSectionRenderer = dynamic(
     loading: () => null,
   }
 );
-import styles from './training.module.css'
+import styles from "./training.module.css";
 
 const Training = () => {
   const { training, loading, error } = useTraining();
@@ -153,7 +153,8 @@ const Training = () => {
               error,
             },
             courseApplicationForm: {
-              course: training,
+              courseId: training?.id,
+              formContinue: true,
             },
             relatedCourses: {
               showSlider: true,

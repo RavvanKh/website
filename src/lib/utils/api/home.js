@@ -8,6 +8,6 @@ export const getHomeData = cache(async () => {
     const res = await customAxios.get(`/v1/home`);
     return res.data;
   } catch (err) {
-    throw new Error(err);
+    throw new Error(err?.response?.data?.message);
   }
 });

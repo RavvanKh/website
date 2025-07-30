@@ -3,12 +3,12 @@ import CourseApplicationForm from "../course-application-form/CourseApplicationF
 
 import styles from "./course-application.module.css";
 
-const CourseApplication = ({ courses }) => {
+const CourseApplication = ({ courses, formContinue = false }) => {
   return (
     <section className={styles.courseApplication}>
       <div className={styles.courseApplicationContainer}>
         <GetInTouch />
-        <CourseApplicationForm courses={courses} />
+        <CourseApplicationForm courses={courses} formContinue={formContinue} />
       </div>
     </section>
   );

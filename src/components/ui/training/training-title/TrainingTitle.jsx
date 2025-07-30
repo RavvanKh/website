@@ -15,6 +15,9 @@ const TrainingTitle = ({ training, t }) => {
           <h1>{training.name}</h1>
           <p>{training.description}</p>
           <div className={styles.trainingDurationBox}>
+          <div className={styles.trainingType}>
+
+          </div>
             <div className={styles.trainingDuration}>
               <Image
                 src="/icons/duration.svg"

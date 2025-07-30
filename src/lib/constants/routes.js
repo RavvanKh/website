@@ -6,6 +6,7 @@ export const routes = {
   trainings: "/trainings",
   scholarships: "/scholarships",
   pdf: "/pdf",
+  trainingApplication:"/training-application"
 };
 
 export const hiddenHeaderAndFooter = [routes.pdf];

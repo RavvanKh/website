@@ -78,7 +78,7 @@ export default function Home() {
         loading={loading.home}
         error={error.home}
       />
-      <CourseApplication courses={data.courses} />
+      <CourseApplication courses={data.courses} formContinue={true} />
     </div>
   );
 }
