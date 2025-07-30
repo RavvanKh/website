@@ -3,11 +3,11 @@ import { useRef } from "react";
 import { useI18n } from "@/locales/client";
 import { useTraining } from "@/contexts/TrainingContext";
 
-import Advantages from "../advantages/Advantages";
-import Syllabus from "../syllabus/Syllabus";
-import Instructors from "../instructors/Instructors";
-import RelatedCourses from "../related-courses/RelatedCourses";
-import TrainingTitle from "../training-title/TrainingTitle";
+import Advantages from "../../ui/training/advantages/Advantages";
+import Syllabus from "../../ui/training/syllabus/Syllabus";
+import Instructors from "../../ui/training/instructors/Instructors";
+import RelatedCourses from "../../ui/training/related-courses/RelatedCourses";
+import TrainingTitle from "../../ui/training/training-title/TrainingTitle";
 
 import styles from "./generate-pdf.module.css";
 import { notFound } from "next/navigation";
@@ -20,7 +20,7 @@ export default function GeneratePdf() {
   const getFirstThreeSentences = (text = "") => {
     const sentences = text.split(/(?<=[.?!])\s+/).slice(0, 3);
     const result = sentences.join(" ");
-    
+
     // Çok uzun metinleri sınırla (yaklaşık 200 karakter)
     if (result.length > 200) {
       return result.substring(0, 200) + "...";
@@ -34,8 +34,8 @@ export default function GeneratePdf() {
     return title.substring(0, maxLength) + "...";
   };
 
-  if(error){
-    notFound()
+  if (error) {
+    notFound();
   }
 
   const createPage = (content, url, isNewSection = false) => (
@@ -49,9 +49,7 @@ export default function GeneratePdf() {
           height="842"
         />
         <div className={styles.pageContent}>
-          <div className={styles.contentContainer}>
-            {content}
-          </div>
+          <div className={styles.contentContainer}>{content}</div>
         </div>
       </div>
     </div>
@@ -101,7 +99,7 @@ export default function GeneratePdf() {
 
       {/* Training Title - New Section */}
       {createPage(
-        <TrainingTitle training={training} />,
+        <TrainingTitle training={training} t={t} />,
         "/images/pdf-bg.jpg",
         true
       )}
@@ -168,9 +166,10 @@ export default function GeneratePdf() {
           loading={loading}
           relatedCourses={training?.relatedCourses}
         />,
-        "/images/pdf-last.jpg",
+        "/images/pdf-bg.jpg",
         true
       )}
+      {createPageWithFade(<div></div>, "/images/pdf-last.jpg", true)}
     </div>
   );
 }

@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
+
+import Loader from "../loader/Loader";
 
 import styles from "./shared-section-renderer.module.css";
-import Loader from "../loader/Loader";
 
 const SharedSectionRenderer = ({
   sections = [],

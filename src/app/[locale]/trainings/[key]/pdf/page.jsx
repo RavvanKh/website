@@ -1,4 +1,4 @@
-import GeneratePdf from "@/components/ui/training/generate-pdf/GeneratePdf";
+import GeneratePdf from "@/components/pages/pdf/GeneratePdf";
 
 const TrainingPdfPage = () => {
   return <GeneratePdf />;
