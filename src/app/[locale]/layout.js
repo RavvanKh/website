@@ -104,7 +104,7 @@ export default async function LocaleLayout({ children, params }) {
             <AmplitudeProvider />
             <main>
               {children}
-              <ToastContainer position="top-right" autoClose={3000} />
+              <ToastContainer position="" autoClose={3000} />
             </main>
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />

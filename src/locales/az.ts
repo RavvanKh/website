@@ -112,7 +112,7 @@ export default {
     expandAll: "Hamısını aç",
     collapseAll: "Hamısını bağla",
     companies: "Şirkətlər",
-    courseApplicationForm: "Müraciət formu",
+    trainingApplicationForm: "Müraciət formu",
     faq: "Tez-tez verilən suallar",
     trainingDays: "Təlim günləri",
     trainingHours: "Təlim saatları",
