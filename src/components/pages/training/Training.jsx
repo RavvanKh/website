@@ -110,7 +110,7 @@ const Training = () => {
   };
 
   const handleApply = () => {
-    handleSelectSection("courseApplicationForm");
+    handleSelectSection("trainingApplicationForm");
   };
 
   return (
@@ -152,7 +152,7 @@ const Training = () => {
               loading,
               error,
             },
-            courseApplicationForm: {
+            trainingApplicationForm: {
               courseId: training?.id,
               formContinue: true,
             },

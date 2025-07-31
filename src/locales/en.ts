@@ -137,7 +137,7 @@ export default {
   expandAll: " Expand all",
   collapseAll: " Collapse all",
   companies: "Companies",
-  courseApplicationForm: "Course Application Form",
+  trainingApplicationForm: "Training Application Form",
   faq: "FAQ",
   trainingDays: "Training Days",
   trainingHours: "Training Hours",
@@ -226,4 +226,6 @@ export default {
   training: "Training",
   continue: "Continue",
   trainingApplicationSuccess: "Training was created successfully",
+  close:"Close",
+  successfullySent:"Successfully Sent"
 } as const;

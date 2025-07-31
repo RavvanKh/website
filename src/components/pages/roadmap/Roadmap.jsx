@@ -135,7 +135,7 @@ const Roadmap = () => {
                   },
                 ],
               },
-              courseApplicationForm: {
+              trainingApplicationForm: {
                 course: roadmap,
               },
               whereDoOurGraduatesWork: {

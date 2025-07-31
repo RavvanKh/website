@@ -94,7 +94,7 @@ export const selectSectionsAsComponentForTraining = [
   // // { key: "feedbacks", component: Comments },
   { key: "instructors", component: Instructors },
   {
-    key: "courseApplicationForm",
+    key: "trainingApplicationForm",
     component: CourseApplicationForm,
   },
   {
@@ -132,7 +132,7 @@ export const selectSectionsAsComponentForRoadmap = [
     component: Instructors,
   },
   {
-    key: "courseApplicationForm",
+    key: "trainingApplicationForm",
     component: CourseApplicationForm,
   },
   { key: "faq", component: Faq },
