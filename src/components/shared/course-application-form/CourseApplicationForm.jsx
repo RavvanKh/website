@@ -194,7 +194,7 @@ const CourseApplicationForm = ({
         className={styles.courseApplicationForm}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {!formContinue && (
+        {/* {!formContinue && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
               <ReCAPTCHA
@@ -204,7 +204,7 @@ const CourseApplicationForm = ({
               />
             </div>
           </div>
-        )}
+        )} */}
         <div className={styles.formSection}>
           <div
             className={`${styles.inputRow} ${
