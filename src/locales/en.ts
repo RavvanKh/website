@@ -227,5 +227,6 @@ export default {
   continue: "Continue",
   trainingApplicationSuccess: "Training was created successfully",
   close:"Close",
-  successfullySent:"Successfully Sent"
+  successfullySent: "Successfully Sent",
+  events: "Events",
 } as const;

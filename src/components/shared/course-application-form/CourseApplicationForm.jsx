@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import { toast } from "react-toastify";
 
@@ -11,6 +12,7 @@ import { useI18n } from "@/locales/client";
 
 import { routes } from "@/lib/constants/routes";
 
+import { verifyRecaptcha } from "@/lib/utils/api/reCaptcha";
 import { createCourseApplication } from "@/lib/utils/api/courseApplication";
 
 import SuccessModal from "../success-modal/SuccessModal";
@@ -32,6 +34,9 @@ const CourseApplicationForm = ({
   const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const t = useI18n();
+  const recaptchaRef = useRef(null);
+
+  const SITE_KEY = process.env.NEXT_PUBLIC_SITE_KEY;
 
   const router = useRouter();
 
@@ -98,6 +103,7 @@ const CourseApplicationForm = ({
   const watchedFields = watch();
 
   const onSubmit = async (data) => {
+
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -122,6 +128,17 @@ const CourseApplicationForm = ({
       reset();
     } catch (err) {
       toast.error(err?.message);
+    }
+  };
+
+  const handleVerifyRecaptcha = async (token) => {
+    try {
+      const res = await verifyRecaptcha({
+        secretKey: process.env.NEXT_PUBLIC_SECRET_KEY,
+        token,
+      });
+    } catch (err) {
+      throw new Error(err?.message);
     }
   };
 
@@ -164,360 +181,365 @@ const CourseApplicationForm = ({
 
   return (
     <div className={styles.courseApplicationContainer}>
-      <>
-        <div className={styles.courseApplicationHeader}>
-          <h2 className={styles.courseApplicationTitle}>
-            {t("trainingApplication")}
-          </h2>
-          <p className={styles.courseApplicationDescription}>
-            {t("trainingApplicationRightDescription")}
-          </p>
+      <div className={styles.courseApplicationHeader}>
+        <h2 className={styles.courseApplicationTitle}>
+          {t("trainingApplication")}
+        </h2>
+        <p className={styles.courseApplicationDescription}>
+          {t("trainingApplicationRightDescription")}
+        </p>
+      </div>
+
+      <form
+        className={styles.courseApplicationForm}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        {!formContinue && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <ReCAPTCHA
+                sitekey={SITE_KEY}
+                ref={recaptchaRef}
+                onChange={handleVerifyRecaptcha}
+              />
+            </div>
+          </div>
+        )}
+        <div className={styles.formSection}>
+          <div
+            className={`${styles.inputRow} ${
+              formContinue ? styles.continueRow : styles.single
+            }`}
+          >
+            {!hasCourse && (
+              <div className={styles.inputGroup}>
+                <label htmlFor="trainingId" className={styles.label}>
+                  <span className={styles.labelText}>{t("training")}</span>
+                  <span className={styles.required}>*</span>
+                </label>
+                <select
+                  {...register("trainingId")}
+                  id="trainingId"
+                  className={`${styles.select} ${
+                    errors.trainingId ? styles.error : ""
+                  }`}
+                >
+                  <option value="">{t("selectTraining")}</option>
+                  {courses?.map((course) => (
+                    <option key={course.id} value={course.id}>
+                      {course.name}
+                    </option>
+                  ))}
+                </select>
+                {errors.trainingId && (
+                  <span className={styles.errorMessage}>
+                    {errors.trainingId.message}
+                  </span>
+                )}
+              </div>
+            )}
+
+            {formContinue && (
+              <div className={styles.inputGroup}>
+                <button
+                  type="button"
+                  onClick={handleRouteApplication}
+                  className={styles.continue}
+                >
+                  {t("continue")}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
-        <form
-          className={styles.courseApplicationForm}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className={styles.formSection}>
-            <div className={styles.inputRow}>
-              {!hasCourse && (
+        {!formContinue && (
+          <>
+            {/* Personal Information Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                {t("personalInformation")}
+              </h3>
+
+              <div className={styles.inputRow}>
                 <div className={styles.inputGroup}>
-                  <label htmlFor="trainingId" className={styles.label}>
-                    <span className={styles.labelText}>{t("training")}</span>
+                  <label htmlFor="firstName" className={styles.label}>
+                    <span className={styles.labelText}>{t("firstName")}</span>
                     <span className={styles.required}>*</span>
                   </label>
-                  <select
-                    {...register("trainingId")}
-                    id="trainingId"
-                    className={`${styles.select} ${
-                      errors.trainingId ? styles.error : ""
+                  <input
+                    type="text"
+                    id="firstName"
+                    {...register("firstName")}
+                    className={`${styles.input} ${
+                      errors.firstName ? styles.error : ""
                     }`}
-                  >
-                    <option value="">{t("selectTraining")}</option>
-                    {courses?.map((course) => (
-                      <option key={course.id} value={course.id}>
-                        {course.name}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.trainingId && (
+                    placeholder={t("enterFirstName")}
+                  />
+                  {errors.firstName && (
                     <span className={styles.errorMessage}>
-                      {errors.trainingId.message}
+                      {errors.firstName.message}
                     </span>
                   )}
                 </div>
-              )}{" "}
-              {formContinue && (
-                <div className={styles.submitSection}>
-                  <button
-                    type="button"
-                    onClick={handleRouteApplication}
-                    className={styles.continue}
+
+                <div className={styles.inputGroup}>
+                  <label htmlFor="lastName" className={styles.label}>
+                    <span className={styles.labelText}>{t("lastName")}</span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    {...register("lastName")}
+                    className={`${styles.input} ${
+                      errors.lastName ? styles.error : ""
+                    }`}
+                    placeholder={t("enterLastName")}
+                  />
+                  {errors.lastName && (
+                    <span className={styles.errorMessage}>
+                      {errors.lastName.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.inputRow}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="emailAddress" className={styles.label}>
+                    <span className={styles.labelText}>{t("email")}</span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="emailAddress"
+                    {...register("emailAddress")}
+                    className={`${styles.input} ${
+                      errors.emailAddress ? styles.error : ""
+                    }`}
+                    placeholder="example@gmail.com"
+                  />
+                  {errors.emailAddress && (
+                    <span className={styles.errorMessage}>
+                      {errors.emailAddress.message}
+                    </span>
+                  )}
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <label htmlFor="phoneNumber" className={styles.label}>
+                    <span className={styles.labelText}>{t("phoneNumber")}</span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    {...register("phoneNumber")}
+                    className={`${styles.input} ${
+                      errors.phoneNumber ? styles.error : ""
+                    }`}
+                    placeholder="+994501234567"
+                  />
+                  {errors.phoneNumber && (
+                    <span className={styles.errorMessage}>
+                      {errors.phoneNumber.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.inputRow}>
+                <div className={styles.inputGroup}>
+                  <label
+                    htmlFor="educationalInstitution"
+                    className={styles.label}
                   >
-                    {t("continue")}
-                  </button>
+                    <span className={styles.labelText}>{t("education")}</span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="educationalInstitution"
+                    {...register("educationalInstitution")}
+                    className={`${styles.input} ${
+                      errors.educationalInstitution ? styles.error : ""
+                    }`}
+                    placeholder={t("universityOrEducation")}
+                  />
+                  {errors.educationalInstitution && (
+                    <span className={styles.errorMessage}>
+                      {errors.educationalInstitution.message}
+                    </span>
+                  )}
                 </div>
-              )}
+
+                <div className={styles.inputGroup}>
+                  <label htmlFor="currentWorkPlace" className={styles.label}>
+                    <span className={styles.labelText}>{t("workplace")}</span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="currentWorkPlace"
+                    {...register("currentWorkPlace")}
+                    className={`${styles.input} ${
+                      errors.currentWorkPlace ? styles.error : ""
+                    }`}
+                    placeholder={t("currentWorkplace")}
+                  />
+                  {errors.currentWorkPlace && (
+                    <span className={styles.errorMessage}>
+                      {errors.currentWorkPlace.message}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
 
-          {!formContinue && (
-            <>
-              <div className={styles.formSection}>
-                <h3 className={styles.sectionTitle}>
-                  {t("personalInformation")}
-                </h3>
+            {/* Training Preferences Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                {t("trainingPreferences")}
+              </h3>
 
-                <div className={styles.inputRow}>
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="firstName" className={styles.label}>
-                      <span className={styles.labelText}>{t("firstName")}</span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      {...register("firstName")}
-                      className={`${styles.input} ${
-                        errors.firstName ? styles.error : ""
-                      }`}
-                      placeholder={t("enterFirstName")}
-                    />
-                    {errors.firstName && (
-                      <span className={styles.errorMessage}>
-                        {errors.firstName.message}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="lastName" className={styles.label}>
-                      <span className={styles.labelText}>{t("lastName")}</span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      {...register("lastName")}
-                      className={`${styles.input} ${
-                        errors.lastName ? styles.error : ""
-                      }`}
-                      placeholder={t("enterLastName")}
-                    />
-                    {errors.lastName && (
-                      <span className={styles.errorMessage}>
-                        {errors.lastName.message}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                <div className={styles.inputRow}>
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="emailAddress" className={styles.label}>
-                      <span className={styles.labelText}>{t("email")}</span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="emailAddress"
-                      {...register("emailAddress")}
-                      className={`${styles.input} ${
-                        errors.emailAddress ? styles.error : ""
-                      }`}
-                      placeholder="example@gmail.com"
-                    />
-                    {errors.emailAddress && (
-                      <span className={styles.errorMessage}>
-                        {errors.emailAddress.message}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={styles.inputGroup}>
-                    <label htmlFor="phoneNumber" className={styles.label}>
-                      <span className={styles.labelText}>
-                        {t("phoneNumber")}
-                      </span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      id="phoneNumber"
-                      {...register("phoneNumber")}
-                      className={`${styles.input} ${
-                        errors.phoneNumber ? styles.error : ""
-                      }`}
-                      placeholder="+994501234567"
-                    />
-                    {errors.phoneNumber && (
-                      <span className={styles.errorMessage}>
-                        {errors.phoneNumber.message}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className={styles.inputRow}>
-                  <div className={styles.inputRow}>
-                    <div className={styles.inputGroup}>
-                      <label
-                        htmlFor="educationalInstitution"
-                        className={styles.label}
-                      >
-                        <span className={styles.labelText}>
-                          {t("education")}
-                        </span>
-                        <span className={styles.required}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="educationalInstitution"
-                        {...register("educationalInstitution")}
-                        className={`${styles.input} ${
-                          errors.educationalInstitution ? styles.error : ""
-                        }`}
-                        placeholder={t("universityOrEducation")}
-                      />
-                      {errors.educationalInstitution && (
-                        <span className={styles.errorMessage}>
-                          {errors.educationalInstitution.message}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                      <label
-                        htmlFor="currentWorkPlace"
-                        className={styles.label}
-                      >
-                        <span className={styles.labelText}>
-                          {t("workplace")}
-                        </span>
-                        <span className={styles.required}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="currentWorkPlace"
-                        {...register("currentWorkPlace")}
-                        className={`${styles.input} ${
-                          errors.currentWorkPlace ? styles.error : ""
-                        }`}
-                        placeholder={t("currentWorkplace")}
-                      />
-                      {errors.currentWorkPlace && (
-                        <span className={styles.errorMessage}>
-                          {errors.currentWorkPlace.message}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.formSection}>
-                <h3 className={styles.sectionTitle}>
-                  {t("trainingPreferences")}
-                </h3>
-
-                <div className={styles.inputRow}>
-                  <div className={styles.inputGroup}>
-                    <label
-                      htmlFor="learningPreference"
-                      className={styles.label}
-                    >
-                      <span className={styles.labelText}>
-                        {t("learningPreference")}
-                      </span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <select
-                      {...register("learningPreference")}
-                      id="learningPreference"
-                      className={`${styles.select} ${
-                        errors.learningPreference ? styles.error : ""
-                      }`}
-                    >
-                      <option value="">{t("selectLearningPreference")}</option>
-                      {lessonTypes.map((type, index) => (
-                        <option key={index} value={type.value}>
-                          {t(type.label)}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.learningPreference && (
-                      <span className={styles.errorMessage}>
-                        {errors.learningPreference.message}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={styles.inputGroup}>
-                    <label
-                      htmlFor="technicalKnowledgeLevel"
-                      className={styles.label}
-                    >
-                      <span className={styles.labelText}>
-                        {t("technicalKnowledgeLevel")}
-                      </span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <select
-                      {...register("technicalKnowledgeLevel")}
-                      id="technicalKnowledgeLevel"
-                      className={`${styles.select} ${
-                        errors.technicalKnowledgeLevel ? styles.error : ""
-                      }`}
-                    >
-                      <option value="">
-                        {t("selectTechnicalKnowledgeLevel")}
+              <div className={styles.inputRow}>
+                <div className={styles.inputGroup}>
+                  <label htmlFor="learningPreference" className={styles.label}>
+                    <span className={styles.labelText}>
+                      {t("learningPreference")}
+                    </span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <select
+                    {...register("learningPreference")}
+                    id="learningPreference"
+                    className={`${styles.select} ${
+                      errors.learningPreference ? styles.error : ""
+                    }`}
+                  >
+                    <option value="">{t("selectLearningPreference")}</option>
+                    {lessonTypes.map((type, index) => (
+                      <option key={index} value={type.value}>
+                        {t(type.label)}
                       </option>
-                      {knowledgeLevels.map((level) => (
-                        <option key={level.value} value={level.value}>
-                          {t(level.label)}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.technicalKnowledgeLevel && (
-                      <span className={styles.errorMessage}>
-                        {errors.technicalKnowledgeLevel.message}
-                      </span>
-                    )}
-                  </div>
+                    ))}
+                  </select>
+                  {errors.learningPreference && (
+                    <span className={styles.errorMessage}>
+                      {errors.learningPreference.message}
+                    </span>
+                  )}
                 </div>
 
-                <div className={styles.inputRow}>
-                  <div className={styles.inputGroup}>
-                    <label
-                      htmlFor="englishProficiencyLevel"
-                      className={styles.label}
-                    >
-                      <span className={styles.labelText}>
-                        {t("englishProficiencyLevel")}
-                      </span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <select
-                      {...register("englishProficiencyLevel")}
-                      id="englishProficiencyLevel"
-                      className={`${styles.select} ${
-                        errors.englishProficiencyLevel ? styles.error : ""
-                      }`}
-                    >
-                      <option value="">
-                        {t("selectEnglishProficiencyLevel")}
+                <div className={styles.inputGroup}>
+                  <label
+                    htmlFor="technicalKnowledgeLevel"
+                    className={styles.label}
+                  >
+                    <span className={styles.labelText}>
+                      {t("technicalKnowledgeLevel")}
+                    </span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <select
+                    {...register("technicalKnowledgeLevel")}
+                    id="technicalKnowledgeLevel"
+                    className={`${styles.select} ${
+                      errors.technicalKnowledgeLevel ? styles.error : ""
+                    }`}
+                  >
+                    <option value="">
+                      {t("selectTechnicalKnowledgeLevel")}
+                    </option>
+                    {knowledgeLevels.map((level) => (
+                      <option key={level.value} value={level.value}>
+                        {t(level.label)}
                       </option>
-                      {englishLevels.map((level) => (
-                        <option key={level.value} value={level.value}>
-                          {t(level.label)}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.englishProficiencyLevel && (
-                      <span className={styles.errorMessage}>
-                        {errors.englishProficiencyLevel.message}
-                      </span>
-                    )}
-                  </div>
-
-                  <div className={styles.inputGroup}>
-                    <label
-                      htmlFor="paymentResponsibility"
-                      className={styles.label}
-                    >
-                      <span className={styles.labelText}>
-                        {t("paymentResponsibility")}
-                      </span>
-                      <span className={styles.required}>*</span>
-                    </label>
-                    <select
-                      {...register("paymentResponsibility")}
-                      id="paymentResponsibility"
-                      className={`${styles.select} ${
-                        errors.paymentResponsibility ? styles.error : ""
-                      }`}
-                    >
-                      <option value="">
-                        {t("selectPaymentResponsibility")}
-                      </option>
-                      {paymentTypes.map((type, index) => (
-                        <option key={index} value={type.value}>
-                          {t(type.label)}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.paymentResponsibility && (
-                      <span className={styles.errorMessage}>
-                        {errors.paymentResponsibility.message}
-                      </span>
-                    )}
-                  </div>
+                    ))}
+                  </select>
+                  {errors.technicalKnowledgeLevel && (
+                    <span className={styles.errorMessage}>
+                      {errors.technicalKnowledgeLevel.message}
+                    </span>
+                  )}
                 </div>
               </div>
 
-              <div className={styles.formSection}>
-                <h3 className={styles.sectionTitle}>
-                  {t("additionalInformation")}
-                </h3>
+              <div className={styles.inputRow}>
+                <div className={styles.inputGroup}>
+                  <label
+                    htmlFor="englishProficiencyLevel"
+                    className={styles.label}
+                  >
+                    <span className={styles.labelText}>
+                      {t("englishProficiencyLevel")}
+                    </span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <select
+                    {...register("englishProficiencyLevel")}
+                    id="englishProficiencyLevel"
+                    className={`${styles.select} ${
+                      errors.englishProficiencyLevel ? styles.error : ""
+                    }`}
+                  >
+                    <option value="">
+                      {t("selectEnglishProficiencyLevel")}
+                    </option>
+                    {englishLevels.map((level) => (
+                      <option key={level.value} value={level.value}>
+                        {t(level.label)}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.englishProficiencyLevel && (
+                    <span className={styles.errorMessage}>
+                      {errors.englishProficiencyLevel.message}
+                    </span>
+                  )}
+                </div>
 
+                <div className={styles.inputGroup}>
+                  <label
+                    htmlFor="paymentResponsibility"
+                    className={styles.label}
+                  >
+                    <span className={styles.labelText}>
+                      {t("paymentResponsibility")}
+                    </span>
+                    <span className={styles.required}>*</span>
+                  </label>
+                  <select
+                    {...register("paymentResponsibility")}
+                    id="paymentResponsibility"
+                    className={`${styles.select} ${
+                      errors.paymentResponsibility ? styles.error : ""
+                    }`}
+                  >
+                    <option value="">{t("selectPaymentResponsibility")}</option>
+                    {paymentTypes.map((type, index) => (
+                      <option key={index} value={type.value}>
+                        {t(type.label)}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.paymentResponsibility && (
+                    <span className={styles.errorMessage}>
+                      {errors.paymentResponsibility.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Additional Information Section */}
+            <div className={styles.formSection}>
+              <h3 className={styles.sectionTitle}>
+                {t("additionalInformation")}
+              </h3>
+
+              <div className={`${styles.inputRow} ${styles.single}`}>
                 <div className={styles.inputGroup}>
                   <label htmlFor="referralSource" className={styles.label}>
                     <span className={styles.labelText}>{t("hearAboutUs")}</span>
@@ -543,7 +565,9 @@ const CourseApplicationForm = ({
                     </span>
                   )}
                 </div>
+              </div>
 
+              <div className={`${styles.inputRow} ${styles.single}`}>
                 <div className={styles.inputGroup}>
                   <label
                     htmlFor="previouslyParticipatedTrainings"
@@ -574,7 +598,9 @@ const CourseApplicationForm = ({
                     </span>
                   )}
                 </div>
+              </div>
 
+              <div className={`${styles.inputRow} ${styles.single}`}>
                 <div className={styles.inputGroup}>
                   <label htmlFor="additionalMessage" className={styles.label}>
                     <span className={styles.labelText}>
@@ -595,29 +621,30 @@ const CourseApplicationForm = ({
                   )}
                 </div>
               </div>
+            </div>
 
-              <div className={styles.submitSection}>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={`${styles.submitButton} ${
-                    isSubmitting ? styles.loading : ""
-                  }`}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className={styles.spinner}></span>
-                      {t("submitting")}
-                    </>
-                  ) : (
-                    t("submitApplication")
-                  )}
-                </button>
-              </div>
-            </>
-          )}
-        </form>
-      </>
+            {/* Submit Section */}
+            <div className={styles.submitSection}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`${styles.submitButton} ${
+                  isSubmitting ? styles.loading : ""
+                }`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className={styles.spinner}></span>
+                    {t("submitting")}
+                  </>
+                ) : (
+                  t("submitApplication")
+                )}
+              </button>
+            </div>
+          </>
+        )}
+      </form>
     </div>
   );
 };

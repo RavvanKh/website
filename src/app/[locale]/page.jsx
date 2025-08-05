@@ -1,4 +1,4 @@
-import Home from "@/components/pages/home/Home";
+import Home from "@/components/pages/home/Home.jsx";
 
 import { getHomeData } from "@/lib/utils/api/home";
 import { generateSchema } from "@/lib/utils/helpers";

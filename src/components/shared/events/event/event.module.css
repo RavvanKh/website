@@ -1,0 +1,86 @@
+.event {
+    box-shadow: 1px 4px 8px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    align-self: stretch;
+    max-width: 367px;
+    flex: 1 1 200px;
+
+    .eventContent {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px 15px;
+
+        .eventInfo {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+
+            .eventInfoTop {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .eventIcon,
+                .eventSpeaker {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
+                
+                .eventSpeaker span{
+                    max-width: 150px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+            }
+
+            .eventIcon span, .eventSpeaker span {
+                font-family: "Nunito", sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                color: rgba(33, 37, 41, 1);
+            }
+
+            .eventTitle {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 18px;
+                line-height: 22px;
+                color: rgba(33, 37, 41, 1);
+            }
+
+            .eventDescription {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 22px;
+                color: rgba(33, 37, 41, 1);
+            }
+        }
+
+        .eventDetail {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .eventDetailItem {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .eventDetailItem p {
+
+                font-family: 'Nunito', sans-serif;
+                font-weight: 274;
+                font-size: 12px;
+                line-height: 20px;
+                color: rgba(54, 54, 54, 1);
+            }
+        }
+    }
+}

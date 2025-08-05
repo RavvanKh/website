@@ -40,7 +40,7 @@ const Graduates = () => {
           loading={loading.home}
           error={error.home}
         />
-        <CourseApplication />
+        <CourseApplication formContinue={true} />
       </section>
     </>
   );
