@@ -14,7 +14,6 @@ const Instructors = dynamic(
   { ssr: false, loading: () => null }
 );
 
-
 const Customers = dynamic(
   () => import("@/components/ui/home/customers/Customers"),
   { ssr: false, loading: () => null }
@@ -24,7 +23,6 @@ const CourseApplication = dynamic(
   () => import("@/components/shared/course-application/CourseApplication"),
   { ssr: false, loading: () => null }
 );
-
 
 const InstructorsPage = () => {
   const { data, error, loading } = useGlobalData();
@@ -44,7 +42,7 @@ const InstructorsPage = () => {
           loading={loading.home}
           error={error.home}
         />
-        <CourseApplication />
+        <CourseApplication formContinue={true} />
       </section>
     </>
   );

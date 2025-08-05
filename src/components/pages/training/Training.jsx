@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import { useI18n } from "@/locales/client";
 
-import { useTraining } from "@/contexts/TrainingContext";
+import { useTraining } from "@/contexts/TrainingContext.jsx";
 
 import {
   defaultSectionForTraining,

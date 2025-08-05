@@ -1,6 +1,5 @@
 "use client";
 
-import { useGlobalData } from "@/contexts/GlobalDataContext";
 import dynamic from "next/dynamic";
 
 const Details = dynamic(() => import("@/components/ui/home/details/Details"), {
@@ -36,6 +35,11 @@ const Customers = dynamic(
     ssr: false,
   }
 );
+const Events = dynamic(() => import("@/components/shared/events/Events"), {
+  ssr: false,
+});
+
+import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import styles from "./home.module.css";
 
@@ -68,6 +72,7 @@ export default function Home() {
         error={error.home}
       />
       <PracticePortal />
+      <Events events={data.events} loading={loading.home} error={error.home} />
       <Comments
         loading={loading.comments}
         error={error.comments}
