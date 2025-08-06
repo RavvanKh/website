@@ -16,6 +16,7 @@ const NextGroup = ({
   onClickApply,
   url,
   nextGroup,
+  training
 }) => {
   const formatted = convertStringToDate(nextGroup?.startDate);
 
@@ -50,8 +51,8 @@ const NextGroup = ({
           </button>
         </a>
 
-        <Link href={routes.trainingApplication} target="_blank">
-          <button className={styles.nextGroupApply} onClick={onClickApply}>
+        <Link href={`${routes.trainingApplication}?trainingId=${training?.id}`}>
+          <button className={styles.nextGroupApply}>
             {t("apply")}
           </button>
         </Link>
