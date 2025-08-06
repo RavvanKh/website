@@ -45,11 +45,7 @@ const CourseApplicationForm = ({
   const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
 
   const schema = yup.object().shape({
-    trainingId: yup.string().when("hasCourse", {
-      is: false,
-      then: () => yup.string().required("Course is required"),
-      otherwise: () => yup.string(),
-    }),
+    trainingId: yup.string().required("Training is required"),
     firstName: yup
       .string()
       .required("First name is required")
@@ -103,7 +99,6 @@ const CourseApplicationForm = ({
   const watchedFields = watch();
 
   const onSubmit = async (data) => {
-
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -215,7 +210,7 @@ const CourseApplicationForm = ({
               <div className={styles.inputGroup}>
                 <label htmlFor="trainingId" className={styles.label}>
                   <span className={styles.labelText}>{t("training")}</span>
-                  <span className={styles.required}>*</span>
+                  {!formContinue && <span className={styles.required}>*</span>}
                 </label>
                 <select
                   {...register("trainingId")}
@@ -240,7 +235,7 @@ const CourseApplicationForm = ({
             )}
 
             {formContinue && (
-              <div className={styles.inputGroup}>
+              <div className={styles.inputGroupContinue}>
                 <button
                   type="button"
                   onClick={handleRouteApplication}
@@ -608,6 +603,7 @@ const CourseApplicationForm = ({
                     </span>
                   </label>
                   <textarea
+                    maxLength={600}
                     id="additionalMessage"
                     {...register("additionalMessage")}
                     className={styles.textarea}
@@ -623,7 +619,6 @@ const CourseApplicationForm = ({
               </div>
             </div>
 
-            {/* Submit Section */}
             <div className={styles.submitSection}>
               <button
                 type="submit"

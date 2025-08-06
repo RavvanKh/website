@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(17, 24, 39, 0.5); 
+  background: rgba(17, 24, 39, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +19,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   position: relative;
 }
+
 .courseApplicationContainer {
   max-width: 900px;
   border-radius: 20px;
@@ -76,7 +77,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .inputRow.single {
@@ -85,7 +86,7 @@
 
 .inputRow.continue-row {
   grid-template-columns: 1fr auto;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .inputGroup {
@@ -93,7 +94,14 @@
   flex-direction: column;
   width: 100%;
   margin-bottom: 16px;
-  align-self:flex-end;
+  align-self: flex-start;
+}
+.inputGroupContinue{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  align-self: flex-end;
 }
 
 .label {
@@ -230,9 +238,13 @@
   gap: 0.5rem;
   color: #ef4444;
   font-size: 0.875rem;
-  margin-top: 0.75rem;
   font-weight: 500;
   animation: slideDown 0.3s ease;
+}
+
+.errorMessage {
+  margin-top: 0.75rem;
+
 }
 
 .errorMessage::before {
@@ -388,8 +400,8 @@
   opacity: 0;
 }
 
-.floatingLabel .floatingInput:focus + .floatingLabelText,
-.floatingLabel .floatingInput:not(:placeholder-shown) + .floatingLabelText {
+.floatingLabel .floatingInput:focus+.floatingLabelText,
+.floatingLabel .floatingInput:not(:placeholder-shown)+.floatingLabelText {
   transform: translateY(-0.75rem) scale(0.85);
   color: #667eea;
 }
@@ -544,9 +556,11 @@
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.02);
   }
+
   100% {
     transform: scale(1);
   }
@@ -557,6 +571,7 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -564,12 +579,16 @@
 }
 
 @keyframes shake {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0);
   }
+
   25% {
     transform: translateX(-5px);
   }
+
   75% {
     transform: translateX(5px);
   }
@@ -579,6 +598,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

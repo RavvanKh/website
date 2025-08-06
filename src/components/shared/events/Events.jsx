@@ -38,16 +38,16 @@ const Events = ({ loading, error }) => {
   ];
 
   const t = useI18n();
-  const renderedEvents = useMemo(() => {
-    return events.map((event, index) => (
-      <Event key={index} t={t} event={event} />
-    ));
-  }, [events]);
 
+  if (events?.length === 0) return null;
   return (
     <section className={styles.events}>
       <div className={styles.eventsTitle}>{t("events")}</div>
-      <div className={styles.eventsList}>{renderedEvents}</div>
+      <div className={styles.eventsList}>
+        {events.map((event, index) => (
+          <Event key={index} t={t} event={event} />
+        ))}
+      </div>
     </section>
   );
 };

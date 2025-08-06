@@ -9,7 +9,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { headers } from "next/headers";
 import { ToastContainer } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import { hideHeaderAndFooter } from "@/lib/utils/helpers/hideHeaderAndFooter";
 
@@ -20,8 +20,6 @@ import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
 import { getHomeData } from "@/lib/utils/api/home";
 
 import "../globals.css";
-
-
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -104,7 +102,7 @@ export default async function LocaleLayout({ children, params }) {
             <AmplitudeProvider />
             <main>
               {children}
-              <ToastContainer position="" autoClose={3000} />
+              <ToastContainer position="top-right" autoClose={3000} />
             </main>
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
