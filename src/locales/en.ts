@@ -229,4 +229,8 @@ export default {
   close:"Close",
   successfullySent: "Successfully Sent",
   events: "Events",
+  anotherForm:"Another Form",
+  backToHome:"Back To Home",
+  redirectingIn:"Redirecting in",
+  seconds:"seconds"
 } as const;

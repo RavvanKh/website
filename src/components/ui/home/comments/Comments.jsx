@@ -18,6 +18,8 @@ import "swiper/css/navigation";
 const Comments = ({ comments = [], loading, error }) => {
   const t = useI18n();
 
+  if (comments?.length === 0) return null;
+
   return (
     <section className={styles.comments}>
       <h2 className={styles.commentsTitle}>{t("whatOurStudentsSay")}</h2>
@@ -33,76 +35,79 @@ const Comments = ({ comments = [], loading, error }) => {
         ) : (
           <>
             <div className={styles.swiperContainer}>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              slidesPerView="auto"
-              centeredSlides={true}
-              initialSlide={1}
-              loop={true}
-              pagination={{
-                clickable: true,
-                bulletClass: `swiper-bullet ${styles.bullet}`,
-                bulletActiveClass: styles.active,
-              }}
-              navigation={{
-                nextEl: ".custom-next",
-                prevEl: ".custom-prev",
-              }}
-              className={styles.mySwiper}
-            >
-              {comments.slice(0, 8).map((comment) => (
-                <SwiperSlide key={comment.id} className={styles.swiperSlide}>
-                  <Comment comment={comment} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <div
-              className={`custom-prev ${styles.customNav} ${styles.customPrev}`}
-            >
-              <FaArrowLeft size={20} color="white" />
+              <Swiper
+                modules={[Navigation, Pagination]}
+                slidesPerView="auto"
+                centeredSlides={true}
+                initialSlide={1}
+                loop={true}
+                pagination={{
+                  clickable: true,
+                  bulletClass: `swiper-bullet ${styles.bullet}`,
+                  bulletActiveClass: styles.active,
+                }}
+                navigation={{
+                  nextEl: ".custom-next",
+                  prevEl: ".custom-prev",
+                }}
+                className={styles.mySwiper}
+              >
+                {comments.slice(0, 8).map((comment) => (
+                  <SwiperSlide key={comment.id} className={styles.swiperSlide}>
+                    <Comment comment={comment} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <div
+                className={`custom-prev ${styles.customNav} ${styles.customPrev}`}
+              >
+                <FaArrowLeft size={20} color="white" />
+              </div>
+              <div
+                className={`custom-next ${styles.customNav} ${styles.customNext}`}
+              >
+                <FaArrowRight size={20} color="white" />
+              </div>
             </div>
-            <div
-              className={`custom-next ${styles.customNav} ${styles.customNext}`}
-            >
-              <FaArrowRight size={20} color="white" />
+            <div className={styles.mobileSwiper}>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                slidesPerView="auto"
+                centeredSlides={true}
+                initialSlide={1}
+                spaceBetween={20}
+                loop={true}
+                pagination={{
+                  clickable: true,
+                  bulletClass: `swiper-bullet ${styles.bullet}`,
+                  bulletActiveClass: styles.active,
+                }}
+                navigation={{
+                  nextEl: ".custom-next",
+                  prevEl: ".custom-prev",
+                }}
+                className={styles.mySwiper}
+              >
+                {comments.slice(0, 8).map((comment) => (
+                  <SwiperSlide
+                    key={comment.id}
+                    className={styles.mobileSwiperSlide}
+                  >
+                    <Comment comment={comment} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <div
+                className={`custom-prev ${styles.customNav} ${styles.customPrev}`}
+              >
+                <FaArrowLeft size={20} color="white" />
+              </div>
+              <div
+                className={`custom-next ${styles.customNav} ${styles.customNext}`}
+              >
+                <FaArrowRight size={20} color="white" />
+              </div>
             </div>
-          </div>
-          <div className={styles.mobileSwiper}>
-            <Swiper
-              modules={[Navigation, Pagination]}
-              slidesPerView="auto"
-              centeredSlides={true}
-              initialSlide={1}
-              spaceBetween={20}
-              loop={true}
-              pagination={{
-                clickable: true,
-                bulletClass: `swiper-bullet ${styles.bullet}`,
-                bulletActiveClass: styles.active,
-              }}
-              navigation={{
-                nextEl: ".custom-next",
-                prevEl: ".custom-prev",
-              }}
-              className={styles.mySwiper}
-            >
-              {comments.slice(0, 8).map((comment) => (
-                <SwiperSlide key={comment.id} className={styles.mobileSwiperSlide}>
-                  <Comment comment={comment} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <div
-              className={`custom-prev ${styles.customNav} ${styles.customPrev}`}
-            >
-              <FaArrowLeft size={20} color="white" />
-            </div>
-            <div
-              className={`custom-next ${styles.customNav} ${styles.customNext}`}
-            >
-              <FaArrowRight size={20} color="white" />
-            </div>
-          </div>
           </>
         )}
       </div>
