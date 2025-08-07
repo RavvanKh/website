@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import ReCAPTCHA from "react-google-recaptcha";
+import { FaLink } from "react-icons/fa";
 
 import { toast } from "react-toastify";
 
@@ -42,45 +43,43 @@ const CourseApplicationForm = ({
 
   const hasCourse = !!courseId;
 
-  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+  const phoneRegex = /^\+\d{6,15}$/;
 
   const schema = yup.object().shape({
-    trainingId: yup.string().required("Training is required"),
+    trainingId: yup.string().required(t("trainingIsRequired")),
     firstName: yup
       .string()
-      .required("First name is required")
-      .min(2, "First name must be at least 2 characters"),
+      .required(t("firstNameIsRequired"))
+      .min(2, t("firstNameMin")),
     lastName: yup
       .string()
-      .required("Last name is required")
-      .min(2, "Last name must be at least 2 characters"),
+      .required(t("lastNameIsRequired"))
+      .min(2, t("lastNameMin")),
     emailAddress: yup
       .string()
-      .email("Invalid email format")
-      .required("Email is required"),
+      .email(t("invalidEmail"))
+      .required(t("emailIsRequired")),
     phoneNumber: yup
       .string()
-      .required("Phone number is required")
-      .matches(phoneRegex, "Please enter a valid phone number"),
+      .required(t("phoneNumberIsRequired"))
+      .matches(phoneRegex, t("invalidPhoneNumber")),
     educationalInstitution: yup
       .string()
-      .required("Educational institution is required"),
-    currentWorkPlace: yup.string().required("Current workplace is required"),
+      .required(t("educationalInstitutionIsRequired")),
+    currentWorkPlace: yup.string().required(t("currentWorkplaceIsRequired")),
     learningPreference: yup
       .string()
-      .required("Please select learning preference"),
+      .required(t("learningPreferenceIsRequired")),
     technicalKnowledgeLevel: yup
       .string()
-      .required("Please select your technical knowledge level"),
+      .required(t("technicalKnowledgeLevelIsRequired")),
     englishProficiencyLevel: yup
       .string()
-      .required("Please select your English proficiency level"),
+      .required(t("englishProficiencyLevelIsRequired")),
     paymentResponsibility: yup
       .string()
-      .required("Please select payment responsibility"),
-    referralSource: yup
-      .string()
-      .required("Please tell us how you heard about us"),
+      .required(t("paymentResponsibilityIsRequired")),
+    referralSource: yup.string().required(t("referralSourceIsRequired")),
     previouslyParticipatedTrainings: yup.array().of(yup.string()),
     additionalMessage: yup.string(),
   });
@@ -94,6 +93,21 @@ const CourseApplicationForm = ({
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
+    // defaultValues:{
+    //   trainingId:"java-se-oca",
+    //   firstName:"Ravan",
+    //   lastName:"Khaligov",
+    //   additionalMessage:"test message",
+    //   currentWorkPlace:"Ingress Academy",
+    //   educationalInstitution:"AzTU",
+    //   emailAddress:"revanxaliqov01@gmail.com",
+    //   englishProficiencyLevel:"A2",
+    //   learningPreference:"ONLINE",
+    //   paymentResponsibility:"BY_COMPANY",
+    //   previouslyParticipatedTrainings:[],
+    //   referralSource:"LINKEDIN",
+    //   technicalKnowledgeLevel:"BEGINNER"
+    // }
   });
 
   const watchedFields = watch();
@@ -149,6 +163,17 @@ const CourseApplicationForm = ({
     router.push(`${routes.trainingApplication}?${params.toString()}`);
   };
 
+  const handleCopyUrl = () => {
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        toast.success(t("clipboardSuccess"));
+      })
+      .catch((err) => {
+        toast.error(t("clipboardError"));
+      });
+  };
+
   useEffect(() => {
     if (courseId) {
       setValue("trainingId", courseId);
@@ -177,9 +202,19 @@ const CourseApplicationForm = ({
   return (
     <div className={styles.courseApplicationContainer}>
       <div className={styles.courseApplicationHeader}>
-        <h2 className={styles.courseApplicationTitle}>
-          {t("trainingApplication")}
-        </h2>
+        <div className={styles.courseApplicationSubHeader}>
+          <h2 className={styles.courseApplicationTitle}>
+            {t("trainingApplication")}
+          </h2>
+          {!formContinue && (
+            <FaLink
+              size={20}
+              className={styles.courseApplicationCopyUrl}
+              title={t("copy")}
+              onClick={handleCopyUrl}
+            />
+          )}
+        </div>
         <p className={styles.courseApplicationDescription}>
           {t("trainingApplicationRightDescription")}
         </p>
@@ -528,7 +563,6 @@ const CourseApplicationForm = ({
               </div>
             </div>
 
-            {/* Additional Information Section */}
             <div className={styles.formSection}>
               <h3 className={styles.sectionTitle}>
                 {t("additionalInformation")}

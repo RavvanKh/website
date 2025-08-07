@@ -15,7 +15,7 @@ const Navbar = ({ organization }) => {
       <div className={styles.navbarRightContainer}>
         <div className={styles.navbarDesktop}>
           <NavbarItems />
-          {/* <Apply /> */}
+          <Apply />
         </div>
         <div className={styles.navbarMobile}>
           <ContactPhone phone={organization?.phoneNumbers?.[0]} />

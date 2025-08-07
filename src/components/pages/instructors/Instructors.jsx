@@ -37,7 +37,7 @@ const InstructorsPage = () => {
           error={error.home}
         />
         <Customers
-          title="leadingCompaniesEmployingOurinstructors"
+          title="leadingCompaniesEmployingOurInstructors"
           customers={data.customers}
           loading={loading.home}
           error={error.home}

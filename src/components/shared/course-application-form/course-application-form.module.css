@@ -36,6 +36,12 @@
   color: rgba(26, 26, 26, 1);
 }
 
+.courseApplicationSubHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .courseApplicationTitle {
   font-size: 32px;
   font-weight: 700;
@@ -43,6 +49,21 @@
   font-family: "Nunito", sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 0;
+}
+
+.courseApplicationCopyUrl {
+  cursor: pointer;
+  cursor: pointer;
+  color: #023fcb;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+
+
+  &:hover {
+    opacity: 0.8;
+  }
+
 }
 
 .courseApplicationDescription {
@@ -96,7 +117,8 @@
   margin-bottom: 16px;
   align-self: flex-start;
 }
-.inputGroupContinue{
+
+.inputGroupContinue {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -419,7 +441,6 @@
   transform-origin: left top;
 }
 
-/* Media Queries */
 @media (max-width: 1024px) {
   .courseApplicationContainer {
     margin: 1rem;
