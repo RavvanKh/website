@@ -104,7 +104,7 @@ const CourseApplicationForm = ({
     //   englishProficiencyLevel:"A2",
     //   learningPreference:"ONLINE",
     //   paymentResponsibility:"BY_COMPANY",
-    //   previouslyParticipatedTrainings:[],
+    //   // previouslyParticipatedTrainings:[],
     //   referralSource:"LINKEDIN",
     //   technicalKnowledgeLevel:"BEGINNER"
     // }
@@ -285,7 +285,6 @@ const CourseApplicationForm = ({
 
         {!formContinue && (
           <>
-            {/* Personal Information Section */}
             <div className={styles.formSection}>
               <h3 className={styles.sectionTitle}>
                 {t("personalInformation")}
@@ -427,7 +426,6 @@ const CourseApplicationForm = ({
               </div>
             </div>
 
-            {/* Training Preferences Section */}
             <div className={styles.formSection}>
               <h3 className={styles.sectionTitle}>
                 {t("trainingPreferences")}
@@ -606,21 +604,21 @@ const CourseApplicationForm = ({
                       {t("previousTrainings")}
                     </span>
                   </label>
-                  <select
-                    multiple={true}
-                    {...register("previouslyParticipatedTrainings")}
-                    id="previouslyParticipatedTrainings"
-                    className={`${styles.select} ${
-                      errors.previouslyParticipatedTrainings ? styles.error : ""
-                    }`}
-                  >
-                    <option value="">{t("selectPreviousTrainings")}</option>
+
+                  <div className={styles.checkboxGroup}>
                     {courses?.map((course) => (
-                      <option key={course.id} value={course.id}>
-                        {course.name}
-                      </option>
+                      <label key={course.id} className={styles.checkboxLabel}>
+                        <input
+                          type="checkbox"
+                          value={course.id}
+                          className={styles.checkbox}
+                          {...register("previouslyParticipatedTrainings")}
+                        />
+                        <span>{course.name}</span>
+                      </label>
                     ))}
-                  </select>
+                  </div>
+
                   {errors.previouslyParticipatedTrainings && (
                     <span className={styles.errorMessage}>
                       {errors.previouslyParticipatedTrainings.message}

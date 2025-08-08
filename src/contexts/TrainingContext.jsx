@@ -39,7 +39,7 @@ export const TrainingProvider = ({ children, trainingKey }) => {
 
   const fetchTraining = useCallback(async () => {
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 500));
+    // await new Promise((r) => setTimeout(r, 500));
 
     const [trainingResult,graduatesResult] = await Promise.allSettled([
       getTrainingData(trainingKey),

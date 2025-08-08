@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
+
 const Details = dynamic(() => import("@/components/ui/home/details/Details"), {
   ssr: false,
 });
@@ -47,43 +49,49 @@ export default function Home() {
   const { data, filter, error, loading, updateFilter } = useGlobalData();
 
   return (
-    <div className={styles.home}>
-      <div className={styles.homeBackgroundContainer}>
-        <Details
+    <GlobalDataWrapper loading={loading.home} error={error.home}>
+      <div className={styles.home}>
+        <div className={styles.homeBackgroundContainer}>
+          <Details
+            loading={loading.home}
+            error={error.home}
+            details={data?.headlineDtos}
+          />
+          <OurCourses
+            courses={data.filteredCourses}
+            loading={loading.home}
+            error={error.home}
+            onChangeFilter={updateFilter}
+            categories={data.categories}
+            categoriesLoading={loading.home}
+            categoriesError={error.home}
+            filter={filter}
+          />
+        </div>
+        <WhyChooseUs reasons={data?.reasons} />
+        <Instructors
+          instructors={data.instructors}
           loading={loading.home}
           error={error.home}
-          details={data?.headlineDtos}
         />
-        <OurCourses
-          courses={data.filteredCourses}
+        <PracticePortal />
+        <Events
+          events={data.events}
           loading={loading.home}
           error={error.home}
-          onChangeFilter={updateFilter}
-          categories={data.categories}
-          categoriesLoading={loading.home}
-          categoriesError={error.home}
-          filter={filter}
         />
+        <Comments
+          loading={loading.comments}
+          error={error.comments}
+          comments={data.comments?.result?.reviews}
+        />
+        <Customers
+          customers={data.customers}
+          loading={loading.home}
+          error={error.home}
+        />
+        <CourseApplication courses={data.courses} formContinue={true} />
       </div>
-      <WhyChooseUs reasons={data?.reasons} />
-      <Instructors
-        instructors={data.instructors}
-        loading={loading.home}
-        error={error.home}
-      />
-      <PracticePortal />
-      <Events events={data.events} loading={loading.home} error={error.home} />
-      <Comments
-        loading={loading.comments}
-        error={error.comments}
-        comments={data.comments?.result?.reviews}
-      />
-      <Customers
-        customers={data.customers}
-        loading={loading.home}
-        error={error.home}
-      />
-      <CourseApplication courses={data.courses} formContinue={true} />
-    </div>
+    </GlobalDataWrapper>
   );
 }

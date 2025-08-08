@@ -72,8 +72,6 @@ const Roadmap = () => {
   return (
     <div className={styles.container}>
       <SharedSectionRenderer
-        error={error}
-        loading={loading}
         sections={selectSectionsAsComponentForRoadmap.map(
           ({ key, component }) => {
             const commonProps = { t, title: key };

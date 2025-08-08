@@ -23,8 +23,8 @@ export default {
   ourCoursesTitle: "Potensialınızı Peşəkarlığa Çevirin",
   ourCoursesDescription:
     "Hər səviyyə üçün nəzərdə tutulmuş IT və texnologiya kurslarımızı kəşf edin - əsasları öyrənən yeni başlayanlardan tutmuş qabaqcıl bacarıqları mənimsəyən peşəkarlara qədər.",
-  weeks: "həftələr",
-  hours: "saatlar",
+  weeks: "həftə",
+  hours: "saat",
   energeticInstructorsWith: "Enerjili Təlimçilərlə",
   realWorldExperience: "Real Dünya Təcrübəsi",
   instructorsSectionParagraph:
