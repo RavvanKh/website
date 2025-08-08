@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
-import styles from "./instructors.module.css";
+
 import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const InstructorsTitle = dynamic(
