@@ -9,6 +9,6 @@ export const getTrainingData = cache(async (id) => {
     const res = await customAxios.get(`/v1/courses/${id}`);
     return res.data;
   } catch (err) {
-    notFound()
+    notFound();
   }
 });

@@ -5,6 +5,11 @@ import ImgSkeleton from "@/components/shared/img-skeleton/ImgSkeleton";
 import { convertWeekToHour } from "@/lib/utils/helpers";
 import { convertWeekMonth } from "@/lib/utils/helpers/convertWeekToMonth";
 
+import {
+  LESSON_TYPES_ENUM,
+  LESSON_TYPES_ICON,
+} from "@/lib/constants/lessonTypes";
+
 import styles from "./training-title.module.css";
 
 const TrainingTitle = ({ training, t }) => {
@@ -15,6 +20,12 @@ const TrainingTitle = ({ training, t }) => {
           <h1>{training.name}</h1>
           <p>{training.description}</p>
           <div className={styles.trainingDurationBox}>
+            <div className={styles.trainingType}>
+              {LESSON_TYPES_ICON[training?.courseFormat]}
+              <div className={styles.durationInfoWrapper}>
+                <span>{t(LESSON_TYPES_ENUM[training?.courseFormat])}</span>
+              </div>
+            </div>
             <div className={styles.trainingDuration}>
               <Image
                 src="/icons/duration.svg"

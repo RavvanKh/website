@@ -1,15 +1,20 @@
-'use client'
-import React from 'react'
+"use client";
+import Link from "next/link";
 
-import { useI18n } from '@/locales/client'
+import { useI18n } from "@/locales/client";
 
-import styles from './apply.module.css'
+import { routes } from "@/lib/constants/routes";
+
+import styles from "./apply.module.css";
+
 
 const Apply = () => {
-  const t = useI18n()
+  const t = useI18n();
   return (
-    <button className={styles.navbarItemText}>{t("applyNow")}</button>
-  )
-}
+    <Link href={routes.trainingApplication} className={styles.navbarItemText}>
+      {t("applyNow")}
+    </Link>
+  );
+};
 
-export default Apply
+export default Apply;

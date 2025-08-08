@@ -1,11 +1,10 @@
-"use server";
 import { customAxios } from "@/lib/axios";
 
 import { cache } from "react";
 
-export const getHomeData = cache(async () => {
+export const getEvents = cache(async () => {
   try {
-    const res = await customAxios.get(`/v1/home`);
+    const res = await customAxios.get(`/v1/events`);
     return res.data;
   } catch (err) {
     throw new Error(err?.response?.data?.message);

@@ -16,7 +16,6 @@ const ImgSkeleton = ({
   style = {},
   defaultClass = "",
 }) => {
-  console.log(defaultClass);
 
   const [imageLoaded, setImageLoaded] = useState(false);
 

@@ -1,12 +1,11 @@
-import CourseApplication from '@/components/shared/course-application/CourseApplication'
-import React from 'react'
+import CourseApplication from "@/components/shared/course-application/CourseApplication";
 
 const Career = () => {
   return (
     <section>
-        <CourseApplication/>
+      <CourseApplication formContinue={true} />
     </section>
-  )
-}
+  );
+};
 
-export default Career
+export default Career;

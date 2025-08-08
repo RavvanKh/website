@@ -1,12 +1,15 @@
-"use server";
-import { applicationAxios } from "@/lib/axios";
+
+import {customAxios } from "@/lib/axios";
 
 export const createCourseApplication = async (data) => {
   try {
-    const res = await applicationAxios.post("/v1/applications", data);
-    return res.data;
+    await customAxios.post(
+      "/v1/course-applications",
+      data
+    );
   } catch (err) {
-    console.log(err);
-    throw new Error(err);
+    throw new Error(
+      err?.response?.data?.message || "Failed to create application"
+    );
   }
 };

@@ -33,6 +33,14 @@
     max-height: 340px;
 }
 
+.event{
+    min-height: 150px;
+    max-height: 150px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    object-fit: cover;
+}
+
 @media(max-width:1200px){
     .homeTitle{
         min-height: 300px;

@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import { useI18n } from "@/locales/client";
 
-import { useTraining } from "@/contexts/TrainingContext";
+import { useTraining } from "@/contexts/TrainingContext.jsx";
 
 import {
   defaultSectionForTraining,
@@ -34,7 +34,7 @@ const SharedSectionRenderer = dynamic(
     loading: () => null,
   }
 );
-import styles from './training.module.css'
+import styles from "./training.module.css";
 
 const Training = () => {
   const { training, loading, error } = useTraining();
@@ -110,7 +110,7 @@ const Training = () => {
   };
 
   const handleApply = () => {
-    handleSelectSection("courseApplicationForm");
+    handleSelectSection("trainingApplicationForm");
   };
 
   return (
@@ -152,8 +152,9 @@ const Training = () => {
               loading,
               error,
             },
-            courseApplicationForm: {
-              course: training,
+            trainingApplicationForm: {
+              courseId: training?.id,
+              formContinue: true,
             },
             relatedCourses: {
               showSlider: true,

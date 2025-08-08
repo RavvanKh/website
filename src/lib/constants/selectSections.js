@@ -93,10 +93,10 @@ export const selectSectionsAsComponentForTraining = [
   { key: "companies", component: Companies },
   // // { key: "feedbacks", component: Comments },
   { key: "instructors", component: Instructors },
-  {
-    key: "courseApplicationForm",
-    component: CourseApplicationForm,
-  },
+  // {
+  //   key: "trainingApplicationForm",
+  //   component: CourseApplicationForm,
+  // },
   {
     key: "relatedCourses",
     component: RelatedCourses,
@@ -131,10 +131,10 @@ export const selectSectionsAsComponentForRoadmap = [
     key: "graduatesHere",
     component: Instructors,
   },
-  {
-    key: "courseApplicationForm",
-    component: CourseApplicationForm,
-  },
+  // {
+  //   key: "trainingApplicationForm",
+  //   component: CourseApplicationForm,
+  // },
   { key: "faq", component: Faq },
 ];
 export const defaultSectionForRoadmap = "roles&responsibilities";

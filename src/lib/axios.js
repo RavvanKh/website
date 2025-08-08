@@ -1,9 +1,6 @@
-'use server'
-import { getCurrentLocale } from "@/locales/server";
 import axios from "axios";
 
-const API_DOMAIN =
-  process.env.NEXT_PUBLIC_API_DOMAIN;
+const API_DOMAIN = process.env.NEXT_PUBLIC_API_DOMAIN;
 
 const getMsUrl = (servicePath) => {
   const baseDomain = API_DOMAIN.endsWith("/")
@@ -21,7 +18,6 @@ const createAxiosInstance = (servicePath) => {
     baseURL,
     headers: {
       "Content-Type": "application/json",
-      // "Accept-Language": "en",
       "Cache-Control": "no-store",
     },
   });
@@ -31,23 +27,12 @@ export const quizAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_QUIZ_MS_URL
 );
 
-
-export const applicationAxios = createAxiosInstance(
-  process.env.NEXT_PUBLIC_APPLICATION_MS_URL
-);
-
-
 export const customAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_BASE_URL
 );
 
-customAxios.interceptors.request.use(
-    async (config) => {
-      const locale = await getCurrentLocale()
-      config.headers["Accept-Language"] = locale;
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+
+export const userAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_USERS_MS_URL
+
+)

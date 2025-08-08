@@ -6,6 +6,13 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 
+import { headers } from "next/headers";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
+import { hideHeaderAndFooter } from "@/lib/utils/helpers/hideHeaderAndFooter";
+
 import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
 import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
@@ -13,8 +20,6 @@ import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
 import { getHomeData } from "@/lib/utils/api/home";
 
 import "../globals.css";
-import { headers } from "next/headers";
-import { hideHeaderAndFooter } from "@/lib/utils/helpers/hideHeaderAndFooter";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -88,7 +93,6 @@ export default async function LocaleLayout({ children, params }) {
 
   const isHide = hideHeaderAndFooter(pathname);
 
-
   return (
     <html lang={locale} suppressHydrationWarning>
       <body suppressHydrationWarning>
@@ -96,7 +100,10 @@ export default async function LocaleLayout({ children, params }) {
           <GlobalDataProvider>
             {!isHide && <Header />}
             <AmplitudeProvider />
-            <main>{children}</main>
+            <main>
+              {children}
+              <ToastContainer position="top-right" autoClose={3000} />
+            </main>
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GOOGLE_KEY} />
             <SpeedInsights />

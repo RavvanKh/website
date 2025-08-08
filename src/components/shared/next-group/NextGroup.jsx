@@ -1,18 +1,22 @@
+import Link from "next/link";
+
 import { RiLoader2Fill } from "react-icons/ri";
 import { MdOutlineFileDownload } from "react-icons/md";
+
+import { routes } from "@/lib/constants/routes";
 
 import { convertStringToDate } from "@/lib/utils/helpers";
 
 import styles from "./next-group.module.css";
 
+
 const NextGroup = ({
   isDownloadingSyllabus = false,
   t,
   onClickApply,
-  onClickSyllabus,
   url,
   nextGroup,
-  training,
+  training
 }) => {
   const formatted = convertStringToDate(nextGroup?.startDate);
 
@@ -47,14 +51,11 @@ const NextGroup = ({
           </button>
         </a>
 
-        <a
-          href="https://docs.google.com/forms/d/e/1FAIpQLSc5RF6OP5SmUqhaCYl3gBbctvJPR7v7HqYFu2IyZPv8bc35eQ/viewform"
-          target="_blank"
-        >
-          <button className={styles.nextGroupApply} onClick={onClickApply}>
+        <Link href={`${routes.trainingApplication}?trainingId=${training?.id}`}>
+          <button className={styles.nextGroupApply}>
             {t("apply")}
           </button>
-        </a>
+        </Link>
       </div>
     </div>
   );
