@@ -6,9 +6,21 @@ import dynamic from "next/dynamic";
 import { useI18n } from "@/locales/client";
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
-const Filters = dynamic(() => import("@/components/ui/trainings/filters/Filters"), { ssr: false, loading: () => null });
-const FilteredTrainings = dynamic(() => import("@/components/ui/trainings/filtered-trainings/FilteredTrainings"), { ssr: false, loading: () => null });
-const CourseTypes = dynamic(() => import("@/components/ui/home/our-courses/course-types/CourseTypes"), { ssr: false, loading: () => null });
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
+
+const Filters = dynamic(
+  () => import("@/components/ui/trainings/filters/Filters"),
+  { ssr: false, loading: () => null }
+);
+const FilteredTrainings = dynamic(
+  () =>
+    import("@/components/ui/trainings/filtered-trainings/FilteredTrainings"),
+  { ssr: false, loading: () => null }
+);
+const CourseTypes = dynamic(
+  () => import("@/components/ui/home/our-courses/course-types/CourseTypes"),
+  { ssr: false, loading: () => null }
+);
 
 import { filterOptions } from "@/lib/constants/filterOptions";
 
@@ -18,6 +30,7 @@ const Trainings = () => {
   const {
     data: { courses, categories },
     loading,
+    error
   } = useGlobalData();
 
   const t = useI18n();
@@ -110,24 +123,30 @@ const Trainings = () => {
   }, [categories]);
 
   return (
-    <section className={styles.trainings}>
-      <div className={styles.courseTypes}>
-        <CourseTypes t={t} selectedType={filter.type} onClick={updateFilter} />
-      </div>
-      <div className={styles.trainingsContent}>
-        <Filters
-          loading={loading.home}
-          trainings={filteredTrainings}
-          activeFilter={filter}
-          filters={filters}
-          onClick={updateFilter}
-        />
-        <FilteredTrainings
-          loading={loading.home}
-          trainings={filteredTrainings}
-        />
-      </div>
-    </section>
+    <GlobalDataWrapper loading={loading.home} error={error.home}>
+      <section className={styles.trainings}>
+        <div className={styles.courseTypes}>
+          <CourseTypes
+            t={t}
+            selectedType={filter.type}
+            onClick={updateFilter}
+          />
+        </div>
+        <div className={styles.trainingsContent}>
+          <Filters
+            loading={loading.home}
+            trainings={filteredTrainings}
+            activeFilter={filter}
+            filters={filters}
+            onClick={updateFilter}
+          />
+          <FilteredTrainings
+            loading={loading.home}
+            trainings={filteredTrainings}
+          />
+        </div>
+      </section>
+    </GlobalDataWrapper>
   );
 };
 

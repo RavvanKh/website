@@ -35,6 +35,7 @@ const SharedSectionRenderer = dynamic(
   }
 );
 import styles from "./training.module.css";
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const Training = () => {
   const { training, loading, error } = useTraining();
@@ -114,101 +115,101 @@ const Training = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <SharedSectionRenderer
-        sections={filteredSections.map(({ key, component }) => {
-          const commonProps = { t, title: key };
+    <GlobalDataWrapper error={error} loading={loading}>
+      <div className={styles.container}>
+        <SharedSectionRenderer
+          sections={filteredSections.map(({ key, component }) => {
+            const commonProps = { t, title: key };
 
-          const propsMap = {
-            advantages: {
-              advantages: training?.advantages,
-            },
-            trainingProgram: {
-              trainingProgram: {
-                name: training?.name,
-                lessons: training?.syllabus,
+            const propsMap = {
+              advantages: {
+                advantages: training?.advantages,
               },
-              loading,
-              error,
-            },
-            upcomingGroups: {
-              onClickApply: handleApply,
-              upcomingGroups: training?.upcomingSessions,
-            },
-            graduates: {
-              graduates: training?.graduates,
-              loading,
-              error,
-            },
-            companies: {
-              title: "graduatesTitle",
-              subTitle: "graduatesDescription",
-              companies: training?.graduatesWorkplaces,
-              loading,
-              error,
-            },
-            instructors: {
-              instructors: training?.instructors,
-              loading,
-              error,
-            },
-            trainingApplicationForm: {
-              courseId: training?.id,
-              formContinue: true,
-            },
-            relatedCourses: {
-              showSlider: true,
-              relatedCourses: training?.relatedCourses,
-              loading,
-              error,
-            },
-            faq: {
-              faqData: training?.faq,
-            },
-            prerequisites: {
-              arr: training?.prerequisites,
-            },
-            trainingObjectives: {
-              arr: training?.objectives,
-            },
-          };
+              trainingProgram: {
+                trainingProgram: {
+                  name: training?.name,
+                  lessons: training?.syllabus,
+                },
+                loading,
+                error,
+              },
+              upcomingGroups: {
+                onClickApply: handleApply,
+                upcomingGroups: training?.upcomingSessions,
+              },
+              graduates: {
+                graduates: training?.graduates,
+                loading,
+                error,
+              },
+              companies: {
+                title: "graduatesTitle",
+                subTitle: "graduatesDescription",
+                companies: training?.graduatesWorkplaces,
+                loading,
+                error,
+              },
+              instructors: {
+                instructors: training?.instructors,
+                loading,
+                error,
+              },
+              trainingApplicationForm: {
+                courseId: training?.id,
+                formContinue: true,
+              },
+              relatedCourses: {
+                showSlider: true,
+                relatedCourses: training?.relatedCourses,
+                loading,
+                error,
+              },
+              faq: {
+                faqData: training?.faq,
+              },
+              prerequisites: {
+                arr: training?.prerequisites,
+              },
+              trainingObjectives: {
+                arr: training?.objectives,
+              },
+            };
 
-          return {
-            key,
-            component,
-            props: {
-              ...commonProps,
-              ...(propsMap[key] || {}),
-            },
-          };
-        })}
-        topPanel={<TrainingTitle training={training} t={t} />}
-        loading={loading}
-        error={error}
-        onSelectSection={setSelectedSection}
-        selectedSection={selectedSection}
-        sectionRefs={sectionRefs}
-        leftPanel={
-          <>
-            <SelectSection
-              t={t}
-              selectedSection={selectedSection}
-              onClick={handleSelectSection}
-              sections={filteredSections}
-            />
-            <NextGroup
-              training={training}
-              url={training?.syllabusUrl}
-              nextGroup={training?.upcomingSessions?.[0]}
-              isDownloadingSyllabus={isDownloadingSyllabus}
-              t={t}
-              onClickSyllabus={handleDownloadSyllabus}
-              onClickApply={handleApply}
-            />
-          </>
-        }
-      />
-    </div>
+            return {
+              key,
+              component,
+              props: {
+                ...commonProps,
+                ...(propsMap[key] || {}),
+              },
+            };
+          })}
+          topPanel={<TrainingTitle training={training} t={t} />}
+          onSelectSection={setSelectedSection}
+          selectedSection={selectedSection}
+          sectionRefs={sectionRefs}
+          leftPanel={
+            <>
+              <SelectSection
+                t={t}
+                selectedSection={selectedSection}
+                onClick={handleSelectSection}
+                sections={filteredSections}
+              />
+              <NextGroup
+                training={training}
+                url={training?.syllabusUrl}
+                nextGroup={training?.upcomingSessions?.[0]}
+                isDownloadingSyllabus={isDownloadingSyllabus}
+                t={t}
+                onClickSyllabus={handleDownloadSyllabus}
+                onClickApply={handleApply}
+              />
+            </>
+          }
+        />
+      </div>
+    </GlobalDataWrapper>
   );
 };
 

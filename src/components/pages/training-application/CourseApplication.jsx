@@ -13,30 +13,17 @@ const CourseApplicationForm = dynamic(
   }
 );
 import styles from "./course-application.module.css";
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const CourseApplication = ({ params = {} }) => {
   const { data, loading, error } = useGlobalData();
 
-  if (loading?.home)
-    return (
-      <section className={styles.loaderContainer}>
-        <Loader size="medium" color="primary" />
-      </section>
-    );
-  if (error?.home)
-    return (
-      <section className={styles.loaderContainer}>
-        <p className={styles.errorTitle}>Error</p>
-        <p className={styles.errorMessage}>{error}</p>
-        <p className={styles.errorSubtitle}>
-          Unable to load course application
-        </p>
-      </section>
-    );
   return (
-    <section className={styles.courseApplication}>
-      <CourseApplicationForm courses={data?.courses} params={params} />
-    </section>
+    <GlobalDataWrapper loading={loading.home} error={error.home}>
+      <section className={styles.courseApplication}>
+        <CourseApplicationForm courses={data?.courses} params={params} />
+      </section>
+    </GlobalDataWrapper>
   );
 };
 

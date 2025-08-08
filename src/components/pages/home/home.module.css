@@ -1,9 +1,10 @@
-.home{
+.home {
     position: relative;
     min-height: 100vh;
-    .homeBackgroundContainer{
+
+    .homeBackgroundContainer {
         background: #f7f9ff;
-        gap:48px;
+        gap: 48px;
         display: flex;
         flex-direction: column;
     }

@@ -1,8 +1,9 @@
 "use client";
+import dynamic from "next/dynamic";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
-import styles from "./instructors.module.css";
-import dynamic from "next/dynamic";
+
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const InstructorsTitle = dynamic(
   () => import("@/components/ui/instructors/InstructorsTitle"),
@@ -24,11 +25,13 @@ const CourseApplication = dynamic(
   { ssr: false, loading: () => null }
 );
 
+import styles from "./instructors.module.css";
+
 const InstructorsPage = () => {
   const { data, error, loading } = useGlobalData();
 
   return (
-    <>
+    <GlobalDataWrapper error={error.home} loading={loading.home}>
       <section className={styles.instructors}>
         <InstructorsTitle />
         <Instructors
@@ -44,7 +47,7 @@ const InstructorsPage = () => {
         />
         <CourseApplication formContinue={true} />
       </section>
-    </>
+    </GlobalDataWrapper>
   );
 };
 

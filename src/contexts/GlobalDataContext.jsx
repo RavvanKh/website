@@ -37,8 +37,8 @@ export const GlobalDataProvider = ({ children }) => {
   });
 
   const [loading, setLoading] = useState({
-    home: false,
-    comments: false,
+    home: true,
+    comments: true,
   });
 
   const [error, setError] = useState({
@@ -89,7 +89,6 @@ export const GlobalDataProvider = ({ children }) => {
   );
 
   const fetchAllData = useCallback(async () => {
-    setLoading({ home: true, comments: true });
 
       await new Promise((r) => setTimeout(r, 500));
 
