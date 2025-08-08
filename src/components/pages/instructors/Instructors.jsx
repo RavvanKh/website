@@ -39,7 +39,7 @@ const InstructorsPage = () => {
           error={error.home}
         />
         <Customers
-          title="leadingCompaniesEmployingOurinstructors"
+          title="leadingCompaniesEmployingOurGraduates"
           customers={data.customers}
           loading={loading.home}
           error={error.home}

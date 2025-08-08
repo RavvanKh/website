@@ -3,18 +3,24 @@
 import React, { useState } from "react";
 import styles from "./certificate.module.css";
 import Image from "next/image";
+import { certificateMockData } from "../../../lib/constants/certificateMock";
+
 const logo = "/icons/logo.svg";
 
 const Certificate = () => {
   const [copySuccess, setCopySuccess] = useState(false);
 
+  // Use mock data
+  const { certificate, certificateDetails, aboutCertificate, share } =
+    certificateMockData;
+
   // Handle sharing to social media platforms
   const handleShare = (platform) => {
     const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent("Check out my certification from Ingress Academy!");
-    
+    const text = encodeURIComponent(share.shareText);
+
     let shareUrl = "";
-    
+
     switch (platform) {
       case "whatsapp":
         shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
@@ -28,24 +34,25 @@ const Certificate = () => {
       default:
         return;
     }
-    
+
     // Open in a new tab
     window.open(shareUrl, "_blank", "noopener,noreferrer");
   };
 
   // Handle copying the link to clipboard
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href)
+    navigator.clipboard
+      .writeText(window.location.href)
       .then(() => {
         setCopySuccess(true);
         // Reset success message after 2 seconds
         setTimeout(() => setCopySuccess(false), 2000);
       })
-      .catch(err => {
-        console.error('Failed to copy link: ', err);
+      .catch((err) => {
+        console.error("Failed to copy link: ", err);
       });
   };
-  
+
   return (
     <section className={styles.certificatePage}>
       <div className={styles.certificateWrapper}>
@@ -71,25 +78,27 @@ const Certificate = () => {
                   </div>
                 </div>
               </div>
-              <div className={styles.name}>TOFIG MIKAYILZADA</div>
+              <div className={styles.name}>{certificate.name}</div>
               <div className={styles.nameUnderline} />
-              <div className={styles.awardedText}>has been awarded to the</div>
-              <div className={styles.diploma}>DIPLOMA</div>
+              <div className={styles.awardedText}>
+                {certificate.awardedText}
+              </div>
+              <div className={styles.diploma}>{certificate.diploma}</div>
               <div className={styles.requirements}>
-                has successfully completed of requirements of
+                {certificate.requirements}
               </div>
-              <div className={styles.course}>
-                Advanced Backend &amp; Microservices Development
-              </div>
+              <div className={styles.course}>{certificate.course}</div>
               <div className={styles.courseUnderline} />
               <div className={styles.footer}>
                 <div>
-                  <div className={styles.date}>28.06.2025</div>
+                  <div className={styles.date}>{certificate.date}</div>
                   <div className={styles.label}>Date</div>
                 </div>
                 <div className={styles.signatureBlock}>
-                  <div className={styles.signature}>Signature</div>
-                  <div className={styles.label}>Director</div>
+                  <div className={styles.signature}>
+                    {certificate.signature}
+                  </div>
+                  <div className={styles.label}>{certificate.director}</div>
                 </div>
               </div>
             </div>
@@ -105,22 +114,30 @@ const Certificate = () => {
               <span className={styles.cardIcon}>👤</span>
               <div>
                 <div className={styles.cardLabel}>Certificate Holder</div>
-                <div className={styles.cardValue}>Sarah Chen</div>
-                <div className={styles.cardSubValue}>sarah.chen@email.com</div>
+                <div className={styles.cardValue}>
+                  {certificateDetails.holder.name}
+                </div>
+                <div className={styles.cardSubValue}>
+                  {certificateDetails.holder.email}
+                </div>
               </div>
             </div>
             <div className={styles.cardItem}>
               <span className={styles.cardIcon}>📅</span>
               <div>
                 <div className={styles.cardLabel}>Issue Date</div>
-                <div className={styles.cardValue}>November 20, 2023</div>
+                <div className={styles.cardValue}>
+                  {certificateDetails.issueDate}
+                </div>
               </div>
             </div>
             <div className={styles.cardItem}>
               <span className={styles.cardIcon}>🛡️</span>
               <div>
                 <div className={styles.cardLabel}>Credential ID</div>
-                <div className={styles.cardCredential}>DI-UX-2023-045</div>
+                <div className={styles.cardCredential}>
+                  {certificateDetails.credentialId}
+                </div>
               </div>
             </div>
           </div>
@@ -132,10 +149,7 @@ const Certificate = () => {
               <div>
                 <div className={styles.cardLabel}>Description</div>
                 <div className={styles.cardDescription}>
-                  Professional certification covering user experience design
-                  principles, interface design, prototyping, and usability
-                  testing. Demonstrates proficiency in creating user-centered
-                  designs and conducting user research.
+                  {aboutCertificate.description}
                 </div>
               </div>
             </div>
@@ -144,10 +158,11 @@ const Certificate = () => {
               <div>
                 <div className={styles.cardLabel}>Skills Covered</div>
                 <div className={styles.cardSkills}>
-                  <span className={styles.cardSkill}>Figma</span>
-                  <span className={styles.cardSkill}>User Research</span>
-                  <span className={styles.cardSkill}>Prototyping</span>
-                  <span className={styles.cardSkill}>Accessibility</span>
+                  {aboutCertificate.skills.map((skill, index) => (
+                    <span key={index} className={styles.cardSkill}>
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
@@ -155,7 +170,9 @@ const Certificate = () => {
               <span className={styles.cardIcon}>🏢</span>
               <div>
                 <div className={styles.cardLabel}>Issuing Organization</div>
-                <div className={styles.cardValue}>Design Institute</div>
+                <div className={styles.cardValue}>
+                  {aboutCertificate.issuingOrganization}
+                </div>
               </div>
             </div>
           </div>
@@ -164,10 +181,8 @@ const Certificate = () => {
       {/* Share content via social media like whatsapp, linkedin, link, etc */}
       <section className={styles.shareSection}>
         <div className={styles.shareContainer}>
-          <h2 className={styles.shareTitle}>Share Your Achievement</h2>
-          <p className={styles.shareDescription}>
-            Let your network know about your new certification
-          </p>
+          <h2 className={styles.shareTitle}>{share.title}</h2>
+          <p className={styles.shareDescription}>{share.description}</p>
           <div className={styles.shareButtons}>
             <button
               className={styles.shareButton}
@@ -214,8 +229,8 @@ const Certificate = () => {
               </svg>
               <span>Facebook</span>
             </button>
-            <button 
-              className={styles.copyLinkButton} 
+            <button
+              className={styles.copyLinkButton}
               aria-label="Copy Link"
               onClick={handleCopyLink}
             >
