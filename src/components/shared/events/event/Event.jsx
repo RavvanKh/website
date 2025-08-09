@@ -7,7 +7,6 @@ import ImgSkeleton from "../../img-skeleton/ImgSkeleton";
 import styles from "./event.module.css";
 
 const Event = ({ event, t }) => {
-    console.log("event")
   const formattedDate = format(new Date(event.time), "d MMMM, yyyy", {
     locale: az,
   }).toLowerCase();

@@ -14,6 +14,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { getHomeData } from "@/lib/utils/api/home";
 import { getComments } from "@/lib/utils/api/comments";
 import { filterByCategory } from "@/lib/utils/helpers";
+import { errorCodes } from "@/lib/constants/errorCodes";
 
 const GlobalDataContext = createContext();
 
@@ -89,31 +90,31 @@ export const GlobalDataProvider = ({ children }) => {
   );
 
   const fetchAllData = useCallback(async () => {
-
-      await new Promise((r) => setTimeout(r, 500));
-
     const [homeResult, commentsResult] = await Promise.allSettled([
       getHomeData(),
       getComments(),
     ]);
 
-
     if (homeResult.status === "fulfilled") {
       const homeData = homeResult.value;
-      setData((prevData) => ({
-        ...prevData,
-        ...homeData,
-        totalCourses: homeData.courses?.length || 0,
-        totalInstructors: homeData.instructors?.length || 0,
-      }));
+      if (homeData === errorCodes.home.maintenance) {
+        setError((prev) => ({ ...prev, home: true }));
+      } else {
+        setData((prevData) => ({
+          ...prevData,
+          ...homeData,
+          totalCourses: homeData?.courses?.length || 0,
+          totalInstructors: homeData?.instructors?.length || 0,
+        }));
 
-      hasFetched.current = true;
-      setError((prev) => ({ ...prev, home: null }));
+        hasFetched.current = true;
+        setError((prev) => ({ ...prev, home: null }));
+      }
     } else {
-      setError((prev) => ({ ...prev, home: homeResult.reason.message }));
+      setError((prev) => ({ ...prev, home: true }));
     }
 
-    if (commentsResult.status === "fulfilled") {
+    if (commentsResult.status === "fulfilled" && commentsResult.value) {
       setData((prevData) => ({
         ...prevData,
         comments: commentsResult.value,

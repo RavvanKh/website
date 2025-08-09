@@ -3,11 +3,14 @@ import Home from "@/components/pages/home/Home.jsx";
 import { getHomeData } from "@/lib/utils/api/home";
 import { generateSchema } from "@/lib/utils/helpers";
 
-
 export default async function HomePage() {
-  const { organization } = await getHomeData();
+  let optimizedSchema = null;
+  try {
+    const { organization } = await getHomeData();
 
-  const optimizedSchema = generateSchema("organization", organization);
+    optimizedSchema = generateSchema("organization", organization);
+  } catch (_) {}
+
   return (
     <>
       <script
