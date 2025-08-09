@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap");
 
+.certificatePage {
+  background: #f7f7fa;
+}
+
 .certificateWrapper {
-  min-height: 100vh;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   padding-top: 20px;
   justify-content: center;
-  background: #f7f7fa;
 }
 
 .certificateContainer {
@@ -43,7 +45,7 @@
 
 .logoAndTitle {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 16px;
 }
 
@@ -157,7 +159,6 @@
 }
 
 .signature {
-  /* font-family: "Dancing Script", cursive, "Arial"; */
   font-family: "MonteCarlo", cursive;
   font-weight: 400;
   font-style: normal;
@@ -216,5 +217,191 @@
   }
   .course {
     font-size: 1.05rem;
+  }
+}
+
+/* Card Section */
+.certificateCardSection {
+  display: flex;
+  justify-content: center;
+  padding: 60px 0px;
+}
+
+.certificateCard {
+  background: #fff;
+
+  box-shadow: 0 2px 16px rgba(31, 41, 55, 0.08);
+  display: flex;
+  gap: 48px;
+  padding: 40px 48px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.cardColumn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cardTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #181c32;
+}
+
+.cardItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.cardIcon {
+  font-size: 1.7rem;
+  margin-top: 2px;
+}
+
+.cardLabel {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.cardValue {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.cardSubValue {
+  font-size: 1rem;
+  color: #888;
+}
+
+.cardCredential {
+  background: #f7f7fa;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #222;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.cardDescription {
+  color: #6b7280;
+  font-size: 1.08rem;
+  margin-top: 2px;
+}
+
+.cardSkills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.cardSkill {
+  background: #f7f7fa;
+  border-radius: 16px;
+  padding: 4px 14px;
+  font-size: 1rem;
+  color: #222;
+  font-weight: 600;
+  border: 1px solid #e5e7eb;
+}
+
+/* Share Section */
+.shareSection {
+  display: flex;
+  justify-content: center;
+  padding: 0px 0 80px;
+}
+
+.shareContainer {
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(31, 41, 55, 0.08);
+  padding: 32px 48px;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.shareTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #181c32;
+}
+
+.shareDescription {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.shareButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.shareButton, .copyLinkButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f7f7fa;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shareButton:hover, .copyLinkButton:hover {
+  background: #eef1f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.copyLinkButton {
+  background: #fff;
+  border: 1px solid #3f79ff;
+  color: #3f79ff;
+}
+
+.copyLinkButton:hover {
+  background: #f0f5ff;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .shareContainer {
+    padding: 24px 16px;
+  }
+  
+  .shareButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .shareButton, .copyLinkButton {
+    justify-content: center;
+  }
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 900px) {
+  .certificateCard {
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px 12px;
   }
 }

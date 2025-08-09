@@ -40,7 +40,7 @@ const InstructorsPage = () => {
           error={error.home}
         />
         <Customers
-          title="leadingCompaniesEmployingOurInstructors"
+          title="leadingCompaniesEmployingOurGraduates"
           customers={data.customers}
           loading={loading.home}
           error={error.home}
@@ -48,6 +48,7 @@ const InstructorsPage = () => {
         <CourseApplication formContinue={true} />
       </section>
     </GlobalDataWrapper>
+    
   );
 };
 
