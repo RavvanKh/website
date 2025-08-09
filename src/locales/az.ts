@@ -247,4 +247,9 @@ export default {
   paymentResponsibilityIsRequired: "Ödəniş məsuliyyətini seçin",
   referralSourceIsRequired: "Zəhmət olmasa bizi haradan eşitdiyinizi göstərin",
   reasonsToChooseUs: "Bizi seçmək üçün səbəblər",
+  maintenanceTitle: "Tezliklə geri dönəcəyik",
+  underMaintenance:
+    "Veb saytımız hal-hazırda planlaşdırılmış texniki işlər səbəbilə müvəqqəti olaraq əlçatmazdır.",
+  plsTryAgainInAFewMinutes:
+    "Zəhmət olmasa bir neçə dəqiqədən sonra yenidən yoxlayın. Səbriniz üçün təşəkkür edirik!",
 } as const;

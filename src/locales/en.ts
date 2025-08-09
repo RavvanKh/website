@@ -249,8 +249,14 @@ export default {
   educationalInstitutionIsRequired: "Educational institution is required",
   currentWorkplaceIsRequired: "Current workplace is required",
   learningPreferenceIsRequired: "Please select learning preference",
-  technicalKnowledgeLevelIsRequired: "Please select your technical knowledge level",
-  englishProficiencyLevelIsRequired: "Please select your English proficiency level",
+  technicalKnowledgeLevelIsRequired:
+    "Please select your technical knowledge level",
+  englishProficiencyLevelIsRequired:
+    "Please select your English proficiency level",
   paymentResponsibilityIsRequired: "Please select payment responsibility",
-  referralSourceIsRequired: "Please tell us how you heard about us"
+  referralSourceIsRequired: "Please tell us how you heard about us",
+  maintenanceTitle: "We’ll Be Back Soon",
+  underMaintenance:
+    "Our website is currently undergoing scheduled maintenance.",
+  plsTryAgainInAFewMinutes: "Please try again in a few minutes.",
 } as const;

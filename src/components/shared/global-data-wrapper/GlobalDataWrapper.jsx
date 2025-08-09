@@ -1,4 +1,5 @@
 import Loader from "@/components/shared/loader/Loader";
+import Error from "@/components/shared/error/Error"
 
 import styles from "./global-data-wrapper.module.css";
 const GlobalDataWrapper = ({ children, loading, error }) => {
@@ -13,7 +14,7 @@ const GlobalDataWrapper = ({ children, loading, error }) => {
   if (error) {
     return (
       <section className={styles.loadingContainer}>
-        <div>{error}</div>
+        <Error/>
       </section>
     );
   }

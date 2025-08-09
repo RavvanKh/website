@@ -1,7 +1,9 @@
 "use client";
 
+import { errorCodes } from "@/lib/constants/errorCodes";
 import { getGraduates } from "@/lib/utils/api/graduates";
 import { getTrainingData } from "@/lib/utils/api/training";
+import { notFound } from "next/navigation";
 
 import {
   createContext,
@@ -20,7 +22,7 @@ export const TrainingProvider = ({ children, trainingKey }) => {
     durationInWeeks: 0,
     faq: [],
     graduatesWorkplaces: [],
-    graduates:[],
+    graduates: [],
     hoursPerSession: 0,
     icon: null,
     id: "",
@@ -34,30 +36,34 @@ export const TrainingProvider = ({ children, trainingKey }) => {
     upcomingSessions: [],
   });
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchTraining = useCallback(async () => {
-    setLoading(true);
-    // await new Promise((r) => setTimeout(r, 500));
-
-    const [trainingResult,graduatesResult] = await Promise.allSettled([
+    const [trainingResult, graduatesResult] = await Promise.allSettled([
       getTrainingData(trainingKey),
       getGraduates(trainingKey, 0, 100),
     ]);
+
+
     if (trainingResult.status === "fulfilled") {
-      setTraining(trainingResult.value);
+      if (trainingResult.value === errorCodes.training.notFound) {
+        notFound();
+      } else if (trainingResult.value === errorCodes.training.maintenance) {
+        setError(true);
+      } else {
+        setTraining(trainingResult.value);
+      }
     } else {
-      setError(trainingResult.reason);
+      setError(true);
     }
-    
-    if(graduatesResult.status === "fulfilled") {
+
+    if (graduatesResult.status === "fulfilled") {
       setTraining((prevTraining) => ({
         ...prevTraining,
         graduates: graduatesResult.value.content,
       }));
-    }
-    else {
+    } else {
       setError(graduatesResult.reason);
     }
     setLoading(false);
