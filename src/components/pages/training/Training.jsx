@@ -6,6 +6,8 @@ import { useI18n } from "@/locales/client";
 
 import { useTraining } from "@/contexts/TrainingContext.jsx";
 
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
+
 import {
   defaultSectionForTraining,
   selectSectionsAsComponentForTraining,
@@ -35,7 +37,6 @@ const SharedSectionRenderer = dynamic(
   }
 );
 import styles from "./training.module.css";
-import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const Training = () => {
   const { training, loading, error } = useTraining();
@@ -44,7 +45,7 @@ const Training = () => {
 
   const [selectedSection, setSelectedSection] = useState(
     defaultSectionForTraining
-  );
+  );  
 
   const t = useI18n();
 

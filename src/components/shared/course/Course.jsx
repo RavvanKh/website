@@ -24,8 +24,8 @@ const Course = ({
   const t = useI18n();
 
   return (
-    <Link href={`${routes.trainings}/${course?.id}`} legacyBehavior>
-      <a
+    <Link href={`${routes.trainings}/${course?.id}`}>
+      <div
         className={`${styles.courseLink} ${
           direction === "row" ? styles.courseLinkRow : styles.courseLinkColumn
         }`}
@@ -103,7 +103,7 @@ const Course = ({
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </Link>
   );
 };
