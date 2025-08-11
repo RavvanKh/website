@@ -28,6 +28,16 @@
             padding: 6px 0;
             display: flex;
             flex-direction: column;
+            .subTaskList {
+                margin-top: 6px;
+                padding-left: 28px; 
+                list-style: disc;
+                /* border-left: 2px solid #ddd; */
+              }
+              
+              .subTask {
+                padding: 4px 0;
+              }
 
             .taskInfo {
                 display: flex;

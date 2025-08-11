@@ -49,19 +49,22 @@ const Lesson = ({ lesson, isExpanded, pdfView }) => {
         className={`${styles.taskList} ${isOpen ? styles.open : styles.closed}`}
       >
         {lesson?.children?.map((task, index) => (
-          <li key={index} className={styles.task}>
+          <li key={`child-${index}`} className={styles.task}>
             <div className={styles.taskInfo}>
               {!pdfView && <div>{index + 1}</div>}
               <p>{task.name}</p>
             </div>
-            {index !== lesson.children.length - 1 && !pdfView && (
-              <Image
-                src="/icons/task.png"
-                height={20}
-                width={18}
-                alt="task"
-                loading="lazy"
-              />
+
+            {task.children && task.children.length > 0 && (
+              <ul className={styles.subTaskList}>
+                {task.children.map((subTask, subIndex) => (
+                  <li key={`subChild-${subIndex}`} className={styles.subTask}>
+                    <div className={styles.taskInfo}>
+                      <p>{subTask.name}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             )}
           </li>
         ))}
