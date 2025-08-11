@@ -1,3 +1,4 @@
+'use client'
 import Loader from "@/components/shared/loader/Loader";
 import Error from "@/components/shared/error/Error"
 

@@ -1,10 +1,4 @@
 "use client";
-
-import { errorCodes } from "@/lib/constants/errorCodes";
-import { getGraduates } from "@/lib/utils/api/graduates";
-import { getTrainingData } from "@/lib/utils/api/training";
-import { notFound } from "next/navigation";
-
 import {
   createContext,
   useState,
@@ -12,6 +6,12 @@ import {
   useCallback,
   useContext,
 } from "react";
+
+import { notFound } from "next/navigation";
+
+import { errorCodes } from "@/lib/constants/errorCodes";
+import { getGraduates } from "@/lib/utils/api/graduates";
+import { getTrainingData } from "@/lib/utils/api/training";
 
 const TrainingContext = createContext();
 
