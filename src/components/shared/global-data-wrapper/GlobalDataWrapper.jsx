@@ -1,9 +1,15 @@
-'use client'
+"use client";
 import Loader from "@/components/shared/loader/Loader";
-import Error from "@/components/shared/error/Error"
+import Error from "@/components/shared/error/Error";
 
 import styles from "./global-data-wrapper.module.css";
-const GlobalDataWrapper = ({ children, loading, error }) => {
+
+const GlobalDataWrapper = ({
+  children,
+  loading,
+  error,
+  isRefreshActive = true,
+}) => {
   if (loading) {
     return (
       <section className={styles.loadingContainer}>
@@ -15,7 +21,7 @@ const GlobalDataWrapper = ({ children, loading, error }) => {
   if (error) {
     return (
       <section className={styles.loadingContainer}>
-        <Error/>
+        <Error isRefreshActive={isRefreshActive} />
       </section>
     );
   }

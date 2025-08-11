@@ -259,4 +259,5 @@ export default {
   underMaintenance:
     "Our website is currently undergoing scheduled maintenance.",
   plsTryAgainInAFewMinutes: "Please try again in a few minutes.",
+  refreshIn:"Refresh in"
 } as const;
