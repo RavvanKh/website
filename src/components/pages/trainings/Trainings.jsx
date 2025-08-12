@@ -30,7 +30,7 @@ const Trainings = () => {
   const {
     data: { courses, categories },
     loading,
-    error
+    error,
   } = useGlobalData();
 
   const t = useI18n();
@@ -121,6 +121,11 @@ const Trainings = () => {
       })
     );
   }, [categories]);
+
+  useEffect(() => {
+    updateFilter("category", urlParams.category);
+  }, [urlParams.category]);
+
 
   return (
     <GlobalDataWrapper loading={loading.home} error={error.home}>

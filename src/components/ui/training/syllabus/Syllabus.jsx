@@ -40,7 +40,7 @@ const Syllabus = ({
     >
       <div className={styles.syllabusTop}>
         <h2 className={styles.syllabusTopLeft}>
-          {t(title)}: {trainingProgram?.name}
+          {trainingProgram?.name}
         </h2>
         {!pdfView && (
           <div className={styles.syllabusTopRight}>

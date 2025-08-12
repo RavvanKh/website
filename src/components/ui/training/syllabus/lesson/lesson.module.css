@@ -28,16 +28,16 @@
             padding: 6px 0;
             display: flex;
             flex-direction: column;
+
             .subTaskList {
                 margin-top: 6px;
-                padding-left: 28px; 
+                padding-left: 48px;
                 list-style: disc;
-                /* border-left: 2px solid #ddd; */
-              }
-              
-              .subTask {
+            }
+
+            .subTask {
                 padding: 4px 0;
-              }
+            }
 
             .taskInfo {
                 display: flex;
@@ -45,15 +45,6 @@
                 gap: 6px;
             }
 
-            .taskInfo p {
-                flex: 1;
-                color: rgba(16, 16, 16, 1);
-                font-weight: 400;
-                font-style: 14px;
-                line-height: 26px;
-                user-select: none;
-
-            }
 
             .taskInfo div {
                 height: 18px;
@@ -73,6 +64,24 @@
 
         .task:last-child img {
             display: none;
+        }
+
+        .taskName {
+            flex: 1;
+            color: rgba(51, 51, 51, 1);
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 26px;
+            user-select: none;
+        }
+
+        .subTaskName {
+            flex: 1;
+            color: rgba(16, 16, 16, 1);
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 26px;
+            user-select: none;
         }
     }
 
@@ -112,9 +121,9 @@
     }
 }
 
-.pdfView{
-    .taskList{
-        .task{
+.pdfView {
+    .taskList {
+        .task {
             padding: 0;
         }
     }

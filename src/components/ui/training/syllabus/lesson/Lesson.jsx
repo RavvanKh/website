@@ -52,7 +52,7 @@ const Lesson = ({ lesson, isExpanded, pdfView }) => {
           <li key={`child-${index}`} className={styles.task}>
             <div className={styles.taskInfo}>
               {!pdfView && <div>{index + 1}</div>}
-              <p>{task.name}</p>
+              <p className={styles.taskName}>{task.name}</p>
             </div>
 
             {task.children && task.children.length > 0 && (
@@ -60,7 +60,7 @@ const Lesson = ({ lesson, isExpanded, pdfView }) => {
                 {task.children.map((subTask, subIndex) => (
                   <li key={`subChild-${subIndex}`} className={styles.subTask}>
                     <div className={styles.taskInfo}>
-                      <p>{subTask.name}</p>
+                      <p className={styles.subTaskName}>{subTask.name}</p>
                     </div>
                   </li>
                 ))}

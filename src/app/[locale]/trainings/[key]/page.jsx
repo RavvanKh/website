@@ -46,13 +46,26 @@ export async function generateMetadata({ params }) {
         siteName: organization?.name,
         images: [
           {
-            url: training.icon || organization?.logo,
+            url: training.icon,
             width: 1200,
             height: 630,
             alt: training.name,
           },
         ],
         type: "website",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: training.name,
+        description: training.description,
+        images: [
+          {
+            url: training.icon,
+            width: 1200,
+            height: 630,
+            alt: training.name,
+          },
+        ],
       },
       alternates: {
         canonical: `${organization?.url}/${locale}/training/${key}`,

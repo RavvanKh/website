@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Loader from "@/components/shared/loader/Loader";
 
@@ -19,6 +19,10 @@ const FilterGroup = ({ t, group, onClick, activeFilter = [], loading }) => {
     setSelectedOptions(updatedOptions);
     onClick?.(group.key, updatedOptions);
   };
+
+  useEffect(() =>{
+    setSelectedOptions(activeFilter)
+  },[activeFilter])
 
   return (
     <div className={styles.filterGroup}>
