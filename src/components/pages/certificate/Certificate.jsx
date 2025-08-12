@@ -1,20 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./certificate.module.css";
 import Image from "next/image";
-import { certificateMockData } from "../../../lib/constants/certificateMock";
+import { certificateMockData, alternativeCertificateData } from "../../../lib/constants/certificateMock";
 
 const logo = "/icons/logo.svg";
 
-const Certificate = () => {
+const Certificate = ({ id }) => {
   const [copySuccess, setCopySuccess] = useState(false);
+  const [certificateData, setCertificateData] = useState(certificateMockData);
 
-  // Use mock data
-  const { certificate, certificateDetails, aboutCertificate, share } =
-    certificateMockData;
+  useEffect(() => {
+    if (id === "alternative") {
+      setCertificateData(alternativeCertificateData);
+    } else {
+      setCertificateData(certificateMockData);
+    }
+  }, [id]);
 
-  // Handle sharing to social media platforms
+  const { certificate, certificateDetails, aboutCertificate, share } = certificateData;
+
   const handleShare = (platform) => {
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent(share.shareText);
@@ -41,16 +47,21 @@ const Certificate = () => {
 
   // Handle copying the link to clipboard
   const handleCopyLink = () => {
-    navigator.clipboard
-      .writeText(window.location.href)
-      .then(() => {
-        setCopySuccess(true);
-        // Reset success message after 2 seconds
-        setTimeout(() => setCopySuccess(false), 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy link: ", err);
-      });
+    // Check if code is running in browser environment
+    if (typeof window !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => {
+          setCopySuccess(true);
+          // Reset success message after 2 seconds
+          setTimeout(() => setCopySuccess(false), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy link: ", err);
+        });
+    } else {
+      console.error("Clipboard API not available");
+    }
   };
 
   return (
