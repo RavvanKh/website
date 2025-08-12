@@ -68,10 +68,10 @@ export async function generateMetadata({ params }) {
         ],
       },
       alternates: {
-        canonical: `${organization?.url}/${locale}/training/${key}`,
+        canonical: `${organization?.url}/${locale}/trainings/${key}`,
         languages: {
-          az: `${organization?.url}/az/training/${key}`,
-          en: `${organization?.url}/en/training/${key}`,
+          az: `${organization?.url}/az/trainings/${key}`,
+          en: `${organization?.url}/en/trainings/${key}`,
         },
       },
     };
