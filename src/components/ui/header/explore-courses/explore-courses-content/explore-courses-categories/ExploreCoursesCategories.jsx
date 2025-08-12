@@ -10,6 +10,8 @@ import Loader from "@/components/shared/loader/Loader";
 import MobileCourse from "@/components/shared/mobile-course/MobileCourse";
 
 import styles from "./explore-courses-categories.module.css";
+import { useRouter } from "next/navigation";
+import { routes } from "@/lib/constants/routes";
 
 const ExploreCoursesCategories = ({
   categories,
@@ -22,6 +24,7 @@ const ExploreCoursesCategories = ({
 }) => {
   const t = useI18n();
 
+  const router = useRouter();
 
   const [isMobile, setIsMobile] = useState(false);
   const [isMobileS, setIsMobileS] = useState(false);
@@ -36,7 +39,6 @@ const ExploreCoursesCategories = ({
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   return (
     <div className={styles.exploreCoursesCategories}>
@@ -64,11 +66,16 @@ const ExploreCoursesCategories = ({
                 onClick={() => {
                   if (isMobile) {
                     onClick(category, true);
+                  } else {
+                    router.replace(
+                      `${routes.trainings}?category=${category?.id}`
+                    );
+                    onClose();
                   }
                 }}
               >
                 <div className={styles.exploreCoursesCategoriesName}>
-                  {category.name}
+                  {category?.name}
                 </div>
                 <Image
                   className={styles.exploreCoursesCategoriesArrow}
@@ -91,7 +98,7 @@ const ExploreCoursesCategories = ({
                     </div>
                   ) : errorCourses ? (
                     <div>Failed to load courses: {errorCourses}</div>
-                  ) : courses.length > 0 ? (
+                  ) : courses?.length > 0 ? (
                     <div className={styles.mobileCourseList}>
                       {courses.map((course) => (
                         <div
@@ -103,7 +110,11 @@ const ExploreCoursesCategories = ({
                             course={course}
                             direction="row"
                             lines={2}
-                            courseStyle={isMobileS ? COURSE_STYLES.exploreCoursesMobileS : COURSE_STYLES.exploreCoursesMobile}
+                            courseStyle={
+                              isMobileS
+                                ? COURSE_STYLES.exploreCoursesMobileS
+                                : COURSE_STYLES.exploreCoursesMobile
+                            }
                           />
                         </div>
                       ))}

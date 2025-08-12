@@ -1,10 +1,13 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 import Course from "@/components/shared/course/Course";
 
 import { COURSE_STYLES } from "@/lib/constants/course-styles";
+import { routes } from "@/lib/constants/routes";
 
 import styles from "./explore-courses-all-courses.module.css";
+
 
 const ExploreCoursesAllCourses = ({
   onClose,
@@ -12,10 +15,20 @@ const ExploreCoursesAllCourses = ({
   courses,
   showEmptyMessage,
 }) => {
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.replace(`${routes.trainings}?category=${category.id}`);
+    onClose();
+  };
+
   return (
     <section className={styles.exploreAllCourses}>
       <div className={styles.exploreAllCoursesTitle}>
-        <h3 className={styles.exploreAllCoursesCategoryName}>
+        <h3
+          className={styles.exploreAllCoursesCategoryName}
+          onClick={handleRedirect}
+        >
           {category?.name}
         </h3>
         <p className={styles.exploreAllCoursesCategoryDescription}>
