@@ -12,7 +12,7 @@ const Certificate = ({ id }) => {
   const [certificateData, setCertificateData] = useState(certificateMockData);
 
   useEffect(() => {
-    if (id === "alternative") {
+    if (id === "123" || id === "alternative") {
       setCertificateData(alternativeCertificateData);
     } else {
       setCertificateData(certificateMockData);
