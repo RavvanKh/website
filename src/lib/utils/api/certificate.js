@@ -1,5 +1,4 @@
 "use server";
-import { cache } from "react";
 
 import { customAxios } from "@/lib/axios";
 import { notFound } from "next/navigation";
@@ -11,7 +10,7 @@ export const errorCodes = {
   }
 };
 
-export const getCertificateData = cache(async (id) => {
+export const getCertificateData = async (id) => {
   try {
     // For now, we'll use mock data until the API is available
     const res = await customAxios.get(`/v1/certificates/${id}`);
@@ -25,4 +24,4 @@ export const getCertificateData = cache(async (id) => {
     }
     notFound();
   }
-});
+};
