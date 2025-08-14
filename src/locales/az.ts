@@ -220,6 +220,7 @@ export default {
   close: "Bağla",
   successfullySent: "Uğurla göndərildi",
   events: "Tədbirlər",
+  event: "Tədbir",
   anotherForm: "Başqa müraciət",
   backToHome: "Əsas səhifəyə qayıt",
   redirectingIn: "Yönləndirilir",
@@ -252,5 +253,6 @@ export default {
     "Veb saytımız hal-hazırda planlaşdırılmış texniki işlər səbəbilə müvəqqəti olaraq əlçatmazdır.",
   plsTryAgainInAFewMinutes:
     "Zəhmət olmasa bir neçə dəqiqədən sonra yenidən yoxlayın. Səbriniz üçün təşəkkür edirik!",
-    refreshIn:"Yenilənəcək"
+  refreshIn: "Yenilənəcək",
+  skillsYouWillGain:"Qazanacağınız bacarıqlar"
 } as const;

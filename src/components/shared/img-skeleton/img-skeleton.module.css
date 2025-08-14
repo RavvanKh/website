@@ -41,6 +41,14 @@
     object-fit: cover;
 }
 
+.speaker{
+    min-height: 20px;
+    max-height: 20px;
+    object-fit: cover;
+    border-radius: 50%;
+    max-width: 20px;
+    min-width: 20px;
+}
 @media(max-width:1200px){
     .homeTitle{
         min-height: 300px;

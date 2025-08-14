@@ -13,6 +13,7 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { getHomeData } from "@/lib/utils/api/home";
 import { getComments } from "@/lib/utils/api/comments";
+import { getEvents } from "@/lib/utils/api/events";
 import { filterByCategory } from "@/lib/utils/helpers";
 import { errorCodes } from "@/lib/constants/errorCodes";
 
@@ -35,16 +36,19 @@ export const GlobalDataProvider = ({ children }) => {
     totalCourses: 0,
     totalInstructors: 0,
     organization: {},
+    events: [],
   });
 
   const [loading, setLoading] = useState({
     home: true,
     comments: true,
+    events: true,
   });
 
   const [error, setError] = useState({
     home: null,
     comments: null,
+    events: null,
   });
 
   const urlType = searchParams.get("type") || "";
@@ -90,10 +94,9 @@ export const GlobalDataProvider = ({ children }) => {
   );
 
   const fetchAllData = useCallback(async () => {
-    const [homeResult, commentsResult] = await Promise.allSettled([
-      getHomeData(),
-      getComments(),
-    ]);
+    const [homeResult, commentsResult, eventsResult] = await Promise.allSettled(
+      [getHomeData(), getComments(), getEvents({ page: 0, size: 3 })]
+    );
 
     if (homeResult.status === "fulfilled") {
       const homeData = homeResult.value;
@@ -127,7 +130,20 @@ export const GlobalDataProvider = ({ children }) => {
       }));
     }
 
-    setLoading({ home: false, comments: false });
+    if (eventsResult.status === "fulfilled" && eventsResult.value) {
+      setData((prevData) => ({
+        ...prevData,
+        events: eventsResult.value?.content,
+      }));
+      setError((prev) => ({ ...prev, events: null }));
+    } else {
+      setError((prev) => ({
+        ...prev,
+        events: eventsResult.reason.message,
+      }));
+    }
+
+    setLoading({ home: false, comments: false, events: false });
   }, []);
 
   const refreshData = useCallback(() => {

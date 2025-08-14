@@ -28,7 +28,7 @@ const SharedSectionRenderer = dynamic(
   { ssr: false, loading: () => null }
 );
 
-import styles from './roadmap.module.css'
+import styles from "./roadmap.module.css";
 
 const Roadmap = () => {
   const { roadmap, error, loading } = useRoadmap();
@@ -68,6 +68,8 @@ const Roadmap = () => {
       });
     }
   };
+
+  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -138,14 +140,20 @@ const Roadmap = () => {
               },
               whereDoOurGraduatesWork: {
                 subTitle: "",
-                companies: data?.customers,
+                companies: [],
                 loading,
                 error,
               },
               graduatesHere: {
-                instructors: data?.instructors,
+                instructors: roadmap?.instructors,
                 error,
                 loading,
+              },
+              prerequisites: {
+                arr: roadmap?.prerequisites,
+              },
+              skillsYouWillGain: {
+                objectives: roadmap?.skillsYouWillGain,
               },
             };
 

@@ -5,6 +5,42 @@
     max-width: 367px;
     flex: 1 1 200px;
 
+    .eventImage {
+        position: relative;
+    }
+
+.eventSpeaker{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+
+
+}
+    .eventIcon,
+    .eventSpeaker {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .eventSpeaker span {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        padding-right: 5px;
+        max-width: 150px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .eventIcon span,
+    .eventSpeaker span {
+        font-family: "Nunito", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: rgba(33, 37, 41, 1);
+    }
+
     .eventContent {
         display: flex;
         flex-direction: column;
@@ -20,29 +56,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-
-                .eventIcon,
-                .eventSpeaker {
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                }
-                
-                .eventSpeaker span{
-                    max-width: 150px;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    overflow: hidden;
-                }
             }
 
-            .eventIcon span, .eventSpeaker span {
-                font-family: "Nunito", sans-serif;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 21px;
-                color: rgba(33, 37, 41, 1);
-            }
 
             .eventTitle {
                 font-family: Arial, Helvetica, sans-serif;

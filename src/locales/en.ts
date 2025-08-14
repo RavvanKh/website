@@ -229,6 +229,7 @@ export default {
   close: "Close",
   successfullySent: "Successfully Sent",
   events: "Events",
+  event: "Event",
   anotherForm: "Another Form",
   backToHome: "Back To Home",
   redirectingIn: "Redirecting in",
@@ -259,5 +260,6 @@ export default {
   underMaintenance:
     "Our website is currently undergoing scheduled maintenance.",
   plsTryAgainInAFewMinutes: "Please try again in a few minutes.",
-  refreshIn:"Refresh in"
+  refreshIn: "Refresh in",
+  skillsYouWillGain: "Skills You Will Gain",
 } as const;
