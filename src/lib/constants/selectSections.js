@@ -122,7 +122,7 @@ export const selectSectionsAsComponentForRoadmap = [
   // {
   //   key: "recommendedAdditionalTrainings",
   // },
-  // { key: "skillsYou'llGain" },
+  { key: "skillsYouWillGain",component:Objectives },
   {
     key: "whereDoOurGraduatesWork",
     component: Companies,

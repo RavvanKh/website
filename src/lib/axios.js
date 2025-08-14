@@ -31,8 +31,10 @@ export const customAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_BASE_URL
 );
 
-
 export const userAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_USERS_MS_URL
+);
 
-)
+export const eventAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_EVENT_MS_URL
+);

@@ -8,7 +8,7 @@ import styles from "./error.module.css";
 
 export default function Error({ isRefreshActive = true }) {
   const t = useI18n();
-  const [secondsLeft, setSecondsLeft] = useState(10);
+  const [secondsLeft, setSecondsLeft] = useState(30);
 
   useEffect(() => {
     if (isRefreshActive) {

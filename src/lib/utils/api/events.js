@@ -1,9 +1,14 @@
-import { customAxios } from "@/lib/axios";
+'use server'
+import { eventAxios } from "@/lib/axios";
 
-
-export const getEvents = async () => {
+export const getEvents = async ({ page, size }) => {
   try {
-    const res = await customAxios.get(`/v1/events`);
+    const res = await eventAxios.get(`/v1/events/search`, {
+      params: {
+        page,
+        size,
+      }
+    });
     return res.data;
   } catch (err) {
     throw new Error(err?.response?.data?.message);
