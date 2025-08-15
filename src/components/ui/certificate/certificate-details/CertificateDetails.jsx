@@ -1,13 +1,10 @@
 "use client";
+import styles from "./certificate-details.module.css";
 
-import React from "react";
-import styles from "../../pages/certificate/certificate.module.css";
-
-const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
+const CertificateDetails = ({ certificate }) => {
   return (
     <section className={styles.certificateCardSection}>
       <div className={styles.certificateCard}>
-        {/* Left: Certificate Details */}
         <div className={styles.cardColumn}>
           <h2 className={styles.cardTitle}>Certificate Details</h2>
           <div className={styles.cardItem}>
@@ -15,10 +12,10 @@ const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
             <div>
               <div className={styles.cardLabel}>Certificate Holder</div>
               <div className={styles.cardValue}>
-                {certificateDetails.holder.name}
+                {certificate?.person?.firstName} {certificate?.person?.lastName}
               </div>
               <div className={styles.cardSubValue}>
-                {certificateDetails.holder.email}
+                {certificate?.person?.emailAddress}
               </div>
             </div>
           </div>
@@ -27,7 +24,11 @@ const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
             <div>
               <div className={styles.cardLabel}>Issue Date</div>
               <div className={styles.cardValue}>
-                {certificateDetails.issueDate}
+                {new Date(certificate?.issueDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </div>
             </div>
           </div>
@@ -36,12 +37,11 @@ const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
             <div>
               <div className={styles.cardLabel}>Credential ID</div>
               <div className={styles.cardCredential}>
-                {certificateDetails.credentialId}
+                {certificate?.credentialId}
               </div>
             </div>
           </div>
         </div>
-        {/* Right: About This Certificate */}
         <div className={styles.cardColumn}>
           <h2 className={styles.cardTitle}>About This Certificate</h2>
           <div className={styles.cardItem}>
@@ -49,7 +49,7 @@ const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
             <div>
               <div className={styles.cardLabel}>Description</div>
               <div className={styles.cardDescription}>
-                {aboutCertificate.description}
+                {certificate?.description}
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
             <div>
               <div className={styles.cardLabel}>Skills Covered</div>
               <div className={styles.cardSkills}>
-                {aboutCertificate.skills.map((skill, index) => (
+                {certificate.skills.map((skill, index) => (
                   <span key={index} className={styles.cardSkill}>
                     {skill}
                   </span>
@@ -71,7 +71,7 @@ const CertificateDetails = ({ certificateDetails, aboutCertificate }) => {
             <div>
               <div className={styles.cardLabel}>Issuing Organization</div>
               <div className={styles.cardValue}>
-                {aboutCertificate.issuingOrganization}
+                {certificate?.issuingOrganization}
               </div>
             </div>
           </div>

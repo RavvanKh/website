@@ -262,4 +262,6 @@ export default {
   plsTryAgainInAFewMinutes: "Please try again in a few minutes.",
   refreshIn: "Refresh in",
   skillsYouWillGain: "Skills You Will Gain",
+  shareYourAchievement:"Share Your Achievement",
+  shareDescription:"Let your network know about your new certification"
 } as const;

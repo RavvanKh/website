@@ -6,7 +6,8 @@ export const routes = {
   trainings: "/trainings",
   scholarships: "/scholarships",
   pdf: "/pdf",
-  trainingApplication:"/training-application"
+  trainingApplication:"/training-application",
+  certificatePreview:"/preview"
 };
 
-export const hiddenHeaderAndFooter = [routes.pdf];
+export const hiddenHeaderAndFooter = [routes.pdf,routes.certificatePreview];

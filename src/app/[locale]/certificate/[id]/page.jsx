@@ -1,28 +1,24 @@
-import React from "react";
 import Certificate from "@/components/pages/certificate/Certificate";
-import { certificateMockData, alternativeCertificateData } from "@/lib/constants/certificateMock";
+
+import { errorCodes } from "@/lib/constants/errorCodes";
+import { getCertificateData } from "@/lib/utils/api/certificate";
+
 import { getHomeData } from "@/lib/utils/api/home";
 
 export async function generateMetadata({ params }) {
-  // Await params before destructuring
   params = await params;
   const { id, locale } = params;
-  
+
   try {
-    // For API we will replace this with => const certificate = await getCertificateData(id);
-    const certificateData = id === "123" ? alternativeCertificateData : certificateMockData;
     const { organization } = await getHomeData();
-    
-    // Simulate API error handling
-    // This would be replaced with actual API responses in production
-    if (id === "not-found") {
+    const certificate = await getCertificateData(id);
+
+    if (certificate === errorCodes.certificate.notFound) {
       return {
         title: "Certificate not found",
         description: "The requested certificate could not be found.",
       };
-    }
-    
-    if (id === "maintenance") {
+    } else if (certificate === errorCodes.certificate.maintenance) {
       return {
         title: "Website Under Maintenance",
         description:
@@ -34,48 +30,46 @@ export async function generateMetadata({ params }) {
         },
       };
     }
-    
-    const { certificate, aboutCertificate } = certificateData;
-    const certificateImageUrl = `${process.env.NEXT_PUBLIC_DOMAIN || 'https://ingress.academy'}/images/certificate-preview.jpg`;
-    
+
+    const certificateImageUrl = `${organization?.url}/${locale}/api/certificate/${id}`;
     return {
-      title: `${certificate.name} - ${certificate.diploma} in ${certificate.course}`,
-      description: aboutCertificate.description,
-      keywords: ["certificate", "diploma", certificate.course, "verification"],
+      title: `${certificate?.person?.firstName} ${certificate?.person?.lastName} - ${certificate.issuedFor}`,
+      description: certificate.description,
+      keywords: ["certificate", "diploma", certificate.issuedFor],
       openGraph: {
-        title: `${certificate.name} - ${certificate.diploma} in ${certificate.course}`,
-        description: aboutCertificate.description,
-        type: 'profile',
-        url: `${organization?.url || process.env.NEXT_PUBLIC_DOMAIN || 'https://ingress.academy'}/${locale}/certificate/${id}`,
-        siteName: organization?.name || 'Ingress Academy',
+        title: `${certificate?.person?.firstName} ${certificate?.person?.lastName} - ${certificate.issuedFor}`,
+        description: certificate.description,
+        type: "profile",
+        url: `${organization?.url}/${locale}/certificate/${id}`,
+        siteName: organization?.name,
         images: [
           {
             url: certificateImageUrl,
             width: 1200,
             height: 630,
-            alt: `${certificate.name}'s ${certificate.diploma} in ${certificate.course}`,
+            alt: "Certificate img",
           },
         ],
       },
       twitter: {
-        card: 'summary_large_image',
-        title: `${certificate.name} - ${certificate.diploma} in ${certificate.course}`,
-        description: aboutCertificate.description,
+        card: "summary_large_image",
+        title: `${certificate?.person?.firstName} ${certificate?.person?.lastName} - ${certificate.issuedFor}`,
+        description: certificate.description,
         images: [
           {
             url: certificateImageUrl,
             width: 1200,
             height: 630,
-            alt: `${certificate.name}'s ${certificate.diploma} in ${certificate.course}`,
+            alt: "Certificate img",
           },
         ],
-        creator: '@IngressAcademy',
+        creator: "@IngressAcademy",
       },
       alternates: {
-        canonical: `${organization?.url || process.env.NEXT_PUBLIC_DOMAIN || 'https://ingress.academy'}/${locale}/certificate/${id}`,
+        canonical: `${organization?.url}/${locale}/certificate/${id}`,
         languages: {
-          az: `${organization?.url || process.env.NEXT_PUBLIC_DOMAIN || 'https://ingress.academy'}/az/certificate/${id}`,
-          en: `${organization?.url || process.env.NEXT_PUBLIC_DOMAIN || 'https://ingress.academy'}/en/certificate/${id}`,
+          az: `${organization?.url}/az/certificate/${id}`,
+          en: `${organization?.url}/en/certificate/${id}`,
         },
       },
     };
@@ -94,9 +88,9 @@ export async function generateMetadata({ params }) {
 }
 
 const CertificatePage = async ({ params }) => {
-  // Await params before using
-  params = await params;
-  return <Certificate id={params.id} />;
+  const { id } = await params;
+
+  return <Certificate id={id} hasPreview={false} />;
 };
 
 export default CertificatePage;

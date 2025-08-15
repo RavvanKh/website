@@ -1,21 +1,65 @@
 "use client";
 
-import React, { useState } from "react";
-import styles from "../../pages/certificate/certificate.module.css";
+import { useState } from "react";
 import Image from "next/image";
+import jsPDF from "jspdf";
+import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+import { useI18n } from "@/locales/client";
+
 import {
   handleShare,
   handleCopyLink,
-} from "../../../lib/utils/helpers/shareCertificateDetails";
+} from "@/lib/utils/helpers/certificateActions";
 
-const ShareCertificate = ({ share }) => {
+import styles from "./share-certificate.module.css";
+
+const ShareCertificate = ({ id }) => {
   const [copySuccess, setCopySuccess] = useState(false);
+  const [loadingPdf, setLoadingPdf] = useState(false);
+
+  const t = useI18n();
+
+  const handleDownloadPDF = async () => {
+    try {
+      setLoadingPdf(true);
+
+      const res = await fetch(`/en/api/certificate/${id}`);
+      if (!res.ok) throw new Error("Image fetch failed");
+
+      const blob = await res.blob();
+
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+
+      reader.onloadend = () => {
+        const base64data = reader.result;
+
+        const pdf = new jsPDF("landscape", "pt", "a4");
+        const imgWidth = 842;
+        const imgHeight = (blob.size * imgWidth) / imgWidth;
+
+        pdf.addImage(base64data, "PNG", 0, 0, imgWidth, 595);
+        pdf.save(`certificate-${id}.pdf`);
+        setLoadingPdf(false);
+      };
+    } catch (err) {
+      console.error(err);
+      setLoadingPdf(false);
+    }
+  };
+
+  const handleCopy = () => {
+    handleCopyLink(setCopySuccess);
+    setTimeout(() => setCopySuccess(false), 2000);
+  };
 
   return (
     <section className={styles.shareSection}>
       <div className={styles.shareContainer}>
-        <h2 className={styles.shareTitle}>{share.title}</h2>
-        <p className={styles.shareDescription}>{share.description}</p>
+        <h2 className={styles.shareTitle}>{t("shareYourAchievement")}</h2>
+        <p className={styles.shareDescription}>{t("shareDescription")}</p>
         <div className={styles.shareButtons}>
           <button
             className={styles.shareButton}
@@ -77,6 +121,19 @@ const ShareCertificate = ({ share }) => {
               <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z" />
             </svg>
             <span>{copySuccess ? "Copied!" : "Copy Link"}</span>
+          </button>
+          <button
+            className={styles.downloadButton}
+            aria-label="Download PDF"
+            onClick={handleDownloadPDF}
+            disabled={loadingPdf}
+          >
+            {loadingPdf ? (
+              <AiOutlineLoading3Quarters className={styles.spinner} />
+            ) : (
+              <HiOutlineDocumentArrowDown />
+            )}
+            <span>{loadingPdf ? "Loading..." : "Download PDF"}</span>
           </button>
         </div>
       </div>

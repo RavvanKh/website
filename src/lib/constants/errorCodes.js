@@ -5,5 +5,9 @@ export const errorCodes = {
   },
   home:{
     maintenance:"*"
+  },
+  certificate: {
+    notFound: 502,
+    maintenance: "*"
   }
 };
