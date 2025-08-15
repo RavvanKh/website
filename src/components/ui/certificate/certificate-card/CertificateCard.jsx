@@ -1,16 +1,13 @@
 "use client";
-
-import React from "react";
-import styles from "../../pages/certificate/certificate.module.css";
 import Image from "next/image";
 
-const logo = "/icons/logo.svg";
+import styles from "./certificate-card.module.css";
 
 const CertificateCard = ({ certificate }) => {
   return (
-    <section className={styles.certificatePage}>
-      <div className={styles.certificateWrapper}>
-        <div className={styles.certificateContainer}>
+    <section className={`${styles.certificatePage} certificatePage`}>
+      <div className={`${styles.certificateWrapper} certificateWrapper`}>
+        <div className={`${styles.certificateContainer} certificateContainer`}>
           <div className={styles.certificateOuterBorder}>
             <div className={styles.certificateInnerBorder}>
               <div className={styles.decorBottomLeft} />
@@ -19,7 +16,7 @@ const CertificateCard = ({ certificate }) => {
               <div className={styles.header}>
                 <div className={styles.logoAndTitle}>
                   <Image
-                    src={logo}
+                    src="/icons/logo.svg"
                     height={86}
                     width={86}
                     alt="Ingress Academy Logo"
@@ -32,27 +29,34 @@ const CertificateCard = ({ certificate }) => {
                   </div>
                 </div>
               </div>
-              <div className={styles.name}>{certificate.name}</div>
+              <div className={styles.name}>
+                {certificate?.person?.firstName} {certificate?.person?.lastName}
+              </div>
               <div className={styles.nameUnderline} />
-              <div className={styles.awardedText}>
-                {certificate.awardedText}
-              </div>
-              <div className={styles.diploma}>{certificate.diploma}</div>
+              <div className={styles.awardedText}>has been awarded to the</div>
+              <div className={styles.diploma}>DIPLOMA</div>
               <div className={styles.requirements}>
-                {certificate.requirements}
+                has successfully completed of requirements of
               </div>
-              <div className={styles.course}>{certificate.course}</div>
+              <div className={styles.course}>
+                {certificate?.issuedFor || "Course Name"}
+              </div>
               <div className={styles.courseUnderline} />
               <div className={styles.footer}>
-                <div>
-                  <div className={styles.date}>{certificate.date}</div>
+                <div className={styles.date}>
+                  {new Date(certificate?.issueDate).toLocaleDateString(
+                    "en-US",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
                   <div className={styles.label}>Date</div>
                 </div>
                 <div className={styles.signatureBlock}>
-                  <div className={styles.signature}>
-                    {certificate.signature}
-                  </div>
-                  <div className={styles.label}>{certificate.director}</div>
+                  <div className={styles.signature}>Signature</div>
+                  <div className={styles.label}>Director</div>
                 </div>
               </div>
             </div>

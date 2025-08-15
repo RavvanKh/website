@@ -49,10 +49,9 @@ export async function generateMetadata({ params }) {
           "max-snippet": -1,
         },
       },
-
       icons: {
-        icon: [{ url: "/favicon.ico" }, { url: "/icon.svg" }],
-        apple: [{ url: "/apple-icon.svg" }],
+        icon: [{ url: "en/favicon.ico" }, { url: "/icon.svg" }],
+        apple: [{ url: "en/apple-icon.svg" }],
       },
       openGraph: {
         title: organization.metaTitle,

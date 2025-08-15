@@ -1,27 +1,18 @@
 "use server";
-
 import { customAxios } from "@/lib/axios";
-import { notFound } from "next/navigation";
 
-export const errorCodes = {
-  certificate: {
-    notFound: "CERTIFICATE_NOT_FOUND",
-    maintenance: "CERTIFICATE_MAINTENANCE"
-  }
-};
+import { errorCodes } from "@/lib/constants/errorCodes";
 
 export const getCertificateData = async (id) => {
   try {
-    // For now, we'll use mock data until the API is available
     const res = await customAxios.get(`/v1/certificates/${id}`);
     return res.data;
   } catch (err) {
-    // Check for specific error codes if the API provides them
-    if (err?.response?.status === 404) {
+    console.log(err)
+    if (err?.status === errorCodes.certificate.notFound) {
       return errorCodes.certificate.notFound;
-    } else if (err?.response?.status === 503) {
+    } else {
       return errorCodes.certificate.maintenance;
     }
-    notFound();
   }
 };
