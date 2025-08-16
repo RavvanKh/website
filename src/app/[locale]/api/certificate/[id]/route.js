@@ -26,7 +26,7 @@ export async function GET(request, { params }) {
       deviceScaleFactor: 2,
     });
 
-    await page.goto(`http://localhost:4000/en/certificate/${id}/preview`, {
+    await page.goto(`${process.env.NEXT_PUBLIC_DOMAIN}/en/certificate/${id}/preview`, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
@@ -62,25 +62,6 @@ export async function GET(request, { params }) {
       },
     });
   } catch (error) {
-    console.error("Certificate image generation error:", error);
-
-    try {
-      const fallbackResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_URL}/default-certificate.png`
-      );
-      if (fallbackResponse.ok) {
-        const fallbackBuffer = await fallbackResponse.arrayBuffer();
-        return new Response(fallbackBuffer, {
-          headers: {
-            "Content-Type": "image/png",
-            "Cache-Control": "public, max-age=300",
-          },
-        });
-      }
-    } catch (fallbackError) {
-      console.error("Fallback image error:", fallbackError);
-    }
-
     return new Response("Certificate image generation failed", {
       status: 500,
       headers: { "Content-Type": "text/plain" },
