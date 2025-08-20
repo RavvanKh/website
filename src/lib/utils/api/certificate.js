@@ -8,7 +8,6 @@ export const getCertificateData = async (id) => {
     const res = await customAxios.get(`/v1/certificates/${id}`);
     return res.data;
   } catch (err) {
-    console.log(err)
     if (err?.status === errorCodes.certificate.notFound) {
       return errorCodes.certificate.notFound;
     } else {
