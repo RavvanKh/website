@@ -1,8 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
-import Loader from "@/components/shared/loader/Loader";
 
 import { useGlobalData } from "@/contexts/GlobalDataContext";
+
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const CourseApplicationForm = dynamic(
   () =>
@@ -13,7 +14,6 @@ const CourseApplicationForm = dynamic(
   }
 );
 import styles from "./course-application.module.css";
-import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 
 const CourseApplication = ({ params = {} }) => {
   const { data, loading, error } = useGlobalData();

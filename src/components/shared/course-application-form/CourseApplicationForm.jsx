@@ -93,21 +93,9 @@ const CourseApplicationForm = ({
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
-    // defaultValues:{
-    //   trainingId:"java-se-oca",
-    //   firstName:"Ravan",
-    //   lastName:"Khaligov",
-    //   additionalMessage:"test message",
-    //   currentWorkPlace:"Ingress Academy",
-    //   educationalInstitution:"AzTU",
-    //   emailAddress:"revanxaliqov01@gmail.com",
-    //   englishProficiencyLevel:"A2",
-    //   learningPreference:"ONLINE",
-    //   paymentResponsibility:"BY_COMPANY",
-    //   // previouslyParticipatedTrainings:[],
-    //   referralSource:"LINKEDIN",
-    //   technicalKnowledgeLevel:"BEGINNER"
-    // }
+    defaultValues: {
+      previouslyParticipatedTrainings: [],
+    },
   });
 
   const watchedFields = watch();
@@ -155,7 +143,7 @@ const CourseApplicationForm = ({
     const params = new URLSearchParams();
 
     for (const [key, value] of Object.entries(watchedFields)) {
-      if (value && value.trim() !== "") {
+      if (typeof value === "string" && value.trim() !== "") {
         params.append(key, value);
       }
     }

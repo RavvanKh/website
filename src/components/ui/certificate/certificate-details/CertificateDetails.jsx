@@ -58,7 +58,7 @@ const CertificateDetails = ({ certificate }) => {
             <div>
               <div className={styles.cardLabel}>Skills Covered</div>
               <div className={styles.cardSkills}>
-                {certificate.skills.map((skill, index) => (
+                {certificate?.skills?.map((skill, index) => (
                   <span key={index} className={styles.cardSkill}>
                     {skill}
                   </span>
