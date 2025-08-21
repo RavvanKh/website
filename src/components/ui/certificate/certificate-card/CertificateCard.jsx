@@ -5,14 +5,13 @@ import styles from "./certificate-card.module.css";
 
 const CertificateCard = ({ certificate }) => {
   return (
-    <section className={`${styles.certificatePage} certificatePage`}>
-      <div className={`${styles.certificateWrapper} certificateWrapper`}>
-        <div className={`${styles.certificateContainer} certificateContainer`}>
+    <section className={styles.certificatePage}>
+      <div className={styles.certificateWrapper}>
+        <div className={styles.certificateContainer}>
           <div className={styles.certificateOuterBorder}>
             <div className={styles.certificateInnerBorder}>
-              <div className={styles.decorBottomLeft} />
-              <div className={styles.decorTopRight} />
-              <div className={styles.qrcode} />
+              {/* <div className={styles.decorBottomLeft} /> */}
+              {/* <div className={styles.decorTopRight} /> */}
               <div className={styles.header}>
                 <div className={styles.logoAndTitle}>
                   <Image
@@ -48,7 +47,7 @@ const CertificateCard = ({ certificate }) => {
                     "en-US",
                     {
                       year: "numeric",
-                      month: "long",
+                      month: "numeric",
                       day: "numeric",
                     }
                   )}
@@ -59,6 +58,10 @@ const CertificateCard = ({ certificate }) => {
                   <div className={styles.label}>Director</div>
                 </div>
               </div>
+              <div className={styles.qrContainer}>
+              <div className={styles.qrcode} />
+              </div>
+
             </div>
           </div>
         </div>

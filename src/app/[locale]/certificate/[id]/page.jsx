@@ -31,7 +31,6 @@ export async function generateMetadata({ params }) {
       };
     }
 
-    const certificateImageUrl = `${organization?.url}/${locale}/api/certificate/${id}`;
     return {
       title: `${certificate?.person?.firstName} ${certificate?.person?.lastName} - ${certificate.issuedFor}`,
       description: certificate.description,
@@ -44,7 +43,7 @@ export async function generateMetadata({ params }) {
         siteName: organization?.name,
         images: [
           {
-            url: certificateImageUrl,
+            url: certificate?.previewUrl,
             width: 1200,
             height: 630,
             alt: "Certificate img",
@@ -57,7 +56,7 @@ export async function generateMetadata({ params }) {
         description: certificate.description,
         images: [
           {
-            url: certificateImageUrl,
+            url: certificate?.previewUrl,
             width: 1200,
             height: 630,
             alt: "Certificate img",

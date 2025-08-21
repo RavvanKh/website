@@ -7,7 +7,7 @@ export const errorCodes = {
     maintenance:"*"
   },
   certificate: {
-    notFound: 502,
+    notFound: 404,
     maintenance: "*"
   }
 };
