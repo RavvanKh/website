@@ -7,13 +7,16 @@
 
 .certificateContainer {
   position: relative;
-  background: #f7f9f9;
+  background:-color #f7f9f9;
   width: 100%;
   max-width: 1200px;
   padding: 1.5%;
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
   font-family: "Nunito", "Arial", sans-serif;
   overflow: hidden;
+  background-image:url("/images/home-bg.svg");
+  /* height: 760px; */
+  background-position: center;
   font-size: clamp(0.8rem, 1.2vw, 1rem);
 }
 
@@ -143,8 +146,10 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin: clamp(8px, 1.3vw, 16px) clamp(60px, 21.7vw, 260px);
+  align-items: center;
+  margin:0 auto;
+  width: 40%;
+  gap: 2rem;
 }
 
 .date {
@@ -166,7 +171,7 @@
   font-family: "MonteCarlo", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-size: clamp(1rem, 4vw, 2.4rem);
   color: #454032;
   margin-bottom: 2px;
 }
@@ -198,7 +203,6 @@
 }
 
 .qrcode {
-  position: absolute;
   background: no-repeat;
   background-position: bottom;
   background-size: cover;
@@ -208,6 +212,14 @@
   width: clamp(70px, 11.7vw, 140px);
   height: clamp(70px, 11.7vw, 140px);
   z-index: 1;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.qrContainer{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 @media(max-width:768px){
@@ -236,10 +248,7 @@
   }
   
   .footer {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    text-align: center;
+    width: 60%;
   }
 }
 

@@ -14,8 +14,9 @@ import {
 } from "@/lib/utils/helpers/certificateActions";
 
 import styles from "./share-certificate.module.css";
+import { toast } from "react-toastify";
 
-const ShareCertificate = ({ id }) => {
+const ShareCertificate = ({ certificate }) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [loadingPdf, setLoadingPdf] = useState(false);
 
@@ -24,36 +25,67 @@ const ShareCertificate = ({ id }) => {
   const handleDownloadPDF = async () => {
     try {
       setLoadingPdf(true);
-
-      const res = await fetch(`/en/api/certificate/${id}`);
-      if (!res.ok) throw new Error("Image fetch failed");
-
-      const blob = await res.blob();
-
+  
+      // dışarıya değil kendi backendine istek
+      const apiUrl = `/api/certificate/preview?url=${encodeURIComponent(certificate?.previewUrl)}`;
+      const imageRes = await fetch(apiUrl);
+      if (!imageRes.ok) throw new Error("Preview image fetch failed");
+  
+      const imageBlob = await imageRes.blob();
+  
       const reader = new FileReader();
-      reader.readAsDataURL(blob);
-
+      reader.readAsDataURL(imageBlob);
+  
       reader.onloadend = () => {
         const base64data = reader.result;
-
-        const pdf = new jsPDF("landscape", "pt", "a4");
-        const imgWidth = 842;
-        const imgHeight = (blob.size * imgWidth) / imgWidth;
-
-        pdf.addImage(base64data, "PNG", 0, 0, imgWidth, 595);
-        pdf.save(`certificate-${id}.pdf`);
+  
+        const img = new window.Image();
+        img.onload = () => {
+          const pdf = new jsPDF("landscape", "pt", "a4");
+  
+          const pdfWidth = 842;
+          const pdfHeight = 595;
+  
+          const imgAspectRatio = img.width / img.height;
+          const pdfAspectRatio = pdfWidth / pdfHeight;
+  
+          let finalWidth, finalHeight;
+  
+          if (imgAspectRatio > pdfAspectRatio) {
+            finalWidth = pdfWidth;
+            finalHeight = pdfWidth / imgAspectRatio;
+          } else {
+            finalHeight = pdfHeight;
+            finalWidth = pdfHeight * imgAspectRatio;
+          }
+  
+          const x = (pdfWidth - finalWidth) / 2;
+          const y = (pdfHeight - finalHeight) / 2;
+  
+          pdf.addImage(base64data, "PNG", x, y, finalWidth, finalHeight);
+  
+          const fileName = certificate.name
+            ? `${certificate.name.replace(/[^a-z0-9]/gi, "_").toLowerCase()}.pdf`
+            : `certificate-${certificate?.credentialId}.pdf`;
+  
+          pdf.save(fileName);
+          setLoadingPdf(false);
+        };
+  
+        img.src = base64data;
+      };
+  
+      reader.onerror = () => {
+        toast.error("FileReader error");
         setLoadingPdf(false);
       };
+  
     } catch (err) {
-      console.error(err);
       setLoadingPdf(false);
+      toast.error("Download failed. Please try again.");
     }
   };
-
-  const handleCopy = () => {
-    handleCopyLink(setCopySuccess);
-    setTimeout(() => setCopySuccess(false), 2000);
-  };
+  
 
   return (
     <section className={styles.shareSection}>
@@ -64,7 +96,7 @@ const ShareCertificate = ({ id }) => {
           <button
             className={styles.shareButton}
             aria-label="Share on WhatsApp"
-            onClick={() => handleShare("whatsapp", share.shareText)}
+            // onClick={() => handleShare("whatsapp", share.shareText)}
           >
             <Image
               src="/icons/WhatsApp.webp"
@@ -77,7 +109,7 @@ const ShareCertificate = ({ id }) => {
           <button
             className={styles.shareButton}
             aria-label="Share on LinkedIn"
-            onClick={() => handleShare("linkedin", share.shareText)}
+            // onClick={() => handleShare("linkedin", share.shareText)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +125,7 @@ const ShareCertificate = ({ id }) => {
           <button
             className={styles.shareButton}
             aria-label="Share on Facebook"
-            onClick={() => handleShare("facebook", share.shareText)}
+            // onClick={() => handleShare("facebook", share.shareText)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
