@@ -1,215 +1,256 @@
-  
+.certificateWrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  justify-content: center;
+}
+
+.certificateContainer {
+  position: relative;
+  background: #f7f9f9;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1.5%;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+  font-family: "Nunito", "Arial", sans-serif;
+  overflow: hidden;
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+}
+
+.certificateOuterBorder {
+  border: 0.2vw solid #b2c7eb;
+  border-width: clamp(1.5px, 0.2vw, 2.3px);
+  padding: 0.4% 1%;
+  height: 100%;
+}
+
+.certificateInnerBorder {
+  border: 0.15vw solid #b2c7eb;
+  border-width: clamp(1px, 0.15vw, 1.5px);
+  padding: 0.6%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(20px, 4vw, 50px);
+  margin-bottom: clamp(16px, 2.7vw, 32px);
+}
+
+.logoAndTitle {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(8px, 1.3vw, 16px);
+}
+
+.logoAndTitle img {
+  width: clamp(40px, 7vw, 86px) !important;
+  height: clamp(40px, 7vw, 86px) !important;
+}
+
+.ingress {
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.1em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: clamp(1.2rem, 3.3vw, 2rem);
+  line-height: 1.3;
+}
+
+.academy {
+  font-weight: 700;
+  color: #3f79ff;
+  letter-spacing: 0.1em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: clamp(1.2rem, 3.3vw, 2rem);
+  line-height: 1.3;
+}
+
+.slogan {
+  font-size: clamp(0.7rem, 1.8vw, 1.1rem);
+  padding: clamp(8px, 1.2vw, 14px) 0 0 2px;
+  color: #586268;
+  font-weight: 300;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  letter-spacing: 0.3em;
+}
+
+.name {
+  text-align: center;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.08em;
+  margin-bottom: clamp(6px, 1vw, 10px);
+}
+
+.nameUnderline {
+  width: 50%;
+  margin: 0 auto clamp(12px, 2vw, 24px);
+  height: clamp(2px, 0.3vw, 4px);
+  background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+}
+
+.awardedText {
+  text-align: center;
+  font-size: clamp(0.9rem, 2.3vw, 1.4rem);
+  color: #555;
+  margin-bottom: clamp(-4px, -0.7vw, -8px);
+}
+
+.diploma {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2rem, 6.7vw, 4rem);
+  font-weight: 900;
+  color: #0d49cc;
+  margin-bottom: clamp(4px, 0.7vw, 8px);
+  letter-spacing: 0.05em;
+}
+
+.requirements {
+  text-align: center;
+  font-size: clamp(0.9rem, 2.3vw, 1.4rem);
+  color: #555;
+  margin: clamp(-8px, -1.3vw, -16px) 0 clamp(5px, 0.8vw, 10px) 0;
+}
+
+.course {
+  text-align: center;
+  font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  font-weight: 600;
+  color: #002370;
+  margin-bottom: clamp(10px, 1.7vw, 20px);
+}
+
+.courseUnderline {
+  width: 60%;
+  margin: 0 auto clamp(8px, 1.2vw, 14px);
+  height: clamp(1.5px, 0.2vw, 2.4px);
+  background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: clamp(8px, 1.3vw, 16px) clamp(60px, 21.7vw, 260px);
+}
+
+.date {
+  font-size: clamp(1rem, 2.7vw, 1.6rem);
+  color: #454032;
+}
+
+.label {
+  font-size: clamp(0.8rem, 2.2vw, 1.3rem);
+  color: #797979;
+  margin-top: 2px;
+}
+
+.signatureBlock {
+  text-align: left;
+}
+
+.signature {
+  font-family: "MonteCarlo", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  color: #454032;
+  margin-bottom: 2px;
+}
+
+.decorTopRight {
+  position: absolute;
+  background: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  background-image: url("/images/certificate-decor-top-right.svg");
+  right: 3.8%;
+  top: 3.3%;
+  width: clamp(140px, 20vw, 250px);
+  height: clamp(155px, 22vw, 310px);
+  z-index: 1;
+}
+
+.decorBottomLeft {
+  position: absolute;
+  background: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  background-image: url("/images/certificate-decor-bottom-left.svg");
+  left: 3.8%;
+  bottom: 3.3%;
+  width: clamp(140px, 20vw, 250px);
+  height: clamp(155px, 22vw, 310px);
+  z-index: 1;
+}
+
+.qrcode {
+  position: absolute;
+  background: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  background-image: url("/images/qr-code.svg");
+  right: 5%;
+  bottom: 5.3%;
+  width: clamp(70px, 11.7vw, 140px);
+  height: clamp(70px, 11.7vw, 140px);
+  z-index: 1;
+}
+
+@media(max-width:768px){
+  .decorBottomLeft,.decorTopRight{
+    width: 15%;
+  }
+}
+
+@media (max-width: 425px) {
   .certificateWrapper {
-    display: flex;
-    align-items: flex-start;
-    padding-top: 20px;
-    justify-content: center;
+    padding: 10px;
   }
   
-  .certificateContainer {
-    position: relative;
-    background: #f7f9f9;
-    width: 1200px;
-    height: 760px;
-    max-width: 95vw;
-    padding: 18px 32px;
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
-    font-family: "Nunito", "Arial", sans-serif;
-    overflow: hidden;
+  .decorBottomLeft,.decorTopRight{
+    width: 0;
   }
-  
-  .certificateOuterBorder {
-    border: 2.3px solid #b2c7eb;
-    padding: 5px 12px;
-    height: 100%;
-  }
-  
-  .certificateInnerBorder {
-    border: 1.5px solid #b2c7eb;
-    padding: 7px;
-    height: 100%;
-  }
-  
-  .header {
-    display: flex;
+  .logoAndTitle {
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 32px;
-  }
-  
-  .logoAndTitle {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-  }
-  
-  .ingress {
-    font-weight: 700;
-    color: #222;
-    letter-spacing: 1px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2rem;
-    line-height: 52px;
-    font-weight: 700;
-  }
-  
-  .academy {
-    font-weight: 700;
-    color: #3f79ff;
-    letter-spacing: 1px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 2rem;
-    line-height: 52px;
-    font-weight: 700;
+    text-align: center;
+    gap: 8px;
   }
   
   .slogan {
-    font-size: 1.1rem;
-    padding: 14px 0 0 2px;
-    color: #586268;
-    font-weight: 300;
-    line-height: 10px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    letter-spacing: 5px;
-  }
-  
-  .name {
-    text-align: center;
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: #222;
-    letter-spacing: 2px;
-  }
-  
-  .nameUnderline {
-    width: auto;
-    margin: 10px 200px 24px;
-    height: 4px;
-    background: linear-gradient(to right, #b5c7eb, #d6e1f8);
-  }
-  
-  .awardedText {
-    text-align: center;
-    font-size: 1.4rem;
-    color: #555;
-    margin-bottom: -8px;
-  }
-  
-  .diploma {
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    font-size: 4rem;
-    font-weight: 900;
-    color: #0d49cc;
-    margin-bottom: 8px;
-    letter-spacing: 2px;
-  }
-  
-  .requirements {
-    text-align: center;
-    font-size: 1.4rem;
-    color: #555;
-    margin: -16px 0 10px 0;
-  }
-  
-  .course {
-    text-align: center;
-    font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #002370;
-  }
-  
-  .courseUnderline {
-    width: auto;
-    margin: 20px 130px 14px;
-    height: 2.4px;
-    background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+    letter-spacing: 0.2em;
   }
   
   .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin: 16px 260px;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
   }
-  
-  .date {
-    font-size: 1.6rem;
-    color: #454032;
-  }
-  
-  .label {
-    font-size: 1.3rem;
-    color: #797979;
-    margin-top: 2px;
-  }
+}
 
-  .signatureBlock {
-    text-align: left;
+@media print {
+  .certificateWrapper {
+    padding: 0;
   }
   
-  .signature {
-    font-family: "MonteCarlo", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2.4rem;
-    color: #454032;
-    margin-bottom: 2px;
+  .certificateContainer {
+    max-width: none;
+    width: 100%;
+    box-shadow: none;
   }
-  
-  .decorTopRight {
-    position: absolute;
-    background: no-repeat;
-    background-position: bottom;
-    background-size: cover;
-    background-image: url("/images/certificate-decor-top-right.svg");
-    right: 46px;
-    top: 25px;
-    width: 280px;
-    height: 310px;
-    z-index: 1;
-  }
-  
-  .decorBottomLeft {
-    position: absolute;
-    background: no-repeat;
-    background-position: bottom;
-    background-size: cover;
-    background-image: url("/images/certificate-decor-bottom-left.svg");
-    left: 46px;
-    bottom: 25px;
-    width: 280px;
-    height: 310px;
-    z-index: 1;
-  }
-  
-  .qrcode {
-    position: absolute;
-    background: no-repeat;
-    background-position: bottom;
-    background-size: cover;
-    background-image: url("/images/qr-code.svg");
-    right: 60px;
-    bottom: 40px;
-    width: 140px;
-    height: 140px;
-    z-index: 1;
-  }
-
-  @media (max-width: 768px) {
-    .certificate {
-      padding: 24px 8px 16px 8px;
-      width: 98vw;
-    }
-    .header {
-      margin-bottom: 18px;
-    }
-    .course {
-      font-size: 1.05rem;
-    }
-  }
+}
