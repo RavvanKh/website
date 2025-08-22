@@ -1,4 +1,3 @@
-
 export const handleCopyLink = async (setCopySuccess) => {
   if (typeof window !== "undefined" && navigator.clipboard) {
     try {
@@ -13,8 +12,12 @@ export const handleCopyLink = async (setCopySuccess) => {
   }
 };
 
-export const handleShare = (platform, shareText) => {
-  const url = encodeURIComponent(window.location.href);
+export const handleShare = (platform, certificate) => {
+  const shareText = certificate?.postMessage || "Check out my certificate!";
+  const baseUrl = window.location.href;
+  const url = encodeURIComponent(
+    platform ? `${baseUrl}?platform=${platform}` : baseUrl
+  );
   const text = encodeURIComponent(shareText);
 
   let shareUrl = "";
@@ -24,10 +27,10 @@ export const handleShare = (platform, shareText) => {
       shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
       break;
     case "linkedin":
-      shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+      shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&text=${text}`;
       break;
     case "facebook":
-      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&text=${text}`;
       break;
     default:
       return;
