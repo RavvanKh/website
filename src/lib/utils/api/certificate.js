@@ -3,9 +3,11 @@ import { customAxios } from "@/lib/axios";
 
 import { errorCodes } from "@/lib/constants/errorCodes";
 
-export const getCertificateData = async (id) => {
+export const getCertificateData = async (id, platform) => {
   try {
-    const res = await customAxios.get(`/v1/certificates/${id}`);
+    const res = await customAxios.get(
+      `/v1/certificates/${id}?platform=${platform}`
+    );
     return res.data;
   } catch (err) {
     if (err?.status === errorCodes.certificate.notFound) {
@@ -13,18 +15,5 @@ export const getCertificateData = async (id) => {
     } else {
       return errorCodes.certificate.maintenance;
     }
-  }
-};
-
-export const updateCertificate = async (id, data) => {
-  try {
-    const res = await customAxios.post(`/v1/certificates/${id}/preview`, data,
-      { headers: {
-        'Content-Type': 'multipart/form-data',
-      }}
-    );
-    return res.data;
-  } catch (err) {
-    return null;
   }
 };

@@ -5,9 +5,12 @@ import { getCertificateData } from "@/lib/utils/api/certificate";
 
 import { getHomeData } from "@/lib/utils/api/home";
 
-export async function generateMetadata({ params }) {
-  params = await params;
-  const { id, locale } = params;
+export async function generateMetadata({ params, searchParams }) {
+  const { id, locale } = await params;
+
+  const { platform } = await searchParams;
+
+  const platformQuery = platform ? `?platform=${platform}` : "";
 
   try {
     const { organization } = await getHomeData();
@@ -39,7 +42,7 @@ export async function generateMetadata({ params }) {
         title: `${certificate?.person?.firstName} ${certificate?.person?.lastName} - ${certificate.issuedFor}`,
         description: certificate.description,
         type: "profile",
-        url: `${organization?.url}/${locale}/certificate/${id}`,
+        url: `${organization?.url}/${locale}/certificate/${id}${platformQuery}`,
         siteName: organization?.name,
         images: [
           {
@@ -65,10 +68,10 @@ export async function generateMetadata({ params }) {
         creator: "@IngressAcademy",
       },
       alternates: {
-        canonical: `${organization?.url}/${locale}/certificate/${id}`,
+        canonical: `${organization?.url}/${locale}/certificate/${id}${platformQuery}`,
         languages: {
-          az: `${organization?.url}/az/certificate/${id}`,
-          en: `${organization?.url}/en/certificate/${id}`,
+          az: `${organization?.url}/az/certificate/${id}${platformQuery}`,
+          en: `${organization?.url}/en/certificate/${id}${platformQuery}`,
         },
       },
     };
@@ -86,10 +89,11 @@ export async function generateMetadata({ params }) {
   }
 }
 
-const CertificatePage = async ({ params }) => {
+const CertificatePage = async ({ params, searchParams }) => {
+  const { platform } = await searchParams;
   const { id } = await params;
 
-  return <Certificate id={id} hasPreview={false} />;
+  return <Certificate id={id} hasPreview={false} platform={platform} />;
 };
 
 export default CertificatePage;
