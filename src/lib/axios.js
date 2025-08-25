@@ -38,3 +38,7 @@ export const userAxios = createAxiosInstance(
 export const eventAxios = createAxiosInstance(
   process.env.NEXT_PUBLIC_EVENT_MS_URL
 );
+
+export const certificateAxios = createAxiosInstance(
+  process.env.NEXT_PUBLIC_CERTIFICATE_MS_URL
+);

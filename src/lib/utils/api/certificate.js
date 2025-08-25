@@ -1,12 +1,14 @@
-// "use server";
-import { customAxios } from "@/lib/axios";
+"use server";
+import { certificateAxios } from "@/lib/axios";
 
 import { errorCodes } from "@/lib/constants/errorCodes";
 
 export const getCertificateData = async (id, platform) => {
   try {
-    const res = await customAxios.get(
-      `/v1/certificates/${id}?platform=${platform}`
+    const platformQuery = platform ? `?platform=${platform}` : "";
+
+    const res = await certificateAxios.get(
+      `/v1/certificates/${id}${platform}`
     );
     return res.data;
   } catch (err) {
