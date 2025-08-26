@@ -8,7 +8,7 @@ export const getCertificateData = async (id, platform) => {
     const platformQuery = platform ? `?platform=${platform}` : "";
 
     const res = await certificateAxios.get(
-      `/v1/certificates/${id}${platform}`
+      `/v1/certificates/${id}${platformQuery}`
     );
     return res.data;
   } catch (err) {
