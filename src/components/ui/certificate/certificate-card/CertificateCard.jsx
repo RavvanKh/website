@@ -4,10 +4,10 @@ import QrCode from "@/components/shared/qr-code/QrCode";
 
 import styles from "./certificate-card.module.css";
 
-const CertificateCard = ({ certificate }) => {
+const CertificateCard = ({ certificate, orientation = "vertical", small = false }) => {
   return (
-    <section className={styles.certificatePage}>
-      <div className={styles.certificateWrapper}>
+
+      <div className={`${styles.certificateWrapper} ${orientation === "horizontal" ? styles.horizontal : styles.vertical}`}>
         <div className={styles.certificateContainer}>
           <div className={styles.certificateOuterBorder}>
             <div className={styles.certificateInnerBorder}>
@@ -15,8 +15,8 @@ const CertificateCard = ({ certificate }) => {
                 <div className={styles.logoAndTitle}>
                   <Image
                     src="/icons/logo.svg"
-                    height={86}
-                    width={86}
+                    height={orientation === "horizontal" ? 60 : 86}
+                    width={orientation === "horizontal" ? 60 : 86}
                     alt="Ingress Academy Logo"
                     priority
                   />
@@ -27,6 +27,8 @@ const CertificateCard = ({ certificate }) => {
                   </div>
                 </div>
               </div>
+
+              {/* CONTENT */}
               <div className={styles.name}>
                 {certificate?.person?.firstName} {certificate?.person?.lastName}
               </div>
@@ -40,33 +42,33 @@ const CertificateCard = ({ certificate }) => {
                 {certificate?.issuedFor || "Course Name"}
               </div>
               <div className={styles.courseUnderline} />
+
+              {/* FOOTER */}
               <div className={styles.footer}>
                 <div className={styles.date}>
-                  {new Date(certificate?.issueDate).toLocaleDateString(
-                    "en-US",
-                    {
-                      year: "numeric",
-                      month: "numeric",
-                      day: "numeric",
-                    }
-                  )}
+                  {new Date(certificate?.issueDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                  })}
                   <div className={styles.label}>Issue Date</div>
                 </div>
                 <div className={styles.signatureBlock}>
                   <div className={styles.signature}>Signature</div>
-                  <div className={styles.label}>Director</div>
+                  <div className={styles.label}>Imran Yusubov</div>
                 </div>
               </div>
+
+              {/* QR */}
               <div className={styles.qrContainer}>
                 <div className={styles.qrcode}>
-                  <QrCode url={window.location.href} />
+                  <QrCode url={typeof window !== "undefined" ? window.location.href : ""} />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
   );
 };
 

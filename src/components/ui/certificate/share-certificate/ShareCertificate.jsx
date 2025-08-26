@@ -5,7 +5,8 @@ import Image from "next/image";
 import jsPDF from "jspdf";
 import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { toast } from "react-toastify";
+
+import html2canvas from "html2canvas";
 
 import { useI18n } from "@/locales/client";
 
@@ -15,83 +16,64 @@ import {
 } from "@/lib/utils/helpers/certificateActions";
 
 import styles from "./share-certificate.module.css";
+import { RectangleHorizontal, RectangleVertical } from "lucide-react";
 
-const ShareCertificate = ({ certificate }) => {
+const ShareCertificate = ({
+  certificate,
+  certificateCardRef,
+  setOrientation,
+  orientation,
+}) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [loadingPdf, setLoadingPdf] = useState(false);
 
   const t = useI18n();
 
   const handleDownloadPDF = async () => {
-    try {
-      setLoadingPdf(true);
-
-      const apiUrl = `/api/certificate/preview?url=${encodeURIComponent(
-        certificate?.previewUrl
-      )}`;
-      const imageRes = await fetch(apiUrl);
-      if (!imageRes.ok) throw new Error("Preview image fetch failed");
-
-      const imageBlob = await imageRes.blob();
-
-      const reader = new FileReader();
-      reader.readAsDataURL(imageBlob);
-
-      reader.onloadend = () => {
-        const base64data = reader.result;
-
-        const img = new window.Image();
-        img.onload = () => {
-          const pdf = new jsPDF("landscape", "pt", "a4");
-
-          const pdfWidth = 842;
-          const pdfHeight = 595;
-
-          const imgAspectRatio = img.width / img.height;
-          const pdfAspectRatio = pdfWidth / pdfHeight;
-
-          let finalWidth, finalHeight;
-
-          if (imgAspectRatio > pdfAspectRatio) {
-            finalWidth = pdfWidth;
-            finalHeight = pdfWidth / imgAspectRatio;
-          } else {
-            finalHeight = pdfHeight;
-            finalWidth = pdfHeight * imgAspectRatio;
-          }
-
-          const x = (pdfWidth - finalWidth) / 2;
-          const y = (pdfHeight - finalHeight) / 2;
-
-          pdf.addImage(base64data, "PNG", x, y, finalWidth, finalHeight);
-
-          const fileName = certificate.name
-            ? `${certificate.name
-                .replace(/[^a-z0-9]/gi, "_")
-                .toLowerCase()}.pdf`
-            : `certificate-${certificate?.credentialId}.pdf`;
-
-          pdf.save(fileName);
-          setLoadingPdf(false);
-        };
-
-        img.src = base64data;
-      };
-
-      reader.onerror = () => {
-        toast.error("FileReader error");
-        setLoadingPdf(false);
-      };
-    } catch (err) {
-      setLoadingPdf(false);
-      toast.error("Download failed. Please try again.");
-    }
+    // if (!certificateCardRef?.current) return;
+    // setLoadingPdf(true);
+    // const canvas = await html2canvas(certificateCardRef.current, {
+    //   scale: 2, // yüksek kalite
+    // });
+    // const imgData = canvas.toDataURL("image/png");
+    // const pdf = new jsPDF("p", "mm", "a4"); // portrait A4
+    // const pdfWidth = pdf.internal.pageSize.getWidth() + 300;
+    // const pdfHeight = pdf.internal.pageSize.getHeight(); // 297 mm
+    // // Görseli direkt sayfa boyutlarına bas → tam kaplasın
+    // pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+    // pdf.save(
+    //   `${certificate?.person?.firstName} ${certificate?.person?.lastName} certificate.pdf`
+    // );
+    // setLoadingPdf(false);
   };
 
   return (
     <section className={styles.shareSection}>
       <div className={styles.shareContainer}>
-        <h2 className={styles.shareTitle}>{t("shareYourAchievement")}</h2>
+        <h2 className={styles.shareTitle}>
+          {t("shareYourAchievement")}
+          {/* <div className={styles.thumbnails}>
+            {[
+              { dir: "vertical", Icon: RectangleHorizontal },
+              { dir: "horizontal", Icon: RectangleVertical },
+            ].map(({ dir, Icon }) => (
+              <div
+                key={dir}
+                className={styles.thumbnail}
+                onClick={() => setOrientation(dir)}
+              >
+                <Icon
+                  size={32}
+                  className={
+                    orientation === dir
+                      ? styles.activeIcon
+                      : styles.inactiveIcon
+                  }
+                />
+              </div>
+            ))}
+          </div> */}
+        </h2>
         <p className={styles.shareDescription}>{t("shareDescription")}</p>
         <div className={styles.shareButtons}>
           <button

@@ -1,164 +1,174 @@
 .certificateWrapper {
   display: flex;
+  justify-content: center;
   align-items: flex-start;
   padding: 20px;
-  justify-content: center;
 }
 
 .certificateContainer {
   position: relative;
-  background:-color #f7f9f9;
   width: 100%;
   max-width: 1200px;
-  padding: 1.5%;
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
-  font-family: "Nunito", "Arial", sans-serif;
-  overflow: hidden;
-  background-image:url("/images/home-bg.svg");
-  /* height: 760px; */
+  padding: 20px;
+  font-family: "Nunito", Arial, sans-serif;
+  background-color: #f7f9f9;
+  background-image: url("/images/cert-bg.png");
   background-position: center;
-  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  background-size: cover;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+}
+
+/* Aspect ratio */
+.vertical .certificateContainer {
+  aspect-ratio: 210 / 297;
+}
+
+.horizontal .certificateContainer {
+  aspect-ratio: 297 / 210;
+  max-width: 1000px;
 }
 
 .certificateOuterBorder {
-  border: 0.2vw solid #b2c7eb;
-  border-width: clamp(1.5px, 0.2vw, 2.3px);
-  padding: 0.4% 1%;
+  padding: 0.5%;
   height: 100%;
 }
 
 .certificateInnerBorder {
-  border: 0.15vw solid #b2c7eb;
-  border-width: clamp(1px, 0.15vw, 1.5px);
   padding: 0.6%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
+/* Header */
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: clamp(20px, 4vw, 50px);
-  margin-bottom: clamp(16px, 2.7vw, 32px);
+  margin-top: clamp(15px, 4vw, 50px);
+  margin-bottom: clamp(12px, 2.7vw, 32px);
 }
 
 .logoAndTitle {
   display: flex;
   align-items: flex-start;
-  gap: clamp(8px, 1.3vw, 16px);
+  gap: clamp(6px, 1.3vw, 16px);
 }
 
 .logoAndTitle img {
-  width: clamp(40px, 7vw, 86px) !important;
-  height: clamp(40px, 7vw, 86px) !important;
+  width: clamp(30px, 7vw, 86px) !important;
+  height: clamp(30px, 7vw, 86px) !important;
 }
 
 .ingress {
   font-weight: 700;
   color: #222;
   letter-spacing: 0.1em;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: clamp(1.2rem, 3.3vw, 2rem);
-  line-height: 1.3;
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
 
 .academy {
   font-weight: 700;
   color: #3f79ff;
   letter-spacing: 0.1em;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: clamp(1.2rem, 3.3vw, 2rem);
-  line-height: 1.3;
+  font-size: clamp(1rem, 2.5vw, 2rem);
 }
 
 .slogan {
-  font-size: clamp(0.7rem, 1.8vw, 1.1rem);
-  padding: clamp(8px, 1.2vw, 14px) 0 0 2px;
-  color: #586268;
+  font-size: clamp(0.55rem, 1.8vw, 1rem);
   font-weight: 300;
-  line-height: 1;
-  text-overflow: ellipsis;
+  color: #586268;
+  letter-spacing: 0.25em;
+  margin-top: 4px;
   white-space: nowrap;
-  letter-spacing: 0.3em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
+/* Main Content */
 .name {
   text-align: center;
-  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  font-size: clamp(1.1rem, 3vw, 2.2rem);
   font-weight: 700;
   color: #222;
-  letter-spacing: 0.08em;
-  margin-bottom: clamp(6px, 1vw, 10px);
+  margin-bottom: clamp(4px, 1vw, 10px);
 }
 
 .nameUnderline {
   width: 50%;
-  margin: 0 auto clamp(12px, 2vw, 24px);
-  height: clamp(2px, 0.3vw, 4px);
+  height: clamp(1.5px, 0.3vw, 4px);
   background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+  margin: 0 auto clamp(8px, 2vw, 24px);
 }
 
 .awardedText {
   text-align: center;
-  font-size: clamp(0.9rem, 2.3vw, 1.4rem);
+  font-size: clamp(0.7rem, 1.8vw, 1.3rem);
   color: #555;
-  margin-bottom: clamp(-4px, -0.7vw, -8px);
+  margin-bottom: clamp(-3px, -0.5vw, -6px);
 }
 
 .diploma {
   text-align: center;
   font-family: "Poppins", sans-serif;
-  font-size: clamp(2rem, 6.7vw, 4rem);
+  font-size: clamp(1.4rem, 5vw, 3.5rem);
   font-weight: 900;
   color: #0d49cc;
-  margin-bottom: clamp(4px, 0.7vw, 8px);
-  letter-spacing: 0.05em;
+  margin-bottom: clamp(2px, 0.7vw, 8px);
 }
 
 .requirements {
   text-align: center;
-  font-size: clamp(0.9rem, 2.3vw, 1.4rem);
+  font-size: clamp(0.7rem, 1.7vw, 1.3rem);
   color: #555;
-  margin: clamp(-8px, -1.3vw, -16px) 0 clamp(5px, 0.8vw, 10px) 0;
+  margin: clamp(-4px, -1vw, -12px) 0 clamp(3px, 0.8vw, 10px);
 }
 
 .course {
   text-align: center;
-  font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
-  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.8rem);
   font-weight: 600;
   color: #002370;
-  margin-bottom: clamp(10px, 1.7vw, 20px);
+  margin-bottom: clamp(6px, 1.5vw, 18px);
+  line-height: 1.2;
+  padding: 0 5px;
 }
 
 .courseUnderline {
   width: 60%;
-  margin: 0 auto clamp(8px, 1.2vw, 14px);
-  height: clamp(1.5px, 0.2vw, 2.4px);
+  height: clamp(1px, 0.2vw, 2.4px);
   background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+  margin: 0 auto clamp(6px, 1.2vw, 14px);
 }
 
+/* Footer */
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin:0 auto;
+  margin: 0 auto;
   width: 40%;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+.horizontal .footer {
+  width: 60%;
 }
 
 .date {
-  font-size: clamp(1rem, 2.7vw, 1.6rem);
+  font-size: clamp(0.8rem, 2.2vw, 1.5rem);
   color: #454032;
+  line-height: 1.1;
 }
 
 .label {
-  font-size: clamp(0.8rem, 2.2vw, 1.3rem);
+  font-size: clamp(0.6rem, 1.7vw, 1.2rem);
   color: #797979;
   margin-top: 2px;
 }
@@ -169,86 +179,217 @@
 
 .signature {
   font-family: "MonteCarlo", cursive;
-  font-weight: 400;
-  font-style: normal;
-  font-size: clamp(1rem, 4vw, 2.4rem);
+  font-size: clamp(0.8rem, 3.5vw, 2rem);
   color: #454032;
-  margin-bottom: 2px;
+  line-height: 1.1;
 }
 
-.decorTopRight {
-  position: absolute;
-  background: no-repeat;
-  background-position: bottom;
-  background-size: cover;
-  background-image: url("/images/certificate-decor-top-right.svg");
-  right: 3.8%;
-  top: 3.3%;
-  width: clamp(140px, 20vw, 250px);
-  height: clamp(155px, 22vw, 310px);
-  z-index: 1;
-}
-
-.decorBottomLeft {
-  position: absolute;
-  background: no-repeat;
-  background-position: bottom;
-  background-size: cover;
-  background-image: url("/images/certificate-decor-bottom-left.svg");
-  left: 3.8%;
-  bottom: 3.3%;
-  width: clamp(140px, 20vw, 250px);
-  height: clamp(155px, 22vw, 310px);
-  z-index: 1;
-}
-
-.qrcode {
-  background: no-repeat;
-  background-position: bottom;
-  background-size: cover;
-  background-image: url("/images/qr-code.svg");
-  right: 5%;
-  bottom: 5.3%;
-  width: clamp(70px, 11.7vw, 140px);
-  height: clamp(70px, 11.7vw, 140px);
-  z-index: 1;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.qrContainer{
+/* QR */
+.qrContainer {
   display: flex;
   justify-content: flex-end;
   width: 100%;
 }
 
-@media(max-width:768px){
-  .decorBottomLeft,.decorTopRight{
-    width: 15%;
+.qrcode {
+  width: clamp(40px, 8vw, 100px);
+  height: clamp(40px, 8vw, 100px);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Decorations */
+.decorTopRight,
+.decorBottomLeft {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: clamp(100px, 20vw, 250px);
+  height: clamp(100px, 20vw, 250px);
+  z-index: 1;
+}
+
+.decorTopRight {
+  right: 3.8%;
+  top: 3.3%;
+  background-image: url("/images/certificate-decor-top-right.svg");
+}
+
+.decorBottomLeft {
+  left: 3.8%;
+  bottom: 3.3%;
+  background-image: url("/images/certificate-decor-bottom-left.svg");
+}
+
+
+@media(max-width:425px) {
+  .header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .logoAndTitle {
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .logoAndTitle img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .ingress,
+  .academy {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .slogan {
+    font-size: 0.4rem;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+  }
+
+  .name {
+    font-size: 0.85rem;
+    margin-bottom: 0;
   }
 }
 
-@media (max-width: 425px) {
+/* Mobile-specific styles for screens <= 576px */
+@media (max-width: 576px) {
   .certificateWrapper {
+    padding: 8px;
+  }
+
+  .certificateContainer {
     padding: 10px;
+    /* font-size: 0.8rem; */
+    justify-content: space-between;
   }
-  
-  .decorBottomLeft,.decorTopRight{
-    width: 0;
+
+  /* Force vertical layout on mobile */
+  .vertical .certificateContainer,
+  /* .horizontal .certificateContainer {
+    aspect-ratio: 210 / 297;
+    max-width: 100%;
   }
-  .logoAndTitle {
-    flex-direction: column;
+   */
+  /* .header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  } */
+
+  /* .logoAndTitle {
+    flex-direction: row;
     align-items: center;
-    text-align: center;
-    gap: 8px;
+    gap: 4px;
   }
-  
-  .slogan {
-    letter-spacing: 0.2em;
+   */
+  /* .logoAndTitle img {
+    width: 20px !important;
+    height: 20px !important;
+  } */
+
+  /* .ingress, .academy {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  } */
+
+  /* .slogan {
+    font-size: 0.4rem;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+  } */
+
+  /* .name {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  } */
+
+  .nameUnderline {
+    margin: 0 auto 0;
+    height: 1px;
   }
-  
+
+  .awardedText {
+    font-size: 0.5rem;
+    /* margin-bottom: 0; */
+  }
+
+  .diploma {
+    font-size: 1.2rem;
+    /* margin-bottom: 0; */
+  }
+
+  .requirements {
+    /* font-size: 0.5rem; */
+    /* margin: 0; */
+  }
+
+  .course {
+    /* font-size: 0.65rem; */
+    /* margin-bottom: 0; */
+    line-height: 1.1;
+  }
+
+  .courseUnderline {
+    /* margin: 0 auto 0; */
+    height: 1px;
+  }
+
+  /* .footer {
+    width: 80%;
+    gap: 0.3rem;
+  }
+   */
+  .date {
+    /* font-size: 0.55rem; */
+  }
+
+  .label {
+    /* font-size: 0.45rem; */
+    /* margin-top: 0; */
+  }
+
+  .signature {
+    /* font-size: 0.55rem; */
+  }
+
+  .qrcode {
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+
+  /* .decorTopRight, .decorBottomLeft {
+    width: 40px;
+    height: 40px;
+  } */
+}
+
+/* Tablet and larger screens */
+@media (min-width: 577px) and (max-width: 768px) {
+  .certificateWrapper {
+    padding: 12px;
+  }
+
   .footer {
-    width: 60%;
+    width: 55%;
+  }
+
+  .horizontal .footer {
+    width: 65%;
+  }
+}
+
+/* Large screens */
+@media (min-width: 769px) {
+  .certificateWrapper {
+    padding: 20px;
   }
 }
 
@@ -256,7 +397,7 @@
   .certificateWrapper {
     padding: 0;
   }
-  
+
   .certificateContainer {
     max-width: none;
     width: 100%;
