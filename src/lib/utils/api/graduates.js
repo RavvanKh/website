@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 import { customAxios } from "@/lib/axios";
 
 export const getGraduates = async (id, page, size) => {

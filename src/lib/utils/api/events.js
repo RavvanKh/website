@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 import { eventAxios } from "@/lib/axios";
 
 export const getEvents = async ({ page, size }) => {
