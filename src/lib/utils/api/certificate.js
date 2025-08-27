@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 import { certificateAxios } from "@/lib/axios";
 
 import { errorCodes } from "@/lib/constants/errorCodes";
