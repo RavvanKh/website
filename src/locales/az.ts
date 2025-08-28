@@ -204,6 +204,7 @@ export default {
   friend: "Dost/Məsləkdaş",
   google: "Google",
   linkedin: "LinkedIn",
+  youtube: "YouTube",
   website: "Vebsayt",
   other: "Digər",
   previousTrainings: "Əvvəlki Təlimlər",

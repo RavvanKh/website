@@ -47,7 +47,6 @@ const Certificate = ({ id, hasPreview, platform = "" }) => {
           <>
             <ShareCertificate
               certificate={certificate}
-              certificateCardRef={certificateCardRef}
               setOrientation={setOrientation}
               orientation={orientation}
             />

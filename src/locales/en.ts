@@ -212,6 +212,7 @@ export default {
   friend: "Friend/Colleague",
   google: "Google",
   linkedin: "LinkedIn",
+  youtube: "YouTube",
   website: "Website",
   other: "Other",
   previousTrainings: "Previous Trainings",
@@ -262,6 +263,6 @@ export default {
   plsTryAgainInAFewMinutes: "Please try again in a few minutes.",
   refreshIn: "Refresh in",
   skillsYouWillGain: "Skills You Will Gain",
-  shareYourAchievement:"Share Your Achievement",
-  shareDescription:"Let your network know about your new certification"
+  shareYourAchievement: "Share Your Achievement",
+  shareDescription: "Let your network know about your new certification",
 } as const;
