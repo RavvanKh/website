@@ -28,7 +28,6 @@ const CertificateCard = ({ certificate, orientation = "vertical", small = false 
                 </div>
               </div>
 
-              {/* CONTENT */}
               <div className={styles.name}>
                 {certificate?.person?.firstName} {certificate?.person?.lastName}
               </div>

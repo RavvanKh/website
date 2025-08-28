@@ -3,10 +3,11 @@ import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { useI18n } from "@/locales/client";
+
 import { routes } from "@/lib/constants/routes";
 
 import styles from "./logo.module.css";
-import { useI18n } from "@/locales/client";
 
 const Logo = memo(({ theme = "light", isShownBottom = false }) => {
   const t = useI18n();
@@ -29,7 +30,12 @@ const Logo = memo(({ theme = "light", isShownBottom = false }) => {
             <span className={styles.logoTextLeft} style={{ color: titleColor }}>
               Ingress
             </span>
-            <span className={styles.logoTextRight}>Academy</span>
+            <span
+              className={styles.logoTextRight}
+              style={{ color: titleColor }}
+            >
+              Academy
+            </span>
           </div>
           <div
             className={styles.logoTextBottom}
