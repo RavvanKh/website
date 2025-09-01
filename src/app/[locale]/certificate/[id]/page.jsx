@@ -4,6 +4,7 @@ import { errorCodes } from "@/lib/constants/errorCodes";
 import { getCertificateData } from "@/lib/utils/api/certificate";
 
 import { getHomeData } from "@/lib/utils/api/home";
+import { convertPlatform } from "@/lib/utils/helpers/convertPlatform";
 
 export async function generateMetadata({ params, searchParams }) {
   const { id, locale } = await params;
@@ -11,6 +12,8 @@ export async function generateMetadata({ params, searchParams }) {
   let { platform, orientation } = await searchParams;
 
   orientation = orientation || "horizontal";
+
+  platform = convertPlatform(platform);
 
   const platformQuery = platform ? `?platform=${platform}` : "";
 
