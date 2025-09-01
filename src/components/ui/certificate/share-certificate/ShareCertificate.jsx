@@ -29,7 +29,7 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
       setLoadingPdf(true);
 
       const apiUrl = `/api/certificate/preview?url=${encodeURIComponent(
-        certificate?.previewUrl
+        certificate?.previewUrls?.[orientation]
       )}`;
       const imageRes = await fetch(apiUrl);
       if (!imageRes.ok) throw new Error("Preview image fetch failed");
