@@ -5,8 +5,8 @@ import Image from "next/image";
 import jsPDF from "jspdf";
 import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-
-import html2canvas from "html2canvas";
+import { RectangleHorizontal, RectangleVertical } from "lucide-react";
+import { toast } from "react-toastify";
 
 import { useI18n } from "@/locales/client";
 
@@ -16,8 +16,7 @@ import {
 } from "@/lib/utils/helpers/certificateActions";
 
 import styles from "./share-certificate.module.css";
-import { RectangleHorizontal, RectangleVertical } from "lucide-react";
-import { toast } from "react-toastify";
+import { SHARE_CERTIFICATE_ENUMS } from "@/lib/constants/shareCertificateEnums";
 
 const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -123,7 +122,9 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
           <button
             className={styles.shareButton}
             aria-label="Share on WhatsApp"
-            onClick={() => handleShare("WHATSAPP", certificate)}
+            onClick={() =>
+              handleShare(SHARE_CERTIFICATE_ENUMS.whatsapp, certificate)
+            }
           >
             <Image
               src="/icons/WhatsApp.webp"
@@ -136,7 +137,9 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
           <button
             className={styles.shareButton}
             aria-label="Share on LinkedIn"
-            onClick={() => handleShare("LINKEDIN", certificate)}
+            onClick={() =>
+              handleShare(SHARE_CERTIFICATE_ENUMS.linkedin, certificate)
+            }
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +155,9 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
           <button
             className={styles.shareButton}
             aria-label="Share on Facebook"
-            onClick={() => handleShare("FACEBOOK", certificate)}
+            onClick={() =>
+              handleShare(SHARE_CERTIFICATE_ENUMS.facebook, certificate)
+            }
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

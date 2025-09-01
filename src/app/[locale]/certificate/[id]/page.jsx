@@ -90,10 +90,17 @@ export async function generateMetadata({ params, searchParams }) {
 }
 
 const CertificatePage = async ({ params, searchParams }) => {
-  const { platform } = await searchParams;
+  const { platform, orientation } = await searchParams;
   const { id } = await params;
 
-  return <Certificate id={id} hasPreview={false} platform={platform} />;
+  return (
+    <Certificate
+      id={id}
+      hasPreview={false}
+      platform={platform}
+      defaultOrientation={orientation}
+    />
+  );
 };
 
 export default CertificatePage;

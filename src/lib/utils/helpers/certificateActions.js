@@ -1,3 +1,5 @@
+import { SHARE_CERTIFICATE_ENUMS } from "@/lib/constants/shareCertificateEnums";
+
 export const handleCopyLink = async (setCopySuccess) => {
   if (typeof window !== "undefined" && navigator.clipboard) {
     try {
@@ -23,13 +25,13 @@ export const handleShare = (platform, certificate) => {
   let shareUrl = "";
 
   switch (platform) {
-    case "whatsapp":
+    case SHARE_CERTIFICATE_ENUMS.whatsapp:
       shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
       break;
-    case "linkedin":
+    case SHARE_CERTIFICATE_ENUMS.linkedin:
       shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}&text=${text}`;
       break;
-    case "facebook":
+    case SHARE_CERTIFICATE_ENUMS.facebook:
       shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&text=${text}`;
       break;
     default:

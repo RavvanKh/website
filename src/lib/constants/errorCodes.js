@@ -1,13 +1,13 @@
 export const errorCodes = {
   training: {
-    notFound: 502,
-    maintenance: "*",
+    notFound: 404,
+    maintenance: 502,
   },
-  home:{
-    maintenance:"*"
+  home: {
+    maintenance: 502,
   },
   certificate: {
     notFound: 404,
-    maintenance: "*"
-  }
+    maintenance: 502,
+  },
 };
