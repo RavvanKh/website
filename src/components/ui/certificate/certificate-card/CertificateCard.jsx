@@ -15,7 +15,7 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
     >
       <Image
         className={styles.previewImg}
-        src={certificate?.previewUrl}
+        src={certificate?.previewUrls?.[orientation]}
         alt="preview"
         fill={true}
       />

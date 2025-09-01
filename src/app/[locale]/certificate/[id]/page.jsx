@@ -8,7 +8,9 @@ import { getHomeData } from "@/lib/utils/api/home";
 export async function generateMetadata({ params, searchParams }) {
   const { id, locale } = await params;
 
-  const { platform } = await searchParams;
+  let { platform, orientation } = await searchParams;
+
+  orientation = orientation || "horizontal";
 
   const platformQuery = platform ? `?platform=${platform}` : "";
 
@@ -46,7 +48,7 @@ export async function generateMetadata({ params, searchParams }) {
         siteName: organization?.name,
         images: [
           {
-            url: certificate?.previewUrl,
+            url: certificate?.previewUrls?.[orientation],
             width: 1200,
             height: 630,
             alt: "Certificate img",
@@ -59,7 +61,7 @@ export async function generateMetadata({ params, searchParams }) {
         description: certificate.description,
         images: [
           {
-            url: certificate?.previewUrl,
+            url: certificate?.previewUrls?.[orientation],
             width: 1200,
             height: 630,
             alt: "Certificate img",
