@@ -8,6 +8,7 @@ const CertificateCard = ({ certificate, orientation = "vertical", small = false 
   return (
 
       <div className={`${styles.certificateWrapper} ${orientation === "horizontal" ? styles.horizontal : styles.vertical}`}>
+      <Image className={styles.previewImg} src={certificate?.previewUrl} alt="preview" fill={true}/>
         <div className={styles.certificateContainer}>
           <div className={styles.certificateOuterBorder}>
             <div className={styles.certificateInnerBorder}>

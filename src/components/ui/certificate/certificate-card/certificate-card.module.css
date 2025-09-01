@@ -5,6 +5,11 @@
   padding: 20px;
 }
 
+.previewImg{
+  display:none;
+  object-fit: contain;
+  z-index: 0;
+}
 .certificateContainer {
   position: relative;
   width: 100%;
@@ -298,7 +303,6 @@
   z-index: 1;
 }
 
-/* 500px altı için düzenlemeler */
 @media (max-width: 500px) {
   .certificateWrapper {
     padding: 8px;
@@ -483,6 +487,21 @@
     height: 55px;
     margin-right: 6px;
     margin-bottom: 6px;
+  }
+}
+
+@media(max-width:576px) {
+  .certificateWrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 297 / 210;
+  }
+  .previewImg{
+    display:block;
+  }
+  .certificateContainer {
+    display: none;
   }
 }
 
