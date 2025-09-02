@@ -25,6 +25,13 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
             <div className={styles.header}>
               <div className={styles.logoAndTitle}>
                 <Image
+                  src={`/images/logo-${orientation}.png`}
+                  width={500}
+                  height={200}
+                  objectFit="contain"
+                  alt="Logo"
+                />
+                {/* <Image
                   src="/icons/logo.svg"
                   height={orientation === "horizontal" ? 60 : 86}
                   width={orientation === "horizontal" ? 60 : 86}
@@ -35,7 +42,7 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
                   <span className={styles.ingress}>INGRESS</span>
                   <span className={styles.academy}> ACADEMY</span>
                   <div className={styles.slogan}>empowered by innovation</div>
-                </div>
+                </div> */}
               </div>
             </div>
 
