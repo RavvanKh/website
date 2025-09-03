@@ -89,7 +89,7 @@ const Trainings = () => {
       const matchesCategory =
         filter.category.length === 0 ||
         filter.category.some((category) =>
-          course.tags?.some((tag) => tag.includes(`category:${category}`))
+          course.categories?.some((c) => c?.categoryId === category)
         );
 
       const matchesLevel =
@@ -125,7 +125,6 @@ const Trainings = () => {
   useEffect(() => {
     updateFilter("category", urlParams.category);
   }, [urlParams.category]);
-
 
   return (
     <GlobalDataWrapper loading={loading.home} error={error.home}>

@@ -255,5 +255,5 @@ export default {
   plsTryAgainInAFewMinutes:
     "Zəhmət olmasa bir neçə dəqiqədən sonra yenidən yoxlayın. Səbriniz üçün təşəkkür edirik!",
   refreshIn: "Yenilənəcək",
-  skillsYouWillGain:"Qazanacağınız bacarıqlar"
+  skillsYouWillGain: "Qazanacağınız bacarıqlar",
 } as const;
