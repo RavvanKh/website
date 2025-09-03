@@ -1,4 +1,3 @@
-
 export const filterOptions = [
   {
     key: "category",
@@ -10,6 +9,7 @@ export const filterOptions = [
       { key: "beginner" },
       { key: "intermediate" },
       { key: "advanced" },
+      { key: "expert" },
     ],
   },
 ];

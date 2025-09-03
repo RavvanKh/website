@@ -44,10 +44,16 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
 
         const img = new window.Image();
         img.onload = () => {
-          const pdf = new jsPDF("landscape", "pt", "a4");
+          const isLandscape = orientation === "horizontal";
 
-          const pdfWidth = 842;
-          const pdfHeight = 595;
+          const pdf = new jsPDF(
+            isLandscape ? "landscape" : "portrait",
+            "pt",
+            "a4"
+          );
+
+          const pdfWidth = isLandscape ? 842 : 595;
+          const pdfHeight = isLandscape ? 595 : 842;
 
           const imgAspectRatio = img.width / img.height;
           const pdfAspectRatio = pdfWidth / pdfHeight;
@@ -71,7 +77,7 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
             ? `${certificate.name
                 .replace(/[^a-z0-9]/gi, "_")
                 .toLowerCase()}.pdf`
-            : `certificate-${certificate?.credentialId}.pdf`;
+            : `cert-${certificate?.credentialId}-${orientation}.pdf`;
 
           pdf.save(fileName);
           setLoadingPdf(false);

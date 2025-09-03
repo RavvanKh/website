@@ -2,6 +2,8 @@ import Image from "next/image";
 
 import QrCode from "@/components/shared/qr-code/QrCode";
 
+import { CERTIFICATE_TYPE_ENUMS } from "@/lib/constants/certificateTypeEnums";
+
 import styles from "./certificate-card.module.css";
 
 const CertificateCard = ({ certificate, orientation = "vertical" }) => {
@@ -31,18 +33,6 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
                   objectFit="contain"
                   alt="Logo"
                 />
-                {/* <Image
-                  src="/icons/logo.svg"
-                  height={orientation === "horizontal" ? 60 : 86}
-                  width={orientation === "horizontal" ? 60 : 86}
-                  alt="Ingress Academy Logo"
-                  priority
-                />
-                <div>
-                  <span className={styles.ingress}>INGRESS</span>
-                  <span className={styles.academy}> ACADEMY</span>
-                  <div className={styles.slogan}>empowered by innovation</div>
-                </div> */}
               </div>
             </div>
 
@@ -60,7 +50,6 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
             </div>
             <div className={styles.courseUnderline} />
 
-            {/* FOOTER */}
             <div className={styles.footer}>
               <div className={styles.date}>
                 {new Date(certificate?.issueDate).toLocaleDateString("en-US", {
@@ -70,13 +59,36 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
                 })}
                 <div className={styles.label}>Issue Date</div>
               </div>
+              {certificate?.type === CERTIFICATE_TYPE_ENUMS.honours && (
+                <div className={styles.honourContainer}>
+                  <div className={styles.honourCert}>
+                    <Image
+                      src="/images/honour-cert.png"
+                      alt="Honour"
+                      width={70}
+                      height={70}
+                    />
+                    <span className={styles.honourText}>Honours</span>
+                  </div>
+                </div>
+              )}
               <div className={styles.signatureBlock}>
-                <div className={styles.signature}>Signature</div>
+                <div className={styles.signature}>
+                  <Image
+                    src="/images/signature.png"
+                    alt="Signature"
+                    width={100}
+                    height={100}
+                    objectFit="contain"
+                  />
+                </div>
                 <div className={styles.label}>Imran Yusubov</div>
               </div>
             </div>
 
-            {/* QR */}
+            <div className={styles.credentialId}>
+              Credential ID: {certificate?.credentialId}
+            </div>
             <div className={styles.qrContainer}>
               <div className={styles.qrcode}>
                 <QrCode
