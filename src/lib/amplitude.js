@@ -1,27 +1,26 @@
 import * as amplitude from "@amplitude/analytics-browser";
 import { sessionReplayPlugin } from "@amplitude/plugin-session-replay-browser";
-
-let replayPlugin = null;
+import { initAll } from "@amplitude/unified";
 
 export const initAmplitude = () => {
-  const apiKey = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
+  const API_KEY = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
 
-  amplitude.init(apiKey, {
-    defaultTracking: true,
-    serverZone: "US",     
-    fetchRemoteConfig: true,
-    autocapture: true,
-    deviceId: window?.crypto?.randomUUID?.(),
-  });
+  const sessionReplayTracking = sessionReplayPlugin();
+  amplitude.add(sessionReplayTracking);
 
-  replayPlugin = sessionReplayPlugin({ sampleRate: 1 });
-  amplitude.add(replayPlugin);
-};
+  amplitude.init(API_KEY);
 
-export const logEvent = (eventName, eventProperties = {}) => {
-  const replayId = replayPlugin?.getSessionReplayId?.();
-  amplitude.track(eventName, {
-    ...eventProperties,
-    replay_id: replayId, 
+  initAll(API_KEY, {
+    sessionReplay: {
+      sampleRate: 1,
+    },
   });
 };
+
+export const logEvent = (eventName, eventProperties) => {
+  amplitude.track(eventName, eventProperties);
+};
+
+
+logEvent("Test Event", { test: true });
+
