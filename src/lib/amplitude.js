@@ -1,9 +1,20 @@
-import * as amplitude from '@amplitude/analytics-browser';
+import * as amplitude from "@amplitude/analytics-browser";
+import {
+  sessionReplayPlugin,
+} from "@amplitude/plugin-session-replay-browser";
 
 export const initAmplitude = () => {
-  amplitude.init(process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY, {
+  const apiKey = process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY;
+
+  console.log(apiKey);
+  amplitude.init(apiKey, {
     defaultTracking: true,
+    serverZone: "EU",
   });
+
+  const sessionReplayTracking = sessionReplayPlugin({ sampleRate: 1 });
+
+  amplitude.add(sessionReplayTracking);
 };
 
 export const logEvent = (eventName, eventProperties) => {
