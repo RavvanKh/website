@@ -7,8 +7,6 @@ import Event from "./event/Event";
 import styles from "./events.module.css";
 
 const Events = ({ loading, error,events }) => {
-  // Hide for data fixing
-  events = []
   const t = useI18n();
 
   if (events?.length === 0) return null;

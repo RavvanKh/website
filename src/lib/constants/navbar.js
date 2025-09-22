@@ -14,6 +14,10 @@ export const navbarItems = [
     url: routes.instructors,
   },
   // {
+  //   key: "blogs",
+  //   url: routes.blogs,
+  // },
+  // {
   //   key: "career",
   //   url: routes.career,
   // },

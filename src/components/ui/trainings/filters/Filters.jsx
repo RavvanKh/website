@@ -12,13 +12,14 @@ const Filters = ({
   activeFilter,
   trainings = [],
   loading,
+  label
 }) => {
   const t = useI18n();
 
   return (
     <section className={styles.filters}>
       <div className={styles.filterTop}>
-        <div className={styles.filterTopTitle}>{t("allTrainings")}:</div>
+        <div className={styles.filterTopTitle}>{t(label)}:</div>
         <div className={styles.filterTopResults}>
           {trainings.length} {t("results")}
         </div>

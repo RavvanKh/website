@@ -37,7 +37,7 @@ const FilterGroup = ({ t, group, onClick, activeFilter = [], loading }) => {
             <label key={index} className={styles.option}>
               <input
                 type="checkbox"
-                value={option.key}
+                value={option?.id}
                 checked={selectedOptions.includes(option.id || option.key)}
                 onChange={() => handleChange(option.id || option.key)}
               />
