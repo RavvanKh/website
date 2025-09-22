@@ -41,6 +41,8 @@ const Events = dynamic(() => import("@/components/shared/events/Events"), {
   ssr: false,
 });
 
+const Blogs = dynamic(() => import("@/components/ui/home/blogs/Blogs"));
+
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 import styles from "./home.module.css";
@@ -80,6 +82,7 @@ export default function Home() {
           loading={loading.home}
           error={error.home}
         />
+        {/* <Blogs /> */}
         <Comments
           loading={loading.comments}
           error={error.comments}

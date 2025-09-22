@@ -1,14 +1,14 @@
 "use client";
 import { useI18n } from "@/locales/client";
 import { useState } from "react";
-import { Pagination, Stack } from "@mui/material";
 
 import Course from "@/components/shared/course/Course";
 import Loader from "@/components/shared/loader/Loader";
+import CustomPagination from "@/components/shared/custom-pagination/CustomPagination";
+
+import { getPageable } from "@/lib/utils/helpers/pagination";
 
 import styles from "./filtered-trainings.module.css";
-
-const ITEMS_PER_PAGE = 9;
 
 const FilteredTrainings = ({ trainings, loading }) => {
   const t = useI18n();
@@ -26,10 +26,7 @@ const FilteredTrainings = ({ trainings, loading }) => {
     return <div className={styles.loader}>{t("noTrainingsFound")}</div>;
   }
 
-  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
-  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentItems = trainings.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(trainings.length / ITEMS_PER_PAGE);
+  const { currentItems, totalPages } = getPageable(trainings, currentPage, 9);
 
   const handleChange = (event, value) => {
     setCurrentPage(value);
@@ -54,18 +51,22 @@ const FilteredTrainings = ({ trainings, loading }) => {
         ))}
       </div>
 
-      <div className={styles.pagination}>
-        <Stack spacing={2} alignItems="center" justifyContent="center" mt={4}>
-          <Pagination
-            count={totalPages}
-            page={currentPage}
-            onChange={handleChange}
-            color="primary"
-            variant="outlined"
-            shape="rounded"
-          />
-        </Stack>
-      </div>
+      <CustomPagination
+        stackProps={{
+          spacing: 2,
+          alignItems: "center",
+          justifyContent: "center",
+          mt: 4,
+        }}
+        paginationProps={{
+          count: totalPages,
+          page: currentPage,
+          onChange: handleChange,
+          color: "primary",
+          variant: "outlined",
+          shape: "rounded",
+        }}
+      />
     </section>
   );
 };

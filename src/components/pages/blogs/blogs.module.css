@@ -1,0 +1,10 @@
+.blogs {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+  padding: 50px 0;
+  width: min(85%, 1216px);
+  margin: 0 auto;
+  min-height: 100vh;
+}

@@ -138,6 +138,7 @@ const Trainings = () => {
         </div>
         <div className={styles.trainingsContent}>
           <Filters
+          label="allTrainings"
             loading={loading.home}
             trainings={filteredTrainings}
             activeFilter={filter}

@@ -1,6 +1,7 @@
 export default {
   exploreCourses: "Təlim Proqramları",
   about: "Haqqımızda",
+  blogs:"Bloqlar",
   career: "Karyera",
   scholarships: "Təqaüd Proqramları",
   applyNow: "İndi Müraciət Edin",
@@ -151,6 +152,7 @@ export default {
   advanced: "Qabaqcıl",
   noTrainingsFound: "Təlim tapılmadı",
   allTrainings: "Bütün təlimlər",
+  allBlogs:"Bütün bloqlar",
   results: "nəticə",
   relatedCourses: "Bənzər təlimlər",
   trainings: "Təlimlər",

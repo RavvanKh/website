@@ -146,12 +146,6 @@ export const GlobalDataProvider = ({ children }) => {
     setLoading({ home: false, comments: false, events: false });
   }, []);
 
-  const refreshData = useCallback(() => {
-    if (hasFetched.current) {
-      fetchAllData();
-    }
-  }, [fetchAllData, hasFetched]);
-
   const filteredCourses = useMemo(() => {
     if (!data.courses.length) return [];
 
@@ -198,12 +192,11 @@ export const GlobalDataProvider = ({ children }) => {
       error,
       filter,
       updateFilter,
-      refreshData,
       fetchAllData,
       selectedCategoryForExplore,
       setSelectedCategoryForExplore,
     }),
-    [data, loading, error, filter, updateFilter, refreshData, fetchAllData]
+    [data, loading, error, filter, updateFilter, fetchAllData]
   );
 
   return (

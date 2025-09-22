@@ -1,0 +1,17 @@
+.blogsSection {
+  width: min(85%, 1216px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 0;
+}
+
+.blogsSection h3 {
+  text-align: center;
+  color: #212529;
+  font-family: Nunito, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 48px;
+}

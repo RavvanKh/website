@@ -1,173 +1,207 @@
-'use client'
-import { useEffect, useState } from "react";
-import NextImage from "next/image";
-import { format } from "date-fns";
-import { az } from "date-fns/locale";
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Calendar, MapPin, Clock, Users } from "lucide-react";
+
+import { routes } from "@/lib/constants/routes";
 
 import ImgSkeleton from "../../img-skeleton/ImgSkeleton";
+import PersonProfile from "@/components/shared/person-profile/PersonProfile";
 
 import styles from "./event.module.css";
 
 const Event = ({ event, t }) => {
-  const [textColor, setTextColor] = useState("#fff");
-  const [imageLoaded, setImageLoaded] = useState(false);
-  
-  const formattedDate = format(new Date(event.startDateTime), "d MMMM, yyyy", {
-    locale: az,
-  }).toLowerCase();
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
-
-  const calculateRegionColor = (canvas, ctx, img) => {
-    const regionHeight = Math.floor(img.height * 0.3);
-    const regionWidth = Math.floor(img.width * 0.5); 
-    const startY = img.height - regionHeight;
-    const startX = 0;
-    
-    try {
-      const imageData = ctx.getImageData(startX, startY, regionWidth, regionHeight);
-      const { data } = imageData;
-      
-      let r = 0, g = 0, b = 0, pixelCount = 0;
-      
-      for (let i = 0; i < data.length; i += 4) {
-        if (data[i + 3] > 0) {
-          r += data[i];
-          g += data[i + 1];
-          b += data[i + 2];
-          pixelCount++;
-        }
-      }
-      
-      if (pixelCount === 0) return "#fff";
-      
-      const avgR = r / pixelCount;
-      const avgG = g / pixelCount;
-      const avgB = b / pixelCount;
-      
-      const brightness = (avgR * 0.299 + avgG * 0.587 + avgB * 0.114);
-      
-      return brightness > 140 ? "#000" : "#fff";
-    } catch (error) {
-      console.warn("Renk hesaplama hatası:", error);
-      return "#fff";
-    }
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
   };
 
-  useEffect(() => {
-    if (!event.promotionalImageUrl) return;
+  const formatTime = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
 
-    const img = new Image();
-    img.crossOrigin = "anonymous"; 
-    
-    img.onload = () => {
-      try {
-        const canvas = document.createElement("canvas");
-        const ctx = canvas.getContext("2d");
-        
-        canvas.width = img.width;
-        canvas.height = img.height;
-        
-        ctx.drawImage(img, 0, 0);
-        
-        const calculatedColor = calculateRegionColor(canvas, ctx, img);
-        setTextColor(calculatedColor);
-        setImageLoaded(true);
-        
-        canvas.remove();
-      } catch (error) {
-        console.warn("Resim işleme hatası:", error);
-        setTextColor("#fff");
-        setImageLoaded(true);
+  const calculateDuration = () => {
+    if (event.endDateTime) {
+      const start = new Date(event.startDateTime);
+      const end = new Date(event.endDateTime);
+      const diffHours = Math.abs(end - start) / (1000 * 60 * 60);
+      return `${diffHours} hours`;
+    }
+    return null;
+  };
+
+  const timeOptions = [
+    { value: timeLeft.days, label: "d" },
+    { value: timeLeft.hours, label: "h" },
+    { value: timeLeft.minutes, label: "m" },
+    { value: timeLeft.seconds, label: "s" },
+  ];
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const eventDate = new Date(event.startDateTime);
+      const now = new Date();
+      const difference = eventDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     };
-    
-    img.onerror = () => {
-      console.warn("Resim yüklenemedi");
-      setTextColor("#fff");
-      setImageLoaded(true);
-    };
-    
-    img.src = event.promotionalImageUrl;
-    
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [event.promotionalImageUrl]);
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, [event.startDateTime]);
 
   return (
-    <div className={styles.event}>
+    <Link href={`${routes.events}/${event?.id}`} className={styles.eventCard}>
       <div className={styles.eventImage}>
-        <ImgSkeleton
-          obj={event}
-          keyName={"promotionalImageUrl"}
-          defaultClass="event"
-        />
-        <div className={styles.eventSpeakers}>
-          {event?.speakersDto?.slice(0, 6)?.map((speaker, index) => (
-            <div
-              className={styles.eventSpeaker}
-              key={index}
-              style={{ bottom: `${index * 25 + 5}px` }}
-            >
-              <ImgSkeleton
-                keyName="photoUrl"
-                obj={speaker}
-                defaultClass="speaker"
-              />
-              <span 
-                style={{
-                  color: textColor,
-                  textShadow: textColor === "#fff" 
-                    ? "1px 1px 2px rgba(0,0,0,0.8)" 
-                    : "1px 1px 2px rgba(255,255,255,0.8)",
-                  transition: "color 0.3s ease"
-                }}
-              >
-                {speaker?.name}
+        <ImgSkeleton obj={event} keyName="icon" defaultClass="eventImg" />
+
+        <div className={styles.statusBadges}>
+          <span className={`${styles.badge} ${styles.typeBadge}`}>
+            {event.eventType}
+          </span>
+          <span
+            className={`${styles.badge} ${styles.statusBadge} ${
+              event.status === "UPCOMING" ? styles.upcoming : styles.other
+            }`}
+          >
+            {event.status.toLowerCase()}
+          </span>
+        </div>
+
+        {event.freeEvent && <div className={styles.freeBadge}>Free</div>}
+
+        <div className={styles.remainingTime}>
+          {timeOptions.map((option, index) => (
+            <div className={styles.timeUnit} key={index}>
+              <span className={styles.timeValue}>
+                {String(option.value).padStart(2, "0")}
+                {option.label}
               </span>
             </div>
           ))}
         </div>
       </div>
+
       <div className={styles.eventContent}>
-        <article className={styles.eventInfo}>
-          <div className={styles.eventInfoTop}>
-            <div className={styles.eventIcon}>
-              <NextImage
-                src={"/icons/event.svg"}
-                alt="event"
-                width={16}
-                height={16}
-              />
-              <span>{t("event")}</span>
+        <h3 className={styles.eventTitle}>{event.title}</h3>
+
+        {event.categories && event.categories.length > 0 && (
+          <div className={styles.categoriesSection}>
+            <div className={styles.categories}>
+              {event.categories.map((category, index) => (
+                <span key={index} className={styles.categoryTag}>
+                  {category.categoryName}
+                </span>
+              ))}
             </div>
           </div>
-          <div className={styles.eventTitle}>{event?.title}</div>
-          <div className={styles.eventDescription}>{event?.description}</div>
-        </article>
-        <div className={styles.eventDetail}>
-          <div className={styles.eventDetailItem}>
-            <NextImage
-              src={"/icons/calendar.svg"}
-              height={16}
-              width={16}
-              alt="Calendar"
-            />
-            <p>{formattedDate}</p>
+        )}
+
+        {event.tags && event.tags.length > 0 && (
+          <div className={styles.tagsSection}>
+            <div className={styles.tags}>
+              {event.tags.slice(0, 6).map((tag, index) => (
+                <span key={index} className={styles.tag}>
+                  #{tag}
+                </span>
+              ))}
+              {event.tags.length > 6 && (
+                <span className={styles.moreTag}>
+                  +{event.tags.length - 6} more
+                </span>
+              )}
+            </div>
           </div>
-          <div className={styles.eventDetailItem}>
-            <NextImage
-              src={"/icons/location-dark.svg"}
-              height={16}
-              width={16}
-              alt="Location"
-            />
-            <p>{event?.locationDto?.address}</p>
+        )}
+
+        <div className={styles.speakersSection}>
+          <h4 className={styles.speakersTitle}>
+            <Users size={16} />
+            Speakers
+          </h4>
+          <div className={styles.speakers}>
+            {event.speakers &&
+              event.speakers.map((speakerId, index) => (
+                <PersonProfile personId={speakerId} key={index} />
+              ))}
           </div>
         </div>
+
+        <div className={styles.eventDetails}>
+          <div className={styles.detailItem}>
+            <Calendar size={16} />
+            <span>{formatDate(event.startDateTime)}</span>
+          </div>
+
+          <div className={styles.detailItem}>
+            <Clock size={16} />
+            <span>{formatTime(event.startDateTime)}</span>
+            {event.endDateTime && (
+              <span className={styles.endTime}>
+                - {formatTime(event.endDateTime)}
+              </span>
+            )}
+          </div>
+
+          {calculateDuration() && (
+            <div className={styles.detailItem}>
+              <Clock size={16} />
+              <span>Duration: {calculateDuration()}</span>
+            </div>
+          )}
+
+          <div className={styles.detailItem}>
+            <MapPin size={16} />
+            <span>{event.locationDto?.address || "TBA"}</span>
+            {event.locationDto?.locationType && (
+              <span className={styles.locationType}>
+                {event.locationDto.locationType.toLowerCase()}
+              </span>
+            )}
+          </div>
+
+          {!event.freeEvent && event.eventPrice > 0 && (
+            <div className={styles.detailItem}>
+              <span className={styles.priceIcon}>$</span>
+              <span>Price: ${event.eventPrice}</span>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+
+      <div className={styles.hoverOverlay}></div>
+    </Link>
   );
 };
 

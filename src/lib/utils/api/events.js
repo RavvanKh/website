@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 import { eventAxios } from "@/lib/axios";
 
 export const getEvents = async ({ page, size }) => {
@@ -9,6 +9,7 @@ export const getEvents = async ({ page, size }) => {
         size,
       },
     });
+
     return res.data;
   } catch (err) {
     throw new Error(err?.response?.data?.message);

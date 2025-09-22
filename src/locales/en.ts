@@ -1,6 +1,7 @@
 export default {
   exploreCourses: "Explore Courses",
   about: "About",
+  blogs: "Blogs",
   career: "Career",
   scholarships: "Scholarships",
   applyNow: "Apply Now",
@@ -153,6 +154,7 @@ export default {
   advanced: "Advanced",
   noTrainingsFound: "No trainings found",
   allTrainings: "All trainings",
+  allBlogs: "All blogs",
   results: "results",
   relatedCourses: "Related courses",
   trainings: "Trainings",
