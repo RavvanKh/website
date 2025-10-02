@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { notFound, usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
 import CertificateCard from "@/components/ui/certificate/certificate-card/CertificateCard";
@@ -10,24 +12,56 @@ import ShareCertificate from "@/components/ui/certificate/share-certificate/Shar
 
 import { useCertificate } from "@/contexts/CertificateContext";
 
-import { getCertificateData } from "@/lib/utils/api/certificate";
-import { convertPlatform } from "@/lib/utils/helpers/convertPlatform";
-import { errorCodes } from "@/lib/constants/errorCodes";
-
-import { CERTIFICATE_DEFAULT_TYPE } from "@/lib/constants/shareCertificateEnums";
-
 import styles from "./certificate.module.css";
 
-const Certificate = ({
-  hasPreview,
-}) => {
+const Certificate = ({ hasPreview }) => {
   const { certificate, loading, error, platform, setOrientation, orientation } =
     useCertificate();
 
   const certificateCardRef = useRef(null);
+  const [loadingPdf, setLoadingPdf] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
+
+  const handleDownloadPdf = async () => {
+    try {
+      setLoadingPdf(true);
+      const element = certificateCardRef.current;
+      console.log(certificateCardRef);
+      const isLandscape = orientation === "horizontal";
+
+      const imgWidth = isLandscape ? 1000 : 550;
+      const imgHeight = isLandscape ? 707 : 777;
+
+      const canvas = await html2canvas(element, {
+        scale: 3,
+        useCORS: true,
+        logging: false,
+        height: imgHeight,
+        width: imgWidth,
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+
+      const pdf = new jsPDF(isLandscape ? "landscape" : "portrait", "pt", [
+        imgWidth,
+        imgHeight,
+      ]);
+
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+
+      const fileName = certificate.name
+        ? `${certificate.name.replace(/[^a-z0-9]/gi, "_").toLowerCase()}.pdf`
+        : `cert-${certificate?.credentialId}-${orientation}.pdf`;
+
+      pdf.save(fileName);
+      setLoadingPdf(false);
+    } catch (err) {
+      console.error(err);
+      setLoadingPdf(false);
+    }
+  };
 
   const handleChangeOrientation = (newOrientation) => {
     const params = new URLSearchParams();
@@ -44,35 +78,22 @@ const Certificate = ({
     router.push(newUrl, { scroll: false });
   };
 
-  // useEffect(() => {
-  //   getCertificateData(id, convertPlatform(platform))
-  //     .then((data) => setCertificate(data))
-  //     .finally(() => setLoading(false));
-  // }, [id, platform]);
-
-  // useEffect(() => {
-  //   if (certificate === errorCodes.certificate.notFound) {
-  //     return notFound();
-  //   } else if (typeof certificate !== "object") {
-  //     setError(certificate);
-  //   }
-  // }, [certificate]);
-
   return (
     <GlobalDataWrapper loading={loading} error={error}>
       <section className={styles.certificate}>
-        <div ref={certificateCardRef} data-certificate-card>
-          <CertificateCard
-            certificate={certificate}
-            orientation={orientation}
-          />
-        </div>
+        <CertificateCard
+          certificate={certificate}
+          orientation={orientation}
+          ref={certificateCardRef}
+        />
         {!hasPreview && (
           <>
             <ShareCertificate
               certificate={certificate}
               setOrientation={handleChangeOrientation}
               orientation={orientation}
+              handleDownloadPdf={handleDownloadPdf}
+              loadingPdf={loadingPdf}
             />
             <CertificateDetails certificate={certificate} />
           </>
