@@ -259,6 +259,9 @@ export default {
     "Please select your English proficiency level",
   paymentResponsibilityIsRequired: "Please select payment responsibility",
   referralSourceIsRequired: "Please tell us how you heard about us",
+  unknownProblem: "Unknown Problem",
+  unknownProblemTitle: "Unknown problem occurred, we are fixing it soon.",
+
   maintenanceTitle: "We’ll Be Back Soon",
   underMaintenance:
     "Our website is currently undergoing scheduled maintenance.",

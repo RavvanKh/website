@@ -12,10 +12,6 @@ export const getCertificateData = async (id, platform) => {
     );
     return res.data;
   } catch (err) {
-    if (err?.status === errorCodes.certificate.notFound) {
-      return errorCodes.certificate.notFound;
-    } else {
-      return errorCodes.certificate.maintenance;
-    }
+    return err?.status || errorCodes.certificate.maintenance;
   }
 };

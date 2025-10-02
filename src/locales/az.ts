@@ -1,7 +1,7 @@
 export default {
   exploreCourses: "Təlim Proqramları",
   about: "Haqqımızda",
-  blogs:"Bloqlar",
+  blogs: "Bloqlar",
   career: "Karyera",
   scholarships: "Təqaüd Proqramları",
   applyNow: "İndi Müraciət Edin",
@@ -152,7 +152,7 @@ export default {
   advanced: "Qabaqcıl",
   noTrainingsFound: "Təlim tapılmadı",
   allTrainings: "Bütün təlimlər",
-  allBlogs:"Bütün bloqlar",
+  allBlogs: "Bütün bloqlar",
   results: "nəticə",
   relatedCourses: "Bənzər təlimlər",
   trainings: "Təlimlər",
@@ -251,6 +251,8 @@ export default {
   paymentResponsibilityIsRequired: "Ödəniş məsuliyyətini seçin",
   referralSourceIsRequired: "Zəhmət olmasa bizi haradan eşitdiyinizi göstərin",
   reasonsToChooseUs: "Bizi seçmək üçün səbəblər",
+  unknownProblem: "Bilinməyən problem",
+  unknownProblemTitle: "Naməlum problem baş verdi, tezliklə onu düzəldəcəyik.",
   maintenanceTitle: "Tezliklə geri dönəcəyik",
   underMaintenance:
     "Veb saytımız hal-hazırda planlaşdırılmış texniki işlər səbəbilə müvəqqəti olaraq əlçatmazdır.",

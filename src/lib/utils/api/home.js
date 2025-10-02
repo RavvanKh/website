@@ -7,6 +7,6 @@ export const getHomeData = async () => {
     const res = await customAxios.get(`/v1/home`);
     return res.data;
   } catch (err) {
-    return errorCodes.home.maintenance;
+    return err?.status || errorCodes.certificate.maintenance;
   }
 };

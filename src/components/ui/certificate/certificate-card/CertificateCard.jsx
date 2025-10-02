@@ -15,12 +15,15 @@ const CertificateCard = ({ certificate, orientation = "vertical" }) => {
         orientation === "horizontal" ? styles.horizontal : styles.vertical
       }`}
     >
-      <Image
-        className={styles.previewImg}
-        src={certificate?.previewUrls?.[orientation]}
-        alt="preview"
-        fill={true}
-      />
+      {certificate?.previewUrls?.[orientation] && (
+        <Image
+          className={styles.previewImg}
+          src={certificate?.previewUrls?.[orientation]}
+          alt="preview"
+          fill={true}
+        />
+      )}
+
       <div className={styles.certificateContainer}>
         <div className={styles.certificateOuterBorder}>
           <div className={styles.certificateInnerBorder}>

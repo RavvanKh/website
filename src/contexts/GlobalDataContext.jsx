@@ -15,7 +15,7 @@ import { getHomeData } from "@/lib/utils/api/home";
 import { getComments } from "@/lib/utils/api/comments";
 import { getEvents } from "@/lib/utils/api/events";
 import { filterByCategory } from "@/lib/utils/helpers";
-import { errorCodes } from "@/lib/constants/errorCodes";
+import { errorCodes, errorResponses } from "@/lib/constants/errorCodes";
 
 const GlobalDataContext = createContext();
 
@@ -100,8 +100,8 @@ export const GlobalDataProvider = ({ children }) => {
 
     if (homeResult.status === "fulfilled") {
       const homeData = homeResult.value;
-      if (homeData === errorCodes.home.maintenance) {
-        setError((prev) => ({ ...prev, home: true }));
+      if (errorResponses[homeData]) {
+        setError((prev) => ({ ...prev, home: homeData }));
       } else {
         setData((prevData) => ({
           ...prevData,
@@ -114,7 +114,7 @@ export const GlobalDataProvider = ({ children }) => {
         setError((prev) => ({ ...prev, home: null }));
       }
     } else {
-      setError((prev) => ({ ...prev, home: true }));
+      setError((prev) => ({ ...prev, home: errorCodes.home.maintenance }));
     }
 
     if (commentsResult.status === "fulfilled" && commentsResult.value) {

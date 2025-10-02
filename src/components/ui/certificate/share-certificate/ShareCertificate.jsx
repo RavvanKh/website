@@ -15,8 +15,9 @@ import {
   handleCopyLink,
 } from "@/lib/utils/helpers/certificateActions";
 
-import styles from "./share-certificate.module.css";
 import { SHARE_CERTIFICATE_ENUMS } from "@/lib/constants/shareCertificateEnums";
+
+import styles from "./share-certificate.module.css";
 
 const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
   const [copySuccess, setCopySuccess] = useState(false);
