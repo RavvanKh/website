@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import jsPDF from "jspdf";
 import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { RectangleHorizontal, RectangleVertical } from "lucide-react";
-import { toast } from "react-toastify";
-
 import { useI18n } from "@/locales/client";
 
 import {
@@ -19,83 +16,16 @@ import { SHARE_CERTIFICATE_ENUMS } from "@/lib/constants/shareCertificateEnums";
 
 import styles from "./share-certificate.module.css";
 
-const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
+const ShareCertificate = ({
+  certificate,
+  setOrientation,
+  orientation,
+  handleDownloadPdf,
+  loadingPdf,
+}) => {
   const [copySuccess, setCopySuccess] = useState(false);
-  const [loadingPdf, setLoadingPdf] = useState(false);
 
   const t = useI18n();
-
-  const handleDownloadPDF = async () => {
-    try {
-      setLoadingPdf(true);
-
-      const apiUrl = `/api/certificate/preview?url=${encodeURIComponent(
-        certificate?.previewUrls?.[orientation]
-      )}`;
-      const imageRes = await fetch(apiUrl);
-      if (!imageRes.ok) throw new Error("Preview image fetch failed");
-
-      const imageBlob = await imageRes.blob();
-
-      const reader = new FileReader();
-      reader.readAsDataURL(imageBlob);
-
-      reader.onloadend = () => {
-        const base64data = reader.result;
-
-        const img = new window.Image();
-        img.onload = () => {
-          const isLandscape = orientation === "horizontal";
-
-          const pdf = new jsPDF(
-            isLandscape ? "landscape" : "portrait",
-            "pt",
-            "a4"
-          );
-
-          const pdfWidth = isLandscape ? 842 : 595;
-          const pdfHeight = isLandscape ? 595 : 842;
-
-          const imgAspectRatio = img.width / img.height;
-          const pdfAspectRatio = pdfWidth / pdfHeight;
-
-          let finalWidth, finalHeight;
-
-          if (imgAspectRatio > pdfAspectRatio) {
-            finalWidth = pdfWidth;
-            finalHeight = pdfWidth / imgAspectRatio;
-          } else {
-            finalHeight = pdfHeight;
-            finalWidth = pdfHeight * imgAspectRatio;
-          }
-
-          const x = (pdfWidth - finalWidth) / 2;
-          const y = (pdfHeight - finalHeight) / 2;
-
-          pdf.addImage(base64data, "PNG", x, y, finalWidth, finalHeight);
-
-          const fileName = certificate.name
-            ? `${certificate.name
-                .replace(/[^a-z0-9]/gi, "_")
-                .toLowerCase()}.pdf`
-            : `cert-${certificate?.credentialId}-${orientation}.pdf`;
-
-          pdf.save(fileName);
-          setLoadingPdf(false);
-        };
-
-        img.src = base64data;
-      };
-
-      reader.onerror = () => {
-        toast.error("FileReader error");
-        setLoadingPdf(false);
-      };
-    } catch (err) {
-      setLoadingPdf(false);
-      toast.error("Download failed. Please try again.");
-    }
-  };
 
   return (
     <section className={styles.shareSection}>
@@ -196,7 +126,7 @@ const ShareCertificate = ({ certificate, setOrientation, orientation }) => {
           <button
             className={styles.downloadButton}
             aria-label="Download PDF"
-            onClick={handleDownloadPDF}
+            onClick={handleDownloadPdf}
             disabled={loadingPdf}
           >
             {loadingPdf ? (

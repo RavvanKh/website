@@ -64,14 +64,20 @@
 }
 
 .vertical .header {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  width: auto;
+  height: 150px;
+  margin: 30px auto 20px auto;
 }
 
 .logoAndTitle {
   display: flex;
   align-items: flex-start;
   gap: clamp(6px, 1.3vw, 16px);
+}
+
+.vertical .logoAndTitle {
+  width: auto;
+  height: 150px;
 }
 
 .logoAndTitle img {
@@ -81,7 +87,7 @@
 }
 
 .vertical .logoAndTitle img {
-  width: 350px;
+  width: auto;
   height: 150px;
 }
 
@@ -207,7 +213,7 @@
   width: 60%;
   height: clamp(1px, 0.2vw, 2.4px);
   background: linear-gradient(to right, #b5c7eb, #d6e1f8);
-  margin: 0 auto clamp(6px, 1.2vw, 14px);
+  margin: 10px auto clamp(6px, 1.2vw, 14px);
 }
 
 .vertical .courseUnderline {
@@ -222,7 +228,6 @@
   width: 40%;
   gap: 1rem;
   margin-top: 1rem;
-
 }
 
 .horizontal .footer {
@@ -271,11 +276,11 @@
   font-weight: 600;
   font-size: 12px;
   position: absolute;
-  bottom: 30px;
-  left: 40px;
+  bottom: 40px;
+  left: 50px;
 }
 
-.honourContainer{
+.honourContainer {
   flex: 1;
   position: relative;
   display: flex;
@@ -292,10 +297,9 @@
   width: clamp(50px, 8vw, 100px);
   height: clamp(50px, 8vw, 100px);
   display: block;
-
 }
 
-.vertical .honourCert img{
+.vertical .honourCert img {
   width: 80px;
   height: 80px;
 }
@@ -310,7 +314,7 @@
   font-size: clamp(10px, 2vw, 14px);
   font-weight: bold;
   text-align: center;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .vertical .credentialId {
@@ -380,16 +384,6 @@
     align-items: center;
     gap: 4px;
   }
-
-  /* .logoAndTitle img {
-    width: 600px !important;
-    height: 150px !important;
-  }
-
-  .vertical .logoAndTitle img {
-    width: 35px !important;
-    height: 35px !important;
-  } */
 
   .ingress,
   .academy {
@@ -568,27 +562,13 @@
     width: 65%;
   }
 
-  /* Vertical footer tablet */
   .vertical .footer {
     width: 60%;
   }
 }
 
-/* Large screens */
 @media (min-width: 769px) {
   .certificateWrapper {
     padding: 20px;
-  }
-}
-
-@media print {
-  .certificateWrapper {
-    padding: 0;
-  }
-
-  .certificateContainer {
-    max-width: none;
-    width: 100%;
-    box-shadow: none;
   }
 }

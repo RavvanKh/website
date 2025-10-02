@@ -28,7 +28,6 @@ const Info = ({ details = [], loading, error }) => {
         <Swiper
           className={styles.sliderWrapper}
           modules={[Pagination,Autoplay]}
-          // autoplay={{delay:10000}}
           spaceBetween={20}
           pagination={{
             clickable: true,
