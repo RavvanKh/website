@@ -19,7 +19,13 @@ import WhatsappIcon from "@/components/shared/whatsapp-icon/WhatsappIcon";
 
 import { getHomeData } from "@/lib/utils/api/home";
 
+import {
+  errorCodes,
+  errorResponses,
+} from "@/lib/constants/errorCodes";
+
 import "../globals.css";
+
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -27,12 +33,7 @@ export async function generateMetadata({ params }) {
     const { organization } = await getHomeData();
 
     if (!organization || Object.keys(organization).length === 0) {
-      return {
-        title: "Website Under Maintenance",
-        description:
-          "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-        keywords: "maintenance, site down, temporary unavailable",
-      };
+      return errorResponses[errorCodes.home.maintenance];
     }
     return {
       title: organization.metaTitle,
@@ -88,16 +89,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (_) {
-    return {
-      title: "Website Under Maintenance",
-      description:
-        "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-      keywords: "maintenance, site down, temporary unavailable",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
+    return errorResponses[errorCodes.home.maintenance];
   }
 }
 

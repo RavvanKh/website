@@ -82,7 +82,7 @@ export default function Home() {
           loading={loading.home}
           error={error.home}
         />
-        {/* <Blogs /> */}
+        <Blogs />
         <Comments
           loading={loading.comments}
           error={error.comments}

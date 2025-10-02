@@ -6,12 +6,15 @@ import { GiDuration } from "react-icons/gi";
 
 import styles from "./error.module.css";
 
-export default function Error({ isRefreshActive = true }) {
+export default function Error({ isRefreshActive = true, error }) {
   const t = useI18n();
   const [secondsLeft, setSecondsLeft] = useState(30);
 
+  const is502 = error === 502;
+  const is500 = error === 500;
+
   useEffect(() => {
-    if (isRefreshActive) {
+    if (is502 && isRefreshActive) {
       if (secondsLeft === 1) {
         window.location.reload();
         return;
@@ -23,7 +26,7 @@ export default function Error({ isRefreshActive = true }) {
 
       return () => clearTimeout(timer);
     }
-  }, [secondsLeft, isRefreshActive]);
+  }, [secondsLeft, is502, isRefreshActive]);
 
   return (
     <div className={styles.container}>
@@ -36,19 +39,35 @@ export default function Error({ isRefreshActive = true }) {
           className={styles.image}
           priority
         />
-        <h1 className={styles.title}>{t("maintenanceTitle")}</h1>
-        <p className={styles.text}>
-          {t("underMaintenance")} <br />
-          {t("plsTryAgainInAFewMinutes")}
-        </p>
-        {isRefreshActive && (
-          <div className={styles.refreshDuration}>
-            <GiDuration size={30} color="red" className={styles.refreshIcon} />
 
-            <p className={styles.refreshText}>
-              {t("refreshIn")} {secondsLeft} {t("seconds")}
+        {is502 ? (
+          <>
+            <h1 className={styles.title}>{t("maintenanceTitle")}</h1>
+            <p className={styles.text}>
+              {t("underMaintenance")} <br />
+              {t("plsTryAgainInAFewMinutes")}
             </p>
-          </div>
+
+            {isRefreshActive && (
+              <div className={styles.refreshDuration}>
+                <GiDuration
+                  size={30}
+                  color="red"
+                  className={styles.refreshIcon}
+                />
+                <p className={styles.refreshText}>
+                  {t("refreshIn")} {secondsLeft} {t("seconds")}
+                </p>
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <h1 className={styles.title}>{t("unknownProblem")}</h1>
+            <p className={styles.text}>
+             {t("unknownProblemTitle")}
+            </p>
+          </>
         )}
       </div>
     </div>

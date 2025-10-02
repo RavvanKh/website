@@ -1,17 +1,21 @@
+import { notFound } from "next/navigation";
+
 import Certificate from "@/components/pages/certificate/Certificate";
 
-import { errorCodes } from "@/lib/constants/errorCodes";
+import { errorCodes, errorResponses } from "@/lib/constants/errorCodes";
 import { getCertificateData } from "@/lib/utils/api/certificate";
 
 import { getHomeData } from "@/lib/utils/api/home";
 import { convertPlatform } from "@/lib/utils/helpers/convertPlatform";
+import { isValidOrientation } from "@/lib/utils/helpers/isValidOrientation";
 
 export async function generateMetadata({ params, searchParams }) {
   const { id, locale } = await params;
 
   let { platform, orientation } = await searchParams;
 
-  orientation = orientation || "horizontal";
+  if (!isValidOrientation(orientation))
+    errorResponses[errorCodes.certificate.notFound];
 
   platform = convertPlatform(platform);
 
@@ -21,22 +25,8 @@ export async function generateMetadata({ params, searchParams }) {
     const { organization } = await getHomeData();
     const certificate = await getCertificateData(id);
 
-    if (certificate === errorCodes.certificate.notFound) {
-      return {
-        title: "Certificate not found",
-        description: "The requested certificate could not be found.",
-      };
-    } else if (certificate === errorCodes.certificate.maintenance) {
-      return {
-        title: "Website Under Maintenance",
-        description:
-          "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-        keywords: "maintenance, site down, temporary unavailable",
-        robots: {
-          index: false,
-          follow: false,
-        },
-      };
+    if (errorResponses[certificate]) {
+      return errorResponses[certificate];
     }
 
     return {
@@ -81,31 +71,19 @@ export async function generateMetadata({ params, searchParams }) {
       },
     };
   } catch (err) {
-    return {
-      title: "Website Under Maintenance",
-      description:
-        "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-      keywords: "maintenance, site down, temporary unavailable",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
+    return errorResponses[errorCodes.certificate.maintenance];
   }
 }
 
 const CertificatePage = async ({ params, searchParams }) => {
-  const { platform, orientation } = await searchParams;
   const { id } = await params;
+  const { platform } = await searchParams;
 
-  return (
-    <Certificate
-      id={id}
-      hasPreview={false}
-      platform={platform}
-      defaultOrientation={orientation}
-    />
-  );
+  const certificate = await getCertificateData(id, convertPlatform(platform));
+
+  if (certificate === errorCodes.certificate.notFound) notFound();
+
+  return <Certificate hasPreview={false} />;
 };
 
 export default CertificatePage;

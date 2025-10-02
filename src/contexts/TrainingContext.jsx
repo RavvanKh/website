@@ -9,7 +9,7 @@ import {
 
 import { notFound } from "next/navigation";
 
-import { errorCodes } from "@/lib/constants/errorCodes";
+import { errorCodes, errorResponses } from "@/lib/constants/errorCodes";
 import { getGraduates } from "@/lib/utils/api/graduates";
 import { getTrainingData } from "@/lib/utils/api/training";
 
@@ -45,17 +45,14 @@ export const TrainingProvider = ({ children, trainingKey }) => {
       getGraduates(trainingKey, 0, 100),
     ]);
 
-
     if (trainingResult.status === "fulfilled") {
-      if (trainingResult.value === errorCodes.training.notFound) {
-        notFound();
-      } else if (trainingResult.value === errorCodes.training.maintenance) {
-        setError(true);
+      if (errorResponses[trainingResult.value]) {
+        setError(trainingResult.value);
       } else {
         setTraining(trainingResult.value);
       }
     } else {
-      setError(true);
+      setError(errorCodes.training.maintenance);
     }
 
     if (graduatesResult.status === "fulfilled") {

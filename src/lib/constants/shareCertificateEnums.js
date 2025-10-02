@@ -4,3 +4,7 @@ export const SHARE_CERTIFICATE_ENUMS = {
   linkedin: "LINKEDIN",
   other: "OTHER",
 };
+
+export const CERTIFICATE_DEFAULT_TYPE = "horizontal";
+
+export const defaultOrientations = ["vertical", "horizontal"];

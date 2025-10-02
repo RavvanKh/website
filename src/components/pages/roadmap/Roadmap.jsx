@@ -9,7 +9,7 @@ import {
   selectSectionsAsComponentForRoadmap,
 } from "@/lib/constants/selectSections";
 import { filterValidSections } from "@/lib/utils/helpers/filters/filterValidSections";
-import { useRoadmap } from "@/contexts/RoadmapProvider";
+import { useRoadmap } from "@/contexts/RoadmapContext";
 import { useGlobalData } from "@/contexts/GlobalDataContext";
 
 const RoadmapTitle = dynamic(

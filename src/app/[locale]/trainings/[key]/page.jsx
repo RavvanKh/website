@@ -6,7 +6,11 @@ import { getTrainingData } from "@/lib/utils/api/training";
 import { getHomeData } from "@/lib/utils/api/home";
 import { generateSchema } from "@/lib/utils/helpers";
 
-import { errorCodes } from "@/lib/constants/errorCodes";
+import {
+  ERROR_ENUMS,
+  errorCodes,
+  errorResponses,
+} from "@/lib/constants/errorCodes";
 
 export async function generateMetadata({ params }) {
   const { key, locale } = await params;
@@ -15,24 +19,8 @@ export async function generateMetadata({ params }) {
     const training = await getTrainingData(key);
     const { organization } = await getHomeData();
 
-    if (training === errorCodes.training.notFound) {
-      return {
-        title: "Training not found",
-        description: "The requested training could not be found.",
-      };
-    }
-
-    if (training === errorCodes.training.maintenance) {
-      return {
-        title: "Website Under Maintenance",
-        description:
-          "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-        keywords: "maintenance, site down, temporary unavailable",
-        robots: {
-          index: false,
-          follow: false,
-        },
-      };
+    if (errorResponses[training]) {
+      return errorResponses[training];
     }
 
     return {
@@ -76,16 +64,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (err) {
-    return {
-      title: "Website Under Maintenance",
-      description:
-        "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-      keywords: "maintenance, site down, temporary unavailable",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
+    return errorResponses[ERROR_ENUMS.maintenance];
   }
 }
 

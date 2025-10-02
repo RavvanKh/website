@@ -8,8 +8,6 @@ export const getTrainingData = async (id) => {
     const res = await customAxios.get(`/v1/courses/${id}`);
     return res.data;
   } catch (err) {
-    if (err?.status === errorCodes.training.notFound) {
-      return errorCodes.training.notFound;
-    } else return errorCodes.training.maintenance;
+    return err?.status || errorCodes.certificate.maintenance;
   }
 };

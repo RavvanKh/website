@@ -8,22 +8,21 @@ import CertificateCard from "@/components/ui/certificate/certificate-card/Certif
 import CertificateDetails from "@/components/ui/certificate/certificate-details/CertificateDetails";
 import ShareCertificate from "@/components/ui/certificate/share-certificate/ShareCertificate";
 
+import { useCertificate } from "@/contexts/CertificateContext";
+
 import { getCertificateData } from "@/lib/utils/api/certificate";
 import { convertPlatform } from "@/lib/utils/helpers/convertPlatform";
 import { errorCodes } from "@/lib/constants/errorCodes";
 
+import { CERTIFICATE_DEFAULT_TYPE } from "@/lib/constants/shareCertificateEnums";
+
 import styles from "./certificate.module.css";
 
 const Certificate = ({
-  id,
   hasPreview,
-  platform = "",
-  defaultOrientation = "horizontal",
 }) => {
-  const [certificate, setCertificate] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [orientation, setOrientation] = useState(defaultOrientation);
+  const { certificate, loading, error, platform, setOrientation, orientation } =
+    useCertificate();
 
   const certificateCardRef = useRef(null);
 
@@ -45,18 +44,19 @@ const Certificate = ({
     router.push(newUrl, { scroll: false });
   };
 
-  useEffect(() => {
-    getCertificateData(id, convertPlatform(platform))
-      .then((data) => setCertificate(data))
-      .finally(() => setLoading(false));
-  }, [id, platform]);
+  // useEffect(() => {
+  //   getCertificateData(id, convertPlatform(platform))
+  //     .then((data) => setCertificate(data))
+  //     .finally(() => setLoading(false));
+  // }, [id, platform]);
 
-  useEffect(() => {
-    if (certificate === errorCodes.certificate.notFound) notFound();
-    else if (certificate === errorCodes.certificate.maintenance) {
-      setError(true);
-    }
-  }, [certificate]);
+  // useEffect(() => {
+  //   if (certificate === errorCodes.certificate.notFound) {
+  //     return notFound();
+  //   } else if (typeof certificate !== "object") {
+  //     setError(certificate);
+  //   }
+  // }, [certificate]);
 
   return (
     <GlobalDataWrapper loading={loading} error={error}>

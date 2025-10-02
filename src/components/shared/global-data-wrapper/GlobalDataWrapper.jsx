@@ -21,7 +21,7 @@ const GlobalDataWrapper = ({
   if (error) {
     return (
       <section className={styles.loadingContainer}>
-        <Error isRefreshActive={isRefreshActive} />
+        <Error error={error} isRefreshActive={isRefreshActive} />
       </section>
     );
   }

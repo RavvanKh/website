@@ -1,6 +1,6 @@
 import { use } from "react";
 
-import { RoadmapProvider } from "@/contexts/RoadmapProvider";
+import { RoadmapProvider } from "@/contexts/RoadmapContext";
 
 const RoadmapLayout = ({ children, params }) => {
   const { key } = use(params);
