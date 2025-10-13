@@ -18,7 +18,7 @@ const Companies = ({ t, title, subTitle, companies = [], loading, error }) => {
         <div>Failed to load companies : {error}</div>
       ) : (
         <div className={styles.companiesList}>
-          {companies.map(({ company }, index) => (
+          {companies.map((company, index) => (
             <Customer customer={company} key={index} />
           ))}
         </div>

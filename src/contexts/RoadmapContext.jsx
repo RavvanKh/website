@@ -1,10 +1,13 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
+import { useGlobalData } from "./GlobalDataContext";
 
 const RoadmapContext = createContext();
 
 export const RoadmapProvider = ({ children, trainingKey }) => {
+  const { data } = useGlobalData();
+
   const [roadmap, setRoadmap] = useState({
     id: "advanced-backend-microservices-development",
     name: "Advanced Backend & Microservices Development",
@@ -1222,9 +1225,385 @@ export const RoadmapProvider = ({ children, trainingKey }) => {
         ],
       },
     ],
-    faq: [],
-    graduates: [],
-    graduatesWorkplaces: [],
+    faq: [
+      {
+        question: "What is web development?",
+        answer:
+          "Web development is the process of creating and maintaining websites or web applications using technologies like HTML, CSS, JavaScript, and backend programming languages.",
+      },
+      {
+        question: "What is the difference between frontend and backend?",
+        answer:
+          "Frontend refers to the part of a website users interact with, while backend handles the server-side logic, databases, and APIs.",
+      },
+      {
+        question: "Do I need to know coding to become a web developer?",
+        answer:
+          "Yes, understanding coding is essential. You’ll need to learn HTML, CSS, JavaScript, and possibly other backend languages like Node.js or Python.",
+      },
+      {
+        question: "How long does it take to learn web development?",
+        answer:
+          "It depends on your dedication and learning path, but typically it takes 6 months to a year to become job-ready.",
+      },
+      {
+        question: "What tools do web developers use?",
+        answer:
+          "Common tools include code editors (like VS Code), version control (Git), browsers with dev tools, and frameworks like React or Next.js.",
+      },
+      {
+        question: "What is responsive design?",
+        answer:
+          "Responsive design ensures a website looks good and functions properly on all devices, including phones, tablets, and desktops.",
+      },
+      {
+        question: "What is an API?",
+        answer:
+          "An API (Application Programming Interface) allows different software applications to communicate with each other.",
+      },
+      {
+        question: "Is JavaScript enough to build a full website?",
+        answer:
+          "Yes, especially with tools like Node.js for the backend and frameworks like React or Vue for the frontend.",
+      },
+      {
+        question: "Do I need a degree to become a web developer?",
+        answer:
+          "No, many web developers are self-taught or come from coding bootcamps. A strong portfolio is often more important than a degree.",
+      },
+      {
+        question: "What is full-stack development?",
+        answer:
+          "Full-stack development involves working on both frontend and backend parts of a web application.",
+      },
+    ],
+    graduates: [
+      {
+        id: "abdulla-makhsudov",
+        name: "Abdulla Makhsudov",
+        workPlace: {
+          id: "abb",
+          image: null,
+          name: "ABB",
+          searchKeys: [],
+          tags: [],
+          type: "f",
+        },
+        position: "Senior Software Engineer",
+        description: ".",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/a194ec2a-382a-4508-8b71-e22174214a8b.jpg?alt=media",
+        linkedinUrl:
+          "https://az.linkedin.com/in/abdulla-makhsudov-690134146?original_referer=https%3A%2F%2Fwww.google.com",
+        type: null,
+      },
+      {
+        id: "aygun-safarova",
+        name: "Aygun Safarova",
+        workPlace: {
+          id: "sinam",
+          image:
+            "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/8919bae8-b591-4d41-b726-aae86d72f87e.png?alt=media",
+          name: "SINAM",
+          searchKeys: [],
+          tags: ["type:customer"],
+          type: null,
+        },
+        position: null,
+        description: ".",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/graduates%2FAygu%CC%88n%20S%C9%99f%C9%99rova%20(1).JPG?alt=media&token=879c3e85-fba6-4b9f-81d0-7219416105ca",
+        linkedinUrl:
+          "https://www.linkedin.com/in/azer-chelebiyev-b47b98125/?originalSubdomain=az",
+        type: null,
+      },
+      {
+        id: "ehed-djabbarov",
+        name: "Ahad Djabbarov",
+        workPlace: {
+          id: "sinam",
+          image:
+            "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/8919bae8-b591-4d41-b726-aae86d72f87e.png?alt=media",
+          name: "SINAM",
+          searchKeys: [],
+          tags: ["type:customer"],
+          type: null,
+        },
+        position: "Java Back End Developer",
+        description: null,
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/ahad-djabbarov.png?alt=media&token=b44cc408-a148-4a88-8008-50108d2a93ba",
+        linkedinUrl: "https://www.linkedin.com/in/ahad-djabbarov-a5870a25b/",
+        type: null,
+      },
+      {
+        id: "elgun-mahmudov",
+        name: "Elgun Mahmudov",
+        workPlace: {
+          id: "kapital-bank",
+          image:
+            "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/a74fbec9-7303-409c-8d36-214fb98e1a56.png?alt=media",
+          name: "Kapital Bank",
+          searchKeys: [],
+          tags: ["type:customer"],
+          type: null,
+        },
+        position: "Software Engineer",
+        description: null,
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/elgun-mahmudov.jpeg?alt=media&token=99ced7e2-8a09-4e9f-8930-14c7b22de5a8",
+        linkedinUrl: "https://www.linkedin.com/in/elgun-mahmudov/",
+        type: null,
+      },
+      {
+        id: "nijat-bakirzada",
+        name: "Nijat Bekirzade",
+        workPlace: {
+          id: "digital-umbrella",
+          image: null,
+          name: "Digital Umbrella",
+          searchKeys: [],
+          tags: [],
+          type: null,
+        },
+        position: "Software Engineer",
+        description: ".",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/cb30233c-0314-4444-acc9-99c12dd24260.jpg?alt=media",
+        linkedinUrl:
+          "https://www.linkedin.com/in/nicat-bekirzade/?originalSubdomain=az",
+        type: null,
+      },
+      {
+        id: "parvin-etibarli",
+        name: "Pərvin Etibarlı",
+        workPlace: {
+          id: "kapital-bank",
+          image:
+            "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/a74fbec9-7303-409c-8d36-214fb98e1a56.png?alt=media",
+          name: "Kapital Bank",
+          searchKeys: [],
+          tags: ["type:customer"],
+          type: null,
+        },
+        position: "",
+        description: ".",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/82bbcd3b-fb9c-448e-a6cf-e041ad1983e7.jpg?alt=media",
+        linkedinUrl: "https://az.linkedin.com/in/parvinetibarli",
+        type: "instructor",
+      },
+      {
+        id: "tofig-mikayilzada",
+        name: "Tofig Mikayilzada",
+        workPlace: {
+          id: "international-bank-of-azerbaijan",
+          image: null,
+          name: "The International Bank of Azerbaijan",
+          searchKeys: [],
+          tags: [],
+          type: null,
+        },
+        position: "Team Lead",
+        description: ".",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/01a8c34f-7671-4c2a-956b-553f82a88b8a.jpg?alt=media",
+        linkedinUrl:
+          "https://az.linkedin.com/in/tofig-mikayilzade-725816176/en",
+        type: null,
+      },
+    ],
+    graduatesWorkplaces: [
+      {
+        id: "cybernet-llc",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/05698fb0-5c36-440d-80e7-dc55ef9bca0a.png?alt=media",
+        name: "Cybernet LLC",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "expressbank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/aa351681-0f87-44b8-b333-1c4b6d22797c.png?alt=media",
+        name: "Expressbank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "goldenpay",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/3ca41e24-c9b0-4214-9145-4c8476527195.png?alt=media",
+        name: "Goldenpay",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "icbari-sigorta-burosu",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/4e50b31d-a202-42a7-9730-b3121cc51fc6.png?alt=media",
+        name: "İcbari Sığorta Bürosu",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "iqtisadiyyat-nazirliyi-tabeliyinde-inform",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/ade78618-9927-46e6-9c47-e9793f628163.png?alt=media",
+        name: "ITDMC",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "kapital-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/a74fbec9-7303-409c-8d36-214fb98e1a56.png?alt=media",
+        name: "Kapital Bank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "pasa-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/da9c838a-a9b0-4e81-8e39-bad34f28bce3.png?alt=media",
+        name: "PASHA Bank",
+        searchKeys: [],
+        tags: ["type:customer", "type:customer"],
+        type: null,
+      },
+      {
+        id: "pasa-hayat-pasha-life",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/b3e87f8f-1b51-4972-a076-fc9774ae1af5.png?alt=media",
+        name: "PAŞA Həyat (PASHA Life)",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "pasha-insurance",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/7441505c-44e8-4243-9593-2752dea51a50.png?alt=media",
+        name: "Pasha-insurance",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "pmd-projects",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/a05fe420-cd1a-44c9-9fdf-0ef13e04ce0b.png?alt=media",
+        name: "PMD Projects",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "premium-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/6d8c9e94-ce2a-4f53-91e4-62d824fd4ec2.png?alt=media",
+        name: "Premium Bank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "rabitebank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/cb2a98a5-292d-42df-a6e3-b73f7b7cb809.png?alt=media",
+        name: "Rabitabank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "sinam",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/8919bae8-b591-4d41-b726-aae86d72f87e.png?alt=media",
+        name: "SINAM",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "socar",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/c703d274-52c6-4bca-863e-0f704c7b5245.png?alt=media",
+        name: "Socar",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "ultra-technologies",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/9ddfe44a-cd86-46b0-987c-62898b8189cf.png?alt=media",
+        name: "Ultra Technologies",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "vabiss",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/28fa63e4-ac4c-4852-bb65-7d8906534f65.png?alt=media",
+        name: "VABISS",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "vtb-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/c6b1f8fd-06fa-4a9b-8437-3d2c60e0f2c2.png?alt=media",
+        name: "VTB Bank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "xalq-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/486b24c2-a99c-4495-9329-0d141e8b13a2.png?alt=media",
+        name: "Xalq Bank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "yandex-taxi",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/db505fe3-9e54-422f-ab72-17b884d60fc7.png?alt=media",
+        name: "Yandex Taxi",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "yapi-kredi-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/d35c42c2-64dd-40f9-b684-1d032c40f9c8.png?alt=media",
+        name: "Yapı Kredi Bank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+      {
+        id: "yelo-bank",
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/ingress-group.appspot.com/o/15551290-fbb1-46be-8a55-e8bad767d704.png?alt=media",
+        name: "Yelo Bank",
+        searchKeys: [],
+        tags: ["type:customer"],
+        type: null,
+      },
+    ],
     upcomingSessions: [],
     instructors: [
       {
@@ -1464,6 +1843,17 @@ export const RoadmapProvider = ({ children, trainingKey }) => {
         hoursPerSession: 2,
       },
     ],
+    rolesAndResponsibilities: {
+      title: "Engage in full software development lifecycle (SDLC)",
+      content: [
+        "Architect, design, and implement scalable Java applications and REST APIs",
+        "Ensure code quality through testing, reviews, and best practices",
+        "Diagnose and troubleshoot performance and production issues",
+        "Collaborate within Agile teams and mentor junior developers",
+        "Contribute to deployment and CI/CD pipelines",
+        "(Senior) Provide technical leadership, guide architecture, and liaise with stakeholders/vendor teams",
+      ],
+    },
     prerequisites: [
       "Programming: Core Java (OOP, multithreading, collections)",
       "Frameworks: Spring Boot (with MVC, Data, Security), Jakarta EE (Servlets, EJB, JPA), or Play",

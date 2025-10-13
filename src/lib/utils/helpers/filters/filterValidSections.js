@@ -7,7 +7,7 @@ export const filterValidSections = (training, array) => {
         return training?.syllabus?.length > 0;
       case "upcomingGroups":
         return training?.upcomingSessions?.length > 0;
-      case "graduates":
+      case "graduatesHere":
         return training?.graduates?.length > 0;
       case "companies":
       case "whereDoOurGraduatesWork":
@@ -20,10 +20,16 @@ export const filterValidSections = (training, array) => {
         return training?.relatedCourses?.length > 0;
       case "faq":
         return training?.faq?.length > 0;
+      case "rolesAndResponsibilities":
+        return Object.keys(training?.rolesAndResponsibilities).length > 0;
       case "prerequisites":
         return training?.prerequisites?.length > 0;
-      case "trainingObjectives":
-        return training?.objectives?.length > 0;
+      case "skillsYouWillGain":
+        return training?.skillsYouWillGain?.length > 0;
+      case "recommendedAdditionalTrainings":
+        return true;
+      case "trainingRoadmap":
+        return true;
       default:
         return false;
     }

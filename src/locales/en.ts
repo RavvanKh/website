@@ -160,7 +160,7 @@ export default {
   trainings: "Trainings",
   employedAlumni: "Employed Alumni",
   notFound: "Not Found",
-  "roles&Responsibilities": "Roles & Responsibilities",
+  rolesAndResponsibilities: "Roles & Responsibilities",
   skillsRequired: "Skills Required",
   whereDoOurGraduatesWork: "Where do our graduates work",
   graduatesHere: "Graduates Here",
@@ -270,4 +270,6 @@ export default {
   skillsYouWillGain: "Skills You Will Gain",
   shareYourAchievement: "Share Your Achievement",
   shareDescription: "Let your network know about your new certification",
+  recommendedAdditionalTrainings: "Recommended Additional Trainings",
+  trainingRoadmap: "Training Roadmap",
 } as const;
