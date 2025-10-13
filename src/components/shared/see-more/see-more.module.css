@@ -42,10 +42,7 @@
     position: relative;
 }
 
-/* Remove the font-weight change on hover completely */
-/* Instead use text-shadow to create the appearance of bold text */
 .seeMore:hover .seeMoreTextInner {
-    /* Using text-shadow to create the appearance of bold without changing dimensions */
     text-shadow: 0 0 0.01px rgba(35, 22, 251, 1), 0 0 0.01px rgba(35, 22, 251, 1);
     color: #023FCB;
 }

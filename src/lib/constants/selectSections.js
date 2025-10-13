@@ -1,14 +1,5 @@
 import dynamic from "next/dynamic";
 
-const CourseApplicationForm = dynamic(
-  () =>
-    import("@/components/shared/course-application-form/CourseApplicationForm"),
-  { ssr: false, loading: () => null }
-);
-const Comments = dynamic(
-  () => import("@/components/ui/home/comments/Comments"),
-  { ssr: false, loading: () => null }
-);
 const Advantages = dynamic(
   () => import("@/components/ui/training/advantages/Advantages"),
   { ssr: false, loading: () => null }
@@ -66,6 +57,25 @@ const Objectives = dynamic(
   }
 );
 
+const RecommendedAdditionalTrainings = dynamic(
+  () =>
+    import(
+      "@/components/ui/roadmap/recommended-additional-trainings/RecommendedAdditionalTrainings"
+    ),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
+const TrainingRoadmap = dynamic(
+  () => import("@/components/ui/roadmap/training-roadmap/TrainingRoadmap"),
+  {
+    ssr: false,
+    loading: () => null,
+  }
+);
+
 export const defaultSectionForTraining = "advantages";
 
 export const selectSectionsAsComponentForTraining = [
@@ -109,20 +119,22 @@ export const selectSectionsAsComponentForTraining = [
 
 export const selectSectionsAsComponentForRoadmap = [
   {
-    key: "roles&Responsibilities",
+    key: "rolesAndResponsibilities",
     component: RolesResponsibilities,
   },
   {
     key: "prerequisites",
     component: SkillsRequired,
   },
-  // {
-  //   key: "trainingRoadmap",
-  // },
-  // {
-  //   key: "recommendedAdditionalTrainings",
-  // },
-  { key: "skillsYouWillGain",component:Objectives },
+  {
+    key: "trainingRoadmap",
+    component: TrainingRoadmap,
+  },
+  {
+    key: "recommendedAdditionalTrainings",
+    component: RecommendedAdditionalTrainings,
+  },
+  { key: "skillsYouWillGain", component: Objectives },
   {
     key: "whereDoOurGraduatesWork",
     component: Companies,

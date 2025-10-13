@@ -7,8 +7,6 @@ import {
   useContext,
 } from "react";
 
-import { notFound } from "next/navigation";
-
 import { errorCodes, errorResponses } from "@/lib/constants/errorCodes";
 import { getGraduates } from "@/lib/utils/api/graduates";
 import { getTrainingData } from "@/lib/utils/api/training";

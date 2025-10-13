@@ -27,5 +27,10 @@
         line-height: 20px;
 
 
+        .rolesAndResponsibilitiesArray{
+            list-style-type: disc;
+            padding-left: 15px;
+        }
+
     }
 }
