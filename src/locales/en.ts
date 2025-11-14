@@ -200,7 +200,7 @@ export default {
   selectEnglishProficiencyLevel: "Select English Proficiency Level",
   selectPaymentResponsibility: "Select Payment Responsibility",
   additionalInformation: "Additional Information",
-  hearAboutUs: "Hear About Us",
+  hearAboutUs: "How Did You Hear About Us?",
   selectSource: "Select Source",
   A1: "A1 - Beginner",
   A2: "A2 - Elementary",
