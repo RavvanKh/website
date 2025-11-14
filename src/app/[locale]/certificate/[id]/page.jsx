@@ -26,6 +26,11 @@ export async function generateMetadata({ params, searchParams }) {
     const { organization } = await getHomeData();
     const certificate = await getCertificateData(id);
 
+    const isHorizontal = orientation === CERTIFICATE_DEFAULT_TYPE;
+
+    const imageWidth = isHorizontal ? 1000 : 550;
+    const imageHeight = isHorizontal ? 707 : 777;
+
     if (errorResponses[certificate]) {
       return errorResponses[certificate];
     }
@@ -45,8 +50,8 @@ export async function generateMetadata({ params, searchParams }) {
             url: certificate?.previewUrls?.[
               orientation ?? CERTIFICATE_DEFAULT_TYPE
             ],
-            width: 1200,
-            height: 630,
+            width: imageWidth,
+            height: imageHeight,
             alt: "Certificate img",
           },
         ],
