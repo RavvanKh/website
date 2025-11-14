@@ -8,6 +8,7 @@ import { getCertificateData } from "@/lib/utils/api/certificate";
 import { getHomeData } from "@/lib/utils/api/home";
 import { convertPlatform } from "@/lib/utils/helpers/convertPlatform";
 import { isValidOrientation } from "@/lib/utils/helpers/isValidOrientation";
+import { CERTIFICATE_DEFAULT_TYPE } from "@/lib/constants/shareCertificateEnums";
 
 export async function generateMetadata({ params, searchParams }) {
   const { id, locale } = await params;
@@ -41,7 +42,9 @@ export async function generateMetadata({ params, searchParams }) {
         siteName: organization?.name,
         images: [
           {
-            url: certificate?.previewUrls?.[orientation],
+            url: certificate?.previewUrls?.[
+              orientation ?? CERTIFICATE_DEFAULT_TYPE
+            ],
             width: 1200,
             height: 630,
             alt: "Certificate img",
