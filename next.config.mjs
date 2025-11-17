@@ -16,6 +16,7 @@ const nextConfig = {
     ];
   },
   reactStrictMode: false,
+  htmlLimitedBots: /.*/,
   images: {
     unoptimized: true,
     remotePatterns: [

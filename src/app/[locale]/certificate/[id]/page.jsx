@@ -71,10 +71,10 @@ export async function generateMetadata({ params, searchParams }) {
         creator: "@IngressAcademy",
       },
       alternates: {
-        canonical: `${organization?.url}/${locale}/certificate/${id}${platformQuery}`,
+        canonical: `${organization?.url}/${locale}/certificate/${id}`,
         languages: {
-          az: `${organization?.url}/az/certificate/${id}${platformQuery}`,
-          en: `${organization?.url}/en/certificate/${id}${platformQuery}`,
+          az: `${organization?.url}/az/certificate/${id}`,
+          en: `${organization?.url}/en/certificate/${id}`,
         },
       },
     };

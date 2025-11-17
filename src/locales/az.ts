@@ -260,4 +260,23 @@ export default {
     "Zəhmət olmasa bir neçə dəqiqədən sonra yenidən yoxlayın. Səbriniz üçün təşəkkür edirik!",
   refreshIn: "Yenilənəcək",
   skillsYouWillGain: "Qazanacağınız bacarıqlar",
+  shareYourAchievement: "Nailiyyətlərinizi paylaşın",
+  shareDescription:
+    "Sertifikatınızı sosial media platformalarında paylaşın və peşəkar şəbəkənizdə nailiyyətlərinizi nümayiş etdirin.",
+  copyLink: "Linki kopyalayın",
+  copied: "Kopyalandı!",
+  downloadPDF: "PDF-i yükləyin",
+  certificateDetails: "Sertifikat Təfərrüatları",
+  certificateHolder: "Sertifikat Sahibi",
+  issueDate: "Verilmə tarixi",
+  credentialId: "Sertifikat ID",
+  aboutThisCertificate: "Bu Sertifikat Haqqında",
+  description: "Təsvir",
+  skillsCovered: "Əhatə olunan Bacarıqlar",
+  issuingOrganization: "Sertifikatı Verən Təşkilat",
+  hasBeenAwardedThe: "təltif edilmişdir",
+  diploma: "DİPLOM ilə",
+  forSuccessfullyCompletingTheRequirementsOf:
+    "müvəffəqiyyətlə tamamladığına görə",
+  honours: "Fəxri",
 } as const;

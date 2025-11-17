@@ -1,4 +1,5 @@
 import Trainings from "@/components/pages/trainings/Trainings";
+import { ERROR_ENUMS, errorResponses } from "@/lib/constants/errorCodes";
 
 import { getHomeData } from "@/lib/utils/api/home";
 
@@ -19,16 +20,7 @@ export async function generateMetadata({ params }) {
       },
     };
   } catch (err) {
-    return {
-      title: "Website Under Maintenance",
-      description:
-        "Our website is currently undergoing scheduled maintenance. We apologize for the inconvenience and appreciate your patience.",
-      keywords: "maintenance, site down, temporary unavailable",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
+    return errorResponses[ERROR_ENUMS.maintenance];
   }
 }
 

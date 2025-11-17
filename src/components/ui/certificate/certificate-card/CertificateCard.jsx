@@ -8,7 +8,7 @@ import styles from "./certificate-card.module.css";
 import { forwardRef } from "react";
 
 const CertificateCard = forwardRef(
-  ({ certificate, orientation = "vertical" }, ref) => {
+  ({ certificate, orientation = "vertical", t }, ref) => {
     const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
 
     return (
@@ -45,10 +45,10 @@ const CertificateCard = forwardRef(
                 {certificate?.person?.firstName} {certificate?.person?.lastName}
               </div>
               <div className={styles.nameUnderline} />
-              <div className={styles.awardedText}>has been awarded the</div>
-              <div className={styles.diploma}>DIPLOMA</div>
+              <div className={styles.awardedText}>{t("hasBeenAwardedThe")}</div>
+              <div className={styles.diploma}>{t("diploma")}</div>
               <div className={styles.requirements}>
-                for successfully completing the requirements of
+                {t("forSuccessfullyCompletingTheRequirementsOf")}
               </div>
               <div className={styles.course}>
                 {certificate?.issuedFor || "Course Name"}
@@ -65,7 +65,7 @@ const CertificateCard = forwardRef(
                       day: "numeric",
                     }
                   )}
-                  <div className={styles.label}>Issue Date</div>
+                  <div className={styles.label}>{t("issueDate")}</div>
                 </div>
                 {certificate?.type === CERTIFICATE_TYPE_ENUMS.honours && (
                   <div className={styles.honourContainer}>
@@ -76,7 +76,7 @@ const CertificateCard = forwardRef(
                         width={70}
                         height={70}
                       />
-                      <span className={styles.honourText}>Honours</span>
+                      <span className={styles.honourText}>{t("honours")}</span>
                     </div>
                   </div>
                 )}
@@ -95,7 +95,7 @@ const CertificateCard = forwardRef(
               </div>
 
               <div className={styles.credentialId}>
-                Credential ID: {certificate?.credentialId}
+                {t("credentialId")}: {certificate?.credentialId}
               </div>
               <div className={styles.qrContainer}>
                 <div className={styles.qrcode}>
