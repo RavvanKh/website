@@ -91,10 +91,10 @@ export default function InstructorsTitle({ loading = false, error }) {
             </div>
           </div>
           <div className={styles.instructorsText}>
-            <h2>
+            <h1>
               <span className={styles.blue}>{t("industryLeading")}</span>
               {t("instructorTeam")}
-            </h2>
+            </h1>
             <p>{t("instructorDescription")}</p>
           </div>
         </div>
