@@ -13,6 +13,7 @@ import ShareCertificate from "@/components/ui/certificate/share-certificate/Shar
 import { useCertificate } from "@/contexts/CertificateContext";
 
 import styles from "./certificate.module.css";
+import { useI18n } from "@/locales/client";
 
 const Certificate = ({ hasPreview }) => {
   const { certificate, loading, error, platform, setOrientation, orientation } =
@@ -20,6 +21,8 @@ const Certificate = ({ hasPreview }) => {
 
   const certificateCardRef = useRef(null);
   const [loadingPdf, setLoadingPdf] = useState(false);
+
+  const t = useI18n();
 
   const router = useRouter();
   const pathname = usePathname();
@@ -85,6 +88,7 @@ const Certificate = ({ hasPreview }) => {
           certificate={certificate}
           orientation={orientation}
           ref={certificateCardRef}
+          t={t}
         />
         {!hasPreview && (
           <>
@@ -94,8 +98,9 @@ const Certificate = ({ hasPreview }) => {
               orientation={orientation}
               handleDownloadPdf={handleDownloadPdf}
               loadingPdf={loadingPdf}
+              t={t}
             />
-            <CertificateDetails certificate={certificate} />
+            <CertificateDetails certificate={certificate} t={t} />
           </>
         )}
       </section>
